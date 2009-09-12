@@ -1,0 +1,7 @@
+This repository contains the various platform packaging bits. Each of the following subdirs contains the packaging for Chef, Ohai, and Mixlibs, and other packaged dependencies until said packages are stabilised in the respective platforms.
+
+debian/ - debian and ubuntu
+redhat/ - redhat, centos, fedora
+gentoo/ - :)
+openbsd/ - :)
+freebsd/ - >:)
