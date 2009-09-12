@@ -1,1 +1,3 @@
 Packaging data for debian/ and related platforms
+
+Non-Opscode software packaged through this repository is hosted on apt.opscode.com for various versions of Debian and/or Ubuntu that do not include those packages yet.

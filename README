@@ -5,3 +5,17 @@ redhat/ - redhat, centos, fedora
 gentoo/ - :)
 openbsd/ - :)
 freebsd/ - >:)
+
+For contributing to the overall packaging, please see the Opscode wiki page on contributing:
+
+  http://wiki.opscode.com/display/opscode/Contributing
+
+And on working with our git repositories:
+
+  http://wiki.opscode.com/display/opscode/Working+with+Git
+
+Open tickets in Jira, CHEF project, be sure to use the "Packaging" component:
+
+  http://tickets.opscode.com/
+
+If you resolve a ticket, set the status to "Resolved" and assign Joshua Timberman.
