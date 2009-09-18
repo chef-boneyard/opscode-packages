@@ -1,0 +1,10 @@
+/var/log/stompserver/*log {
+  missingok
+  create 0644 stompserver stompserver
+  compress
+  rotate 12
+  weekly
+  postrotate
+  /etc/init.d/stompserver force-reload
+  endscript
+}

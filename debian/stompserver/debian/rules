@@ -1,0 +1,11 @@
+#!/usr/bin/make -f
+
+include /usr/share/cdbs/1/rules/debhelper.mk
+include /usr/share/ruby-pkg-tools/1/class/ruby-setup-rb.mk
+include /usr/share/cdbs/1/rules/patchsys-quilt.mk
+
+DEB_INSTALL_CHANGELOGS_ALL = History.txt
+
+binary-install/stompserver::
+	install -Dp -m0644 debian/stompserver.conf debian/stompserver/etc/stompserver.conf
+

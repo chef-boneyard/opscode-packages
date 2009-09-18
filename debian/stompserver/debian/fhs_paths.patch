@@ -1,0 +1,32 @@
+# Description: Check for absolute paths so we can enforce FHS in config.
+# No upstream patch/URL yet, will update package when one is open.
+# Author: Joshua Timberman <joshua@opscode.com>
+Index: stompserver-0.9.9/lib/stomp_server.rb
+===================================================================
+--- stompserver-0.9.9.orig/lib/stomp_server.rb	2009-08-19 16:43:04.368066674 -0600
++++ stompserver-0.9.9/lib/stomp_server.rb	2009-08-19 16:44:24.783974681 -0600
+@@ -28,6 +28,7 @@
+         :working_dir => Dir.getwd,
+         :storage => ".stompserver",
+         :logdir => 'log',
++        :etcdir => 'etc',
+         :configfile => 'stompserver.conf',
+         :logfile => 'stompserver.log',
+         :pidfile => 'stompserver.pid',
+@@ -63,10 +63,10 @@
+         opts = @defaults
+       end
+ 
+-      opts[:etcdir] = File.join(opts[:working_dir],'etc')
+-      opts[:storage] = File.join(opts[:working_dir],opts[:storage])
+-      opts[:logdir] = File.join(opts[:working_dir],opts[:logdir])
+-      opts[:logfile] = File.join(opts[:logdir],opts[:logfile])
+-      opts[:pidfile] = File.join(opts[:logdir],opts[:pidfile])
++      opts[:etcdir] = opts[:etcdir] =~ /^\// ? opts[:etcdir] : File.join(opts[:working_dir],opts[:etcdir])
++      opts[:storage] = opts[:storage] =~ /^\// ? opts[:storage] : File.join(opts[:working_dir],opts[:storage])
++      opts[:logdir] = opts[:logdir] =~ /^\// ? opts[:logdir] : File.join(opts[:working_dir],opts[:logdir])
++      opts[:logfile] = opts[:logfile] =~ /^\// ? opts[:logfile] : File.join(opts[:logdir],opts[:logfile])
++      opts[:pidfile] = opts[:pidfile] =~ /^\// ? opts[:pidfile] : File.join(opts[:logdir],opts[:pidfile])
+       if opts[:auth]
+         opts[:passwd] = File.join(opts[:etcdir],'.passwd')
+       end

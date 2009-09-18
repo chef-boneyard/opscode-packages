@@ -1,0 +1,4 @@
+remove_rubygems.patch
+ruby_hashbang.patch
+fhs_paths.patch
+fix_storagedir.patch

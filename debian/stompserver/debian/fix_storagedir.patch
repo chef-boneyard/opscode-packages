@@ -1,0 +1,15 @@
+# Description: Bug in initialize won't create the storage dir in FHS compliant location
+# No upstream bug yet, will update the package when there is one.
+Index: stompserver-0.9.9/lib/stomp_server/queue/activerecord_queue.rb
+===================================================================
+--- stompserver-0.9.9.orig/lib/stomp_server/queue/activerecord_queue.rb	2009-08-19 17:49:44.559625055 -0600
++++ stompserver-0.9.9/lib/stomp_server/queue/activerecord_queue.rb	2009-08-19 17:50:07.623903343 -0600
+@@ -15,7 +15,7 @@
+     # Default configuration, use SQLite for simplicity
+     db_params = {
+       'adapter' => 'sqlite3',
+-      'database' => "#{configdir}/stompserver_development"
++      'database' => "#{storagedir}/stompserver_development"
+     }
+     # Load DB configuration
+     db_config = "#{configdir}/database.yml"

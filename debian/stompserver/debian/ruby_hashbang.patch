@@ -1,0 +1,13 @@
+# Description: Add a ruby shebang to the stompserver binary per policy
+# Debian Policy Manual section 10.4 Scripts.
+# Author: Bryan McLellan <btm@loftninjas.org>
+Index: stompserver-0.9.9/bin/stompserver
+===================================================================
+--- stompserver-0.9.9.orig/bin/stompserver	2009-07-28 11:45:59.000000000 -0700
++++ stompserver-0.9.9/bin/stompserver	2009-07-28 11:46:08.000000000 -0700
+@@ -1,3 +1,5 @@
++#!/usr/bin/ruby1.8
++
+ require 'etc'
+ require 'yaml'
+ require 'daemons/daemonize'
