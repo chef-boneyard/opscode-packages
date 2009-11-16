@@ -1,0 +1,46 @@
+chef-server for Debian
+----------------------
+
+There are a number of ways to set up the chef-server. The default on Debian is
+to use a pair of Mongrels. These will be started when the chef-server init 
+script runs:
+
+  chef-server -c2 -d
+
+This is using the default 'mongrel' adapter for the Merb application slice.
+When the Chef merb application starts, it runs a 'master' merb process and
+a number of 'worker' daemons up to the -c amount. Chef needs at least two;
+one for the webui/api and the other for the openid server. By default, these
+will start on ports 4000 and 4001:
+
+  $ ps awux | grep merb
+  root      2558  0.0  0.9  22868  1128 ?        S    Aug11   0:01 merb : merb : master                                           
+  root      3003  3.7 14.1  34032 17672 ?        Sl   Aug11  55:24 merb : spawner (ports 4000)                                    
+  root      3005  0.0  1.2  34040  1508 ?        S    Aug11   0:00 merb : worker (port 4000)                                      
+  root      3006  0.0  1.2  34040  1508 ?        S    Aug11   0:00 merb : worker (port 4001)  
+
+Clients should connect to the server on port 4000 for all "URLs" except openid, 
+which should be port 4001. See /etc/chef/client.rb for these settings.
+
+Note that this setup does not speak SSL over HTTPS. To do that, the server
+needs to be configured with a web front end proxy, such as Apache2 or Nginx,
+or as a mod_rack application with Phusion's Passenger. More details on these
+configurations will be coming soon to the Chef wiki, including example config
+files.
+
+Additional Resources
+--------------------
+
+The official documentation for Chef is on the Opscode wiki:
+
+  http://wiki.opscode.com/display/chef/Home
+
+Opscode also hosts mailing lists:
+
+  http://lists.opscode.com/
+
+And there's an IRC channel on Freenode:
+
+  irc://irc.freenode.net/chef
+
+ -- Joshua Timberman <joshua@opscode.com>  Mon, 03 Aug 2009 22:14:03 -0600

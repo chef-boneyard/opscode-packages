@@ -1,0 +1,3 @@
+version=3
+#http://apt.opscode.com/tarballs/chef-(.*).tar.gz
+http://githubredir.debian.net/github/opscode/chef /([0..9].[567].*).tar.gz

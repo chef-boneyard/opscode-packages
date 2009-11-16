@@ -1,0 +1,80 @@
+#!/usr/bin/make -f
+# -*- makefile -*-
+include /usr/share/cdbs/1/rules/debhelper.mk
+include /usr/share/cdbs/1/rules/patchsys-quilt.mk
+include /usr/share/ruby-pkg-tools/1/class/ruby-common.mk
+
+# setup.rb doesn't work very well with separate binary / lib
+# packages, and with subproject directories, so while this
+# looks like duplication of ruby-setup-rb.mk, using that 
+# doesn't build these packages properly.
+CDBS_NO_DOC_SYMLINKING = ""
+
+PACKAGED_RUBY_SETUP_CMD = /usr/lib/ruby/1.8/setup.rb
+DEB_RUBY_SETUP_CMD = debian-setup.rb
+DEB_RUBY_CONFIG_ARGS = --installdirs=std
+
+CHEF_INSTALL_SETUP_CMD = \
+  if [ ! -L chef/$(DEB_RUBY_SETUP_CMD) ] ; then \
+    if [ -f chef/$(DEB_RUBY_SETUP_CMD) ] ; then \
+      mv chef/$(DEB_RUBY_SETUP_CMD) chef/$(DEB_RUBY_SETUP_CMD).moved_away_by_debian_build ;\
+    fi ; \
+    ln -s $(PACKAGED_RUBY_SETUP_CMD) chef/$(DEB_RUBY_SETUP_CMD) ; \
+  fi
+
+CHEF_REMOVE_SETUP_CMD = \
+  if [ -L chef/$(DEB_RUBY_SETUP_CMD) ] ; then \
+    rm chef/$(DEB_RUBY_SETUP_CMD) ; \
+  fi ; \
+  if [ -f chef/$(DEB_RUBY_SETUP_CMD).moved_away_by_debian_build ] ; then \
+    mv chef/$(DEB_RUBY_SETUP_CMD).moved_away_by_debian_build chef/$(DEB_RUBY_SETUP_CMD) ; \
+  fi
+
+install/chef::
+	# init script name is different from the package:
+	dh_installinit --name chef-client 
+	cp -rf $(CURDIR)/debian/etc/chef/client.rb $(CURDIR)/debian/chef/etc/chef
+	cp -rf $(CURDIR)/debian/etc/chef/solo.rb $(CURDIR)/debian/chef/etc/chef
+
+install/libchef-ruby1.8::
+	# straight setup.rb won't build this correctly, see comment at top.
+	$(CHEF_INSTALL_SETUP_CMD)
+	(cd chef && /usr/bin/ruby $(DEB_RUBY_SETUP_CMD) config $(DEB_RUBY_CONFIG_ARGS))
+	(cd chef && /usr/bin/ruby $(DEB_RUBY_SETUP_CMD) setup)
+	(cd chef && /usr/bin/ruby $(DEB_RUBY_SETUP_CMD) install --prefix=../debian/libchef-ruby1.8)
+	mkdir -p $(CURDIR)/debian/chef/usr/bin
+	mv $(CURDIR)/debian/libchef-ruby1.8/usr/bin/chef-client $(CURDIR)/debian/chef/usr/bin/
+	mv $(CURDIR)/debian/libchef-ruby1.8/usr/bin/chef-solo $(CURDIR)/debian/chef/usr/bin/
+	rmdir $(CURDIR)/debian/libchef-ruby1.8/usr/bin/
+
+install/chef-indexer::
+	mkdir -p $(CURDIR)/debian/chef-indexer/usr/bin
+	cp debian/etc/chef/indexer.rb debian/chef-indexer/etc/chef
+	cp chef-server/bin/chef-indexer debian/chef-indexer/usr/bin
+
+install/chef-server::
+	mkdir -p $(CURDIR)/debian/chef-server/usr/bin
+	cp debian/etc/chef/server.rb  debian/chef-server/etc/chef
+	cp chef-server/bin/chef-server  debian/chef-server/usr/bin
+	cp chef-server/README.rdoc debian/chef-server/usr/share/doc/chef-server
+	cp chef-server/config.ru debian/chef-server/usr/share/chef-server
+	cp -rf chef-server/app    debian/chef-server/usr/share/chef-server
+	cp -rf chef-server/config debian/chef-server/usr/share/chef-server
+	cp -rf chef-server/lib    debian/chef-server/usr/share/chef-server
+	cp -rf chef-server/public debian/chef-server/usr/share/chef-server
+
+install/chef-server-slice::
+	cp chef-server-slice/README.rdoc debian/chef-server-slice/usr/share/doc/chef-server-slice
+	cp -rf chef-server-slice/app    debian/chef-server-slice/usr/share/chef-server-slice
+	cp -rf chef-server-slice/config debian/chef-server-slice/usr/share/chef-server-slice
+	cp -rf chef-server-slice/public debian/chef-server-slice/usr/share/chef-server-slice
+	cp -rf chef-server-slice/lib    debian/chef-server-slice/usr/share/chef-server-slice
+	rm debian/chef-server-slice/usr/share/chef-server-slice/public/images/treeBuilderImages/Thumbs.db
+	find debian/chef-server-slice -type f -perm +755 -exec chmod 644 {} \;
+
+clean::
+	$(CHEF_INSTALL_SETUP_CMD)
+	(cd chef && /usr/bin/ruby $(DEB_RUBY_SETUP_CMD) distclean)
+	$(CHEF_REMOVE_SETUP_CMD)
+	rm -f chef/.config
+	rm -f chef/InstalledFiles

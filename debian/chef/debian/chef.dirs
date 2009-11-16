@@ -1,0 +1,5 @@
+var/cache/chef
+var/lib/chef/openid
+var/lib/chef/search_index
+var/log/chef
+etc/chef

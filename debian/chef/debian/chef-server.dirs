@@ -1,0 +1,10 @@
+var/cache/chef
+var/lib/chef/cookbooks
+var/lib/chef/openid
+var/lib/chef/openid/store
+var/lib/chef/openid/cstore
+var/log/chef
+usr/share/doc/chef-server
+usr/share/chef-server
+etc/chef
+etc/chef/certificates

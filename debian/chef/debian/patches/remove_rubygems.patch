@@ -1,0 +1,143 @@
+# Description: Remove rubygems from the various bits of chef.
+# Also set up chef-server program to load slice correctly due to no rubygems.
+# No upstream patch/ticket filed yet, still discussing how we're going to 
+# approach this to be applicable to other platforms than Debian/Ubuntu.
+Index: chef-0.7.8/chef-server/bin/chef-indexer
+===================================================================
+--- chef-0.7.8.orig/chef-server/bin/chef-indexer	2009-08-20 14:56:55.171895794 -0600
++++ chef-0.7.8/chef-server/bin/chef-indexer	2009-08-20 14:58:38.375887954 -0600
+@@ -20,7 +20,6 @@
+ 
+ $: << File.join(File.dirname(__FILE__), "..", "lib")
+ 
+-require 'rubygems'
+ require 'chef/application/indexer'
+ 
+-Chef::Application::Indexer.new.run
+\ No newline at end of file
++Chef::Application::Indexer.new.run
+Index: chef-0.7.8/chef-server/bin/chef-server
+===================================================================
+--- chef-0.7.8.orig/chef-server/bin/chef-server	2009-08-20 14:56:55.151889438 -0600
++++ chef-0.7.8/chef-server/bin/chef-server	2009-08-20 14:58:38.375887954 -0600
+@@ -23,13 +23,10 @@
+ # Add chef and chef-server-slice lib dirs to the load path
+ # Load chef and chef-server slice from source rather than gem, if present
+ 
+-require "rubygems"
+ require "merb-core"
+-
+-[ 'chef', 'chef-server-slice' ].each do |lib|
+-  library = File.join(File.dirname(__FILE__), "..", "..", lib, "lib", "#{lib}.rb")
+-  require library if File.exists?(library)
+-end
++require "chef"
++require "/usr/share/chef-server-slice/lib/chef-server-slice"
++require "openid/util"
+ 
+ ObjectSpace.each_object(Gem::Specification) do |gem|
+   next unless gem.name == "chef-server"
+@@ -37,13 +34,15 @@
+   break
+ end
+ 
++CHEF_SERVER_VERSION = "0.7.8" unless defined?(CHEF_SERVER_VERSION)
++
+ # Ensure the chef gem we load is the same version as the chef server
+ unless defined?(Chef)
+   gem "chef", "=" + CHEF_SERVER_VERSION if CHEF_SERVER_VERSION
+   require 'chef'  
+ end
+ 
+-Dir.chdir File.join(File.dirname(__FILE__),"..")
++Dir.chdir File.join(File.dirname(__FILE__),"..", "share", "chef-server")
+ __DIR__ = Dir.getwd
+ 
+ if ARGV[0] && ARGV[0] =~ /^[^-]/
+Index: chef-0.7.8/chef-server/public/merb.fcgi
+===================================================================
+--- chef-0.7.8.orig/chef-server/public/merb.fcgi	2009-08-20 14:56:55.191856158 -0600
++++ chef-0.7.8/chef-server/public/merb.fcgi	2009-08-20 14:58:38.375887954 -0600
+@@ -1,6 +1,5 @@
+ #!/usr/bin/env ruby
+                                                                
+-require 'rubygems'
+ require 'merb-core'
+ 
+ # this is Merb.root, change this if you have some funky setup.
+@@ -19,4 +18,4 @@
+ # start merb with the fcgi adapter, add options or change the log dir here
+ Merb.start(:adapter => 'fcgi',
+            :merb_root => merb_root,
+-           :log_file => merb_root /'log'/'merb.log')
+\ No newline at end of file
++           :log_file => merb_root /'log'/'merb.log')
+Index: chef-0.7.8/chef/bin/chef-client
+===================================================================
+--- chef-0.7.8.orig/chef/bin/chef-client	2009-08-20 14:56:55.207683729 -0600
++++ chef-0.7.8/chef/bin/chef-client	2009-08-20 14:58:41.964123959 -0600
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env ruby
++#! /usr/bin/ruby1.8
+ #
+ # ./chef-client - Run the chef client
+ #
+@@ -20,7 +20,6 @@
+ 
+ $: << File.join(File.dirname(__FILE__), "..", "lib")
+ 
+-require 'rubygems'
+ require 'chef/application/client'
+ 
+-Chef::Application::Client.new.run
+\ No newline at end of file
++Chef::Application::Client.new.run
+Index: chef-0.7.8/chef/bin/chef-solo
+===================================================================
+--- chef-0.7.8.orig/chef/bin/chef-solo	2009-08-20 14:56:55.227719673 -0600
++++ chef-0.7.8/chef/bin/chef-solo	2009-08-20 14:58:41.964123959 -0600
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env ruby
++#! /usr/bin/ruby1.8
+ #
+ # ./chef-solo - Run the chef client, in stand-alone mode
+ #
+@@ -20,7 +20,6 @@
+ 
+ $: << File.join(File.dirname(__FILE__), "..", "lib")
+ 
+-require 'rubygems'
+ require 'chef/application/solo'
+ 
+ Chef::Application::Solo.new.run
+Index: chef-0.7.8/chef/lib/chef.rb
+===================================================================
+--- chef-0.7.8.orig/chef/lib/chef.rb	2009-08-20 14:56:55.239908163 -0600
++++ chef-0.7.8/chef/lib/chef.rb	2009-08-20 14:58:38.375887954 -0600
+@@ -19,7 +19,6 @@
+ $:.unshift(File.dirname(__FILE__)) unless
+   $:.include?(File.dirname(__FILE__)) || $:.include?(File.expand_path(File.dirname(__FILE__)))
+ 
+-require 'rubygems'
+ require 'extlib'
+ require 'chef/exceptions'
+ require 'chef/log'
+Index: chef-0.7.8/chef/lib/chef/openid_registration.rb
+===================================================================
+--- chef-0.7.8.orig/chef/lib/chef/openid_registration.rb	2009-08-20 14:56:55.263837175 -0600
++++ chef-0.7.8/chef/lib/chef/openid_registration.rb	2009-08-20 14:58:38.375887954 -0600
+@@ -20,7 +20,6 @@
+ require 'chef/mixin/params_validate'
+ require 'chef/couchdb'
+ require 'digest/sha1'
+-require 'rubygems'
+ require 'json'
+ 
+ class Chef
+@@ -178,4 +177,4 @@
+       end
+     
+   end
+-end
+\ No newline at end of file
++end
