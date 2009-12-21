@@ -1,0 +1,173 @@
+#!/usr/bin/make -f
+# -*- makefile -*-
+include /usr/share/cdbs/1/rules/patchsys-quilt.mk
+include /usr/share/ruby-pkg-tools/1/class/ruby-common.mk
+include /usr/share/cdbs/1/rules/debhelper.mk
+
+CDBS_NO_DOC_SYMLINKING = ""
+
+PACKAGED_RUBY_SETUP_CMD = /usr/lib/ruby/1.8/setup.rb
+DEB_RUBY_SETUP_CMD = debian-setup.rb
+DEB_RUBY_CONFIG_ARGS = --installdirs=std
+
+# command to install symlink to packaged setup.rb: used in both build and clean
+# targets
+DEB_RUBY_INSTALL_SETUP_CMD = \
+  if [ ! -L $(DEB_RUBY_SETUP_CMD) ] ; then \
+    if [ -f $(DEB_RUBY_SETUP_CMD) ] ; then \
+      mv $(DEB_RUBY_SETUP_CMD) $(DEB_RUBY_SETUP_CMD).moved_away_by_debian_build ;\
+    fi ; \
+    ln -s $(PACKAGED_RUBY_SETUP_CMD) $(DEB_RUBY_SETUP_CMD) ; \
+  fi
+
+DEB_RUBY_REMOVE_SETUP_CMD = \
+  if [ -L $(DEB_RUBY_SETUP_CMD) ] ; then \
+    rm $(DEB_RUBY_SETUP_CMD) ; \
+  fi ; \
+  if [ -f $(DEB_RUBY_SETUP_CMD).moved_away_by_debian_build ] ; then \
+    mv $(DEB_RUBY_SETUP_CMD).moved_away_by_debian_build $(DEB_RUBY_SETUP_CMD) ; \
+  fi
+
+MERB_CORE_INSTALL_SETUP_CMD = \
+  if [ ! -L merb-core/$(DEB_RUBY_SETUP_CMD) ] ; then \
+    if [ -f merb-core/$(DEB_RUBY_SETUP_CMD) ] ; then \
+      mv merb-core/$(DEB_RUBY_SETUP_CMD) merb-core/$(DEB_RUBY_SETUP_CMD).moved_away_by_debian_build ;\
+    fi ; \
+    ln -s $(PACKAGED_RUBY_SETUP_CMD) merb-core/$(DEB_RUBY_SETUP_CMD) ; \
+  fi
+
+MERB_CORE_REMOVE_SETUP_CMD = \
+  if [ -L merb-core/$(DEB_RUBY_SETUP_CMD) ] ; then \
+    rm merb-core/$(DEB_RUBY_SETUP_CMD) ; \
+  fi ; \
+  if [ -f merb-core/$(DEB_RUBY_SETUP_CMD).moved_away_by_debian_build ] ; then \
+    mv merb-core/$(DEB_RUBY_SETUP_CMD).moved_away_by_debian_build merb-core/$(DEB_RUBY_SETUP_CMD) ; \
+  fi
+
+MERB_HAML_INSTALL_SETUP_CMD = \
+  if [ ! -L merb-haml/$(DEB_RUBY_SETUP_CMD) ] ; then \
+    if [ -f merb-haml/$(DEB_RUBY_SETUP_CMD) ] ; then \
+      mv merb-haml/$(DEB_RUBY_SETUP_CMD) merb-haml/$(DEB_RUBY_SETUP_CMD).moved_away_by_debian_build ;\
+    fi ; \
+    ln -s $(PACKAGED_RUBY_SETUP_CMD) merb-haml/$(DEB_RUBY_SETUP_CMD) ; \
+  fi
+
+MERB_HAML_REMOVE_SETUP_CMD = \
+  if [ -L merb-haml/$(DEB_RUBY_SETUP_CMD) ] ; then \
+    rm merb-haml/$(DEB_RUBY_SETUP_CMD) ; \
+  fi ; \
+  if [ -f merb-haml/$(DEB_RUBY_SETUP_CMD).moved_away_by_debian_build ] ; then \
+    mv merb-haml/$(DEB_RUBY_SETUP_CMD).moved_away_by_debian_build merb-haml/$(DEB_RUBY_SETUP_CMD) ; \
+  fi
+
+MERB_SLICES_INSTALL_SETUP_CMD = \
+  if [ ! -L merb-slices/$(DEB_RUBY_SETUP_CMD) ] ; then \
+    if [ -f merb-slices/$(DEB_RUBY_SETUP_CMD) ] ; then \
+      mv merb-slices/$(DEB_RUBY_SETUP_CMD) merb-slices/$(DEB_RUBY_SETUP_CMD).moved_away_by_debian_build ;\
+    fi ; \
+    ln -s $(PACKAGED_RUBY_SETUP_CMD) merb-slices/$(DEB_RUBY_SETUP_CMD) ; \
+  fi
+
+MERB_SLICES_REMOVE_SETUP_CMD = \
+  if [ -L merb-slices/$(DEB_RUBY_SETUP_CMD) ] ; then \
+    rm merb-slices/$(DEB_RUBY_SETUP_CMD) ; \
+  fi ; \
+  if [ -f merb-slices/$(DEB_RUBY_SETUP_CMD).moved_away_by_debian_build ] ; then \
+    mv merb-slices/$(DEB_RUBY_SETUP_CMD).moved_away_by_debian_build merb-slices/$(DEB_RUBY_SETUP_CMD) ; \
+  fi
+
+MERB_ASSETS_INSTALL_SETUP_CMD = \
+  if [ ! -L merb-assets/$(DEB_RUBY_SETUP_CMD) ] ; then \
+    if [ -f merb-assets/$(DEB_RUBY_SETUP_CMD) ] ; then \
+      mv merb-assets/$(DEB_RUBY_SETUP_CMD) merb-assets/$(DEB_RUBY_SETUP_CMD).moved_away_by_debian_build ;\
+    fi ; \
+    ln -s $(PACKAGED_RUBY_SETUP_CMD) merb-assets/$(DEB_RUBY_SETUP_CMD) ; \
+  fi
+
+MERB_ASSETS_REMOVE_SETUP_CMD = \
+  if [ -L merb-assets/$(DEB_RUBY_SETUP_CMD) ] ; then \
+    rm merb-assets/$(DEB_RUBY_SETUP_CMD) ; \
+  fi ; \
+  if [ -f merb-assets/$(DEB_RUBY_SETUP_CMD).moved_away_by_debian_build ] ; then \
+    mv merb-assets/$(DEB_RUBY_SETUP_CMD).moved_away_by_debian_build merb-assets/$(DEB_RUBY_SETUP_CMD) ; \
+  fi
+
+MERB_HELPERS_INSTALL_SETUP_CMD = \
+  if [ ! -L merb-helpers/$(DEB_RUBY_SETUP_CMD) ] ; then \
+    if [ -f merb-helpers/$(DEB_RUBY_SETUP_CMD) ] ; then \
+      mv merb-helpers/$(DEB_RUBY_SETUP_CMD) merb-helpers/$(DEB_RUBY_SETUP_CMD).moved_away_by_debian_build ;\
+    fi ; \
+    ln -s $(PACKAGED_RUBY_SETUP_CMD) merb-helpers/$(DEB_RUBY_SETUP_CMD) ; \
+  fi
+
+MERB_HELPERS_REMOVE_SETUP_CMD = \
+  if [ -L merb-helpers/$(DEB_RUBY_SETUP_CMD) ] ; then \
+    rm merb-helpers/$(DEB_RUBY_SETUP_CMD) ; \
+  fi ; \
+  if [ -f merb-helpers/$(DEB_RUBY_SETUP_CMD).moved_away_by_debian_build ] ; then \
+    mv merb-helpers/$(DEB_RUBY_SETUP_CMD).moved_away_by_debian_build merb-helpers/$(DEB_RUBY_SETUP_CMD) ; \
+  fi
+
+install/merb-core::
+	dh_installchangelogs
+	dh_installdirs
+
+install/merb-slices::
+	dh_installchangelogs
+	dh_installdirs
+
+install/libmerb-core-ruby1.8::
+	$(MERB_CORE_INSTALL_SETUP_CMD)
+	(cd merb-core && /usr/bin/ruby $(DEB_RUBY_SETUP_CMD) config $(DEB_RUBY_CONFIG_ARGS))
+	(cd merb-core && /usr/bin/ruby $(DEB_RUBY_SETUP_CMD) setup)
+	(cd merb-core && /usr/bin/ruby $(DEB_RUBY_SETUP_CMD) install --prefix=../debian/libmerb-core-ruby1.8)
+	mv $(CURDIR)/debian/libmerb-core-ruby1.8/usr/bin/merb $(CURDIR)/debian/merb-core/usr/bin/
+	rm $(CURDIR)/debian/libmerb-core-ruby1.8/usr/bin/merb-specs
+	rmdir $(CURDIR)/debian/libmerb-core-ruby1.8/usr/bin/
+
+install/libmerb-haml-ruby1.8::
+	$(MERB_HAML_INSTALL_SETUP_CMD)
+	(cd merb-haml && /usr/bin/ruby $(DEB_RUBY_SETUP_CMD) config $(DEB_RUBY_CONFIG_ARGS))
+	(cd merb-haml && /usr/bin/ruby $(DEB_RUBY_SETUP_CMD) setup)
+	(cd merb-haml && /usr/bin/ruby $(DEB_RUBY_SETUP_CMD) install --prefix=../debian/libmerb-haml-ruby1.8)
+
+install/libmerb-slices-ruby1.8::
+	$(MERB_SLICES_INSTALL_SETUP_CMD)
+	(cd merb-slices && /usr/bin/ruby $(DEB_RUBY_SETUP_CMD) config $(DEB_RUBY_CONFIG_ARGS))
+	(cd merb-slices && /usr/bin/ruby $(DEB_RUBY_SETUP_CMD) setup)
+	(cd merb-slices && /usr/bin/ruby $(DEB_RUBY_SETUP_CMD) install --prefix=../debian/libmerb-slices-ruby1.8)
+	rm $(CURDIR)/debian/libmerb-slices-ruby1.8/usr/lib/ruby/1.8/generators/templates/common/LICENSE
+	mv $(CURDIR)/debian/libmerb-slices-ruby1.8/usr/bin/slice $(CURDIR)/debian/merb-slices/usr/bin/merb-slice
+	rmdir $(CURDIR)/debian/libmerb-slices-ruby1.8/usr/bin/
+
+install/libmerb-assets-ruby1.8::
+	$(MERB_ASSETS_INSTALL_SETUP_CMD)
+	(cd merb-assets && /usr/bin/ruby $(DEB_RUBY_SETUP_CMD) config $(DEB_RUBY_CONFIG_ARGS))
+	(cd merb-assets && /usr/bin/ruby $(DEB_RUBY_SETUP_CMD) setup)
+	(cd merb-assets && /usr/bin/ruby $(DEB_RUBY_SETUP_CMD) install --prefix=../debian/libmerb-assets-ruby1.8)
+
+install/libmerb-helpers-ruby1.8::
+	$(MERB_HELPERS_INSTALL_SETUP_CMD)
+	(cd merb-helpers && /usr/bin/ruby $(DEB_RUBY_SETUP_CMD) config $(DEB_RUBY_CONFIG_ARGS))
+	(cd merb-helpers && /usr/bin/ruby $(DEB_RUBY_SETUP_CMD) setup)
+	(cd merb-helpers && /usr/bin/ruby $(DEB_RUBY_SETUP_CMD) install --prefix=../debian/libmerb-helpers-ruby1.8)
+
+install/libmerb-ruby-doc::
+	rdoc --all --inline-source --fileboxes --line-numbers --fmt=html -o debian/$(cdbs_curpkg)/usr/share/doc/libmerb-ruby-doc/rdoc merb-core/lib merb-haml/lib merb-helpers/lib merb-assets/lib merb-slices/lib
+
+clean::
+	$(DEB_RUBY_INSTALL_SETUP_CMD)
+	$(MERB_CORE_INSTALL_SETUP_CMD)
+	$(MERB_HAML_INSTALL_SETUP_CMD)
+	$(MERB_SLICES_INSTALL_SETUP_CMD)
+	$(MERB_ASSETS_INSTALL_SETUP_CMD)
+	$(MERB_HELPERS_INSTALL_SETUP_CMD)
+	/usr/bin/ruby $(DEB_RUBY_SETUP_CMD) distclean
+	$(DEB_RUBY_REMOVE_SETUP_CMD)
+	$(MERB_CORE_REMOVE_SETUP_CMD)
+	$(MERB_HAML_REMOVE_SETUP_CMD)
+	$(MERB_SLICES_REMOVE_SETUP_CMD)
+	$(MERB_ASSETS_REMOVE_SETUP_CMD)
+	$(MERB_HELPERS_REMOVE_SETUP_CMD)
+	rm -f $(DEB_SRCDIR)/.config
+	rm -f $(DEB_SRCDIR)/InstalledFiles

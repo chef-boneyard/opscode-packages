@@ -1,0 +1,15 @@
+merb (1.0.12+dfsg-2) unstable; urgency=low
+
+   * Packaging approved for Ubuntu, updating for Debian.
+   * Rename merb-slices binary from slice to merb-slice.
+   * Repack upstream tarball, should not affect Debian packaging but noted:
+     + Replaced upstream empty LICENSE file with MIT license
+     + Removed object files which are part of the webrat spec testing.
+
+ -- Joshua Timberman <joshua@opscode.com>  Thu, 27 Aug 2009 08:56:09 -0600
+
+merb (1.0.12+dfsg-1) unstable; urgency=low
+
+   * Initial release (Closes: #538928)
+
+ -- Joshua Timberman <joshua@opscode.com>  Mon, 27 Jul 2009 23:38:37 -0600

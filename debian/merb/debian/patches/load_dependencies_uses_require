@@ -1,0 +1,28 @@
+# Description: Merb's dependency method, which calls load_dependency needs to have
+# a fallback to simply use require if a gem is not found.
+# Patch: http://github.com/jtimberman/merb/commit/3633e6dfbc8f263667bd4af45f4beec2090c0e28
+# Upstream: https://merb.lighthouseapp.com/projects/7433-merb/tickets/1281
+Index: merb-1.0.12/merb-core/lib/merb-core/core_ext/kernel.rb
+===================================================================
+--- merb-1.0.12.orig/merb-core/lib/merb-core/core_ext/kernel.rb	2009-07-29 16:20:14.000000000 -0600
++++ merb-1.0.12/merb-core/lib/merb-core/core_ext/kernel.rb	2009-07-29 16:20:51.000000000 -0600
+@@ -141,8 +141,17 @@
+       return unless dep.require_as
+       Gem.activate(dep)
+     rescue Gem::LoadError => e
+-      e.set_backtrace dep.original_caller
+-      Merb.fatal! "The gem #{name}, #{ver.inspect} was not found", e
++      begin
++        Merb.logger.debug "Falling back to a regular require"
++        if name.kind_of?(Gem::Dependency)
++          require name.name
++        else
++          require name
++        end 
++      rescue LoadError => le
++        e.set_backtrace dep.original_caller
++        Merb.fatal! "The gem #{name}, #{ver.inspect} was not found and we could not require it"
++      end 
+     end
+   
+     begin

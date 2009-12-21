@@ -1,0 +1,18 @@
+merb for Debian
+---------------
+
+The Merb packages provide just enough of Merb to run an existing application
+but not the components required to generate a new application for development.
+
+This package patches merb-core to allow load_dependency to 'require' other 
+libraries, rather than trying to load them with Gem. This resolves ticket
+# 1281, on the Merb ticket system.
+
+  https://merb.lighthouseapp.com/projects/7433-merb/tickets/1281
+
+For more information about the libraries provided, see the RDoc documentation
+in libmerb-ruby-doc. For more information about Merb, visit its homepage at:
+
+  http://www.merbivore.com/
+
+ -- Joshua Timberman <joshua@opscode.com>  Mon, 27 Jul 2009 23:38:37 -0600

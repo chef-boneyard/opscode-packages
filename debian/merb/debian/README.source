@@ -1,0 +1,55 @@
+This package uses quilt to manage all modifications to the upstream
+source.  Changes are stored in the source package as diffs in
+debian/patches and applied during the build.
+
+See /usr/share/doc/quilt/README.source for a detailed explanation.
+
+The upstream source has been modified to remove a generated PDF file
+with no distinguishable source: 
+
+./merb-core/docs/merb-core-call-stack-diagram.pdf
+
+The upstream source has also been modified to remove gems from the 
+specs, as the distributability is not confirmed for the gems. As
+a result, the spec tests for Merb will not work straight from the source
+tarball. These gems do not affect the outcome of the built package. 
+The entire spec and spec10 directories are removed due to the amount of 
+vendored gems.
+
+The following were removed:
+
+./merb-core/spec/public/core_ext/fixtures/gems/gems
+  bad_require_gem-0.0.1/
+  json_pure-1.1.3/
+  simple_gem-0.0.1/
+  simple_gem-0.0.2/
+./merb-core/spec10/public/core_ext/fixtures/gems/gems
+  bad_require_gem-0.0.1/
+  json_pure-1.1.3/
+  simple_gem-0.0.1/
+  simple_gem-0.0.2/
+./merb-core/spec10/public/webrat/test_app/gems/gems
+  abstract-1.0.0/
+  cgi_multipart_eof_fix-2.5.0/
+  daemons-1.0.10/
+  erubis-2.6.2/
+  extlib-0.9.8/
+  fastthread-1.0.1/
+  gem_plugin-0.2.3/
+  json_pure-1.1.3/
+  merb-core-0.9.14/
+  merb-helpers-0.9.14/
+  mime-types-1.15/
+  mongrel-1.1.5/
+  rack-0.4.0/
+  rake-0.8.3/
+  rspec-1.1.11/
+  thor-0.9.8/
+
+These gems would need to be manually retrieved and installed to the
+merb-core directories in order to run the spec tests.
+
+The following files are blatantly not redistributable and are removed by the repack script.
+
+./merb-core/tools/allison-2.0.2/lib/allison.css
+./merb-core/tools/allison-2.0.2/lib/allison.js

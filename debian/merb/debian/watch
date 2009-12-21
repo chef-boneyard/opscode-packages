@@ -1,0 +1,3 @@
+version=3
+options="dversionmangle=s/\+dfsg//" \
+http://githubredir.debian.net/github/merb/merb /(.*).tar.gz debian debian/repack.sh

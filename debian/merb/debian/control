@@ -1,0 +1,192 @@
+Source: merb
+Section: ruby
+Priority: extra
+Maintainer: Joshua Timberman <joshua@opscode.com>
+Uploaders: Debian Ruby Extras Maintainers <pkg-ruby-extras-maintainers@lists.alioth.debian.org>, Joshua Timberman <joshua@opscode.com>
+Build-Depends: cdbs, debhelper (>= 7), ruby-pkg-tools (>= 0.14), quilt
+Build-Depends-Indep: ruby1.8, rake
+Standards-Version: 3.8.2
+Homepage: http://merbivore.com
+Vcs-Browser: http://svn.debian.org/viewsvn/pkg-ruby-extras/trunk/merb/
+Vcs-Svn: svn://svn.debian.org/svn/pkg-ruby-extras/trunk/merb/
+
+Package: merb-core
+Architecture: all
+Depends: ${misc:Depends}, ${shlibs:Depends}, ruby1.8, libmerb-core-ruby1.8
+Suggests: libmerb-ruby-doc
+Description: Lightweight Ruby-based MVC framework for web development
+ Ruby-based MVC framework that is agnostic to ORM, JavaScript library,
+ and template languages. Merb is plugin-based, so the core is small and
+ well organized.
+ .
+ The Merb packages provide just enough to run a basic Merb application.
+ .
+ This package contains the merb binary and associated files.
+
+Package: merb-slices
+Architecture: all
+Depends: ${misc:Depends}, ruby1.8, libmerb-slices-ruby1.8
+Suggests: libmerb-ruby-doc
+Description: Merb plugin to modularize an application by creating 'slices'
+ Usually these slices are reusable extractions from the main application.
+ A module is set up to serve as a namespace for controller, models, helpers,
+ etc.
+ .
+ Installing this package will provide the capability to run a Merb application
+ slice.
+ .
+ This package contains the merb-slice binary and associated files.
+
+Package: libmerb-core-ruby
+Architecture: all
+Depends: ${misc:Depends}, libmerb-core-ruby1.8
+Suggests: libmerb-ruby-doc
+Description: Core libraries for the Merb MVC framework
+ Ruby-based MVC framework that is agnostic to ORM, JavaScript library,
+ and template languages. Merb is plugin-based, so the core is small and
+ well organized.
+ .
+ This package is a dependency package, which depends on the package
+ containing actual Ruby merb-core libraries for the default Ruby version
+ (currently 1.8).
+
+Package: libmerb-core-ruby1.8
+Architecture: all
+Depends: ${misc:Depends}, ruby1.8, libextlib-ruby (>=0.9.8), liberubis-ruby (>=2.6.2), rake, libjson-ruby, librack-ruby, libmime-types-ruby
+Suggests: libmerb-ruby-doc
+Description: Core Ruby 1.8 libraries for the Merb MVC framework
+ Ruby-based MVC framework that is agnostic to ORM, JavaScript library,
+ and template languages. Merb is plugin-based, so the core is small and
+ well organized.
+ .
+ This package provides the core libraries that provide enough of Merb 
+ to run an application.
+ .
+ This package contains merb-core libraries for Ruby 1.8.
+
+Package: libmerb-assets-ruby
+Architecture: all
+Depends: ${misc:Depends}, libmerb-assets-ruby1.8
+Suggests: libmerb-ruby-doc
+Description: Plugin library for Merb that provides helpers for assets
+ Provides extra functionality related to assets:
+  * Assets bundling.
+  * Assets hosts.
+  * Helpers to add asset links to views.
+  * Deployment-time assets processing (for instance, with YUI Compressor).
+ .
+ This package is a dependency package, which depends on the package
+ containing actual Ruby merb-assets libraries for the default Ruby version
+ (currently 1.8).
+
+Package: libmerb-assets-ruby1.8
+Architecture: all
+Depends: ${misc:Depends}, libmerb-core-ruby1.8
+Suggests: libmerb-ruby-doc
+Description: Ruby 1.8 plugin library for Merb that provides helpers for assets
+ Provides extra functionality related to assets:
+  * Assets bundling.
+  * Assets hosts.
+  * Helpers to add asset links to views.
+  * Deployment-time assets processing (for instance, with YUI Compressor).
+ .
+ This package contains the merb-assets libraries for Ruby 1.8.
+
+Package: libmerb-haml-ruby
+Architecture: all
+Depends: ${misc:Depends}, libmerb-haml-ruby1.8
+Suggests: libmerb-ruby-doc, libhaml-ruby-doc
+Description: Plugin library for Merb that provides access to libhaml-ruby
+ Haml (HTML Abstraction Markup Language) is a layer on top of XHTML or 
+ XML that's designed to express the structure of XHTML or XML documents 
+ in a non-repetitive, elegant, easy way, using indentation rather than
+ closing tags and allowing Ruby to be embedded with ease. It was originally
+ envisioned as a plugin for Ruby on Rails, but it can function as a 
+ stand-alone templating engine. 
+ .
+ This package is a dependency package, which depends on the package
+ containing actual Ruby merb-haml libraries for the default Ruby version
+ (currently 1.8).
+
+Package: libmerb-haml-ruby1.8
+Architecture: all
+Depends: ${misc:Depends}, libmerb-core-ruby1.8, libhaml-ruby1.8
+Suggests: libmerb-ruby-doc, libhaml-ruby-doc
+Description: Ruby 1.8 library for Merb that provides access to libhaml-ruby
+ Haml (HTML Abstraction Markup Language) is a layer on top of XHTML or 
+ XML that's designed to express the structure of XHTML or XML documents 
+ in a non-repetitive, elegant, easy way, using indentation rather than
+ closing tags and allowing Ruby to be embedded with ease. It was originally
+ envisioned as a plugin for Ruby on Rails, but it can function as a 
+ stand-alone templating engine. 
+ .
+ This package contains the merb-haml libraries for Ruby 1.8.
+
+Package: libmerb-helpers-ruby
+Architecture: all
+Depends: ${misc:Depends}, libmerb-helpers-ruby1.8
+Suggests: libmerb-ruby-doc
+Description: Plugin library for Merb that provides view helpers
+ This plugin provides the following helpers for your views:
+  * form_helpers
+  * date_time_helpers
+  * tag_helpers
+  * text_helpers
+ See the RDOC documentation and the package README for more information.
+ .
+ This package is a dependency package, which depends on the package
+ containing actual Ruby merb-helpers libraries for the default Ruby version
+ (currently 1.8).
+
+Package: libmerb-helpers-ruby1.8
+Architecture: all
+Depends: ${misc:Depends}, libmerb-core-ruby1.8
+Suggests: libmerb-ruby-doc
+Description: Ruby 1.8 library for Merb that provides view helpers
+ This plugin provides the following helpers for your views:
+  * form_helpers
+  * date_time_helpers
+  * tag_helpers
+  * text_helpers
+ See the RDOC documentation and the package README for more information.
+ .
+ This package contains the merb-helpers libraries for Ruby 1.8.
+
+Package: libmerb-slices-ruby
+Architecture: all
+Depends: ${misc:Depends}, libmerb-slices-ruby1.8
+Suggests: libmerb-ruby-doc
+Description: Library to support merb-slices application modularization
+ Usually these slices are reusable extractions from the main application.
+ A module is set up to serve as a namespace for controller, models, helpers,
+ etc.
+ .
+ This package is a dependency package, which depends on the package
+ containing actual Ruby merb-slices libraries for the default Ruby version
+ (currently 1.8).
+
+Package: libmerb-slices-ruby1.8
+Architecture: all
+Depends: ${misc:Depends}, libmerb-core-ruby1.8
+Suggests: libmerb-ruby-doc
+Description: Ruby 1.8 library to support merb-slices application modularization
+ Usually these slices are reusable extractions from the main application.
+ A module is set up to serve as a namespace for controller, models, helpers,
+ etc.
+ .
+ Installing this package will provide the capability to run a Merb application
+ slice.
+ .
+ This package contains the merb-slices libraries for Ruby 1.8.
+
+Package: libmerb-ruby-doc
+Section: doc
+Architecture: all
+Depends: ${misc:Depends}
+Suggests: ruby1.8
+Description: Documentation for Merb
+ Ruby-based MVC framework that is agnostic to ORM, JavaScript library,
+ and template languages. Merb is plugin-based, so the core is small and
+ well organized.
+ .
+ This package provides generated HTML documentation (rdoc) for Merb.
