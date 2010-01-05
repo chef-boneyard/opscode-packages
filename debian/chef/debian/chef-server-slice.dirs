@@ -1,0 +1,6 @@
+var/cache/chef
+var/lib/chef/cookbooks
+var/lib/chef/openid
+var/lib/chef/search_index
+usr/share/doc/chef-server-slice
+usr/share/chef-server-slice/app

@@ -1,0 +1,57 @@
+chef packages for Debian
+------------------------
+
+While Chef is in production use at several companies managing a variety 
+of infrastructure types and sizes, it is still a young product (7 months old as
+of this writing) and under active development. Please see the Chef Wiki for
+information on components that may be changed, or find out how you can 
+improve Chef by contributing.
+
+Chef is normally distributed as a RubyGem, so gets its dependencies through
+RubyGems. These packages are independent of RubyGems. All dependencies are 
+handled like other normal Debian packages.
+
+The 'chef' package will install a client that can run with a server via the
+'chef-client' command. The client configuration file needs to be modified 
+to point at the appropriate server. By default this is set to localhost.
+
+  /etc/chef/client.rb
+
+  registration_url "http://localhost:4000"
+  openid_url       "http://localhost:4001"
+  template_url     "http://localhost:4000"
+  remotefile_url   "http://localhost:4000"
+  search_url       "http://localhost:4000"
+
+Chef can be run in 'solo' mode though, which does not connect to a server. To
+do this, use the 'chef-solo' command instead of 'chef-client'.
+  
+The 'chef-server' and 'chef-server-slice' packages will install a server. Chef
+server is a Merb application slice, and by default the server will start up from
+an init script as a pair of Mongrels on ports 4000 (web/api access) and 4001 
+(openid).
+
+Chef server uses CouchDB to store node attribute data.
+
+A note about RubyGems
+---------------------
+
+RubyGems is recommended for libchef-ruby1.8 because Chef has a resource that can 
+handle Gem packages. That will only work in recipes if RubyGems is installed.
+
+Additional Resources
+--------------------
+
+The official documentation for Chef is on the Opscode wiki:
+
+  http://wiki.opscode.com/display/chef/Home
+
+Opscode also hosts mailing lists:
+
+  http://lists.opscode.com/
+
+And there's an IRC channel on Freenode:
+
+  irc://irc.freenode.net/chef
+
+ -- Joshua Timberman <joshua@opscode.com>  Mon, 03 Aug 2009 22:14:03 -0600

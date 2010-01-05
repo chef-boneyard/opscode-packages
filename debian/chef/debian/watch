@@ -1,0 +1,2 @@
+version=3
+http://githubredir.debian.net/github/opscode/chef /([0..9].[5678].*).tar.gz
