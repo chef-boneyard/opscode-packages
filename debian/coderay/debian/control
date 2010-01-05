@@ -1,0 +1,55 @@
+Source: coderay
+Section: ruby
+Priority: extra
+Maintainer: Joshua Timberman <joshua@opscode.com>
+Uploaders: Debian Ruby Extras Maintainers <pkg-ruby-extras-maintainers@lists.alioth.debian.org>
+Build-Depends: debhelper (>= 7), cdbs, ruby-pkg-tools (>= 0.8)
+Build-Depends-Indep: ruby1.8
+Standards-Version: 3.8.3
+Homepage: http://coderay.rubychan.de/
+
+Package: coderay
+Architecture: all
+Depends: ${misc:Depends}, ruby1.8, libcoderay-ruby
+Description: Helper programs for CodeRay Ruby lib for syntax highlighting
+ CodeRay is a Ruby library that can scan an input file or text in a web
+ page and encode it as syntax highlighted HTML output.
+ .
+ CodeRay supports many input languages including: C, C++, CSS, Delphi, diff,
+ Groovy, HTML, RHTML (Erb+HTML), Nitro-XHTML, Java, JavaScript, JSON, PHP,
+ Python, Ruby, SQL and YAML.
+ .
+ CodeRay can output to HTML, JSON, XML, Yaml.
+ .
+ The coderay binary scans a file and outputs in HTML.
+
+Package: libcoderay-ruby
+Architecture: all
+Depends: ${misc:Depends}, libcoderay-ruby1.8
+Description: Ruby library for syntax highlighting
+ CodeRay is a Ruby library that can scan an input file or text in a web
+ page and encode it as syntax highlighted HTML output.
+ .
+ CodeRay supports many input languages including: C, C++, CSS, Delphi, diff,
+ Groovy, HTML, RHTML (Erb+HTML), Nitro-XHTML, Java, JavaScript, JSON, PHP,
+ Python, Ruby, SQL and YAML.
+ .
+ CodeRay can output to HTML, JSON, XML, Yaml.
+ .
+ This is a dummy package depending on the library for the current default
+ version of Ruby.
+
+Package: libcoderay-ruby1.8
+Architecture: all
+Depends: ${misc:Depends}, ruby1.8
+Description: Ruby 1.8 library for syntax highlighting
+ CodeRay is a Ruby library that can scan an input file or text in a web
+ page and encode it as syntax highlighted output.
+ .
+ CodeRay supports many input languages including: C, C++, CSS, Delphi, diff,
+ Groovy, HTML, RHTML (Erb+HTML), Nitro-XHTML, Java, JavaScript, JSON, PHP,
+ Python, Ruby, SQL and YAML.
+ .
+ CodeRay can output to HTML, JSON, XML, Yaml.
+ This is package contains the library for the current default
+ version of Ruby 1.8.

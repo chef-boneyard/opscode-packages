@@ -1,0 +1,5 @@
+coderay (0.9.1-1) unstable; urgency=low
+
+  * Initial release (Closes: #540662)
+
+ -- Joshua Timberman <joshua@opscode.com>  Mon, 04 Jan 2010 23:10:26 -0700

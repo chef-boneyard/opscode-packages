@@ -1,0 +1,24 @@
+#!/usr/bin/make -f
+# CDBS file to build the Ruby CodeRay package.
+#
+include /usr/share/cdbs/1/rules/debhelper.mk
+include /usr/share/ruby-pkg-tools/1/class/ruby-setup-rb.mk
+
+PACKAGE = coderay
+SRC_VERSION := $(shell dpkg-parsechangelog | sed -ne 's/^Version: \(\([0-9]\+\):\)\?\(.*\)-.*/\3/p')
+SVN_REVISION := $(shell echo $(SRC_VERSION) | awk -F"+" '{ print $$2 }' | sed 's/svn//' )
+TARBALL = $(PACKAGE)_$(SRC_VERSION).orig.tar.gz
+.PHONY: get-orig-source
+get-orig-source:
+	rm -rf get-orig-source $(TARBALL)
+	mkdir get-orig-source
+	svn export -r $(SVN_REVISION) http://svn.rubychan.de/coderay/tags/$(SRC_VERSION) \
+	 get-orig-source/$(PACKAGE)-$(SRC_VERSION).orig
+	GZIP=--best tar czf $(TARBALL) -C get-orig-source $(PACKAGE)-$(SRC_VERSION).orig
+	rm -rf get-orig-source
+	echo "  "$(TARBALL)" created; move it to the right destination to build the package"
+
+install/libcoderay-ruby1.8::
+	mv $(CURDIR)/debian/libcoderay-ruby1.8/usr/bin/coderay* $(CURDIR)/debian/coderay/usr/bin/
+	rmdir $(CURDIR)/debian/libcoderay-ruby1.8/usr/bin
+	rm  $(CURDIR)/debian/libcoderay-ruby1.8/usr/lib/ruby/1.8/README

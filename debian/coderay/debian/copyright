@@ -1,0 +1,23 @@
+This package was debianized by Joshua Timberman <joshua@opscode.com> on
+Sun, 09 Aug 2009 08:07:54 -0600.
+
+It was downloaded from http://coderay.rubychan.de/
+
+Upstream Author: Kornelius Kalnbach <murphy@rubychan.de>
+
+Copyright: 2009, Kornelius Kalnbach <murphy@rubychan.de>
+
+License:
+
+    GNU LESSER GENERAL PUBLIC LICENSE
+    Version 2.1, February 1999
+
+    See /usr/share/common-licenses/LGPL-2.1 
+
+The Debian packaging is:
+
+    Copyright (C) 2009 Joshua Timberman <joshua@opscode.com>
+
+and is licensed under the GPL version 3, 
+see `/usr/share/common-licenses/GPL-3'.
+
