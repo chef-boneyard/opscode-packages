@@ -25,16 +25,16 @@ chef (0.7.14-1) unstable; urgency=low
     * [CHEF-534] - remove execute permissions from javascripts, images, etc.
     * [CHEF-544] - Service provider fails to set @new_resource.updated
     * [CHEF-562] - typo in provider/ifconfig.rb
-    * [CHEF-569] - Remote File causes updates to be sent regardless 
+    * [CHEF-569] - Remote File causes updates to be sent regardless
     * [CHEF-578] - Lots of files/subdirectories in a remote_directory cause
-      most chef requests to take 11.5 seconds, and the merb process goes 
+      most chef requests to take 11.5 seconds, and the merb process goes
       up to 100% CPU
     * [CHEF-503] - cookbooks UI should display the relative path of the template
-    * [CHEF-546] - Make couchdb version switcher 0.8 specific, and use the new 
+    * [CHEF-546] - Make couchdb version switcher 0.8 specific, and use the new
       format for everything else.
     * [CHEF-560] - refactor Chef::Provider::Group::Groupadd
     * [CHEF-561] - Flexible application layouts for deploy resource and provider
-    * [CHEF-566] - Deploy resource/provider callbacks for before_migrate, &etc. 
+    * [CHEF-566] - Deploy resource/provider callbacks for before_migrate, &etc.
       should support in-line recipes
     * [CHEF-568] - Increase logging for Remote File status, including checksum
     * [CHEF-580] - faster find_preferred_file
@@ -42,14 +42,14 @@ chef (0.7.14-1) unstable; urgency=low
     * [CHEF-145] - Cron resource: add support for setting cron ENV vars
     * [CHEF-419] - Create SCM resource and providers for git & svn
     * [CHEF-496] - add simple service provider to chef
-    * [CHEF-571] - LWRP unit tests 
+    * [CHEF-571] - LWRP unit tests
   * New upstream release notes 0.7.14.
     * [CHEF-565] - dpkg provider fails at packages with a dash in it
     * [CHEF-577] - provider.rb doesn't give @definitions default of Hash.new
     * [CHEF-588] - RC is missing debugging info in find_preferred_file
     * [CHEF-591] - process table inspection fails in simple service provider
     * [CHEF-593] - deploy resource is not idempotent
-    * [CHEF-602] - in deploy provider, callback-defined resources are executed 
+    * [CHEF-602] - in deploy provider, callback-defined resources are executed
       in all subsequent callbacks
     * [CHEF-603] - deploy: gems.yml support
     * [CHEF-604] - deploy: sudo / run command handler support
