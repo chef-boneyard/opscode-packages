@@ -137,5 +137,5 @@ chef-server-slice/public/javascripts/jquery*:
   Full text of the GPL is available in /usr/share/common-licenses/GPL-2
   See above for the MIT license, as it is also used by Merb.
 
-The Debian packaging for Chef is Copyright (c) 2009 Joshua Timberman and is licensed
+The Debian packaging for Chef is Copyright (c) 2009 Opscode, Inc. and is licensed
 under the Apache 2.0 license.
