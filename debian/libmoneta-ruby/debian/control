@@ -1,0 +1,31 @@
+Source: libmoneta-ruby
+Section: ruby
+Priority: extra
+Maintainer: Joshua Timberman <joshua@opscode.com>
+Uploaders: Debian Ruby Extras Maintainers <pkg-ruby-extras-maintainers@lists.alioth.debian.org>
+Build-Depends: debhelper (>= 7), cdbs, ruby-pkg-tools (>= 0.14)
+Build-Depends-Indep: ruby1.8, libsetup-ruby1.8
+Standards-Version: 3.8.3
+Homepage: http://github.com/wycats/moneta
+
+Package: libmoneta-ruby
+Architecture: all
+Depends: libmoneta-ruby1.8, ${shlibs:Depends}, ${misc:Depends}
+Description: Ruby interface to multiple key/value stores
+ Moneta is a Ruby library to interface with a variety of key/value stores.
+ Out of the box it supports: xattr, basic file, memcache, in-memory,
+ datamapper, s3, berkeley db, redis, sdbm, tokyo, couchdb.
+ .
+ This package is a dependency package, which depends on the package
+ containing actual Ruby moneta library for the default Ruby version
+ (currently 1.8).
+
+Package: libmoneta-ruby1.8
+Architecture: all
+Depends: ruby1.8, ${shlibs:Depends}, ${misc:Depends}
+Description: Ruby interface to multiple key/value stores
+ Moneta is a Ruby library to interface with a variety of key/value stores.
+ Out of the box it supports: xattr, basic file, memcache, in-memory,
+ datamapper, s3, berkeley db, redis, sdbm, tokyo, couchdb.
+ .
+ This package contains moneta libraries for Ruby 1.8.

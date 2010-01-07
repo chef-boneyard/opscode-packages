@@ -1,0 +1,35 @@
+Source: libdeep-merge-ruby
+Section: ruby
+Priority: extra
+Maintainer: Joshua Timberman <joshua@opscode.com>
+Uploaders: Debian Ruby Extras Maintainers <pkg-ruby-extras-maintainers@lists.alioth.debian.org>
+Build-Depends: debhelper (>= 7), cdbs, ruby-pkg-tools (>= 0.14)
+Build-Depends-Indep: ruby1.8, libsetup-ruby1.8
+Standards-Version: 3.8.3
+Homepage: http://trac.misuse.org/science/wiki/DeepMerge
+
+Package: libdeep-merge-ruby
+Architecture: all
+Depends: libdeep-merge-ruby1.8, ${shlibs:Depends}, ${misc:Depends}
+Description: Ruby library to recursively merge hashes and child elements
+ Deep Merge is a simple set of utility functions for Hash. It permits
+ you to merge elements inside a hash together recursively. The manner
+ by which it does this is somewhat arbitrary (since there is no defining
+ standard for this) but it should end up being pretty intuitive and do what
+ you expect. 
+ .
+ This package is a dependency package, which depends on the package
+ containing actual Ruby deep-merge library for the default Ruby version
+ (currently 1.8).
+
+Package: libdeep-merge-ruby1.8
+Architecture: all
+Depends: ruby1.8, ${shlibs:Depends}, ${misc:Depends}
+Description: Ruby library to recursively merge hashes and child elements
+ Deep Merge is a simple set of utility functions for Hash. It permits
+ you to merge elements inside a hash together recursively. The manner
+ by which it does this is somewhat arbitrary (since there is no defining
+ standard for this) but it should end up being pretty intuitive and do what
+ you expect. 
+ .
+ This package contains deep-merge libraries for Ruby 1.8.

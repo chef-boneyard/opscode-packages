@@ -1,0 +1,5 @@
+libdeep-merge-ruby (0.1.0-1) unstable; urgency=low
+
+  * Initial release
+
+ -- Joshua Timberman <joshua@opscode.com>  Mon, 21 Dec 2009 21:30:30 -0600
