@@ -1,4 +1,4 @@
-Source: libmoneta-ruby
+Source: moneta
 Section: ruby
 Priority: extra
 Maintainer: Joshua Timberman <joshua@opscode.com>
