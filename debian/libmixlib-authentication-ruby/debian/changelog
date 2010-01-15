@@ -1,0 +1,5 @@
+libmixlib-authentication-ruby (1.0.0-1) unstable; urgency=low
+
+  * Initial release
+
+ -- Joshua Timberman <joshua@opscode.com>  Sat, 28 Nov 2009 08:28:28 -0600
