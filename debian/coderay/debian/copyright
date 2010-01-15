@@ -21,3 +21,12 @@ The Debian packaging is:
 and is licensed under the LGPL version 2.1, 
 see `/usr/share/common-licenses/LGPL-2.1'.
 
+./lib/term/ansicolor.rb:
+
+  Copyright (C) 2009, Florian Frank <flori@ping.de>
+
+  GNU GENERAL PUBLIC LICENSE
+  Version 2
+
+  See /usr/share/common-licenses/GPL-2
+
