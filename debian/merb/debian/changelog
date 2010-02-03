@@ -1,3 +1,9 @@
+merb (1.0.12+dfsg-3) unstable; urgency=low
+
+  * Add merb-param-protection package.
+
+ -- Joshua Timberman <joshua@opscode.com>  Wed, 03 Feb 2010 10:53:09 -0700
+
 merb (1.0.12+dfsg-2) unstable; urgency=low
 
    * Packaging approved for Ubuntu, updating for Debian.

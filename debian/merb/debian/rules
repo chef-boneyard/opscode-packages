@@ -108,6 +108,22 @@ MERB_HELPERS_REMOVE_SETUP_CMD = \
     mv merb-helpers/$(DEB_RUBY_SETUP_CMD).moved_away_by_debian_build merb-helpers/$(DEB_RUBY_SETUP_CMD) ; \
   fi
 
+MERB_PARAM_PROTECTION_INSTALL_SETUP_CMD = \
+  if [ ! -L merb-param-protection/$(DEB_RUBY_SETUP_CMD) ] ; then \
+    if [ -f merb-param-protection/$(DEB_RUBY_SETUP_CMD) ] ; then \
+      mv merb-param-protection/$(DEB_RUBY_SETUP_CMD) merb-param-protection/$(DEB_RUBY_SETUP_CMD).moved_away_by_debian_build ;\
+    fi ; \
+    ln -s $(PACKAGED_RUBY_SETUP_CMD) merb-param-protection/$(DEB_RUBY_SETUP_CMD) ; \
+  fi
+
+MERB_PARAM_PROTECTION_REMOVE_SETUP_CMD = \
+  if [ -L merb-param-protection/$(DEB_RUBY_SETUP_CMD) ] ; then \
+    rm merb-param-protection/$(DEB_RUBY_SETUP_CMD) ; \
+  fi ; \
+  if [ -f merb-param-protection/$(DEB_RUBY_SETUP_CMD).moved_away_by_debian_build ] ; then \
+    mv merb-param-protection/$(DEB_RUBY_SETUP_CMD).moved_away_by_debian_build merb-param-protection/$(DEB_RUBY_SETUP_CMD) ; \
+  fi
+
 install/merb-core::
 	dh_installchangelogs
 	dh_installdirs
@@ -152,8 +168,14 @@ install/libmerb-helpers-ruby1.8::
 	(cd merb-helpers && /usr/bin/ruby $(DEB_RUBY_SETUP_CMD) setup)
 	(cd merb-helpers && /usr/bin/ruby $(DEB_RUBY_SETUP_CMD) install --prefix=../debian/libmerb-helpers-ruby1.8)
 
+install/libmerb-param-protection-ruby1.8::
+	$(MERB_PARAM_PROTECTION_INSTALL_SETUP_CMD)
+	(cd merb-param-protection && /usr/bin/ruby $(DEB_RUBY_SETUP_CMD) config $(DEB_RUBY_CONFIG_ARGS))
+	(cd merb-param-protection && /usr/bin/ruby $(DEB_RUBY_SETUP_CMD) setup)
+	(cd merb-param-protection && /usr/bin/ruby $(DEB_RUBY_SETUP_CMD) install --prefix=../debian/libmerb-param-protection-ruby1.8)
+
 install/libmerb-ruby-doc::
-	rdoc --all --inline-source --fileboxes --line-numbers --fmt=html -o debian/$(cdbs_curpkg)/usr/share/doc/libmerb-ruby-doc/rdoc merb-core/lib merb-haml/lib merb-helpers/lib merb-assets/lib merb-slices/lib
+	rdoc --all --inline-source --fileboxes --line-numbers --fmt=html -o debian/$(cdbs_curpkg)/usr/share/doc/libmerb-ruby-doc/rdoc merb-core/lib merb-haml/lib merb-helpers/lib merb-assets/lib merb-slices/lib merb-param-protection/lib
 
 clean::
 	$(DEB_RUBY_INSTALL_SETUP_CMD)
@@ -162,6 +184,7 @@ clean::
 	$(MERB_SLICES_INSTALL_SETUP_CMD)
 	$(MERB_ASSETS_INSTALL_SETUP_CMD)
 	$(MERB_HELPERS_INSTALL_SETUP_CMD)
+	$(MERB_PARAM_PROTECTION_INSTALL_SETUP_CMD)
 	/usr/bin/ruby $(DEB_RUBY_SETUP_CMD) distclean
 	$(DEB_RUBY_REMOVE_SETUP_CMD)
 	$(MERB_CORE_REMOVE_SETUP_CMD)
@@ -169,5 +192,6 @@ clean::
 	$(MERB_SLICES_REMOVE_SETUP_CMD)
 	$(MERB_ASSETS_REMOVE_SETUP_CMD)
 	$(MERB_HELPERS_REMOVE_SETUP_CMD)
+	$(MERB_PARAM_PROTECTION_REMOVE_SETUP_CMD)
 	rm -f $(DEB_SRCDIR)/.config
 	rm -f $(DEB_SRCDIR)/InstalledFiles

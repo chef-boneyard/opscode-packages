@@ -179,6 +179,34 @@ Description: Ruby 1.8 library to support merb-slices application modularization
  .
  This package contains the merb-slices libraries for Ruby 1.8.
 
+Package: libmerb-param-protection-ruby
+Architecture: all
+Depends: ${misc:Depends}, libmerb-param-protection-ruby1.8
+Suggests: libmerb-ruby-doc
+Description: Merb plugin with controller methods to filter parameters
+ Controller methods provided by this package:
+  * params_protected - removes ONLY those parameters explicitly specified.
+  * params_accessible - removes everything except what is explictly specified.
+  * log_params_filtered - scrubbed at log time.
+ See the RDOC documentation and the package README for more information.
+ .
+ This package is a dependency package, which depends on the package
+ containing actual Ruby merb-param-protection libraries for the default 
+ Ruby version (currently 1.8).
+
+Package: libmerb-param-protection-ruby1.8
+Architecture: all
+Depends: ${misc:Depends}, libmerb-core-ruby1.8
+Suggests: libmerb-ruby-doc
+Description: Merb plugin with controller methods to filter parameters
+ Controller methods provided by this package:
+  * params_protected - removes ONLY those parameters explicitly specified.
+  * params_accessible - removes everything except what is explictly specified.
+  * log_params_filtered - scrubbed at log time.
+ See the RDOC documentation and the package README for more information.
+ .
+ This package contains the merb-param-protection libraries for Ruby 1.8.
+
 Package: libmerb-ruby-doc
 Section: doc
 Architecture: all
