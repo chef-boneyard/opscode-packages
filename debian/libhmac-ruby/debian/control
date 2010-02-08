@@ -1,4 +1,4 @@
-Source: libmixlib-authentication-ruby
+Source: libhmac-ruby
 Section: ruby
 Priority: extra
 Maintainer: Joshua Timberman <joshua@opscode.com>
@@ -6,27 +6,30 @@ Uploaders: Debian Ruby Extras Maintainers <pkg-ruby-extras-maintainers@lists.ali
 Build-Depends: debhelper (>= 7), cdbs, ruby-pkg-tools (>= 0.14)
 Build-Depends-Indep: ruby1.8, libsetup-ruby1.8
 Standards-Version: 3.8.3
-Homepage: http://github.com/opscode/mixlib-authentication/tree/master
+Homepage: http://ruby-hmac.rubyforge.org
 
-Package: libmixlib-authentication-ruby
+Package: libhmac-ruby
 Architecture: all
-Depends: libmixlib-authentication-ruby1.8, ${shlibs:Depends}, ${misc:Depends}
-Description: Ruby mixin for client/server header signing authentication and verification
- Provides a class based object to do header signing authentication.
- A multiline hash for authorization will be encoded in multiple
- header lines.
+Depends: libhmac-ruby1.8, ${shlibs:Depends}, ${misc:Depends}
+Description: Ruby module to provide common interface to HMAC engines.
+ This Ruby module provides common interface to HMAC functionality. HMAC is a
+ kind of "Message Authentication Code" (MAC) algorithm whose standard is
+ documented in RFC2104. Namely, a MAC provides a way to check the integrity
+ of information transmitted over or stored in an unreliable medium, based on
+ a secret key.
  .
  This package is a dependency package, which depends on the package
- containing actual Ruby mixlib-authentication libraries for the default Ruby version
+ containing actual Ruby ruby-hmac libraries for the default Ruby version
  (currently 1.8).
 
-Package: libmixlib-authentication-ruby1.8
+Package: libhmac-ruby1.8
 Architecture: all
-Depends: ruby1.8, libmixlib-log-ruby1.8, libhmac-ruby1.8, ${shlibs:Depends}, ${misc:Depends}
-Description: Ruby mixin for client/server header signing authentication and verification
- Provides a class based object to do header signing authentication.
- A multiline hash for authorization will be encoded in multiple
- header lines.
+Depends: ruby1.8, ${shlibs:Depends}, ${misc:Depends}
+Description: Ruby module to provide common interface to HMAC engines.
+ This Ruby module provides common interface to HMAC functionality. HMAC is a
+ kind of "Message Authentication Code" (MAC) algorithm whose standard is
+ documented in RFC2104. Namely, a MAC provides a way to check the integrity
+ of information transmitted over or stored in an unreliable medium, based on
+ a secret key.
  .
- This package contains mixlib-authentication libraries for Ruby 1.8.
-
+ This package contains ruby-hmac libraries for Ruby 1.8.
