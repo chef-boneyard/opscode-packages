@@ -22,7 +22,7 @@ Description: Ruby mixin for client/server header signing authentication and veri
 
 Package: libmixlib-authentication-ruby1.8
 Architecture: all
-Depends: ruby1.8, libmixlib-log-ruby1.8, libruby-hmac1.8, ${shlibs:Depends}, ${misc:Depends}
+Depends: ruby1.8, libmixlib-log-ruby1.8, libhmac-ruby1.8, ${shlibs:Depends}, ${misc:Depends}
 Description: Ruby mixin for client/server header signing authentication and verification
  Provides a class based object to do header signing authentication.
  A multiline hash for authorization will be encoded in multiple
