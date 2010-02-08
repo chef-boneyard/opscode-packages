@@ -1,3 +1,9 @@
+libmixlib-authentication-ruby (1.0.0-2) unstable; urgency=low
+
+  * Corrected ruby-hmac package name, libhmac-ruby1.8 in control file.
+
+ -- Joshua Timberman <joshua@opscode.com>  Mon,  8 Feb 2010 06:44:37 -0700
+
 libmixlib-authentication-ruby (1.0.0-1) unstable; urgency=low
 
   * Initial release
