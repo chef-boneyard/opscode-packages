@@ -1,0 +1,5 @@
+libhmac-ruby (0.3.2-1) unstable; urgency=low
+
+  * Initial release
+
+ -- Joshua Timberman <joshua@opscode.com>  Sun,  7 Feb 2010 21:51:28 -0600
