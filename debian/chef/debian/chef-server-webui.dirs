@@ -1,0 +1,5 @@
+var/cache/chef
+var/log/chef
+var/run/chef
+usr/share/doc/chef-server-webui
+usr/share/chef-server-webui/app

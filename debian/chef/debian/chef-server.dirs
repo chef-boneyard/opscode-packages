@@ -4,6 +4,7 @@ var/lib/chef/openid
 var/lib/chef/openid/store
 var/lib/chef/openid/cstore
 var/log/chef
+var/run/chef
 usr/share/doc/chef-server
 usr/share/chef-server
 etc/chef

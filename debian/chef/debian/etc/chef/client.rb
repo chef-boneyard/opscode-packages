@@ -26,7 +26,7 @@ log_level          :info
 # valid values are: a quoted string specifying a file, or STDOUT with
 # no quotes. When run as a daemon (default), STDOUT will produce no output.
 
-log_location       "/var/log/chef/client.log"
+log_location       STDOUT
 
 # ssl_verify_mode specifies if the REST client should verify SSL certificates.
 # valid values are :verify_none, :verify_peer. The default Chef Server 
@@ -86,11 +86,11 @@ file_cache_path    "/var/cache/chef"
 
 pid_file           "/var/run/chef/client.pid"
 
-# Chef::Log::Formatter.show_time specifies whether the chef-client log should
+# Mixlib::Log::Formatter.show_time specifies whether the chef-client log should
 # contain timestamps. 
 # valid values are true or false (no quotes, see above about Ruby idioms). The
 # printed timestamp is rfc2822, for example:
 # Fri, 31 Jul 2009 19:19:46 -0600
 
-Chef::Log::Formatter.show_time = true
+Mixlib::Log::Formatter.show_time = true
 

@@ -45,32 +45,36 @@ install/libchef-ruby1.8::
 	mkdir -p $(CURDIR)/debian/chef/usr/bin
 	mv $(CURDIR)/debian/libchef-ruby1.8/usr/bin/chef-client $(CURDIR)/debian/chef/usr/bin/
 	mv $(CURDIR)/debian/libchef-ruby1.8/usr/bin/chef-solo $(CURDIR)/debian/chef/usr/bin/
+	mv $(CURDIR)/debian/libchef-ruby1.8/usr/bin/knife $(CURDIR)/debian/chef/usr/bin/
+	mv $(CURDIR)/debian/libchef-ruby1.8/usr/bin/shef $(CURDIR)/debian/chef/usr/bin/
 	rmdir $(CURDIR)/debian/libchef-ruby1.8/usr/bin/
 
-install/chef-indexer::
-	mkdir -p $(CURDIR)/debian/chef-indexer/usr/bin
-	cp debian/etc/chef/indexer.rb debian/chef-indexer/etc/chef
-	cp chef-server/bin/chef-indexer debian/chef-indexer/usr/bin
+install/chef-solr-indexer::
+	mkdir -p $(CURDIR)/debian/chef-solr-indexer/usr/bin
+	cp debian/etc/chef/solr.rb debian/chef-solr-indexer/etc/chef
+	cp chef-server/bin/chef-solr-indexer debian/chef-solr-indexer/usr/bin
 
 install/chef-server::
 	mkdir -p $(CURDIR)/debian/chef-server/usr/bin
 	cp debian/etc/chef/server.rb  debian/chef-server/etc/chef
-	cp chef-server/bin/chef-server  debian/chef-server/usr/bin
+	cp chef-server/bin/chef-server debian/chef-server/usr/bin
+	cp chef-server/bin/chef-server-webui debian/chef-server/usr/bin
 	cp chef-server/README.rdoc debian/chef-server/usr/share/doc/chef-server
 	cp chef-server/config.ru debian/chef-server/usr/share/chef-server
+	cp chef-server/config-webui.ru debian/chef-server/usr/share/chef-server
 	cp -rf chef-server/app    debian/chef-server/usr/share/chef-server
 	cp -rf chef-server/config debian/chef-server/usr/share/chef-server
 	cp -rf chef-server/lib    debian/chef-server/usr/share/chef-server
 	cp -rf chef-server/public debian/chef-server/usr/share/chef-server
 
-install/chef-server-slice::
-	cp chef-server-slice/README.rdoc debian/chef-server-slice/usr/share/doc/chef-server-slice
-	cp -rf chef-server-slice/app    debian/chef-server-slice/usr/share/chef-server-slice
-	cp -rf chef-server-slice/config debian/chef-server-slice/usr/share/chef-server-slice
-	cp -rf chef-server-slice/public debian/chef-server-slice/usr/share/chef-server-slice
-	cp -rf chef-server-slice/lib    debian/chef-server-slice/usr/share/chef-server-slice
-	rm debian/chef-server-slice/usr/share/chef-server-slice/public/images/treeBuilderImages/Thumbs.db
-	find debian/chef-server-slice -type f -perm +755 -exec chmod 644 {} \;
+install/chef-server-api::
+	cp chef-server-api/README.rdoc debian/chef-server-api/usr/share/doc/chef-server-api
+	cp -rf chef-server-api/app    debian/chef-server-api/usr/share/chef-server-api
+	cp -rf chef-server-api/config debian/chef-server-api/usr/share/chef-server-api
+	cp -rf chef-server-api/public debian/chef-server-api/usr/share/chef-server-api
+	cp -rf chef-server-api/lib    debian/chef-server-api/usr/share/chef-server-api
+	rm debian/chef-server-api/usr/share/chef-server-api/public/images/treeBuilderImages/Thumbs.db
+	find debian/chef-server-api -type f -perm +755 -exec chmod 644 {} \;
 
 clean::
 	$(CHEF_INSTALL_SETUP_CMD)

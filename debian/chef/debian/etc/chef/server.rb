@@ -36,7 +36,7 @@ log_level          :info
 # no quotes. This is the application log for the Merb workers that get
 # spawned.
 
-log_location       "/var/log/chef/server.log"
+log_location       STDOUT
 
 # ssl_verify_mode specifies if the REST client should verify SSL certificates.
 # valid values are :verify_none, :verify_peer. The default Chef Server 

@@ -1,4 +1,5 @@
 var/cache/chef
+var/cache/chef/checksums
 var/lib/chef/openid
 var/lib/chef/search_index
 var/log/chef

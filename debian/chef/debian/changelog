@@ -1,6 +1,28 @@
 chef (0.8.0-1) unstable; urgency=low
 
-  * New upstream release
+  * New upstream release.
+  * chef-server-slice split into two packages, chef-server-api and
+    chef-server-webui.
+  * chef (client) package now includes API tool knife and REPL tool shef.
+  * Search engine changed from ferret to SOLR.
+    * chef-indexer program changed to chef-solr-indexer.
+    * chef-solr is separate daemon from indexer.
+    * chef-solr-rebuild command added for rebuilding indexes.
+  * Authentication model changed from OpenID to RSA shared keys and signed
+    headers.
+    * New dependencies: libmixlib-authentication-ruby, libhmac-ruby.
+  * Client file caching handled by Moneta.
+    * New dependency: libmoneta-ruby.
+  * Queueing backend changed from STOMP to AMQP.
+    * New dependency (server): rabbitmq-server.
+    * New dependency (client): libbunny-ruby.
+  * New deep merging strategy for attribute hashes utilizing a new mixin
+    library, deep_merge. See copyright.
+  * Backend server adapter changed from mongrel to thin.
+    * New dependency: thin.
+  * Depend on explicit source versions for Chef component packages.
+  * Many other bug fixes and features, full upstream release notes for this
+    version available on http://tickets.opscode.com.
 
  -- Joshua Timberman <joshua@opscode.com>  Tue, 22 Dec 2009 10:20:14 -0700
 

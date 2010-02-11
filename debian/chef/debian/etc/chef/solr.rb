@@ -31,13 +31,18 @@ search_index_path    "/var/lib/chef/search_index"
 # pid file.
 # valid value is any filesystem file location.
 
-pid_file           "/var/run/chef/indexer.pid"
+pid_file           "/var/run/chef/solr-indexer.pid"
 
-# Chef::Log::Formatter.show_time specifies whether the chef-client log should
+solr_jetty_path		 "/var/lib/chef/solr-jetty"
+solr_home_path		 "/var/lib/chef/solr"
+solr_data_path		 "/var/lib/chef/solr/data"
+solr_heap_size		 "256M"
+
+# Mixlib::Log::Formatter.show_time specifies whether the chef-client log should
 # contain timestamps. 
 # valid values are true or false (no quotes, see above about Ruby idioms). The
 # printed timestamp is rfc2822, for example:
 # Fri, 31 Jul 2009 19:19:46 -0600
 
-Chef::Log::Formatter.show_time = true
+Mixlib::Log::Formatter.show_time = true
 

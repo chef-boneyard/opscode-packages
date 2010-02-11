@@ -1,0 +1,8 @@
+/var/log/chef/solr.log {
+  rotate 12
+  weekly
+  compress
+  postrotate
+		/usr/sbin/invoke-rc.d chef-solr force-reload > /dev/null
+  endscript
+}
