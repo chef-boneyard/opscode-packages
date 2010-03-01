@@ -1,0 +1,75 @@
+ohai (0.4.0-1) unstable; urgency=low
+
+  * New upstream release (0.4.0).
+    * [OHAI-119] - don't 'require rubygems' explicitly
+    * [OHAI-139] - ohai no longer requires json in gemspec, fails to
+      run if user doesn't install a json library
+    * [OHAI-140] - require rubygems in bin/ohai
+    * [OHAI-143] - ohai, running in chef-client, triggers a MRI segfault
+      probably related to garbage collection
+    * [OHAI-147] - exception on pretty_generate when specifying 
+      an attribute with json 1.2.0
+    * [OHAI-150] - ohai network fails without default gateway
+    * [OHAI-84] - Extend Ohai to support more of the information found in 
+      sys and proc, want to cover things found in dstat scope.
+    * [OHAI-7] - Command line should be sorted alphabetically, for the first keys
+    * [OHAI-151] - Support to include data from /etc/passwd and /etc/group
+    * [OHAI-137] - command.rb should be Apache 2.0 License
+
+ -- Joshua Timberman <joshua@opscode.com>  Sun, 28 Feb 2010 17:15:49 -0700
+
+ohai (0.3.6-2) karmic; urgency=low
+
+  * OHAI-138, create explicit dependencies on source version.
+
+ -- Joshua Timberman <joshua@opscode.com>  Thu, 29 Oct 2009 15:47:57 -0600
+
+ohai (0.3.6-1) unstable; urgency=low
+
+  [Joshua Timberman]
+  * New maintainer.
+  * Add DRE team to uploaders.
+  * Remove graphviz from build dep
+  * Bump standards version to 3.8.3 
+  * Now requires libmixlib-{config,cli,log}-ruby
+  * New upstream release (0.3.4)
+    * [OHAI-107] - EC2 spec tests fails when not connected to network
+    * [OHAI-111] - ec2 userdata gets truncated
+    * [OHAI-112] - when installed on ubuntu/debian packages w/o rubygems
+      ohai fails with a type error
+    * [OHAI-130] - Ruby plugin should pull configuration from ruby in the system path
+    * [OHAI-95] - Support multiple JSON libraries
+    * [OHAI-116] - Redhat platform version should include the subrelease
+    * [OHAI-120] - refactor ohai to use Mixlib
+  * New upstream release (0.3.6)
+    * [OHAI-131] - ohai lies about its version
+    * [OHAI-134] - yajl-ruby causes incompatibility with json gem
+
+ -- Joshua Timberman <joshua@opscode.com>  Wed, 28 Oct 2009 20:44:38 -0600
+
+ohai (0.3.2-1) unstable; urgency=low
+
+  * New upstream release
+  * Add libsystemu-ruby as new dependency
+
+ -- Bryan McLellan <btm@loftninjas.org>  Wed, 15 Jul 2009 14:46:28 -0700
+
+ohai (0.3.0-2) unstable; urgency=low
+
+  * Move ruby-pkg-tools from Build-Depends-Indep to Build-Depends
+  * Bump standards to 3.8.2 
+
+ -- Bryan McLellan <btm@loftninjas.org>  Fri, 19 Jun 2009 14:14:39 -0700
+
+ohai (0.3.0-1) unstable; urgency=low
+
+  * New upstream release
+
+ -- Bryan McLellan <btm@loftninjas.org>  Fri, 19 Jun 2009 10:40:49 -0700
+
+ohai (0.2.0-1) unstable; urgency=low
+
+  * Initial release (Closes: #514680)
+
+ -- Bryan McLellan <btm@loftninjas.org>  Tue, 28 Apr 2009 15:29:15 -0700
+
