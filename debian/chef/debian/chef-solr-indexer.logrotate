@@ -3,6 +3,6 @@
   weekly
   compress
   postrotate
-		/usr/sbin/invoke-rc.d chef-solr-indexer force-reload > /dev/null
+  /usr/sbin/invoke-rc.d chef-solr-indexer force-reload > /dev/null
   endscript
 }

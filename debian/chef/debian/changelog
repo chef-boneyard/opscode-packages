@@ -1,3 +1,227 @@
+chef (0.8.2-1) unstable; urgency=low
+
+  * Update versioned dependencies for mixlibs to 1.1.0.
+  * Add versioned dependency on CouchDB 0.9.1.
+  * New upstream release (0.8.2).
+    * [CHEF-219] - Attribute files need include_attribute
+    * [CHEF-291] - No high-level cookbook endpoint in REST API
+    * [CHEF-328] - CRUD Cookbooks via API
+    * [CHEF-358] - Refactor the REST API
+    * [CHEF-374] - drop outdated contrib/
+    * [CHEF-390] - Software raid provider
+    * [CHEF-417] - Add rake task to update roles in running server.
+    * [CHEF-438] - Chef::Provider::Execute doesn't honor user attribute for
+      not_if/only_if
+    * [CHEF-440] - Running chef-client with a JSON file should override the
+      node's run_list on server
+    * [CHEF-470] - role attribute deep merge only goes one level deep
+    * [CHEF-474] - Switch chef-server syntax highlighting to coderay
+    * [CHEF-491] - Should suport SSL verification
+    * [CHEF-505] - Nested Roles
+    * [CHEF-530] - chef-client daemon dies with segfault
+    * [CHEF-536] - Add server side key-pair creation
+    * [CHEF-537] - Authenticate Signed API Requests
+    * [CHEF-538] - Allow for the creation of API Clients
+    * [CHEF-539] - User Accounts
+    * [CHEF-540] - Allow association of user accounts with OpenIDs
+    * [CHEF-542] - Cookbook Uploading
+    * [CHEF-543] - Web UI should call the API exclusively
+    * [CHEF-551] - erl_call provider
+    * [CHEF-555] - Default adapter for chef-server merb should be thin
+      instead of mongrel
+    * [CHEF-573] - Add a verbose setting to allow logging to a TTY
+    * [CHEF-576] - provider for python easy_install
+    * [CHEF-584] - launching chef-client init script hangs chef-solo
+    * [CHEF-598] - Upstart service provider
+    * [CHEF-601] - Extend metadata spec based on wiki comments
+    * [CHEF-607] - cookbook loader doesn't get attributes in correct order
+    * [CHEF-616] - rake install in chef-repo breaks if there is no git
+      origin
+    * [CHEF-617] - Install to chef repository on a remote machine
+    * [CHEF-623] - Nodes are able to be created without names
+    * [CHEF-626] - Template Context should have a #node method so users
+      don't have to remember to use @node
+    * [CHEF-629] - Users *must* be able to set the action on the SCM
+      resource used by deploy
+    * [CHEF-633] - HTTP Request uses Chef::REST incorrectly
+    * [CHEF-634] - UI fails silently when unable to save node
+    * [CHEF-638] - Deploy with a revision should make that revision current
+      if it already exists
+    * [CHEF-639] - git resource fails on subsequent checkouts of the same
+      repostiry
+    * [CHEF-642] - Services no longer issue a WARN when status is not
+      present
+    * [CHEF-643] - Fix CHEF-570, as it doesn't catch package -revisions
+    * [CHEF-644] - Shebang lines should respect user's ruby
+    * [CHEF-645] - cd to /tmp breaks merb bootloader in features
+    * [CHEF-647] - Deploy resource should always run symlinks before migrate
+    * [CHEF-654] - chef-client -j against a self signed cert fails
+    * [CHEF-657] - Deploy with revision strategey did not clean up cache on
+      rollback
+    * [CHEF-659] - UI expands some escaped characters from JSON, then fails
+      to encode them again
+    * [CHEF-668] - cron resource seems to always run for non-numeric time
+      entries
+    * [CHEF-670] - knife should be smarter about the command line arguments
+    * [CHEF-671] - SCM providers should be able to specify the group
+    * [CHEF-680] -  When rake upload_cookbooks fails, it leaves behind a
+      tempdir that causes the next run to fail
+    * [CHEF-681] - 500 error when trying to retrieve a file w/o a default
+      dir
+    * [CHEF-684] - Should be possible for roles to be created without
+      anything in the run_list
+    * [CHEF-687] - shef: irb/REPL mode for chef
+    * [CHEF-688] - Deploy revision strategy does not fetch tags
+    * [CHEF-693] - Nodes should auto-expand
+    * [CHEF-694] - role override and default attributes don't get indexed
+    * [CHEF-695] - No backups kept if backup is set to 1
+    * [CHEF-696] - Cache file checksums
+    * [CHEF-698] - Validate JSON in the Web UI
+    * [CHEF-699] - solo and client modes in shef
+    * [CHEF-703] - chef search: make the default always be to iterate over
+      the results
+    * [CHEF-704] - Ruby block device does not have a default action
+    * [CHEF-705] - chef-repo with rake install should update roles via api
+    * [CHEF-706] - mount provider fails to mount samba/cifs devices
+      (Device does not exist)
+    * [CHEF-708] - add data bags support to Chef DSL
+    * [CHEF-709] - Support for backup up files in another directory than the
+      original file
+    * [CHEF-710] - knife fails silently if you lack the EDITOR env var
+    * [CHEF-722] - Link provider doesn't understand paths requiring
+      expansion
+    * [CHEF-723] - creating ssl-certs with fqdn "*.example.com" should name
+      w/ wildcard instead of *
+    * [CHEF-728] - Data bags could be Mash, not Hash
+    * [CHEF-731] - Add a screenrc to start a chef environment in screen
+    * [CHEF-732] - Remove references to chef-indexer
+    * [CHEF-734] - LWRP resources should look for provider named same by
+      default
+    * [CHEF-737] - Starting chef-server with '-c2' fails to create a couch
+      database
+    * [CHEF-741] - Web UI allows creation of a user with no name
+    * [CHEF-742] - Cron provider hangs installing new crontab
+    * [CHEF-744] - rake upload_cookbook and upload_cookbooks tasks should
+      complain when run from the wrong location.
+    * [CHEF-747] - webui needs a binary so you can run the slice outside of
+      git
+    * [CHEF-748] - chef-server-webui - config.ru and bin script
+    * [CHEF-749] - cache is not maintained with run_list; so we load items
+      from the cache that are no longer set to run in the run_list
+    * [CHEF-750] - Refactor the caching code so logic for what gets cached
+      and why is wrapped in a class
+    * [CHEF-751] - mixlib-authentication needs version tags
+    * [CHEF-753] - chef server slice should finish activating
+    * [CHEF-754] - Chef::Config.cookbook_path is in reverse order of
+      override application
+    * [CHEF-755] - "knife create_client" could accept :admin option
+    * [CHEF-756] - Specifying the run list for instance data with knife
+      should ignore commas
+    * [CHEF-758] - Webui prints generated keys with spaces and not newlines
+    * [CHEF-760] - Use AMQP drivers directly for indexing queues
+    * [CHEF-764] - webui crashes when attributes are Fixnum
+    * [CHEF-765] - when creating a user in the web-ui, it causes an indexer
+      failure to occur in solr and thus users never get indexed.
+    * [CHEF-766] - Chef should print the error message generated by the Chef
+      Server when an HTTP Exception occurs
+    * [CHEF-769] - knife should be able to specify the config file location
+    * [CHEF-774] - Chef-server does not log anything to server.log
+    * [CHEF-777] - hostnames with an _ in it, create 2 node entry's and then
+      fail during a chef-client run
+    * [CHEF-779] - rake upload_cookbook shouldn't try to upload cookbooks
+      that don't exist in the local repo
+    * [CHEF-796] - Change to mixlib-log breaks Chef::Log.level() usage
+    * [CHEF-799] - remote_directory does not work
+    * [CHEF-800] - The response from /search contains nil in some situations
+      while the Chef::Search::Query library tries to process every result
+      even it's nil
+    * [CHEF-805] - Deploy resource's scm_provider should accept a short
+      string/symbol as name instead of a fully qualified class name
+    * [CHEF-806] - knife refactored should show all the sub commands with
+      --help
+    * [CHEF-807] - SVN provider uses undefined local variables to create an
+      error message, obscuring the true cause of the error
+    * [CHEF-809] - man page for knife
+    * [CHEF-811] - knife subcommand options are invalid, not processed
+    * [CHEF-812] - file backup permissions less secure than file
+    * [CHEF-815] - knife cookbook upload fails when cookbooks are in an SVN
+      repo
+    * [CHEF-822] - Web UI differentiates between "user not found" and
+      "wrong password"
+    * [CHEF-824] - The WebUI is not detecting thin
+    * [CHEF-825] - The WebUI is a little excited about wanting you to change
+      the password and gramatically off
+    * [CHEF-826] - rest fails with an obscure error if node_name is not
+      determinable
+    * [CHEF-828] - Mixlib CLI - Preserve ARGV after @opt_parser.parse!
+    * [CHEF-832] - chef-solr does not install any binaries what so ever.
+    * [CHEF-837] - Delayed actions excute in unpredicatable order
+    * [CHEF-840] - client admin field should be checkbox not text box
+    * [CHEF-841] - knife keeps trying to upload a cookbook despite HTTP 401
+    * [CHEF-842] - duplicate copies of FileEdit: file_edit.rb & fileedit.rb
+    * [CHEF-843] - FileEdit permission issues
+    * [CHEF-856] - knife configure should allow you to create a new api user
+    * [CHEF-858] - Provider detection broken if Resource type and Provider
+      name matches
+    * [CHEF-860] - chef-web-ui status button shows 500 error
+    * [CHEF-864] - Unable to reindex chef via knife or chef-solr-rebuild
+    * [CHEF-865] - Implement retry logic when making server requests
+    * [CHEF-866] - @node and node should be available in attributes
+    * [CHEF-870] - does not close stderr when daemonising
+    * [CHEF-873] - Template provider doesn't respect the template resource's
+      cookbook option
+    * [CHEF-877] - fix :default and :required in lwrp
+    * [CHEF-880] - chef-server-api should require admin privileges to update
+      data bag items
+    * [CHEF-881] - make :name_attribute work in lwrp
+    * [CHEF-882] - slowdown due to debugging in ruby_block provider
+    * [CHEF-896] - file_backup_path include prefix in log output
+    * [CHEF-897] - package provider does not tell you about which package is
+      the cause of problems
+    * [CHEF-900] - security vulnerability in 0.8 webui
+    * [CHEF-902] - mixlib-authentication fails to generate SHA1
+    * [CHEF-904] - "Could not create work tree dir" on chef deploy
+    * [CHEF-906] - chef-server-webui refers to JSONeditor which doesn't
+      exist
+    * [CHEF-908] - Indexer fails on node properties that have invalid XML
+      character sequences
+    * [CHEF-916] - on chef-server startup, webui_user.rb:203:in
+      `create_design_document': uninitialized constant Chef::Couchdb
+      (NameError)
+    * [CHEF-918] - chef-solo fails to download remote recipes because
+      application/solo.rb no longer uses open-uri
+    * [CHEF-922] - knife ssh should accept -a ec2.public_hostname
+    * [CHEF-927] - Override and Default attributes get clobbered at recipe
+      load time
+    * [CHEF-928] - deep_merge issues with empty strings
+    * [CHEF-929] - typo in provider/deploy/revision causes rescue from
+      StandardError instead of Chef::Exceptions::FileNotFound
+    * [CHEF-931] - deep_merge mixin spits out a warning
+    * [CHEF-932] - git provider fetch strategy will not get all updates
+    * [CHEF-935] - chef-server-webui data bag item editing is broken
+    * [CHEF-937] - chef-server-api and Chef::Solr::Query bans queries for
+      api_users
+    * [CHEF-943] - add section for knife ssh to man page
+    * [CHEF-944] - chef-solr needs LICENSE information
+    * [CHEF-956] - Embed the Chef::VERSION as X-Chef-Version in HTTP request
+    * [CHEF-969] - Api client should expect 409 not 403 in save when one
+      with same name already exists
+    * [CHEF-970] - Need both class and instance methods for chef_server_rest
+    * [CHEF-971] - Changes to webui error handling
+    * [CHEF-974] - undefined chef_server_rest
+    * [CHEF-975] - client.pem is mode 644 by default
+    * [CHEF-977] - `knife configure` should prompt for validation_client
+      name and validation_key
+    * [CHEF-978] - Knife should not show HTTP Request Returned 404 Not
+      Found: Cannot load node foo as WARN when the node gets created
+      successfully
+    * [CHEF-980] - BULK DELETE (cookbook/node/client/role) requires REGEX
+    * [CHEF-989] - Search for client in the webui returns 404 when trying to
+      show the client in the search result
+
+
+ -- Joshua Timberman <joshua@opscode.com>  Sun, 28 Feb 2010 21:53:04 -0700
+
 chef (0.8.0~20100222+git+f3287fc-2) karmic; urgency=low
 
   * Merge CHEF-975 and CHEF-984 from ~tfheen

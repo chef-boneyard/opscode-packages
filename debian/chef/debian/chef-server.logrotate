@@ -6,4 +6,3 @@
 	/usr/sbin/invoke-rc.d chef-server force-reload > /dev/null
   endscript
 }
-
