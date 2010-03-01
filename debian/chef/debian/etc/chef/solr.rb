@@ -27,16 +27,16 @@ log_location       "/var/log/chef/indexer.log"
 
 search_index_path    "/var/lib/chef/search_index"
 
-# pid_file specifies the location of where chef-indexer daemon should keep the 
-# pid file.
-# valid value is any filesystem file location.
+solr_jetty_path "/var/lib/chef/solr"
+solr_home_path "/var/lib/chef/solr"
+solr_data_path "/var/cache/chef/solr/data"
+solr_heap_size "256M"
+solr_url "http://localhost:8983"
+solr_java_opts nil
 
-pid_file           "/var/run/chef/solr-indexer.pid"
-
-solr_jetty_path		 "/var/lib/chef/solr-jetty"
-solr_home_path		 "/var/lib/chef/solr"
-solr_data_path		 "/var/lib/chef/solr/data"
-solr_heap_size		 "256M"
+amqp_user "chef"
+amqp_pass "eejoh1Oo"
+amqp_vhost "/chef"
 
 # Mixlib::Log::Formatter.show_time specifies whether the chef-client log should
 # contain timestamps. 

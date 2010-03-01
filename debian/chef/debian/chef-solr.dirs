@@ -1,6 +1,6 @@
-var/lib/chef/search_index
 var/lib/chef/solr
-var/lib/chef/solr/solr-jetty
-var/lib/chef/solr/data
+var/cache/chef/solr/data
 var/log/chef
 etc/chef
+usr/sbin
+usr/share/chef-solr

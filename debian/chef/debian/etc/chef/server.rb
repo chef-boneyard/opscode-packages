@@ -36,7 +36,7 @@ log_level          :info
 # no quotes. This is the application log for the Merb workers that get
 # spawned.
 
-log_location       STDOUT
+log_location       "/var/log/chef/server.log"
 
 # ssl_verify_mode specifies if the REST client should verify SSL certificates.
 # valid values are :verify_none, :verify_peer. The default Chef Server 
@@ -61,7 +61,7 @@ registration_url   "http://localhost:4000"
 # pre-shared key authentication and authorization architecture in a future 
 # release of Chef. This is currently scheduled for version 0.8.0.
 
-openid_url         "http://localhost:4001"
+openid_url         "http://localhost:4000"
 
 # template_url specifies the URL where clients should retrieve templates.
 # valid values are any HTTP URL.
@@ -143,11 +143,18 @@ search_index_path  "/var/lib/chef/search_index"
 
 role_path          "/srv/chef/roles"
 
-# Chef::Log::Formatter.show_time specifies whether the chef-client log should
+# Mixlib::Log::Formatter.show_time specifies whether the chef-client log should
 # contain timestamps. 
 # valid values are true or false (no quotes, see above about Ruby idioms). The
 # printed timestamp is rfc2822, for example:
 # Fri, 31 Jul 2009 19:19:46 -0600
 
-Chef::Log::Formatter.show_time = true
+Mixlib::Log::Formatter.show_time = true
 
+signing_ca_cert "/etc/chef/certificates/cert.pem"
+signing_ca_key "/etc/chef/certificates/key.pem"
+
+# XXX document and generate properly
+amqp_user "chef"
+amqp_pass "eejoh1Oo"
+amqp_vhost "/chef"

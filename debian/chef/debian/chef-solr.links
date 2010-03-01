@@ -1,0 +1,6 @@
+/usr/share/jetty/lib/ /var/lib/chef/solr/lib
+/usr/share/jetty/start.jar /var/lib/chef/solr/start.jar
+/var/log/jetty/ /var/lib/chef/solr/logs
+/usr/share/jetty/resources/ /var/lib/chef/solr/resources
+/usr/share/solr/WEB-INF/lib/ /var/lib/chef/solr/webapps/solr/WEB-INF/lib
+/usr/share/solr/WEB-INF/web.xml /var/lib/chef/solr/webapps/solr/WEB-INF/web.xml
