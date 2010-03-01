@@ -1,0 +1,36 @@
+libmixlib-cli-ruby (1.1.0-1) unstable; urgency=low
+
+  * New upstream version bump for consistency with upcoming Chef release.
+  * Drop 'v' from git tag version.
+
+ -- Joshua Timberman <joshua@opscode.com>  Sun, 28 Feb 2010 17:11:44 -0700
+
+libmixlib-cli-ruby (1.0.4-3) unstable; urgency=low
+
+  [ Joshua Timberman ]
+  [Joshua Timberman]
+  * New maintainer.
+  * Add DRE team to uploaders.
+  * Bump standards version to 3.8.3
+
+  [ Paul van Tilburg ]
+  * debian/control:
+    - Added myself to the uploaders.
+    - Bumped standards version to 3.8.4; no changes required.
+    - Added missing Vcs-* fields.
+  * debian/watch: use gitrehubdir to get tarballs instead of gems.
+
+ -- Paul van Tilburg <paulvt@debian.org>  Sun, 14 Feb 2010 20:57:25 +0100
+
+libmixlib-cli-ruby (1.0.4-2) unstable; urgency=low
+
+  * Move ruby-pkg-tools to build-depends
+  * Bump standards version to 3.8.2
+
+ -- Bryan McLellan <btm@loftninjas.org>  Fri, 19 Jun 2009 14:26:12 -0700
+
+libmixlib-cli-ruby (1.0.4-1) unstable; urgency=low
+
+  * Initial release (Closes: #529535)
+
+ -- Bryan McLellan <btm@loftninjas.org>  Tue, 19 May 2009 14:44:32 -0700
