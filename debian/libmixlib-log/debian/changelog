@@ -1,0 +1,37 @@
+libmixlib-log-ruby (1.1.0-1) unstable; urgency=low
+
+  * New upstream release.
+    * fixes log level setting.
+    * fix logger and level pseudo accessors.
+    * Drop 'v' from git tag version.
+  * Split upstream authors and copyright.
+
+ -- Joshua Timberman <joshua@opscode.com>  Sun, 28 Feb 2010 19:30:45 -0700
+
+libmixlib-log-ruby (1.0.3-3) unstable; urgency=low
+
+   [ Joshua Timberman ]
+   * New maintainer.
+   * Add DRE team to uploaders.
+ 
+   [ Paul van Tilburg ]
+   * debian/control:
+     - Added myself to the uploaders.
+     - Bumped standards version to 3.8.4; no changes required.
+     - Added missing Vcs-* fields.
+   * debian/watch: use gitrehubdir to get tarballs instead of gems.
+
+ -- Paul van Tilburg <paulvt@debian.org>  Sun, 14 Feb 2010 20:42:26 +0100 
+
+libmixlib-log-ruby (1.0.3-2) unstable; urgency=low
+
+  * Bump standards version to 3.8.2
+  * Move ruby-pkg-tools to build-depends
+
+ -- Bryan McLellan <btm@loftninjas.org>  Fri, 19 Jun 2009 14:30:24 -0700
+
+libmixlib-log-ruby (1.0.3-1) unstable; urgency=low
+
+  * Initial release (Closes: #529533)
+
+ -- Bryan McLellan <btm@loftninjas.org>  Tue, 19 May 2009 14:44:32 -0700

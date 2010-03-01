@@ -1,0 +1,3 @@
+# Compulsory line, this is a version 3 file
+version=3
+http://githubredir.debian.net/github/opscode/mixlib-log/(.*).tar.gz

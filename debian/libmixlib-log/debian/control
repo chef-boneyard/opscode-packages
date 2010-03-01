@@ -1,0 +1,33 @@
+Source: libmixlib-log-ruby
+Section: ruby
+Priority: extra
+Maintainer: Joshua Timberman <joshua@opscode.com>
+Uploaders: Debian Ruby Extras Maintainers <pkg-ruby-extras-maintainers@lists.alioth.debian.org>, Paul van Tilburg <paulvt@debian.org>
+Build-Depends: debhelper (>= 7), cdbs, ruby-pkg-tools (>= 0.14)
+Build-Depends-Indep: ruby1.8, libsetup-ruby1.8
+Standards-Version: 3.8.4
+Homepage: http://github.com/opscode/mixlib-log/tree/master
+Vcs-Svn: svn://svn.debian.org/svn/pkg-ruby-extras/trunk/libmixlib-log-ruby/
+Vcs-Browser: http://svn.debian.org/viewsvn/pkg-ruby-extras/trunk/libmixlib-log-ruby/
+
+Package: libmixlib-log-ruby
+Architecture: all
+Depends: libmixlib-log-ruby1.8, ${shlibs:Depends}, ${misc:Depends}
+Description: A simple Ruby mixin for creating a logger object
+ Provides a class based object to provide logging. Messages can be sent at 
+ different levels such as warn or error. Logging defaults to STDOUT but
+ can also be sent to a file with simple built in rotation.
+ .
+ This package is a dependency package, which depends on the package
+ containing actual Ruby mixlib-log libraries for the default Ruby version
+ (currently 1.8).
+
+Package: libmixlib-log-ruby1.8
+Architecture: all
+Depends: ruby1.8, ${shlibs:Depends}, ${misc:Depends}
+Description: A simple Ruby 1.8 mixin for creating a logger object
+ Provides a class based object to provide logging. Messages can be sent at 
+ different levels such as warn or error. Logging defaults to STDOUT but
+ can also be sent to a file with simple built in rotation.
+ .
+ This package contains mixlib-log libraries for Ruby 1.8.
