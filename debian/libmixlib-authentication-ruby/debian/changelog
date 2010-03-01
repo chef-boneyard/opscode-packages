@@ -1,3 +1,15 @@
+libmixlib-authentication-ruby (1.1.0-1) unstable; urgency=low
+
+  * New upstream release.
+    * fix log level call
+    * fix spurious auth header dump
+    * remove digest/hmac and use ruby digest instead.
+    * Hash path in request signature.
+  * Remove libhmac-ruby from dependency in control.
+  * Drop 'v' from git tag version.
+
+ -- Joshua Timberman <joshua@opscode.com>  Sun, 28 Feb 2010 19:13:43 -0700
+
 libmixlib-authentication-ruby (1.0.0-2) unstable; urgency=low
 
   * Corrected ruby-hmac package name, libhmac-ruby1.8 in control file.
