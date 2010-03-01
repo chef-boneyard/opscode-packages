@@ -1,0 +1,52 @@
+libmixlib-config-ruby (1.1.0-1) unstable; urgency=low
+
+  * New upstream release.
+    * Drop 'v' in git tag version.
+
+ -- Joshua Timberman <joshua@opscode.com>  Sun, 28 Feb 2010 20:24:13 -0700
+
+libmixlib-config-ruby (1.0.12-2) unstable; urgency=low
+
+  [ Joshua Timberman ]
+  * Add DRE team to uploaders.
+
+  [ Paul van Tilburg ]
+  * debian/control:
+    - Added myself to the uploaders.
+    - Bumped standards version to 3.8.4; no changes required.
+    - Added missing Vcs-* fields.
+
+ -- Paul van Tilburg <paulvt@debian.org>  Sun, 14 Feb 2010 20:31:26 +0100
+
+libmixlib-config-ruby (1.0.12-1) unstable; urgency=low
+
+  [ Bryan McLellan ]
+  * New upstream release
+
+  [ Joshua Timberman ]
+  * New package maintainer
+
+ -- Joshua Timberman <joshua@opscode.com>  Wed, 02 Sep 2009 22:21:43 -0600
+
+libmixlib-config-ruby (1.0.9-1) unstable; urgency=low
+
+  * new upstream version
+  * policy fixes to short / long description
+
+  [ Joshua Timberman <joshua@opscode.com> ]
+  * watch via githubredir 
+
+ -- Bryan McLellan <btm@loftninjas.org>  Thu, 06 Aug 2009 12:01:19 -0700
+
+libmixlib-config-ruby (1.0.7-2) unstable; urgency=low
+
+  * Bump standards version to 3.8.2
+  * Move ruby-pkg-tools to build-depends
+
+ -- Bryan McLellan <btm@loftninjas.org>  Fri, 19 Jun 2009 14:24:46 -0700
+
+libmixlib-config-ruby (1.0.7-1) unstable; urgency=low
+
+  * Initial release (Closes: #529534)
+
+ -- Bryan McLellan <btm@loftninjas.org>  Tue, 19 May 2009 14:44:32 -0700
