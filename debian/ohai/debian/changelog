@@ -1,3 +1,12 @@
+ohai (0.5.0-1) unstable; urgency=low
+
+  * New upstream release (0.5.0).
+    * [OHAI-155] - Chef summons army of dmidecode Zombies
+    * [OHAI-166] - Make it possible to disable plugins
+  * Update man page w/ see also section.
+
+ -- Joshua Timberman <joshua@opscode.com>  Thu, 04 Mar 2010 12:48:35 -0700
+
 ohai (0.4.0-1) unstable; urgency=low
 
   * New upstream release (0.4.0).
@@ -7,10 +16,10 @@ ohai (0.4.0-1) unstable; urgency=low
     * [OHAI-140] - require rubygems in bin/ohai
     * [OHAI-143] - ohai, running in chef-client, triggers a MRI segfault
       probably related to garbage collection
-    * [OHAI-147] - exception on pretty_generate when specifying 
+    * [OHAI-147] - exception on pretty_generate when specifying
       an attribute with json 1.2.0
     * [OHAI-150] - ohai network fails without default gateway
-    * [OHAI-84] - Extend Ohai to support more of the information found in 
+    * [OHAI-84] - Extend Ohai to support more of the information found in
       sys and proc, want to cover things found in dstat scope.
     * [OHAI-7] - Command line should be sorted alphabetically, for the first keys
     * [OHAI-151] - Support to include data from /etc/passwd and /etc/group
@@ -30,7 +39,7 @@ ohai (0.3.6-1) unstable; urgency=low
   * New maintainer.
   * Add DRE team to uploaders.
   * Remove graphviz from build dep
-  * Bump standards version to 3.8.3 
+  * Bump standards version to 3.8.3
   * Now requires libmixlib-{config,cli,log}-ruby
   * New upstream release (0.3.4)
     * [OHAI-107] - EC2 spec tests fails when not connected to network
@@ -57,7 +66,7 @@ ohai (0.3.2-1) unstable; urgency=low
 ohai (0.3.0-2) unstable; urgency=low
 
   * Move ruby-pkg-tools from Build-Depends-Indep to Build-Depends
-  * Bump standards to 3.8.2 
+  * Bump standards to 3.8.2
 
  -- Bryan McLellan <btm@loftninjas.org>  Fri, 19 Jun 2009 14:14:39 -0700
 
