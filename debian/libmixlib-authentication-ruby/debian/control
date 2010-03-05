@@ -11,19 +11,19 @@ Homepage: http://github.com/opscode/mixlib-authentication/tree/master
 Package: libmixlib-authentication-ruby
 Architecture: all
 Depends: libmixlib-authentication-ruby1.8, ${shlibs:Depends}, ${misc:Depends}
-Description: Ruby mixin for client/server header signing authentication and verification
+Description: Ruby mixin client/server header signing authentication/verification
  Provides a class based object to do header signing authentication.
  A multiline hash for authorization will be encoded in multiple
  header lines.
  .
  This package is a dependency package, which depends on the package
- containing actual Ruby mixlib-authentication libraries for the default Ruby version
- (currently 1.8).
+ containing actual Ruby mixlib-authentication libraries for the default 
+ Ruby version (currently 1.8).
 
 Package: libmixlib-authentication-ruby1.8
 Architecture: all
 Depends: ruby1.8, libmixlib-log-ruby1.8, ${shlibs:Depends}, ${misc:Depends}
-Description: Ruby mixin for client/server header signing authentication and verification
+Description: Ruby mixin client/server header signing authentication/verification
  Provides a class based object to do header signing authentication.
  A multiline hash for authorization will be encoded in multiple
  header lines.
