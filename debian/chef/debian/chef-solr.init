@@ -11,14 +11,14 @@
 # Copyright (c) 2009-2010 Opscode, Inc <legal@opscode.com>
 #
 # chef-solr         Startup script for chef-solr.
-# chkconfig: - 98 02
+# chkconfig: - 85 02
 # description: starts up chef-solr in daemon mode.
 
 PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin
 DAEMON=/usr/sbin/chef-solr
 NAME=chef-solr
 DESC=chef-solr
-LOGDIR=/var/log/chef
+LOGFILE=/var/log/chef/solr.log
 CONFIG=/etc/chef/solr.rb
 PIDFILE=/var/run/chef/solr.pid
 
@@ -26,11 +26,13 @@ test -x $DAEMON || exit 0
 
 . /lib/lsb/init-functions
 
+[ -r /etc/default/$NAME ] && . /etc/default/$NAME
+
 if [ ! -d /var/run/chef ]; then
   mkdir /var/run/chef
 fi
 
-DAEMON_OPTS="-d -c $CONFIG -L ${LOGDIR}/solr.log"
+DAEMON_OPTS="-d -c $CONFIG -L $LOGFILE"
 
 running_pid() {                                                                 
   pid=$1

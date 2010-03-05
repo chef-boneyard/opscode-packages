@@ -12,7 +12,7 @@
 # some_setting false
 #
 # Third, Ruby class methods can be used, for example we tell the log to show
-# the current time stamp with Chef::Log::Formatter.show_time, below.
+# the current time stamp with Mixlib::Log::Formatter.show_time, below.
 #
 # log_level specifies the level of verbosity for output.
 # valid values are: :debug, :info, :warn, :error, :fatal
@@ -40,11 +40,11 @@ file_cache_path    "/srv/chef"
 
 cookbook_path      [ "/srv/chef/cookbooks" ]
 
-# Chef::Log::Formatter.show_time specifies whether the chef-client log should
+# Mixlib::Log::Formatter.show_time specifies whether the chef-client log should
 # contain timestamps. 
 # valid values are true or false (no quotes, see above about Ruby idioms). The
 # printed timestamp is rfc2822, for example:
 # Fri, 31 Jul 2009 19:19:46 -0600
 
-Chef::Log::Formatter.show_time = true
+Mixlib::Log::Formatter.show_time = true
 

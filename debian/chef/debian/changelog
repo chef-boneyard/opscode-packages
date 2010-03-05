@@ -14,6 +14,16 @@ chef (0.8.6-1) unstable; urgency=low
       cookbooks
     * [CHEF-1012] - knife help text needs a scrub for accuracy and consistent
       formatting
+  * Really update remove_rubygems.patch.
+  * 'libchef' Suggests rubygems and rake, for the rake tasks file.
+  * Remove *_url settings for single "chef_server_url" setting in config
+    files.
+  * Update server.rb with deprecation notices about some pre 0.8.x settings.
+  * Make sure client has verbose logging.
+  * Add /etc/default files for init script control.
+  * Quilt-patch --version support for chef-solr commands.
+  * Add man pages for chef-solr commands.
+  * Create chef-server-webui config file.
 
  -- Joshua Timberman <joshua@opscode.com>  Thu, 04 Mar 2010 19:00:42 -0700
 

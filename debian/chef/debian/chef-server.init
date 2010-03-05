@@ -11,26 +11,28 @@
 # Copyright (c) 2009-2010 Opscode, Inc <legal@opscode.com>
 #
 # chef-server         Startup script for chef-server.
-# chkconfig: - 98 02
+# chkconfig: - 90 02
 # description: starts up chef-server webui.
 
 PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin
 DAEMON=/usr/bin/chef-server
 PIDFILE=/var/run/chef/server.%s.pid
 MAINPID=/var/run/chef/server.main.pid
-LOGFILE=/var/log/chef/merb.%s.log
 MASTER=master
 NAME=chef-server
 DESC=chef-server
-DAEMON_OPTS="-d -a thin -P $PIDFILE -L $LOGFILE"
 
 test -x $DAEMON || exit 0
 
 . /lib/lsb/init-functions
 
+[ -r /etc/default/$NAME ] && . /etc/default/$NAME
+
 if [ ! -d /var/run/chef ]; then
   mkdir /var/run/chef
 fi
+
+DAEMON_OPTS="-p $PORT -e production -d -a $ADAPTER -P $PIDFILE -L $LOGFILE"
 
 running() {
   [ ! -f  "$MAINPID" ] &&  return 1

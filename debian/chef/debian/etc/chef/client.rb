@@ -28,6 +28,12 @@ log_level          :info
 
 log_location       STDOUT
 
+# verbose_logging ensures logging goes to STDOUT as well as other configured
+# log locations. If log_location above is set to a file, and chef-client is 
+# run from the command-line, the log will go to the file.
+
+verbose_logging    true
+
 # ssl_verify_mode specifies if the REST client should verify SSL certificates.
 # valid values are :verify_none, :verify_peer. The default Chef Server 
 # installation on Debian will use a self-generated SSL certificate so this
@@ -37,42 +43,10 @@ ssl_verify_mode    :verify_none
 
 # Server URLs.
 # 
-# registration_url specifies the URL which the client retrieves to register.
+# chef_server_url specifies the Chef Server to connect to.
 # valid values are any HTTP URL.
 
-registration_url   "http://localhost:4000"
-
-# openid_url specifies the URL where the server's OpenID relay is listening.
-# valid values are any HTTP URL. The default server configuration is set to
-# use a vhost running on port 444 for this.
-#
-# NOTE: The client/server openid communication will be removed in favor of a
-# pre-shared key authentication and authorization architecture in a future 
-# release of Chef. This is currently scheduled for version 0.8.0.
-
-openid_url         "http://localhost:4001"
-
-# template_url specifies the URL where the client should retrieve templates.
-# valid values are any HTTP URL.
-
-template_url       "http://localhost:4000"
-
-# remotefile_url specifies the URL where the client should retrieve remote 
-# static file and directory contents.
-# valid values are any HTTP URL.
-
-remotefile_url     "http://localhost:4000"
-
-# search_url specifies the URL where the client should send queries for search
-# indexes.
-# valid values are any HTTP URL.
-
-search_url         "http://localhost:4000"
-
-# role_url specifies the URL where the client should look for role data.
-# valid values are any HTTP URL.
-
-role_url           "http://localhost:4000"
+chef_server_url    "http://localhost:4000"
 
 # file_cache_path specifies where the client should cache cookbooks, server
 # cookie ID, and openid registration data.

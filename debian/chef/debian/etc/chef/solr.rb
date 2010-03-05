@@ -28,10 +28,10 @@ log_location       "/var/log/chef/indexer.log"
 search_index_path    "/var/lib/chef/search_index"
 
 solr_jetty_path "/var/lib/chef/solr"
-solr_home_path "/var/lib/chef/solr"
-solr_data_path "/var/cache/chef/solr/data"
-solr_heap_size "256M"
-solr_url "http://localhost:8983"
+solr_home_path  "/var/lib/chef/solr"
+solr_data_path  "/var/cache/chef/solr/data"
+solr_heap_size  "256M"
+solr_url        "http://localhost:8983"
 solr_java_opts nil
 
 amqp_user "chef"
@@ -45,4 +45,3 @@ amqp_vhost "/chef"
 # Fri, 31 Jul 2009 19:19:46 -0600
 
 Mixlib::Log::Formatter.show_time = true
-

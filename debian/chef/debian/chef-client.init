@@ -11,26 +11,26 @@
 # Copyright (c) 2009 Joshua Timberman, <joshua@opscode.com>
 #
 # chef-client         Startup script for chef-client.
-# chkconfig: - 98 02
+# chkconfig: - 99 02
 # description: starts up chef-client in daemon mode.
 
 PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin
 DAEMON=/usr/bin/chef-client
 NAME=chef-client
 DESC=chef-client
-LOGDIR=/var/log/chef
-CONFIG=/etc/chef/client.rb
 PIDFILE=/var/run/chef/client.pid
 
 test -x $DAEMON || exit 0
 
 . /lib/lsb/init-functions
 
+[ -r /etc/default/$NAME ] && . /etc/default/$NAME
+
 if [ ! -d /var/run/chef ]; then
   mkdir /var/run/chef
 fi
 
-DAEMON_OPTS="-L $LOGDIR/client.log -d -c $CONFIG -i 1800 -s 20"
+DAEMON_OPTS="-L $LOGFILE -d -c $CONFIG -i $INTERVAL -s $SPLAY"
 
 running_pid() {                                                                 
   pid=$1

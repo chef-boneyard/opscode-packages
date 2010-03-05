@@ -1,2 +1,2 @@
-fix_slice_dirs.patch
+chef-solr_version.patch
 remove_rubygems.patch
