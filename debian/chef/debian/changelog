@@ -1,3 +1,32 @@
+chef (0.8.6-1) unstable; urgency=low
+
+  * New upstream release (0.8.6).
+    * [CHEF-964] - Adding a bad role name to run list breaks everything for
+      that node.
+    * [CHEF-992] - A node created with a role that did not exist can not be
+      edited or deleted
+    * [CHEF-1000] - Runlist expand does not pass couchdb value on
+    * [CHEF-1010] - Yum provider ignores specified version in some circumstances
+    * [CHEF-707] - Change "gid" to "group" for the User Resource
+    * [CHEF-909] - Rollback on deploy errors
+    * [CHEF-968] - Chef rest should be more flexible with user keys and headers
+    * [CHEF-1005] - knife cookbook upload should support a list of multiple
+      cookbooks
+    * [CHEF-1012] - knife help text needs a scrub for accuracy and consistent
+      formatting
+
+ -- Joshua Timberman <joshua@opscode.com>  Thu, 04 Mar 2010 19:00:42 -0700
+
+chef (0.8.4-1) unstable; urgency=low
+
+  * New upstream release (0.8.4).
+    * [CHEF-996] - CA key not properly protected
+    * [CHEF-1003] - Cookbook Uploading does not contain an X-Chef-Version 
+  * Remove fix_slice_dirs patch for (unused) chef-server-slice package.
+  * Update remove_rubygems.patch for changes since original packaging.
+
+ -- Joshua Timberman <joshua@opscode.com>  Thu, 04 Mar 2010 12:17:10 -0700
+
 chef (0.8.2-1) unstable; urgency=low
 
   * Update versioned dependencies for mixlibs to 1.1.0.

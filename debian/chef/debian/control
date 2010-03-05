@@ -103,7 +103,7 @@ Description: Ruby libraries for Chef system integration framework
 
 Package: libchef-ruby1.8
 Architecture: all
-Depends: ${misc:Depends}, ruby1.8, libopenssl-ruby, libmixlib-authentication-ruby1.8 (>= 1.1.0), libmixlib-cli-ruby, libmixlib-config-ruby (>= 1.1.0), libmixlib-log-ruby (>= 1.1.0, libohai-ruby (>= 0.4.0), libmoneta-ruby, libbunny-ruby
+Depends: ${misc:Depends}, ruby1.8, libopenssl-ruby, libmixlib-authentication-ruby1.8 (>= 1.1.0), libmixlib-cli-ruby, libmixlib-config-ruby (>= 1.1.0), libmixlib-log-ruby (>= 1.1.0), libohai-ruby (>= 0.4.0), libmoneta-ruby, libbunny-ruby
 Suggests: rake, chef
 Description: Ruby 1.8 libraries for Chef system integration framework
  Chef is a systems integration framework and configuration management library

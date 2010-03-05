@@ -73,8 +73,16 @@ install/chef-server-api::
 	cp -rf chef-server-api/config debian/chef-server-api/usr/share/chef-server-api
 	cp -rf chef-server-api/public debian/chef-server-api/usr/share/chef-server-api
 	cp -rf chef-server-api/lib    debian/chef-server-api/usr/share/chef-server-api
-	rm debian/chef-server-api/usr/share/chef-server-api/public/images/treeBuilderImages/Thumbs.db
 	find debian/chef-server-api -type f -perm +755 -exec chmod 644 {} \;
+
+install/chef-server-webui::
+	cp chef-server-webui/README.rdoc debian/chef-server-webui/usr/share/doc/chef-server-webui
+	cp -rf chef-server-webui/app    debian/chef-server-api/usr/share/chef-server-webui
+	cp -rf chef-server-webui/config debian/chef-server-webui/usr/share/chef-server-webui
+	cp -rf chef-server-webui/public debian/chef-server-webui/usr/share/chef-server-webui
+	cp -rf chef-server-webui/lib    debian/chef-server-webui/usr/share/chef-server-webui
+	rm debian/chef-server-webui/usr/share/chef-server-webui/public/images/treeBuilderImages/Thumbs.db
+	find debian/chef-server-webui -type f -perm +755 -exec chmod 644 {} \;
 
 clean::
 	$(CHEF_INSTALL_SETUP_CMD)
