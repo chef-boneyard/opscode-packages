@@ -1,0 +1,4 @@
+var/cache/chef
+var/cache/chef/checksums
+var/log/chef
+etc/chef

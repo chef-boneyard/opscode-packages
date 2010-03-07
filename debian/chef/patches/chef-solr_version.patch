@@ -1,0 +1,233 @@
+# Description: Set the version for chef-solr so the binaries can have a 
+# command-line option. This is fixed upstream in ticket CHEF-1018.
+Index: chef-0.8.6/chef-solr/lib/chef/solr.rb
+===================================================================
+--- chef-0.8.6.orig/chef-solr/lib/chef/solr.rb	2010-03-05 15:00:07.000000000 -0700
++++ chef-0.8.6/chef-solr/lib/chef/solr.rb	2010-03-05 15:00:22.000000000 -0700
+@@ -6,9 +6,9 @@
+ # Licensed under the Apache License, Version 2.0 (the "License");
+ # you may not use this file except in compliance with the License.
+ # You may obtain a copy of the License at
+-# 
++#
+ #     http://www.apache.org/licenses/LICENSE-2.0
+-# 
++#
+ # Unless required by applicable law or agreed to in writing, software
+ # distributed under the License is distributed on an "AS IS" BASIS,
+ # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+@@ -34,6 +34,9 @@
+ 
+ class Chef
+   class Solr
++
++    VERSION="0.8.6"
++
+     include Chef::Mixin::XMLEscape
+ 
+     attr_accessor :solr_url, :http
+@@ -73,7 +76,7 @@
+ 
+     def solr_add(data)
+       data = [data] unless data.kind_of?(Array)
+-      
++
+       Chef::Log.debug("adding to SOLR: #{data.inspect}")
+       xml_document = LibXML::XML::Document.new
+       xml_add = LibXML::XML::Node.new("add")
+@@ -97,19 +100,19 @@
+     def solr_commit(opts={})
+       post_to_solr(generate_single_element("commit", opts))
+     end
+-    
++
+     def solr_optimize(opts={})
+       post_to_solr(generate_single_element("optimize", opts))
+     end
+-    
++
+     def solr_rollback
+       post_to_solr(generate_single_element("rollback"))
+     end
+-    
++
+     def solr_delete_by_id(ids)
+       post_to_solr(generate_delete_document("id", ids))
+     end
+-    
++
+     def solr_delete_by_query(queries)
+       post_to_solr(generate_delete_document("query", queries))
+     end
+@@ -117,20 +120,20 @@
+     def rebuild_index(url=Chef::Config[:couchdb_url], db=Chef::Config[:couchdb_database])
+       solr_delete_by_query("X_CHEF_database_CHEF_X:#{db}")
+       solr_commit
+-      
++
+       results = {}
+       [Chef::ApiClient, Chef::Node, Chef::OpenIDRegistration, Chef::Role, Chef::WebUIUser].each do |klass|
+         results[klass.name] = reindex_all(klass) ? "success" : "failed"
+       end
+       databags = Chef::DataBag.cdb_list(true)
+       Chef::Log.info("Reloading #{databags.size.to_s} #{Chef::DataBag} objects into the indexer")
+-      databags.each { |i| i.add_to_index; i.list(true).each { |x| x.add_to_index } } 
+-      results[Chef::DataBag.name] = "success" 
++      databags.each { |i| i.add_to_index; i.list(true).each { |x| x.add_to_index } }
++      results[Chef::DataBag.name] = "success"
+       results
+     end
+ 
+     private
+-    
++
+     def reindex_all(klass, metadata={})
+       begin
+         items = klass.cdb_list(true)
+@@ -204,7 +207,7 @@
+     def escape(s)
+       s.to_s.gsub(/([^ a-zA-Z0-9_.-]+)/n) {
+         '%'+$1.unpack('H2'*$1.size).join('%').upcase
+-      }.tr(' ', '+') 
++      }.tr(' ', '+')
+     end
+ 
+   end
+Index: chef-0.8.6/chef-solr/lib/chef/solr/application/indexer.rb
+===================================================================
+--- chef-0.8.6.orig/chef-solr/lib/chef/solr/application/indexer.rb	2010-03-05 14:54:52.000000000 -0700
++++ chef-0.8.6/chef-solr/lib/chef/solr/application/indexer.rb	2010-03-05 14:55:54.000000000 -0700
+@@ -6,9 +6,9 @@
+ # Licensed under the Apache License, Version 2.0 (the "License");
+ # you may not use this file except in compliance with the License.
+ # You may obtain a copy of the License at
+-# 
++#
+ #     http://www.apache.org/licenses/LICENSE-2.0
+-# 
++#
+ # Unless required by applicable law or agreed to in writing, software
+ # distributed under the License is distributed on an "AS IS" BASIS,
+ # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+@@ -29,14 +29,14 @@
+   class Solr
+     class Application
+       class Indexer < Chef::Application
+-  
+-        option :config_file, 
++
++        option :config_file,
+           :short => "-c CONFIG",
+           :long  => "--config CONFIG",
+           :default => "/etc/chef/solr.rb",
+           :description => "The configuration file to use"
+ 
+-        option :log_level, 
++        option :log_level,
+           :short        => "-l LEVEL",
+           :long         => "--log_level LEVEL",
+           :description  => "Set the log level (debug, info, warn, error, fatal)",
+@@ -94,7 +94,15 @@
+         option :amqp_vhost,
+           :long => "--amqp-vhost VHOST",
+           :description => "The amqp vhost"
+-        
++
++        option :version,
++          :short => "-v",
++          :long => "--version",
++          :description => "Show chef-solr-indexer version",
++          :boolean => true,
++          :proc => lambda {|v| puts "chef-solr-indexer: #{Chef::Solr::VERSION}"},
++          :exit => 0
++
+         Signal.trap("INT") do
+           begin
+             AmqpClient.instance.stop
+@@ -102,15 +110,15 @@
+           end
+           fatal!("SIGINT received, stopping", 2)
+         end
+-        
+-        Kernel.trap("TERM") do 
++
++        Kernel.trap("TERM") do
+           begin
+             AmqpClient.instance.stop
+           rescue Bunny::ProtocolError, Bunny::ConnectionError, Bunny::UnsubscribeError
+           end
+           fatal!("SIGTERM received, stopping", 1)
+         end
+-        
++
+         def initialize
+           super
+ 
+Index: chef-0.8.6/chef-solr/lib/chef/solr/application/rebuild.rb
+===================================================================
+--- chef-0.8.6.orig/chef-solr/lib/chef/solr/application/rebuild.rb	2010-03-05 14:59:17.000000000 -0700
++++ chef-0.8.6/chef-solr/lib/chef/solr/application/rebuild.rb	2010-03-05 14:59:57.000000000 -0700
+@@ -6,9 +6,9 @@
+ # Licensed under the Apache License, Version 2.0 (the "License");
+ # you may not use this file except in compliance with the License.
+ # You may obtain a copy of the License at
+-# 
++#
+ #     http://www.apache.org/licenses/LICENSE-2.0
+-# 
++#
+ # Unless required by applicable law or agreed to in writing, software
+ # distributed under the License is distributed on an "AS IS" BASIS,
+ # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+@@ -26,14 +26,14 @@
+   class Solr
+     class Application
+       class Rebuild < Chef::Application
+-  
+-        option :config_file, 
++
++        option :config_file,
+           :short => "-c CONFIG",
+           :long  => "--config CONFIG",
+           :default => "/etc/chef/solr.rb",
+           :description => "The configuration file to use"
+ 
+-        option :log_level, 
++        option :log_level,
+           :short        => "-l LEVEL",
+           :long         => "--log_level LEVEL",
+           :description  => "Set the log level (debug, info, warn, error, fatal)",
+@@ -64,6 +64,14 @@
+           :long => "--couchdb-url URL",
+           :description => "The CouchDB URL"
+ 
++        option :version,
++          :short => "-v",
++          :long => "--version",
++          :description => "Show chef-solr-rebuild version",
++          :boolean => true,
++          :proc => lambda {|v| puts "chef-solr-rebuild: #{::Chef::Solr::VERSION}"},
++          :exit => 0
++
+         def initialize
+           super
+ 
+Index: chef-0.8.6/chef-solr/lib/chef/solr/application/solr.rb
+===================================================================
+--- chef-0.8.6.orig/chef-solr/lib/chef/solr/application/solr.rb	2010-03-05 14:41:19.000000000 -0700
++++ chef-0.8.6/chef-solr/lib/chef/solr/application/solr.rb	2010-03-05 14:54:44.000000000 -0700
+@@ -97,6 +97,14 @@
+           :long => "--java-opts OPTS",
+           :description => "Raw options passed to Java" 
+ 
++        option :version,
++          :short => "-v",
++          :long => "--version",
++          :description => "Show chef-solr version",
++          :boolean => true,
++          :proc => lambda {|v| puts "chef-solr: #{::Chef::Solr::VERSION}"},
++          :exit => 0
++
+         def initialize
+           super
+           Chef::Log.level = Chef::Config[:log_level] 

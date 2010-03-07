@@ -1,0 +1,44 @@
+# Description: set the load path for chef-solr's binaries correctly for Debian
+# FHS compliant location. No plans for upstream to change this.
+Index: chef-0.8.6/chef-solr/bin/chef-solr
+===================================================================
+--- chef-0.8.6.orig/chef-solr/bin/chef-solr	2010-03-06 22:45:32.000000000 -0700
++++ chef-0.8.6/chef-solr/bin/chef-solr	2010-03-06 22:45:50.000000000 -0700
+@@ -19,8 +19,8 @@
+ 
+ $:.unshift(File.expand_path(File.join(File.dirname(__FILE__), "..", "lib")))
+ $:.unshift(File.expand_path(File.join(File.dirname(__FILE__), "..", "..", "chef", "lib")))
++$:.unshift(File.expand_path(File.join(File.dirname(__FILE__), "..", "share", "chef-solr", "lib")))
+ 
+-require 'rubygems'
+ require 'chef/solr/application/solr'
+ 
+ Chef::Solr::Application::Solr.new.run
+Index: chef-0.8.6/chef-solr/bin/chef-solr-indexer
+===================================================================
+--- chef-0.8.6.orig/chef-solr/bin/chef-solr-indexer	2010-03-06 22:45:58.000000000 -0700
++++ chef-0.8.6/chef-solr/bin/chef-solr-indexer	2010-03-06 22:46:04.000000000 -0700
+@@ -19,8 +19,8 @@
+ 
+ $:.unshift(File.expand_path(File.join(File.dirname(__FILE__), "..", "lib")))
+ $:.unshift(File.expand_path(File.join(File.dirname(__FILE__), "..", "..", "chef", "lib")))
++$:.unshift(File.expand_path(File.join(File.dirname(__FILE__), "..", "share", "chef-solr", "lib")))
+ 
+-require 'rubygems'
+ require 'chef/solr/application/indexer'
+ 
+ Chef::Solr::Application::Indexer.new.run
+Index: chef-0.8.6/chef-solr/bin/chef-solr-rebuild
+===================================================================
+--- chef-0.8.6.orig/chef-solr/bin/chef-solr-rebuild	2010-03-06 22:46:31.000000000 -0700
++++ chef-0.8.6/chef-solr/bin/chef-solr-rebuild	2010-03-06 22:47:22.000000000 -0700
+@@ -19,8 +19,8 @@
+ 
+ $:.unshift(File.expand_path(File.join(File.dirname(__FILE__), "..", "lib")))
+ $:.unshift(File.expand_path(File.join(File.dirname(__FILE__), "..", "..", "chef", "lib")))
++$:.unshift(File.expand_path(File.join(File.dirname(__FILE__), "..", "share", "chef-solr", "lib")))
+ 
+-require 'rubygems'
+ require 'chef/solr/application/rebuild'
+ 
+ Chef::Solr::Application::Rebuild.new.run

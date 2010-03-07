@@ -1,0 +1,3 @@
+LOGFILE=/var/log/chef/merb.%s.log
+ADAPTER=thin
+PORT=4000

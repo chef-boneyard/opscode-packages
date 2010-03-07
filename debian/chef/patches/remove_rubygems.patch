@@ -1,0 +1,175 @@
+# Description: Remove rubygems from various places in Chef were not needed.
+# Also set up chef-server programs to load slices correctly w/o rubygems.
+# Upstream does not plan to remove rubygems, so this patch needs to be
+# updated with new files that require rubygems.
+Index: chef-0.8.6/chef-server-api/config/init.rb
+===================================================================
+--- chef-0.8.6.orig/chef-server-api/config/init.rb	2010-03-05 11:00:08.000000000 -0700
++++ chef-0.8.6/chef-server-api/config/init.rb	2010-03-05 11:00:22.000000000 -0700
+@@ -29,8 +29,6 @@
+ dependency "merb-helpers", merb_gems_version
+ dependency "chef", :immediate=>true unless defined?(Chef)
+ 
+-require 'rubygems'
+-
+ Merb::Config.use do |c|
+   c[:session_id_key] = '_chef_server_session_id'
+   c[:session_secret_key]  = Chef::Config.manage_secret_key
+Index: chef-0.8.6/chef-server/bin/chef-server
+===================================================================
+--- chef-0.8.6.orig/chef-server/bin/chef-server	2010-03-05 11:08:44.000000000 -0700
++++ chef-0.8.6/chef-server/bin/chef-server	2010-03-05 11:09:52.000000000 -0700
+@@ -23,28 +23,14 @@
+ # Add chef and chef-server-slice lib dirs to the load path
+ # Load chef and chef-server slice from source rather than gem, if present
+ 
+-require "rubygems"
+ require "merb-core"
+ 
+-[ 'chef', 'chef-server-api' ].each do |lib|
+-  $:.unshift(File.expand_path(File.join(File.dirname(__FILE__), "..", "..", "lib")))
+-  library = File.expand_path(File.join(File.dirname(__FILE__), "..", "..", lib, "lib", "#{lib}.rb"))
+-  require library if File.exists?(library)
+-end
+-
+-ObjectSpace.each_object(Gem::Specification) do |gem|
+-  next unless gem.name == "chef-server"
+-  CHEF_SERVER_VERSION = gem.version.to_s
+-  break
+-end
++CHEF_SERVER_VERSION = "0.8.6" unless defined?(CHEF_SERVER_VERSION)
+ 
+-# Ensure the chef gem we load is the same version as the chef server
+-unless defined?(Chef)
+-  gem "chef", "=" + CHEF_SERVER_VERSION if CHEF_SERVER_VERSION
+-  require 'chef'  
+-end
++require "chef"
++require "/usr/share/chef-server-api/lib/chef-server-api"
+ 
+-Dir.chdir File.join(File.dirname(__FILE__),"..")
++Dir.chdir File.join(File.dirname(__FILE__),"..", "share", "chef-server")
+ __DIR__ = Dir.getwd
+ 
+ if ARGV[0] && ARGV[0] =~ /^[^-]/
+Index: chef-0.8.6/chef-server/bin/chef-server-webui
+===================================================================
+--- chef-0.8.6.orig/chef-server/bin/chef-server-webui	2010-03-05 11:02:45.000000000 -0700
++++ chef-0.8.6/chef-server/bin/chef-server-webui	2010-03-05 11:08:38.000000000 -0700
+@@ -23,28 +23,14 @@
+ # Add chef and chef-server-slice lib dirs to the load path
+ # Load chef and chef-server slice from source rather than gem, if present
+ 
+-require "rubygems"
+ require "merb-core"
+ 
+-[ 'chef', 'chef-server-webui' ].each do |lib|
+-  $:.unshift(File.expand_path(File.join(File.dirname(__FILE__), "..", "..", "lib")))
+-  library = File.expand_path(File.join(File.dirname(__FILE__), "..", "..", lib, "lib", "#{lib}.rb"))
+-  require library if File.exists?(library)
+-end
+-
+-ObjectSpace.each_object(Gem::Specification) do |gem|
+-  next unless gem.name == "chef-server"
+-  CHEF_SERVER_VERSION = gem.version.to_s
+-  break
+-end
++CHEF_SERVER_VERSION = "0.8.6" unless defined?(CHEF_SERVER_VERSION)
+ 
+-# Ensure the chef gem we load is the same version as the chef server
+-unless defined?(Chef)
+-  gem "chef", "=" + CHEF_SERVER_VERSION if CHEF_SERVER_VERSION
+-  require 'chef'  
+-end
++require "chef"
++require "/usr/share/chef-server-webui/lib/chef-server-webui"
+ 
+-Dir.chdir File.join(File.dirname(__FILE__),"..")
++Dir.chdir File.join(File.dirname(__FILE__),"..", "share", "chef-server")
+ __DIR__ = Dir.getwd
+ 
+ if ARGV[0] && ARGV[0] =~ /^[^-]/
+Index: chef-0.8.6/chef/bin/chef-client
+===================================================================
+--- chef-0.8.6.orig/chef/bin/chef-client	2010-03-05 09:52:44.000000000 -0700
++++ chef-0.8.6/chef/bin/chef-client	2010-03-05 09:52:46.000000000 -0700
+@@ -20,7 +20,6 @@
+ 
+ $:.unshift(File.join(File.dirname(__FILE__), "..", "lib"))
+ 
+-require 'rubygems'
+ require 'chef/application/client'
+ 
+ Chef::Application::Client.new.run
+Index: chef-0.8.6/chef/bin/chef-solo
+===================================================================
+--- chef-0.8.6.orig/chef/bin/chef-solo	2010-03-05 09:52:36.000000000 -0700
++++ chef-0.8.6/chef/bin/chef-solo	2010-03-05 09:52:39.000000000 -0700
+@@ -20,7 +20,6 @@
+ 
+ $:.unshift(File.join(File.dirname(__FILE__), "..", "lib"))
+ 
+-require 'rubygems'
+ require 'chef/application/solo'
+ 
+ Chef::Application::Solo.new.run
+Index: chef-0.8.6/chef/bin/knife
+===================================================================
+--- chef-0.8.6.orig/chef/bin/knife	2010-03-05 09:52:23.000000000 -0700
++++ chef-0.8.6/chef/bin/knife	2010-03-05 09:52:29.000000000 -0700
+@@ -20,7 +20,6 @@
+ 
+ $:.unshift(File.expand_path(File.join(File.dirname(__FILE__), "..", "lib")))
+ 
+-require 'rubygems'
+ require 'chef/application/knife'
+ 
+ Chef::Application::Knife.new.run
+Index: chef-0.8.6/chef/bin/shef
+===================================================================
+--- chef-0.8.6.orig/chef/bin/shef	2010-03-05 09:53:04.000000000 -0700
++++ chef-0.8.6/chef/bin/shef	2010-03-05 10:56:40.000000000 -0700
+@@ -19,7 +19,6 @@
+ # limitations under the License.
+ 
+ # TODO::EVIL
+-require "rubygems"
+ require "mixlib/cli"
+ 
+ require "irb"
+Index: chef-0.8.6/chef/lib/chef.rb
+===================================================================
+--- chef-0.8.6.orig/chef/lib/chef.rb	2010-03-05 10:59:48.000000000 -0700
++++ chef-0.8.6/chef/lib/chef.rb	2010-03-05 10:59:59.000000000 -0700
+@@ -19,7 +19,6 @@
+ $:.unshift(File.dirname(__FILE__)) unless
+   $:.include?(File.dirname(__FILE__)) || $:.include?(File.expand_path(File.dirname(__FILE__)))
+ 
+-require 'rubygems'
+ require 'extlib'
+ require 'chef/exceptions'
+ require 'chef/log'
+Index: chef-0.8.6/chef/lib/chef/openid_registration.rb
+===================================================================
+--- chef-0.8.6.orig/chef/lib/chef/openid_registration.rb	2010-03-05 10:56:56.000000000 -0700
++++ chef-0.8.6/chef/lib/chef/openid_registration.rb	2010-03-05 10:57:03.000000000 -0700
+@@ -21,7 +21,6 @@
+ require 'chef/couchdb'
+ require 'chef/index_queue'
+ require 'digest/sha1'
+-require 'rubygems'
+ require 'json'
+ 
+ class Chef
+Index: chef-0.8.6/chef/lib/chef/webui_user.rb
+===================================================================
+--- chef-0.8.6.orig/chef/lib/chef/webui_user.rb	2010-03-05 10:59:29.000000000 -0700
++++ chef-0.8.6/chef/lib/chef/webui_user.rb	2010-03-05 10:59:36.000000000 -0700
+@@ -22,7 +22,6 @@
+ require 'chef/couchdb'
+ require 'chef/index_queue'
+ require 'digest/sha1'
+-require 'rubygems'
+ require 'json'
+   
+ 

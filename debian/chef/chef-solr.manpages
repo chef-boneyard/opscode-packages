@@ -1,0 +1,3 @@
+debian/chef-solr.1
+debian/chef-solr-indexer.1
+debian/chef-solr-rebuild.8
