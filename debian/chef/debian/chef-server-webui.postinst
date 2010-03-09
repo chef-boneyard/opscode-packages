@@ -4,13 +4,19 @@
 
 export PATH=$PATH:/sbin:/usr/sbin:/bin:/usr/bin
 
+CONFIGFILE=/etc/chef/webui.rb
+
+webui_conf_has_pass() {
+  egrep -q "^web_ui_admin_default_password \".*\"$" $CONFIGFILE
+}
+
 case "$1" in
   configure)
     db_get chef-server-webui/admin_password && chef_webui_pass="$RET"
-    grep -xq "web_ui_admin_default_password \"$chef_webui_pass\"" /etc/chef/server.rb
-    if [ $? -ne 0 ]
-    then
-      echo "web_ui_admin_default_password \"$chef_webui_pass\"" >> /etc/chef/server.rb
+    if webui_conf_has_pass; then
+      sed -i "s/web_ui_admin_default_password \".*\"/web_ui_admin_default_password \"$chef_webui_pass\"/g" $CONFIGFILE
+    else
+      echo "web_ui_admin_default_password \"$chef_webui_pass\"" >> $CONFIGFILE
     fi
   ;;
 

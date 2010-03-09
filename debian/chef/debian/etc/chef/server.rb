@@ -108,3 +108,29 @@ Mixlib::Log::Formatter.show_time = true
 
 signing_ca_cert "/etc/chef/certificates/cert.pem"
 signing_ca_key "/etc/chef/certificates/key.pem"
+
+# web_ui_client_name specifies the user to use when accessing the Chef
+# Server API. By default this is already set to "chef-webui".
+# 
+# This user gets created by the chef-server and stored in CouchDB the
+# first time the server starts up if the user and key don't exist.
+
+#web_ui_client_name "chef-webui"
+
+# web_ui_admin_user_name and web_ui_admin_default_password specify the 
+# user and password that a human can use to initially log into the 
+# chef-server-webui when it starts. The default value for the user is 'admin'
+# and the default password is'p@ssw0rd1' should be changed immediately on
+# login. The web form will display the password reset page on first login.
+
+#web_ui_admin_user_name "admin"
+#web_ui_admin_default_password "p@ssw0rd1"
+
+# web_ui_key specifics the file to use for authenticating with the Chef
+# Server API. By default this is already set to "/etc/chef/webui.pem".
+#
+# This file gets created by the chef-server and the public key stored in
+# CouchDB the first time the server starts up if the user and key don't
+# exist.
+
+#web_ui_key "/etc/chef/webui.pem"

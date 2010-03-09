@@ -18,7 +18,6 @@ PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin
 DAEMON=/usr/bin/chef-server
 PIDFILE=/var/run/chef/server.%s.pid
 MAINPID=/var/run/chef/server.main.pid
-MASTER=master
 NAME=chef-server
 DESC=chef-server
 
@@ -32,15 +31,16 @@ if [ ! -d /var/run/chef ]; then
   mkdir /var/run/chef
 fi
 
-DAEMON_OPTS="-p $PORT -e production -d -a $ADAPTER -P $PIDFILE -L $LOGFILE"
+DAEMON_OPTS="-p $PORT -e production -d -a $ADAPTER -P $PIDFILE -L $LOGFILE -C $CONFIG"
+WORKER="merb : worker (port $PORT)"
 
 running() {
   [ ! -f  "$MAINPID" ] &&  return 1
   pid=`cat $MAINPID`
-  name=$MASTER
+  name=$WORKER
   [ -z "$pid" ] && return 1
   [ ! -d /proc/$pid ] && return 1
-  cmd=`cat /proc/$pid/cmdline | tr '\000' '\n' | head -1 | awk -F:\  '{print $3}'`
+  cmd=`cat /proc/$pid/cmdline | tr '\000' '\n' | head -1`
   [ "$cmd" != "$name" ] &&  return 1
   return 0
 }

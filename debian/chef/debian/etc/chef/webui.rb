@@ -85,7 +85,7 @@ signing_ca_key "/etc/chef/certificates/key.pem"
 # This user gets created by the chef-server and stored in CouchDB the
 # first time the server starts up if the user and key don't exist.
 
-#web_ui_client_name "chef-webui"
+web_ui_client_name "chef-webui"
 
 # web_ui_admin_user_name and web_ui_admin_default_password specify the 
 # user and password that a human can use to initially log into the 
@@ -93,8 +93,8 @@ signing_ca_key "/etc/chef/certificates/key.pem"
 # and the default password is'p@ssw0rd1' should be changed immediately on
 # login. The web form will display the password reset page on first login.
 
-#web_ui_admin_user_name "admin"
-#web_ui_admin_default_password "p@ssw0rd1"
+web_ui_admin_user_name "admin"
+web_ui_admin_default_password "p@ssw0rd1"
 
 # web_ui_key specifics the file to use for authenticating with the Chef
 # Server API. By default this is already set to "/etc/chef/webui.pem".
@@ -103,4 +103,4 @@ signing_ca_key "/etc/chef/certificates/key.pem"
 # CouchDB the first time the server starts up if the user and key don't
 # exist.
 
-#web_ui_key "/etc/chef/webui.pem"
+web_ui_key "/etc/chef/webui.pem"

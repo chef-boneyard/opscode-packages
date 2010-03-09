@@ -4,6 +4,8 @@
 
 export PATH=$PATH:/sbin:/usr/sbin:/bin:/usr/bin
 
+CONFIGFILE=/etc/chef/solr.rb
+
 rabbitmq_has_vhost() {
   rabbitmqctl list_vhosts | grep -qx "^/chef$"
 }
@@ -17,7 +19,7 @@ rabbitmq_has_perms() {
 }
 
 solr_conf_has_pass() {
-  egrep -q "^amqp_pass \".*\"$" /etc/chef/solr.rb
+  egrep -q "^amqp_pass \".*\"$" $CONFIGFILE
 }
 
 case "$1" in
@@ -33,9 +35,9 @@ case "$1" in
       rabbitmqctl set_permissions -p /chef chef ".*" ".*" ".*"
     fi
     if solr_conf_has_pass; then
-      sed "s/amqp_pass \".*\"/amqp_pass \"$amqp_pass\"/g" /etc/chef/solr.rb
+      sed -i "s/amqp_pass \".*\"/amqp_pass \"$amqp_pass\"/g" $CONFIGFILE
     else
-      echo "amqp_pass \"$amqp_pass\"" >> /etc/chef/solr.rb
+      echo "amqp_pass \"$amqp_pass\"" >> $CONFIGFILE
     fi
   ;;
 
