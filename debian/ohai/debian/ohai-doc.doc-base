@@ -1,0 +1,8 @@
+Document: ohai
+Title: ohai API documentation
+Abstract: Rdoc-generated API documentation.
+Section: Programming/Ruby
+
+Format: HTML
+Index: /usr/share/doc/ohai-doc/rdoc/index.html
+Files: /usr/share/doc/ohai-doc/rdoc/*

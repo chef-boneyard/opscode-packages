@@ -1,0 +1,16 @@
+# Description: Remove requirement of rubygems
+# Requiring RubyGems is discouraged by the Debian Ruby Extras team
+# per http://pkg-ruby-extras.alioth.debian.org/upstream-devs.html
+Index: opscode-ohai-5bdfa78/lib/ohai/system.rb
+===================================================================
+--- opscode-ohai-5bdfa78.orig/lib/ohai/system.rb        2010-01-08 21:56:56.000000000 -0800
++++ opscode-ohai-5bdfa78/lib/ohai/system.rb     2010-01-08 21:57:03.000000000 -0800
+@@ -16,7 +16,6 @@
+ # limitations under the License.
+ #
+ 
+-require 'rubygems'
+ require 'extlib'
+ require 'ohai/log'
+ require 'ohai/mixin/from_file'
+remove_rubygems.patch

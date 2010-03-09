@@ -1,6 +1,7 @@
 #!/usr/bin/make -f
 include /usr/share/cdbs/1/rules/debhelper.mk
 include /usr/share/ruby-pkg-tools/1/class/ruby-common.mk
+include /usr/share/cdbs/1/rules/patchsys-quilt.mk
 #include /usr/share/ruby-pkg-tools/1/class/ruby-setup-rb.mk
 
 CDBS_NO_DOC_SYMLINKING = ""
@@ -43,7 +44,7 @@ install/libohai-ruby1.9::
 	rmdir $(CURDIR)/debian/libohai-ruby1.9/usr/bin/
 
 install/ohai::
-	dh_installman debian/ohai.1
+	dh_installman docs/man/man1/ohai.1
 	dh_installchangelogs
 	dh_installdirs
 

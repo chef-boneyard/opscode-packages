@@ -27,21 +27,15 @@ ohai (0.4.0-1) unstable; urgency=low
 
  -- Joshua Timberman <joshua@opscode.com>  Sun, 28 Feb 2010 17:15:49 -0700
 
-ohai (0.3.6-2) karmic; urgency=low
-
-  * OHAI-138, create explicit dependencies on source version.
-
- -- Joshua Timberman <joshua@opscode.com>  Thu, 29 Oct 2009 15:47:57 -0600
-
-ohai (0.3.6-1) unstable; urgency=low
+ohai (0.3.6-2) unstable; urgency=low
 
   [Joshua Timberman]
   * New maintainer.
-  * Add DRE team to uploaders.
+  * Fixing changelog entries missing between maintainers.
   * Remove graphviz from build dep
   * Bump standards version to 3.8.3
   * Now requires libmixlib-{config,cli,log}-ruby
-  * New upstream release (0.3.4)
+  * Noting changes from upstream release (0.3.4)
     * [OHAI-107] - EC2 spec tests fails when not connected to network
     * [OHAI-111] - ec2 userdata gets truncated
     * [OHAI-112] - when installed on ubuntu/debian packages w/o rubygems
@@ -50,11 +44,28 @@ ohai (0.3.6-1) unstable; urgency=low
     * [OHAI-95] - Support multiple JSON libraries
     * [OHAI-116] - Redhat platform version should include the subrelease
     * [OHAI-120] - refactor ohai to use Mixlib
-  * New upstream release (0.3.6)
+  * Additional changes from upstream release (0.3.6)
     * [OHAI-131] - ohai lies about its version
     * [OHAI-134] - yajl-ruby causes incompatibility with json gem
+    * [OHAI-138] - create explicit dependencies on source version.
 
- -- Joshua Timberman <joshua@opscode.com>  Wed, 28 Oct 2009 20:44:38 -0600
+ -- Joshua Timberman <joshua@opscode.com>  Fri, 08 Jan 2010 13:44:38 -0600
+
+ohai (0.3.6-1) unstable; urgency=low
+
+  [Joshua Timberman]
+  * Add DRE team to uploaders.
+  * Bump standards version to 3.8.3 
+
+  [Bryan McLellan]
+  * New upstream release
+  * Add Joshua Timberman to uploaders
+  * Add ohai as suggests to libohai-ruby
+  * Update watch to use githubredir
+  * Add quilt patch to remove rubygems require
+  * Remove package man page in favor of upstream
+
+ -- Bryan McLellan <btm@loftninjas.org>  Thu, 07 Jan 2010 12:51:20 -0800
 
 ohai (0.3.2-1) unstable; urgency=low
 
