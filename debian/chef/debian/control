@@ -3,7 +3,7 @@ Section: ruby
 Priority: extra
 Maintainer: Joshua Timberman <joshua@opscode.com>
 Uploaders: Debian Ruby Extras Maintainers <pkg-ruby-extras-maintainers@lists.alioth.debian.org>
-Build-Depends: cdbs, debhelper (>= 7), ruby-pkg-tools (>= 0.14), quilt
+Build-Depends: cdbs, debhelper (>= 7), ruby-pkg-tools (>= 0.14), quilt, po-debconf
 Build-Depends-Indep: ruby, rake
 Standards-Version: 3.8.4
 Homepage: http://wiki.opscode.com/display/chef/Home

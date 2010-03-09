@@ -1,3 +1,5 @@
+# Description: Set the version for chef-solr so the binaries can have a 
+# command-line option. This is fixed upstream in ticket CHEF-1018.
 Index: chef-0.8.6/chef-solr/lib/chef/solr.rb
 ===================================================================
 --- chef-0.8.6.orig/chef-solr/lib/chef/solr.rb	2010-03-05 15:00:07.000000000 -0700

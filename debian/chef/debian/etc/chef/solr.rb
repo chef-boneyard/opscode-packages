@@ -20,23 +20,20 @@
 # valid values are: a quoted string specifying a file, or STDOUT with
 # no quotes. When run as a daemon (default), STDOUT will produce no output.
 
-log_location       "/var/log/chef/indexer.log"
+log_location       STDOUT
 
 # search_index_path specifies where the indexer should store the indexes.
 # valid value is any filesystem directory location.
 
 search_index_path    "/var/lib/chef/search_index"
 
-solr_jetty_path "/var/lib/chef/solr"
+# set the jetty path to use Debian solr-jetty.
+solr_jetty_path "/usr/share/jetty"
 solr_home_path  "/var/lib/chef/solr"
 solr_data_path  "/var/cache/chef/solr/data"
 solr_heap_size  "256M"
 solr_url        "http://localhost:8983"
 solr_java_opts nil
-
-amqp_user "chef"
-amqp_pass "eejoh1Oo"
-amqp_vhost "/chef"
 
 # Mixlib::Log::Formatter.show_time specifies whether the chef-client log should
 # contain timestamps. 

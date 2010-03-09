@@ -6,7 +6,7 @@ include /usr/share/ruby-pkg-tools/1/class/ruby-common.mk
 
 # setup.rb doesn't work very well with separate binary / lib
 # packages, and with subproject directories, so while this
-# looks like duplication of ruby-setup-rb.mk, using that 
+# looks like duplication of ruby-setup-rb.mk, using that
 # doesn't build these packages properly.
 CDBS_NO_DOC_SYMLINKING = ""
 
@@ -32,7 +32,7 @@ CHEF_REMOVE_SETUP_CMD = \
 
 install/chef::
 	# init script name is different from the package:
-	dh_installinit --name chef-client 
+	dh_installinit --name chef-client
 	cp -rf $(CURDIR)/debian/etc/chef/client.rb $(CURDIR)/debian/chef/etc/chef
 	cp -rf $(CURDIR)/debian/etc/chef/solo.rb $(CURDIR)/debian/chef/etc/chef
 
@@ -49,19 +49,22 @@ install/libchef-ruby1.8::
 	mv $(CURDIR)/debian/libchef-ruby1.8/usr/bin/shef $(CURDIR)/debian/chef/usr/bin/
 	rmdir $(CURDIR)/debian/libchef-ruby1.8/usr/bin/
 
-install/chef-solr-indexer::
-	mkdir -p $(CURDIR)/debian/chef-solr-indexer/usr/bin
-	cp debian/etc/chef/solr.rb debian/chef-solr-indexer/etc/chef
-	cp chef-server/bin/chef-solr-indexer debian/chef-solr-indexer/usr/bin
+install/chef-solr::
+	cp debian/etc/chef/solr.rb debian/chef-solr/etc/chef
+	cp chef-solr/bin/chef-solr-indexer debian/chef-solr/usr/sbin
+	cp chef-solr/bin/chef-solr-rebuild debian/chef-solr/usr/sbin
+	cp chef-solr/bin/chef-solr debian/chef-solr/usr/sbin
+	cp -r chef-solr/lib debian/chef-solr/usr/share/chef-solr
+	tar xvzf chef-solr/solr/solr-home.tar.gz -C debian/chef-solr/var/lib/chef/solr
+	dh_installinit --name=chef-solr-indexer
+	dh_installlogrotate --name=chef-solr-indexer
 
 install/chef-server::
 	mkdir -p $(CURDIR)/debian/chef-server/usr/bin
 	cp debian/etc/chef/server.rb  debian/chef-server/etc/chef
 	cp chef-server/bin/chef-server debian/chef-server/usr/bin
-	cp chef-server/bin/chef-server-webui debian/chef-server/usr/bin
 	cp chef-server/README.rdoc debian/chef-server/usr/share/doc/chef-server
 	cp chef-server/config.ru debian/chef-server/usr/share/chef-server
-	cp chef-server/config-webui.ru debian/chef-server/usr/share/chef-server
 	cp -rf chef-server/app    debian/chef-server/usr/share/chef-server
 	cp -rf chef-server/config debian/chef-server/usr/share/chef-server
 	cp -rf chef-server/lib    debian/chef-server/usr/share/chef-server
@@ -76,8 +79,10 @@ install/chef-server-api::
 	find debian/chef-server-api -type f -perm +755 -exec chmod 644 {} \;
 
 install/chef-server-webui::
+	cp chef-server/bin/chef-server-webui debian/chef-server/usr/bin
+	cp chef-server/config-webui.ru debian/chef-server/usr/share/chef-server
 	cp chef-server-webui/README.rdoc debian/chef-server-webui/usr/share/doc/chef-server-webui
-	cp -rf chef-server-webui/app    debian/chef-server-api/usr/share/chef-server-webui
+	cp -rf chef-server-webui/app    debian/chef-server-webui/usr/share/chef-server-webui
 	cp -rf chef-server-webui/config debian/chef-server-webui/usr/share/chef-server-webui
 	cp -rf chef-server-webui/public debian/chef-server-webui/usr/share/chef-server-webui
 	cp -rf chef-server-webui/lib    debian/chef-server-webui/usr/share/chef-server-webui

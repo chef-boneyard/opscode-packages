@@ -1,0 +1,51 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: chef@packages.debian.org\n"
+"POT-Creation-Date: 2010-03-08 22:13-0700\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=CHARSET\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#. Type: password
+#. Description
+#: ../chef-solr.templates:1001
+msgid "New password for the 'chef' AMQP user in the RabbitMQ vhost \"/chef\":"
+msgstr ""
+
+#. Type: password
+#. Description
+#: ../chef-solr.templates:1001
+msgid ""
+" Set the password for the chef user in the AMQP server queue. Use\n"
+" RabbitMQ's rabbitmqctl program to set this password. The default user\n"
+" and vhost are assumed (chef and /chef, respectively)."
+msgstr ""
+
+#. Type: password
+#. Description
+#: ../chef-server-webui.templates:1001
+msgid "New password for the 'admin' user in the Chef Server WebUI:"
+msgstr ""
+
+#. Type: password
+#. Description
+#: ../chef-server-webui.templates:1001
+msgid ""
+" This sets a temporary first-use password to log into the Chef Server WebUI\n"
+" as the 'admin' user for the first time. Once logged in, the password "
+"should\n"
+" be changed immediately.\n"
+" .\n"
+" Once the chef-server-webui process is running, login using the username\n"
+" 'admin' and the password set here."
+msgstr ""

@@ -1,3 +1,33 @@
+chef (0.8.6-5) unstable; urgency=low
+
+  * Grab the amqp_pass for chef_server as well.
+  * Fixed client config prompt.
+
+ -- Joshua Timberman <joshua@opscode.com>  Mon, 08 Mar 2010 22:09:35 -0700
+
+chef (0.8.6-4) unstable; urgency=low
+
+  * Add postinst script/config to prompt for chef_server_url for client
+    configuration. 
+
+ -- Joshua Timberman <joshua@opscode.com>  Mon, 08 Mar 2010 18:07:29 -0700
+
+chef (0.8.6-3) unstable; urgency=low
+
+  * Add postinst scripts for chef-solr, chef-server-webui to prompt for
+    required passwords (amqp and webui admin).
+
+ -- Joshua Timberman <joshua@opscode.com>  Mon, 08 Mar 2010 16:08:39 -0700
+
+chef (0.8.6-2) unstable; urgency=low
+
+  * Add pidfile option for solr commands so the file gets created in the
+    proper location when start-stop-daemon starts.
+  * Comment quilt patches with description.  
+  * Use ruby1.8 specifically for chef-solr commands.
+
+ -- Joshua Timberman <joshua@opscode.com>  Sun, 07 Mar 2010 01:20:32 -0700
+
 chef (0.8.6-1) unstable; urgency=low
 
   * New upstream release (0.8.6).

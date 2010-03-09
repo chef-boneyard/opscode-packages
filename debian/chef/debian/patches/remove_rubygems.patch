@@ -45,7 +45,7 @@ Index: chef-0.8.6/chef-server/bin/chef-server
 -  require 'chef'  
 -end
 +require "chef"
-+require "/usr/share/chef-server/lib/chef-server"
++require "/usr/share/chef-server-api/lib/chef-server-api"
  
 -Dir.chdir File.join(File.dirname(__FILE__),"..")
 +Dir.chdir File.join(File.dirname(__FILE__),"..", "share", "chef-server")
@@ -89,42 +89,6 @@ Index: chef-0.8.6/chef-server/bin/chef-server-webui
  __DIR__ = Dir.getwd
  
  if ARGV[0] && ARGV[0] =~ /^[^-]/
-Index: chef-0.8.6/chef-solr/bin/chef-solr
-===================================================================
---- chef-0.8.6.orig/chef-solr/bin/chef-solr	2010-03-05 11:02:31.000000000 -0700
-+++ chef-0.8.6/chef-solr/bin/chef-solr	2010-03-05 11:02:36.000000000 -0700
-@@ -20,7 +20,6 @@
- $:.unshift(File.expand_path(File.join(File.dirname(__FILE__), "..", "lib")))
- $:.unshift(File.expand_path(File.join(File.dirname(__FILE__), "..", "..", "chef", "lib")))
- 
--require 'rubygems'
- require 'chef/solr/application/solr'
- 
- Chef::Solr::Application::Solr.new.run
-Index: chef-0.8.6/chef-solr/bin/chef-solr-indexer
-===================================================================
---- chef-0.8.6.orig/chef-solr/bin/chef-solr-indexer	2010-03-05 11:02:22.000000000 -0700
-+++ chef-0.8.6/chef-solr/bin/chef-solr-indexer	2010-03-05 11:02:25.000000000 -0700
-@@ -20,7 +20,6 @@
- $:.unshift(File.expand_path(File.join(File.dirname(__FILE__), "..", "lib")))
- $:.unshift(File.expand_path(File.join(File.dirname(__FILE__), "..", "..", "chef", "lib")))
- 
--require 'rubygems'
- require 'chef/solr/application/indexer'
- 
- Chef::Solr::Application::Indexer.new.run
-Index: chef-0.8.6/chef-solr/bin/chef-solr-rebuild
-===================================================================
---- chef-0.8.6.orig/chef-solr/bin/chef-solr-rebuild	2010-03-05 11:00:54.000000000 -0700
-+++ chef-0.8.6/chef-solr/bin/chef-solr-rebuild	2010-03-05 11:02:11.000000000 -0700
-@@ -20,7 +20,6 @@
- $:.unshift(File.expand_path(File.join(File.dirname(__FILE__), "..", "lib")))
- $:.unshift(File.expand_path(File.join(File.dirname(__FILE__), "..", "..", "chef", "lib")))
- 
--require 'rubygems'
- require 'chef/solr/application/rebuild'
- 
- Chef::Solr::Application::Rebuild.new.run
 Index: chef-0.8.6/chef/bin/chef-client
 ===================================================================
 --- chef-0.8.6.orig/chef/bin/chef-client	2010-03-05 09:52:44.000000000 -0700

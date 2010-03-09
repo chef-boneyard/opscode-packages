@@ -108,8 +108,3 @@ Mixlib::Log::Formatter.show_time = true
 
 signing_ca_cert "/etc/chef/certificates/cert.pem"
 signing_ca_key "/etc/chef/certificates/key.pem"
-
-# XXX document and generate properly
-amqp_user "chef"
-amqp_pass "eejoh1Oo"
-amqp_vhost "/chef"

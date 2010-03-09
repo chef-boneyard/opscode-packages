@@ -28,12 +28,6 @@ log_level          :info
 
 log_location       STDOUT
 
-# verbose_logging ensures logging goes to STDOUT as well as other configured
-# log locations. If log_location above is set to a file, and chef-client is 
-# run from the command-line, the log will go to the file.
-
-verbose_logging    true
-
 # ssl_verify_mode specifies if the REST client should verify SSL certificates.
 # valid values are :verify_none, :verify_peer. The default Chef Server 
 # installation on Debian will use a self-generated SSL certificate so this

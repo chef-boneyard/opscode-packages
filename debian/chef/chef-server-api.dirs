@@ -1,5 +1,0 @@
-var/cache/chef
-var/lib/chef/cookbooks
-var/lib/chef/openid
-usr/share/doc/chef-server-api
-usr/share/chef-server-api/app
