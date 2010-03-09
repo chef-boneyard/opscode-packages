@@ -1,0 +1,8 @@
+*.deb
+*.gz
+*.build
+*.changes
+*.dsc
+*.rpm
+*.pkg
+
