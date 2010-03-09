@@ -5,13 +5,14 @@ It was downloaded from <http://github.com/opscode/mixlib-config/tree/master>
 
 Upstream Authors and Copyright:
 
-    Copyright 2009, Opscode, Inc. <legal@opscode.com>
+    Copyright 2008-2010, Opscode, Inc. <legal@opscode.com>
     Copyright 2008, Adam Jacob <adam@opscode.com>
     Copyright 2008, Arjuna Christensen <aj@hjksolutions.com>
     Copyright 2008, Bryan McLellan <btm@loftninjas.org>
     Copyright 2008, Ezra Zygmuntowicz <ezra@engineyard.com>
     Copyright 2009, Sean Cribbs <seancribbs@gmail.com>
     Copyright 2009, Christopher Brown <cb@opscode.com>
+    Copyright 2009, Nuo Yan <nuo@opscode.com>
     Copyright 2009, Thom May <thom@clearairturbulence.org>
 
 License:
