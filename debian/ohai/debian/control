@@ -10,7 +10,7 @@ Homepage: http://github.com/opscode/ohai/tree/master
 
 Package: ohai
 Architecture: all
-Depends: ${shlibs:Depends}, ${misc:Depends}, ruby1.8, libohai-ruby1.8
+Depends: ${shlibs:Depends}, ${misc:Depends}, ruby, libohai-ruby
 Suggests: ohai-doc
 Description: Detects data about your operating system and reports it in JSON
  Information about your system is collected and returned as multidimensional
