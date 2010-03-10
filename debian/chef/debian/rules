@@ -79,7 +79,7 @@ install/chef-server-api::
 	find debian/chef-server-api -type f -perm +755 -exec chmod 644 {} \;
 
 install/chef-server-webui::
-	cp debian/etc/chef/webui.rb  debian/chef-server/etc/chef
+	cp debian/etc/chef/webui.rb  debian/chef-server-webui/etc/chef
 	cp chef-server/bin/chef-server-webui debian/chef-server/usr/bin
 	cp chef-server/config-webui.ru debian/chef-server/usr/share/chef-server
 	cp chef-server-webui/README.rdoc debian/chef-server-webui/usr/share/doc/chef-server-webui

@@ -1,5 +1,5 @@
 # Configuration File For Chef (chef-server-webui)
-# 
+#
 # chef-server-webui is a Merb application slice. By default it is configured to
 # run via Thin, the default Merb adapter. This should be run as:
 #
@@ -34,7 +34,7 @@ log_level          :info
 log_location       STDOUT
 
 # ssl_verify_mode specifies if the REST client should verify SSL certificates.
-# valid values are :verify_none, :verify_peer. The default Chef Server 
+# valid values are :verify_none, :verify_peer. The default Chef Server
 # installation on Debian will use a self-generated SSL certificate so this
 # should be :verify_none unless you replace the certificate.
 
@@ -69,7 +69,7 @@ openid_store_path  "/var/lib/chef/openid/store"
 openid_cstore_path "/var/lib/chef/openid/cstore"
 
 # Mixlib::Log::Formatter.show_time specifies whether the chef-client log should
-# contain timestamps. 
+# contain timestamps.
 # valid values are true or false (no quotes, see above about Ruby idioms). The
 # printed timestamp is rfc2822, for example:
 # Fri, 31 Jul 2009 19:19:46 -0600
@@ -81,17 +81,19 @@ signing_ca_key "/etc/chef/certificates/key.pem"
 
 # web_ui_client_name specifies the user to use when accessing the Chef
 # Server API. By default this is already set to "chef-webui".
-# 
+#
 # This user gets created by the chef-server and stored in CouchDB the
 # first time the server starts up if the user and key don't exist.
 
 web_ui_client_name "chef-webui"
 
-# web_ui_admin_user_name and web_ui_admin_default_password specify the 
-# user and password that a human can use to initially log into the 
+# web_ui_admin_user_name and web_ui_admin_default_password specify the
+# user and password that a human can use to initially log into the
 # chef-server-webui when it starts. The default value for the user is 'admin'
 # and the default password is'p@ssw0rd1' should be changed immediately on
 # login. The web form will display the password reset page on first login.
+# During package installation, debconf will prompt for a password, so this
+# may differ from the default.
 
 web_ui_admin_user_name "admin"
 web_ui_admin_default_password "p@ssw0rd1"

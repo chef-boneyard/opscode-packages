@@ -1,4 +1,11 @@
-ohai (0.5.0-1) unstable; urgency=low
+ohai (0.5.0-2) unstable; urgency=low
+
+  * Remove rubygems patch missed bin/ohai. 
+  * ohai needs to depend on 'ruby' or it fails to process plugins.
+
+ -- Joshua Timberman <joshua@opscode.com>  Tue, 09 Mar 2010 19:21:06 -0700
+
+ohai (0.5.0-1) lucid; urgency=low
 
   * New upstream release (0.5.0).
     * [OHAI-155] - Chef summons army of dmidecode Zombies

@@ -1,5 +1,5 @@
 # Configuration File For Chef (chef-server)
-# 
+#
 # chef-server is a Merb application slice. By default it is configured to
 # run via Thin, the default Merb adapter. It can be run as:
 #
@@ -34,7 +34,7 @@ log_level          :info
 log_location       STDOUT
 
 # ssl_verify_mode specifies if the REST client should verify SSL certificates.
-# valid values are :verify_none, :verify_peer. The default Chef Server 
+# valid values are :verify_none, :verify_peer. The default Chef Server
 # installation on Debian will use a self-generated SSL certificate so this
 # should be :verify_none unless you replace the certificate.
 
@@ -85,21 +85,21 @@ openid_store_path  "/var/lib/chef/openid/store"
 
 openid_cstore_path "/var/lib/chef/openid/cstore"
 
-# role_path designates where the server should load role JSON and Ruby DSL 
+# role_path designates where the server should load role JSON and Ruby DSL
 # files from.
-# valid values are any filesystem directory location. Roles are a feature 
+# valid values are any filesystem directory location. Roles are a feature
 # that allow you to easily reuse lists of recipes and attribute settings.
 # Please see the Chef Wiki page for information on how to utilize the feature.
 # http://wiki.opscode.com/display/chef/Roles
 #
-# NOTE: The role_path setting is deprecated on the chef-server, as the 
+# NOTE: The role_path setting is deprecated on the chef-server, as the
 # roles are now stored directly in CouchDB rather than on the filesystem.
 # This option is kept for historical purposes and may be removed.
 
 #role_path          "/srv/chef/roles"
 
 # Mixlib::Log::Formatter.show_time specifies whether the chef-client log should
-# contain timestamps. 
+# contain timestamps.
 # valid values are true or false (no quotes, see above about Ruby idioms). The
 # printed timestamp is rfc2822, for example:
 # Fri, 31 Jul 2009 19:19:46 -0600
@@ -108,29 +108,3 @@ Mixlib::Log::Formatter.show_time = true
 
 signing_ca_cert "/etc/chef/certificates/cert.pem"
 signing_ca_key "/etc/chef/certificates/key.pem"
-
-# web_ui_client_name specifies the user to use when accessing the Chef
-# Server API. By default this is already set to "chef-webui".
-# 
-# This user gets created by the chef-server and stored in CouchDB the
-# first time the server starts up if the user and key don't exist.
-
-#web_ui_client_name "chef-webui"
-
-# web_ui_admin_user_name and web_ui_admin_default_password specify the 
-# user and password that a human can use to initially log into the 
-# chef-server-webui when it starts. The default value for the user is 'admin'
-# and the default password is'p@ssw0rd1' should be changed immediately on
-# login. The web form will display the password reset page on first login.
-
-#web_ui_admin_user_name "admin"
-#web_ui_admin_default_password "p@ssw0rd1"
-
-# web_ui_key specifics the file to use for authenticating with the Chef
-# Server API. By default this is already set to "/etc/chef/webui.pem".
-#
-# This file gets created by the chef-server and the public key stored in
-# CouchDB the first time the server starts up if the user and key don't
-# exist.
-
-#web_ui_key "/etc/chef/webui.pem"

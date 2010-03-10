@@ -23,7 +23,7 @@ Description: Detects data about your operating system and reports it in JSON
 
 Package: libohai-ruby
 Architecture: all
-Depends: ${misc:Depends}, libohai-ruby1.8 ( = ${source:Version} )
+Depends: ${misc:Depends}, ruby, libohai-ruby1.8 ( = ${source:Version} )
 Suggests: ohai, ohai-doc
 Description: Library to collect data about your operating system and report it in JSON
  Information about your system is collected and returned as multidimensional
