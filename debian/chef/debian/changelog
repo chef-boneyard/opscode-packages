@@ -1,3 +1,21 @@
+chef (0.8.6-8) unstable; urgency=low
+
+  * Create chef-server-webui etc/chef dir and config file properly.
+
+ -- Joshua Timberman <joshua@opscode.com>  Wed, 10 Mar 2010 22:11:20 -0700
+
+chef (0.8.6-7) unstable; urgency=low
+
+  * chef-solr-indexer's default should point to solr.rb config file.
+
+ -- Joshua Timberman <joshua@opscode.com>  Wed, 10 Mar 2010 20:10:15 -0700
+
+chef (0.8.6-6) unstable; urgency=low
+
+  * create etc in chef-server-webui.
+
+ -- Joshua Timberman <joshua@opscode.com>  Wed, 10 Mar 2010 16:30:55 -0700
+
 chef (0.8.6-5) unstable; urgency=low
 
   * Grab the amqp_pass for chef_server as well.
@@ -8,7 +26,7 @@ chef (0.8.6-5) unstable; urgency=low
 chef (0.8.6-4) unstable; urgency=low
 
   * Add postinst script/config to prompt for chef_server_url for client
-    configuration. 
+    configuration.
 
  -- Joshua Timberman <joshua@opscode.com>  Mon, 08 Mar 2010 18:07:29 -0700
 
@@ -23,7 +41,7 @@ chef (0.8.6-2) unstable; urgency=low
 
   * Add pidfile option for solr commands so the file gets created in the
     proper location when start-stop-daemon starts.
-  * Comment quilt patches with description.  
+  * Comment quilt patches with description.
   * Use ruby1.8 specifically for chef-solr commands.
 
  -- Joshua Timberman <joshua@opscode.com>  Sun, 07 Mar 2010 01:20:32 -0700
@@ -61,7 +79,7 @@ chef (0.8.4-1) unstable; urgency=low
 
   * New upstream release (0.8.4).
     * [CHEF-996] - CA key not properly protected
-    * [CHEF-1003] - Cookbook Uploading does not contain an X-Chef-Version 
+    * [CHEF-1003] - Cookbook Uploading does not contain an X-Chef-Version
   * Remove fix_slice_dirs patch for (unused) chef-server-slice package.
   * Update remove_rubygems.patch for changes since original packaging.
 
