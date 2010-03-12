@@ -3,3 +3,5 @@ Type: string
 Description: URL of Chef Server (e.g., http://chef.example.com:4000):
   This is the full URI that clients will use to connect to the
   server.
+  .
+  This will be used in /etc/chef/client.rb as 'chef_server_url'.

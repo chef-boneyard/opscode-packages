@@ -1,3 +1,11 @@
+chef (0.8.6-9) unstable; urgency=low
+
+  * Clarify usage of chef server URI prompt debconf. 
+  * Clarify usage of amqp password prompt from debconf.
+  * Clarify usage of webui password prompt from debconf. 
+
+ -- Joshua Timberman <joshua@opscode.com>  Thu, 11 Mar 2010 16:43:52 -0700
+
 chef (0.8.6-8) unstable; urgency=low
 
   * Create chef-server-webui etc/chef dir and config file properly.

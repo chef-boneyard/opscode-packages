@@ -4,3 +4,5 @@ _Description: New password for the 'chef' AMQP user in the RabbitMQ vhost "/chef
   Set the password for the chef user in the AMQP server queue. Use
   RabbitMQ's rabbitmqctl program to set this password. The default user
   and vhost are assumed (chef and /chef, respectively).
+  .
+  This will be used in /etc/chef/solr.rb and /etc/chef/server.rb as 'amqp_pass'.
