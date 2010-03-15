@@ -1,3 +1,10 @@
+chef (0.8.6-10) unstable; urgency=low
+
+  * Only set the webui admin password if the user entered a value
+  * Update the webui template about password usage/requirements.
+
+ -- Joshua Timberman <joshua@opscode.com>  Mon, 15 Mar 2010 13:51:06 -0600
+
 chef (0.8.6-9) unstable; urgency=low
 
   * Clarify usage of chef server URI prompt debconf. 

@@ -13,9 +13,9 @@ webui_conf_has_pass() {
 case "$1" in
   configure)
     db_get chef-server-webui/admin_password && chef_webui_pass="$RET"
-    if webui_conf_has_pass; then
+    if webui_conf_has_pass && [ ! -z $chef_webui_pass ]; then
       sed -i "s/web_ui_admin_default_password \".*\"/web_ui_admin_default_password \"$chef_webui_pass\"/g" $CONFIGFILE
-    else
+    elif [ ! -z $chef_webui_pass ]; then
       echo "web_ui_admin_default_password \"$chef_webui_pass\"" >> $CONFIGFILE
     fi
   ;;

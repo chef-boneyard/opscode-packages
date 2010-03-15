@@ -34,9 +34,9 @@ case "$1" in
     if ! rabbitmq_has_perms; then
       rabbitmqctl set_permissions -p /chef chef ".*" ".*" ".*"
     fi
-    if solr_conf_has_pass; then
+    if solr_conf_has_pass && [ ! -z $amqp_pass ]; then
       sed -i "s/amqp_pass \".*\"/amqp_pass \"$amqp_pass\"/g" $CONFIGFILE
-    else
+    elif [ ! -z $amqp_pass ]; then
       echo "amqp_pass \"$amqp_pass\"" >> $CONFIGFILE
     fi
   ;;

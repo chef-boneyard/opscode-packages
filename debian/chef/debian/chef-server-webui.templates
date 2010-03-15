@@ -6,6 +6,11 @@ _Description: New password for the 'admin' user in the Chef Server WebUI:
   be changed immediately.
   .
   Once the chef-server-webui process is running, login using the username
-  'admin' and the password set here.
+  'admin' using the password set here.
+  .
+  If a password is not entered, the webui default password for 'admin' will
+  be used, which is displayed on the webui home page. The password must be 
+  at least 6 characters or the webui will not start properly.
   .
   This will be used in /etc/chef/webui.rb as 'web_ui_admin_default_password'.
+  .
