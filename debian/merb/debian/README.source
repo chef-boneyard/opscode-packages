@@ -49,7 +49,14 @@ The following were removed:
 These gems would need to be manually retrieved and installed to the
 merb-core directories in order to run the spec tests.
 
-The following files are blatantly not redistributable and are removed by the repack script.
+The following directory is removed by the repack script. The allison library
+is licensed under the Academic Free License, but is not free software per the
+Debian Free Software Guidelines.
+
+./merb-core/tools/allison-2.0.2
+
+The following files are blatantly not redistributable and are removed by the
+repack script along with the allison-2.0.2 directory.
 
 ./merb-core/tools/allison-2.0.2/lib/allison.css
 ./merb-core/tools/allison-2.0.2/lib/allison.js

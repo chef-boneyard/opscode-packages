@@ -1,3 +1,11 @@
+merb (1.0.12+dfsg-4) unstable; urgency=low
+
+  * Remove AFL mention from copyright, as we're not distributing the allison
+    library that uses (repack.sh removes allison).
+  * Add mention of entire allison library removal to README.source.
+
+ -- Joshua Timberman <joshua@opscode.com>  Wed, 17 Mar 2010 08:38:55 -0600
+
 merb (1.0.12+dfsg-3) unstable; urgency=low
 
   * Add merb-param-protection package.
