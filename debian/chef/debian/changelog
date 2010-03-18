@@ -1,3 +1,26 @@
+chef (0.8.8-1) lucid; urgency=low
+
+  * New upstream release (0.8.8).
+    * [CHEF-649] - cucumber.yml tags in --tags option must always start with @
+    * [CHEF-780] - Invalid file parameters of a cookbook upload request cause
+      an authentication failure
+    * [CHEF-961] - Bad use of sudo in chef-server rake tasks
+    * [CHEF-965] - chef-server logs excessively regardless of the log_level setting
+    * [CHEF-1009] - "WebUIUser" fails to index, snake-casing name to invalid value.
+    * [CHEF-1014] - Remote directory does not work with chef-solo.
+    * [CHEF-1015] - Permission denied to /var/chef/ca/key.pem when running
+      chef-server under non-root user
+    * [CHEF-1018] - chef-solr should report version
+    * [CHEF-959] - Add a command-line switch for the pid_file option
+    * [CHEF-1020] - Features tests should not start a merb inside the cucumber process
+    * [CHEF-1033] - knife ssh should be able to use screen for real interactivity
+    * [CHEF-1022] - chef-* commands should support -P or --pidfile that sets
+      Chef::Config[:pid_file]
+  * Remove quilt patches: fix_reindex, pidfile_option and chef-solr_version,
+    as they are fixed in the 0.8.8 release.
+
+ -- Joshua Timberman <joshua@opscode.com>  Thu, 18 Mar 2010 16:12:35 -0600
+
 chef (0.8.6-12) unstable; urgency=low
 
   * Clean up package depends, recommends and suggests.
@@ -10,6 +33,11 @@ chef (0.8.6-12) unstable; urgency=low
     * libchef-ruby1.8 suggests packages that provide commands for resources
       that can be configured (adduser, libshadow-ruby, git, subversion, cron,
       mdadm).
+    * libchef-ruby1.8 recommends rubygems, because gems are commonly managed.
+  * Add replaces/conflicts for previous chef packages and deprecated chef
+    packages.
+  * Remove rubygems from additional chef-solr files.
+  * Remove rubygems from chef-webui config rackup.
 
  -- Joshua Timberman <joshua@opscode.com>  Wed, 17 Mar 2010 22:20:08 -0600
 

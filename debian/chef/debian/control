@@ -12,6 +12,7 @@ Package: chef
 Architecture: all
 Depends: ${misc:Depends}, ruby1.8, liberubis-ruby1.8, libjson-ruby1.8, libextlib-ruby1.8 (>= 0.9.13-1), ohai (>= 0.4.0), libchef-ruby1.8 (= ${source:Version}), libopenssl-ruby1.8, libmixlib-authentication-ruby1.8 (>= 1.1.0-1)
 Recommends: irb1.8
+Conflicts: chef (<< ${source:Version})
 Description: System integration framework written in Ruby
  Chef is a systems integration framework and configuration management library
  written in Ruby. Chef provides a Ruby library and API that can be used to
@@ -27,6 +28,8 @@ Package: chef-solr
 Architecture: all
 Depends: ${misc:Depends}, ruby1.8, rabbitmq-server (>= 1.6), default-jre-headless | java6-runtime-headless, libjson-ruby1.8, libchef-ruby1.8 (= ${source:Version}), solr-jetty (>=1.4.0), libxml-ruby1.8
 Suggests: chef (= ${source:Version})
+Replaces: chef-indexer
+Conflicts: chef-solr (<< ${source:Version})
 Description: Manages search indexes of Chef node attributes using SOLR
  The chef indexer listens to a message queue via AMQP for changes to search
  indexes. It then either creates or deletes entries in the index according
@@ -38,9 +41,10 @@ Description: Manages search indexes of Chef node attributes using SOLR
 
 Package: chef-server
 Architecture: all
-Depends: ${misc:Depends}, ruby, merb-slices, libmerb-assets-ruby, libmerb-haml-ruby, libmerb-helpers-ruby, chef-server-api (= ${source:Version}), rabbitmq-server (>= 1.6), couchdb, thin, libjson-ruby, chef-solr (= ${source:Version}), libchef-ruby (= ${source:Version}), libuuidtools-ruby1.8
+Depends: ${misc:Depends}, ruby, merb-slices, libmerb-assets-ruby, libmerb-haml-ruby, libmerb-helpers-ruby, chef-server-api (= ${source:Version}), thin, libjson-ruby, chef-solr (= ${source:Version}), libchef-ruby (= ${source:Version}), libuuidtools-ruby1.8
 Recommends: ohai (>= 0.4.0), chef (= ${source:Version})
 Suggests: nginx, apache2, rake, chef-server-webui (=${source:Version})
+Conflicts: chef-server (<< ${source:Version})
 Description: Merb application providing centralized management for Chef
  Chef is a systems integration framework and configuration management system
  written in Ruby. Chef provides a Ruby library and API that can be used to
@@ -59,6 +63,8 @@ Package: chef-server-api
 Architecture: all
 Depends: ${misc:Depends}, ruby, merb-slices, libmerb-assets-ruby, libmerb-haml-ruby, libmerb-helpers-ruby, rabbitmq-server (>= 1.6), couchdb (>= 0.9.1), thin, libjson-ruby, libchef-ruby (= ${source:Version}), chef-solr (= ${source:Version})
 Recommends: ohai (>= 0.4.0), chef (= ${source:Version})
+Replaces: chef-server-slice
+Conflicts: chef-server-api (<< ${source:Version})
 Description: Merb slice providing REST API for Chef client access
  Chef is a systems integration framework and configuration management library
  written in Ruby. Chef provides a Ruby library and API that can be used to
@@ -75,8 +81,9 @@ Description: Merb slice providing REST API for Chef client access
 
 Package: chef-server-webui
 Architecture: all
-Depends: ${misc:Depends}, ruby, merb-slices, libmerb-param-protection-ruby, libmerb-assets-ruby, libmerb-haml-ruby, libmerb-helpers-ruby, rabbitmq-server, couchdb, thin, libopenid-ruby, libjson-ruby, libchef-ruby (= ${source:Version}), libcoderay-ruby, chef-server-api (= ${source:Version})
+Depends: ${misc:Depends}, ruby, merb-slices, libmerb-param-protection-ruby, libmerb-assets-ruby, libmerb-haml-ruby, libmerb-helpers-ruby, thin, libopenid-ruby, libjson-ruby, libchef-ruby (= ${source:Version}), libcoderay-ruby, chef-server (= ${source:Version})
 Suggests: chef (= ${source:Version}), apache2, nginx
+Conflicts: chef-server-slice (<< 0.8.2), chef-server-webui (<< ${source:Version})
 Description: Merb app slice providing Web interface to API server for Chef
  Chef is a systems integration framework and configuration management library
  written in Ruby. Chef provides a Ruby library and API that can be used to
@@ -91,6 +98,7 @@ Description: Merb app slice providing Web interface to API server for Chef
 Package: libchef-ruby
 Architecture: all
 Depends: ${misc:Depends}, ruby, libchef-ruby1.8 (= ${source:Version})
+Conflicts: libchef-ruby (<< ${source:Version})
 Description: Ruby libraries for Chef system integration framework
  Chef is a systems integration framework and configuration management library
  written in Ruby. Chef provides a Ruby library and API that can be used to
@@ -105,9 +113,10 @@ Description: Ruby libraries for Chef system integration framework
 
 Package: libchef-ruby1.8
 Architecture: all
-Depends: ${misc:Depends}, ruby1.8, libopenssl-ruby, libmixlib-authentication-ruby1.8 (>= 1.1.0), libmixlib-cli-ruby (>= 1.1.0), libmixlib-config-ruby (>= 1.1.0), libmixlib-log-ruby (>= 1.1.0), libohai-ruby (>= 0.4.0), libmoneta-ruby, libbunny-ruby
-Recommends: ohai (>= 0.4.0), chef (= ${source:Version}), rubygems
-Suggests: rake, libshadow-ruby1.8, adduser, mdadm, cron, git, subversion
+Depends: ${misc:Depends}, ruby1.8, libopenssl-ruby1.8, libmixlib-authentication-ruby1.8 (>= 1.1.0), libmixlib-cli-ruby1.8 (>= 1.1.0), libmixlib-config-ruby1.8 (>= 1.1.0), libmixlib-log-ruby1.8 (>= 1.1.0), libohai-ruby1.8 (>= 0.4.0), libmoneta-ruby1.8, libbunny-ruby1.8
+Recommends: ohai (>= 0.4.0), chef (= ${source:Version}), rubygems1.8
+Suggests: rake, libshadow-ruby1.8
+Conflicts: libchef-ruby1.8 (<< ${source:Version})
 Description: Ruby 1.8 libraries for Chef system integration framework
  Chef is a systems integration framework and configuration management library
  written in Ruby. Chef provides a Ruby library and API that can be used to

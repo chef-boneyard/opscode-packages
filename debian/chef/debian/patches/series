@@ -1,5 +1,3 @@
 chef_solr_ruby18.patch
-pidfile_option.patch
 solr_load_path.patch
-chef-solr_version.patch
 remove_rubygems.patch

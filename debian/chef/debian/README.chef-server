@@ -18,11 +18,10 @@ script runs:
 
 This uses the 'thin' adapter for the Merb application slice. It runs a Merb
 'master' process that spawns one or more workers (controlled with the -c 
-parameter to the chef-server command).
+parameter to the chef-server command). If only one worker is spawned, the 
+master process is replaced by the worker.
 
     $ ps awux | grep merb
-    root      2558  0.0  0.9  22868  1128 ?        S    Feb11   0:01 merb : merb : master 
-    root      3003  3.7 14.1  34032 17672 ?        Sl   Feb11  55:24 merb : spawner (ports 4000)
     root      3005  0.0  1.2  34040  1508 ?        S    Feb11   0:00 merb : worker (port 4000)
 
 Clients connect to the chef-server through the "chef_server_url" value
@@ -41,6 +40,11 @@ the chef-server. For more information about Chef's authentication model,
 please see the Chef wiki page:
 
 http://wiki.opscode.com/display/chef/Authentication
+
+The Chef Server WebUI by default starts on port 4040. If you are upgrading
+Chef from a previous version, the WebUI was included with the chef-server
+running on port 4000, but with 0.8 they are separate. Note this change for 
+accessing the WebUI, or if you're using a proxy in front of it.
 
 Additional Resources
 --------------------

@@ -5,11 +5,11 @@ Please see the Chef Wiki for information on components that may be changed,
 or find out how you can improve Chef by contributing.
 
 Chef is normally distributed as a RubyGem, so gets its dependencies through
-RubyGems. These packages are independent of RubyGems. All dependencies are 
+RubyGems. These packages are independent of RubyGems. All dependencies are
 handled like other normal Debian packages.
 
 The 'chef' package will install a client that can run with a server via the
-'chef-client' command. The client configuration file needs to be modified 
+'chef-client' command. The client configuration file needs to be modified
 to point at the appropriate server. By default this is set to localhost.
 
   /etc/chef/client.rb
@@ -18,7 +18,7 @@ to point at the appropriate server. By default this is set to localhost.
 
 Chef can be run in 'solo' mode though, which does not connect to a server. To
 do this, use the 'chef-solo' command instead of 'chef-client'.
-  
+
 The 'chef-server', 'chef-server-api', 'chef-solr' packages will install a server.
 Chef server is a Merb application slice, and by default the server will start
 up from an init script as a thin server on port 4000.
@@ -26,10 +26,10 @@ up from an init script as a thin server on port 4000.
 Chef server uses CouchDB to store node attribute data and RabbitMQ for an
 AMQP message queue.
 
-A note about RubyGems
----------------------
+A note about Recommends
+-----------------------
 
-RubyGems is recommended for libchef-ruby1.8 because Chef has a resource that can 
+RubyGems is recommended for libchef-ruby1.8 because Chef has a resource that can
 handle Gem packages. That will only work in recipes if RubyGems is installed.
 
 Rake is recommended because libchef-ruby1.8 has a set of rake tasks that can
@@ -37,6 +37,13 @@ be used to manage a Chef Repository. For more information about setting up
 a Chef Repository, see the Chef wiki.
 
 http://wiki.opscode.com/display/chef/Chef+Repository
+
+Other Chef resources that may need additional packages installed:
+
+* mdadm - package: mdadm
+* scm - packages: git-core, subversion
+* user/group - packages: libshadow-ruby1.8, adduser
+* cron - package: cron
 
 Additional Resources
 --------------------
