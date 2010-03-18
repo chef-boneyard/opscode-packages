@@ -1,3 +1,29 @@
+chef (0.8.6-12) unstable; urgency=low
+
+  * Clean up package depends, recommends and suggests.
+    * chef depends on ohai so commandline tools are consistently available.
+    * chef-solr,-server,server-api need rabbitmq-server 1.6 for rabbitmqctl
+      command syntax.
+    * More consistent suggestions/recommends for chef-server/chef-server-webui
+      installations (probably want a chef-client available).
+    * More stringent version of depends/recommends.
+    * libchef-ruby1.8 suggests packages that provide commands for resources
+      that can be configured (adduser, libshadow-ruby, git, subversion, cron,
+      mdadm).
+
+ -- Joshua Timberman <joshua@opscode.com>  Wed, 17 Mar 2010 22:20:08 -0600
+
+chef (0.8.6-11) unstable; urgency=low
+
+  * Fixing chef-solr config to use Debian specific solr and solr-jetty
+    environment.
+    * Sets up symlinks to appropriate locations.
+    * Additional custom configs in /etc/chef/solr-jetty.
+    * Switch chef-solr init script to use java directly.
+    * /etc/chef/solr.rb should send START option for start.config file.
+
+ -- Joshua Timberman <joshua@opscode.com>  Wed, 17 Mar 2010 20:06:03 -0600
+
 chef (0.8.6-10) unstable; urgency=low
 
   * Only set the webui admin password if the user entered a value

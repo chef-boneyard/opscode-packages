@@ -1,8 +1,13 @@
 var/lib/chef/search_index
 var/lib/chef/solr
+var/lib/chef/solr/bin
 var/lib/chef/solr/solr-jetty
+var/lib/chef/solr/solr-jetty/webapps
+var/lib/chef/solr/solr-jetty/solr
+var/lib/chef/solr/solr-jetty/solr/WEB-INF
 var/cache/chef/solr/data
 var/log/chef
 etc/chef
+etc/chef/solr-jetty
 usr/sbin
 usr/share/chef-solr

@@ -50,7 +50,8 @@ install/libchef-ruby1.8::
 	rmdir $(CURDIR)/debian/libchef-ruby1.8/usr/bin/
 
 install/chef-solr::
-	cp debian/etc/chef/solr.rb debian/chef-solr/etc/chef
+	cp -rf $(CURDIR)/debian/etc/chef/solr.rb debian/chef-solr/etc/chef
+	cp -rf $(CURDIR)/debian/etc/chef/solr-jetty debian/chef-solr/etc/chef
 	cp chef-solr/bin/chef-solr-indexer debian/chef-solr/usr/sbin
 	cp chef-solr/bin/chef-solr-rebuild debian/chef-solr/usr/sbin
 	cp chef-solr/bin/chef-solr debian/chef-solr/usr/sbin

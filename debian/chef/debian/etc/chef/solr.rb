@@ -28,12 +28,12 @@ log_location       STDOUT
 search_index_path    "/var/lib/chef/search_index"
 
 # set the jetty path to use Debian solr-jetty.
-solr_jetty_path "/usr/share/jetty"
+solr_jetty_path "/var/lib/chef/solr/solr-jetty"
 solr_home_path  "/var/lib/chef/solr"
 solr_data_path  "/var/cache/chef/solr/data"
 solr_heap_size  "256M"
 solr_url        "http://localhost:8983"
-solr_java_opts nil
+solr_java_opts  "-DSTART=#{Chef::Config[:solr_jetty_path]}/etc/start.config"
 
 # Mixlib::Log::Formatter.show_time specifies whether the chef-client log should
 # contain timestamps. 
