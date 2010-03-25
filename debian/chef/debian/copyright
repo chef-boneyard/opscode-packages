@@ -7,15 +7,27 @@ Developed at Opscode (http://www.opscode.com).
 
 Contributors and Copyright holders:
 
- * Copyright 2008, Adam Jacob <adam@opscode.com>
- * Copyright 2008, Arjuna Christensen <aj@hjksolutions.com>
- * Copyright 2008, Bryan McLellan <btm@loftninjas.org>
- * Copyright 2008, Ezra Zygmuntowicz <ezra@engineyard.com>
- * Copyright 2009, Joshua Timberman <joshua@opscode.com>
- * Copyright 2009, Sean Cribbs <seancribbs@gmail.com>
- * Copyright 2009, Christopher Brown <cb@opscode.com>
- * Copyright 2009, Thom May <thom@clearairturbulence.org>
- * Copyright 2009, Joe Williams <joe@joetify.com>
+    * Copyright 2008-2010, Opscode, Inc <legal@opscode.com>
+    * Copyright 2008 HJK Solutions, LLC <legal@opscode.com>
+    * Copyright 2008-2010, Adam Jacob <adam@opscode.com>
+    * Copyright 2008-2010, Arjuna Christensen <aj@opscode.com>
+    * Copyright 2008-2010, Bryan McLellan <btm@loftninjas.org>
+    * Copyright 2008-2009, Ezra Zygmuntowicz <ezra@engineyard.com>
+    * Copyright 2008-2010, Joshua Timberman <joshua@opscode.com>
+    * Copyright 2009, Sean Cribbs <seancribbs@gmail.com>
+    * Copyright 2009, Christopher Brown <cb@opscode.com>
+    * Copyright 2009-2010, Nuo Yan <nuo@opscode.com>
+    * Copyright 2009, Chris Walters <cw@opscode.com>
+    * Copyright 2009, Thom May <thom@clearairturbulence.org>
+    * Copyright 2009, Joe Williams <joe@joetify.com>
+    * Copyright 2009-2010, Daniel DeLeo <dan@kallistec.com>
+    * Copyright 2009, Jason Jackson <jason.jackson@monster.com>
+    * Copyright 2009, Mathew Landauer <matthew@openaustralia.org>
+    * Copyright 2009, Jan Zimmek <jan.zimmek@web.de>
+    * Copyright 2009, CleanOffer, Inc <info@cleanoffer.com>
+    * Copyright 2009, Phusion <info@phusion.nl>
+    * Copyright 2009-2010, Matthew Kent <mkent@magoazul.com>
+    * Copyright 2009, David Balatero <dbalatero@gmail.com>
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
@@ -128,14 +140,37 @@ chef-server/bin/chef-server:
     WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 chef-server/public/javascripts/jquery.js:
-chef-server-slice/public/javascripts/jquery*:
+chef-server-webui/public/javascripts/jquery*:
 
-  Chef incorporates code modified from JQuery (http://jquery.com/) and is Copyright (c) John Resig.
+    Chef incorporates code modified from JQuery (http://jquery.com/)
 
-  JQuery is dual licensed under the MIT and GPL v2 licenses.
-  http://docs.jquery.com/License
-  Full text of the GPL is available in /usr/share/common-licenses/GPL-2
-  See above for the MIT license, as it is also used by Merb.
+    * Copyright (c) 2009 John Resig
+    * Copyright (c) 2009 The Dojo Foundation
+    * Copyright (c) 2009 Brandon Aaron (http://brandonaaron.net)
+    * Copyright (c) 2007-2008 Ariel Flesler <aflesler@gmail.com>
+    * Copyright (c) 2009 Tero Piirainen
+
+    JQuery is dual licensed under the MIT and GPL v2 licenses.
+    http://docs.jquery.com/License
+    Full text of the GPL is available in /usr/share/common-licenses/GPL-2
+    See above for the MIT license, as it is also used by Merb.
+
+chef-server-webui/public/javascripts/yetii-min.js:
+
+    Chef incorporates code from Yetii.
+
+    * Copyright (c) 2007 Grzegorz Wojcik
+
+    Licensed under the BSD License. The full text of the BSD license is
+    available in /usr/share/common-licenses/BSD on Debian systems.
+
+chef-server-webui/public/facebox/facebox.js
+
+    Chef incorporates code from facebox.
+
+    * Copyright 2007, 2008 Chris Wanstrath <chris@ozmm.org>
+
+    Facebox is licensed under the MIT License.
 
 chef/lib/chef/mixin/deep_merge.rb:
     Chef incorporates code modified from deep_merge
@@ -164,6 +199,10 @@ chef/lib/chef/mixin/deep_merge.rb:
       LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
       OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
       WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+chef/lib/chef/mixin/xml_escape.rb:
+    Chef incorporates code adapted from Sam Ruby's xchar.rb.
+    http://intertwingly.net/stories/2005/09/28/xchar.rb
 
 chef-solr/solr/solr-home.tar.gz:
 
