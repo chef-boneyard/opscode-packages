@@ -1,4 +1,4 @@
-chef (0.8.8-1) lucid; urgency=low
+chef (0.8.8-1) unstable; urgency=low
 
   * New upstream release (0.8.8).
     * [CHEF-649] - cucumber.yml tags in --tags option must always start with @
