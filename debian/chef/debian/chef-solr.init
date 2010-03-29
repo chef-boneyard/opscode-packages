@@ -11,7 +11,7 @@
 # Copyright (c) 2009-2010 Opscode, Inc <legal@opscode.com>
 #
 # chef-solr         Startup script for chef-solr.
-# chkconfig: - 85 02
+# chkconfig: - 84 02
 # description: starts up chef-solr in daemon mode.
 
 PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin

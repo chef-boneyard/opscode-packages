@@ -3,3 +3,7 @@
     debian/patches and applied during the build.
 
     See /usr/share/doc/quilt/README.source for a detailed explanation.
+
+    The Chef source bundles SOLR and SOLR Jetty, but these are not used
+    in the resulting packages, the Debian-packaged solr and solr-jetty
+    packages are configured instead in the chef-solr package.

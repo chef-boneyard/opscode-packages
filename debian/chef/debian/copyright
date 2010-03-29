@@ -211,7 +211,9 @@ chef-solr/solr/solr-home.tar.gz:
 
 chef-solr/solr/solr-jetty.tar.gz:
 
-    Chef incorporates code modified from solr-jetty v6.1.3 (http://jetty.mortbay.org/)
+    Chef incorporates code modified from solr-jetty v6.1.3
+    (http://jetty.mortbay.org/). solr-jetty is licensed under the Apache 2.0
+    license.
 
 The Debian packaging for Chef is Copyright (c) 2009 Opscode, Inc. and is licensed
 under the Apache 2.0 license.
