@@ -1,3 +1,10 @@
+chef (0.8.8-2) unstable; urgency=low
+
+  * Make sure chef-solr init script is handled before chef-solr-indexer. 
+  * Copyright file fixes.
+
+ -- Joshua Timberman <joshua@opscode.com>  Mon, 29 Mar 2010 01:14:49 -0600
+
 chef (0.8.8-1) unstable; urgency=low
 
   * New upstream release (0.8.8).
