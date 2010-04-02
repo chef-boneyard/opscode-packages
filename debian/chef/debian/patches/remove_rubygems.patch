@@ -2,10 +2,10 @@
 # Also set up chef-server programs to load slices correctly w/o rubygems.
 # Upstream does not plan to remove rubygems, so this patch needs to be
 # updated with new files that require rubygems.
-Index: chef-0.8.6/chef-server-api/config/init.rb
+Index: chef-0.8.10/chef-server-api/config/init.rb
 ===================================================================
---- chef-0.8.6.orig/chef-server-api/config/init.rb	2010-03-18 07:53:29.000000000 -0600
-+++ chef-0.8.6/chef-server-api/config/init.rb	2010-03-18 08:01:15.000000000 -0600
+--- chef-0.8.10.orig/chef-server-api/config/init.rb	2010-03-18 07:53:29.000000000 -0600
++++ chef-0.8.10/chef-server-api/config/init.rb	2010-03-18 08:01:15.000000000 -0600
 @@ -29,8 +29,6 @@
  dependency "merb-helpers", merb_gems_version
  dependency "chef", :immediate=>true unless defined?(Chef)
@@ -15,16 +15,19 @@ Index: chef-0.8.6/chef-server-api/config/init.rb
  Merb::Config.use do |c|
    c[:session_id_key] = '_chef_server_session_id'
    c[:session_secret_key]  = Chef::Config.manage_secret_key
-Index: chef-0.8.6/chef-server/bin/chef-server
+Index: chef-0.8.10/chef-server/bin/chef-server
 ===================================================================
---- chef-0.8.6.orig/chef-server/bin/chef-server	2010-03-18 07:53:29.000000000 -0600
-+++ chef-0.8.6/chef-server/bin/chef-server	2010-03-18 08:01:15.000000000 -0600
-@@ -23,28 +23,14 @@
+--- chef-0.8.10.orig/chef-server/bin/chef-server 2010-04-01 17:39:01.503558028 -0600
++++ chef-0.8.10/chef-server/bin/chef-server        2010-03-31 10:53:09.000000000 -0600
+@@ -23,24 +23,14 @@
  # Add chef and chef-server-slice lib dirs to the load path
  # Load chef and chef-server slice from source rather than gem, if present
  
 -require "rubygems"
  require "merb-core"
+ 
+-CHEF_SERVER_VERSION = "0.8.10"
++CHEF_SERVER_VERSION = "0.8.10" unless defined?(CHEF_SERVER_VERSION)
  
 -[ 'chef', 'chef-server-api' ].each do |lib|
 -  $:.unshift(File.expand_path(File.join(File.dirname(__FILE__), "..", "..", "lib")))
@@ -32,16 +35,9 @@ Index: chef-0.8.6/chef-server/bin/chef-server
 -  require library if File.exists?(library)
 -end
 -
--ObjectSpace.each_object(Gem::Specification) do |gem|
--  next unless gem.name == "chef-server"
--  CHEF_SERVER_VERSION = gem.version.to_s
--  break
--end
-+CHEF_SERVER_VERSION = "0.8.6" unless defined?(CHEF_SERVER_VERSION)
- 
 -# Ensure the chef gem we load is the same version as the chef server
 -unless defined?(Chef)
--  gem "chef", "=" + CHEF_SERVER_VERSION if CHEF_SERVER_VERSION
+-  gem "chef", "=" + CHEF_SERVER_VERSION 
 -  require 'chef'  
 -end
 +require "chef"
@@ -52,11 +48,11 @@ Index: chef-0.8.6/chef-server/bin/chef-server
  __DIR__ = Dir.getwd
  
  if ARGV[0] && ARGV[0] =~ /^[^-]/
-Index: chef-0.8.6/chef-server/bin/chef-server-webui
+Index: chef-0.8.10/chef-server/bin/chef-server-webui
 ===================================================================
---- chef-0.8.6.orig/chef-server/bin/chef-server-webui	2010-03-18 07:53:29.000000000 -0600
-+++ chef-0.8.6/chef-server/bin/chef-server-webui	2010-03-18 08:01:15.000000000 -0600
-@@ -23,28 +23,14 @@
+--- chef-0.8.10.orig/chef-server/bin/chef-server-webui   2010-04-01 17:39:01.503558028 -0600
++++ chef-0.8.10/chef-server/bin/chef-server-webui  2010-03-31 10:53:10.000000000 -0600
+@@ -23,24 +23,14 @@
  # Add chef and chef-server-slice lib dirs to the load path
  # Load chef and chef-server slice from source rather than gem, if present
  
@@ -69,16 +65,12 @@ Index: chef-0.8.6/chef-server/bin/chef-server-webui
 -  require library if File.exists?(library)
 -end
 -
--ObjectSpace.each_object(Gem::Specification) do |gem|
--  next unless gem.name == "chef-server"
--  CHEF_SERVER_VERSION = gem.version.to_s
--  break
--end
-+CHEF_SERVER_VERSION = "0.8.6" unless defined?(CHEF_SERVER_VERSION)
+-CHEF_SERVER_VERSION = "0.8.10"
++CHEF_SERVER_VERSION = "0.8.10" unless defined?(CHEF_SERVER_VERSION)
  
 -# Ensure the chef gem we load is the same version as the chef server
 -unless defined?(Chef)
--  gem "chef", "=" + CHEF_SERVER_VERSION if CHEF_SERVER_VERSION
+-  gem "chef", "=" + CHEF_SERVER_VERSION 
 -  require 'chef'  
 -end
 +require "chef"
@@ -89,10 +81,10 @@ Index: chef-0.8.6/chef-server/bin/chef-server-webui
  __DIR__ = Dir.getwd
  
  if ARGV[0] && ARGV[0] =~ /^[^-]/
-Index: chef-0.8.6/chef/bin/chef-client
+Index: chef-0.8.10/chef/bin/chef-client
 ===================================================================
---- chef-0.8.6.orig/chef/bin/chef-client	2010-03-18 07:53:29.000000000 -0600
-+++ chef-0.8.6/chef/bin/chef-client	2010-03-18 08:01:15.000000000 -0600
+--- chef-0.8.10.orig/chef/bin/chef-client	2010-03-18 07:53:29.000000000 -0600
++++ chef-0.8.10/chef/bin/chef-client	2010-03-18 08:01:15.000000000 -0600
 @@ -20,7 +20,6 @@
  
  $:.unshift(File.join(File.dirname(__FILE__), "..", "lib"))
@@ -101,10 +93,10 @@ Index: chef-0.8.6/chef/bin/chef-client
  require 'chef/application/client'
  
  Chef::Application::Client.new.run
-Index: chef-0.8.6/chef/bin/chef-solo
+Index: chef-0.8.10/chef/bin/chef-solo
 ===================================================================
---- chef-0.8.6.orig/chef/bin/chef-solo	2010-03-18 07:53:29.000000000 -0600
-+++ chef-0.8.6/chef/bin/chef-solo	2010-03-18 08:01:15.000000000 -0600
+--- chef-0.8.10.orig/chef/bin/chef-solo	2010-03-18 07:53:29.000000000 -0600
++++ chef-0.8.10/chef/bin/chef-solo	2010-03-18 08:01:15.000000000 -0600
 @@ -20,7 +20,6 @@
  
  $:.unshift(File.join(File.dirname(__FILE__), "..", "lib"))
@@ -113,10 +105,10 @@ Index: chef-0.8.6/chef/bin/chef-solo
  require 'chef/application/solo'
  
  Chef::Application::Solo.new.run
-Index: chef-0.8.6/chef/bin/knife
+Index: chef-0.8.10/chef/bin/knife
 ===================================================================
---- chef-0.8.6.orig/chef/bin/knife	2010-03-18 07:53:29.000000000 -0600
-+++ chef-0.8.6/chef/bin/knife	2010-03-18 08:01:15.000000000 -0600
+--- chef-0.8.10.orig/chef/bin/knife	2010-03-18 07:53:29.000000000 -0600
++++ chef-0.8.10/chef/bin/knife	2010-03-18 08:01:15.000000000 -0600
 @@ -20,7 +20,6 @@
  
  $:.unshift(File.expand_path(File.join(File.dirname(__FILE__), "..", "lib")))
@@ -125,10 +117,10 @@ Index: chef-0.8.6/chef/bin/knife
  require 'chef/application/knife'
  
  Chef::Application::Knife.new.run
-Index: chef-0.8.6/chef/bin/shef
+Index: chef-0.8.10/chef/bin/shef
 ===================================================================
---- chef-0.8.6.orig/chef/bin/shef	2010-03-18 07:53:29.000000000 -0600
-+++ chef-0.8.6/chef/bin/shef	2010-03-18 08:01:15.000000000 -0600
+--- chef-0.8.10.orig/chef/bin/shef	2010-03-18 07:53:29.000000000 -0600
++++ chef-0.8.10/chef/bin/shef	2010-03-18 08:01:15.000000000 -0600
 @@ -19,7 +19,6 @@
  # limitations under the License.
  
@@ -137,10 +129,10 @@ Index: chef-0.8.6/chef/bin/shef
  require "mixlib/cli"
  
  require "irb"
-Index: chef-0.8.6/chef/lib/chef.rb
+Index: chef-0.8.10/chef/lib/chef.rb
 ===================================================================
---- chef-0.8.6.orig/chef/lib/chef.rb	2010-03-18 07:53:29.000000000 -0600
-+++ chef-0.8.6/chef/lib/chef.rb	2010-03-18 08:01:15.000000000 -0600
+--- chef-0.8.10.orig/chef/lib/chef.rb	2010-03-18 07:53:29.000000000 -0600
++++ chef-0.8.10/chef/lib/chef.rb	2010-03-18 08:01:15.000000000 -0600
 @@ -19,7 +19,6 @@
  $:.unshift(File.dirname(__FILE__)) unless
    $:.include?(File.dirname(__FILE__)) || $:.include?(File.expand_path(File.dirname(__FILE__)))
@@ -149,10 +141,10 @@ Index: chef-0.8.6/chef/lib/chef.rb
  require 'extlib'
  require 'chef/exceptions'
  require 'chef/log'
-Index: chef-0.8.6/chef/lib/chef/openid_registration.rb
+Index: chef-0.8.10/chef/lib/chef/openid_registration.rb
 ===================================================================
---- chef-0.8.6.orig/chef/lib/chef/openid_registration.rb	2010-03-18 07:53:29.000000000 -0600
-+++ chef-0.8.6/chef/lib/chef/openid_registration.rb	2010-03-18 08:01:15.000000000 -0600
+--- chef-0.8.10.orig/chef/lib/chef/openid_registration.rb	2010-03-18 07:53:29.000000000 -0600
++++ chef-0.8.10/chef/lib/chef/openid_registration.rb	2010-03-18 08:01:15.000000000 -0600
 @@ -21,7 +21,6 @@
  require 'chef/couchdb'
  require 'chef/index_queue'
@@ -161,10 +153,10 @@ Index: chef-0.8.6/chef/lib/chef/openid_registration.rb
  require 'json'
  
  class Chef
-Index: chef-0.8.6/chef/lib/chef/webui_user.rb
+Index: chef-0.8.10/chef/lib/chef/webui_user.rb
 ===================================================================
---- chef-0.8.6.orig/chef/lib/chef/webui_user.rb	2010-03-18 07:53:29.000000000 -0600
-+++ chef-0.8.6/chef/lib/chef/webui_user.rb	2010-03-18 08:01:15.000000000 -0600
+--- chef-0.8.10.orig/chef/lib/chef/webui_user.rb	2010-03-18 07:53:29.000000000 -0600
++++ chef-0.8.10/chef/lib/chef/webui_user.rb	2010-03-18 08:01:15.000000000 -0600
 @@ -22,7 +22,6 @@
  require 'chef/couchdb'
  require 'chef/index_queue'
@@ -173,10 +165,10 @@ Index: chef-0.8.6/chef/lib/chef/webui_user.rb
  require 'json'
    
  
-Index: chef-0.8.6/chef-solr/lib/chef/solr.rb
+Index: chef-0.8.10/chef-solr/lib/chef/solr.rb
 ===================================================================
---- chef-0.8.6.orig/chef-solr/lib/chef/solr.rb	2010-03-18 08:01:36.000000000 -0600
-+++ chef-0.8.6/chef-solr/lib/chef/solr.rb	2010-03-18 08:01:40.000000000 -0600
+--- chef-0.8.10.orig/chef-solr/lib/chef/solr.rb	2010-03-18 08:01:36.000000000 -0600
++++ chef-0.8.10/chef-solr/lib/chef/solr.rb	2010-03-18 08:01:40.000000000 -0600
 @@ -16,7 +16,6 @@
  # limitations under the License.
  #
@@ -185,10 +177,10 @@ Index: chef-0.8.6/chef-solr/lib/chef/solr.rb
  require 'chef/mixin/xml_escape'
  require 'chef/log'
  require 'chef/config'
-Index: chef-0.8.6/chef-solr/lib/chef/solr/index_queue_consumer.rb
+Index: chef-0.8.10/chef-solr/lib/chef/solr/index_queue_consumer.rb
 ===================================================================
---- chef-0.8.6.orig/chef-solr/lib/chef/solr/index_queue_consumer.rb	2010-03-18 08:03:24.000000000 -0600
-+++ chef-0.8.6/chef-solr/lib/chef/solr/index_queue_consumer.rb	2010-03-18 08:03:27.000000000 -0600
+--- chef-0.8.10.orig/chef-solr/lib/chef/solr/index_queue_consumer.rb	2010-03-18 08:03:24.000000000 -0600
++++ chef-0.8.10/chef-solr/lib/chef/solr/index_queue_consumer.rb	2010-03-18 08:03:27.000000000 -0600
 @@ -16,7 +16,6 @@
  # limitations under the License.
  #
@@ -197,19 +189,19 @@ Index: chef-0.8.6/chef-solr/lib/chef/solr/index_queue_consumer.rb
  require 'chef/log'
  require 'chef/config'
  require 'chef/solr'
-Index: chef-0.8.6/chef-server/config-webui.ru
+Index: chef-0.8.10/chef-server/config-webui.ru
 ===================================================================
---- chef-0.8.6.orig/chef-server/config-webui.ru	2010-03-18 09:43:23.000000000 -0600
-+++ chef-0.8.6/chef-server/config-webui.ru	2010-03-18 09:43:26.000000000 -0600
+--- chef-0.8.10.orig/chef-server/config-webui.ru	2010-03-18 09:43:23.000000000 -0600
++++ chef-0.8.10/chef-server/config-webui.ru	2010-03-18 09:43:26.000000000 -0600
 @@ -1,4 +1,3 @@
 -require 'rubygems'
  require 'merb-core'
  require 'chef'
  
-Index: chef-0.8.6/chef-server/config.ru
+Index: chef-0.8.10/chef-server/config.ru
 ===================================================================
---- chef-0.8.6.orig/chef-server/config.ru	2010-03-18 09:43:13.000000000 -0600
-+++ chef-0.8.6/chef-server/config.ru	2010-03-18 09:43:15.000000000 -0600
+--- chef-0.8.10.orig/chef-server/config.ru	2010-03-18 09:43:13.000000000 -0600
++++ chef-0.8.10/chef-server/config.ru	2010-03-18 09:43:15.000000000 -0600
 @@ -1,4 +1,3 @@
 -require 'rubygems'
  require 'merb-core'

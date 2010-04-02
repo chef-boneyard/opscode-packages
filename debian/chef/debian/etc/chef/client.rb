@@ -1,8 +1,8 @@
 # Configuration File For Chef (chef-client)
-# 
+#
 # The chef-client program will connect the local system to the specified
 # server URLs through a RESTful API to retrieve its configuration.
-# 
+#
 # By default, the client is configured to connect to a Chef Server
 # running on the local system. Change this to reflect your environment.
 #
@@ -29,14 +29,14 @@ log_level          :info
 log_location       STDOUT
 
 # ssl_verify_mode specifies if the REST client should verify SSL certificates.
-# valid values are :verify_none, :verify_peer. The default Chef Server 
+# valid values are :verify_none, :verify_peer. The default Chef Server
 # installation on Debian will use a self-generated SSL certificate so this
 # should be :verify_none unless you replace the certificate.
 
 ssl_verify_mode    :verify_none
 
 # Server URLs.
-# 
+#
 # chef_server_url specifies the Chef Server to connect to.
 # valid values are any HTTP URL.
 
@@ -54,6 +54,17 @@ file_cache_path    "/var/cache/chef"
 
 pid_file           "/var/run/chef/client.pid"
 
+# cache_options sets options used by the moneta library for local cache
+# for checksums of compared objects.
+
+cache_options({ :path => "/var/cache/chef/checksums", :skip_expires => true})
+
+# signing_ca_user is used when generating the certificates used by chef to
+# set the owner of the keyfile. This is set to chef so services that run
+# as the chef user can read the file.
+
+signing_ca_user "chef"
+
 # Mixlib::Log::Formatter.show_time specifies whether the chef-client
 # log should contain timestamps.  valid values are true or false (no
 # quotes, see above about Ruby idioms). The printed timestamp is
@@ -61,4 +72,3 @@ pid_file           "/var/run/chef/client.pid"
 # Fri, 31 Jul 2009 19:19:46 -0600
 
 Mixlib::Log::Formatter.show_time = true
-

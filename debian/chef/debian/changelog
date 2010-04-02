@@ -1,3 +1,33 @@
+chef (0.8.10-1) lucid; urgency=low
+
+  * New upstream release. 
+    * [CHEF-252] - If a template's source doesn't end in .erb, but exists, we
+      still get a 500 error.
+    * [CHEF-653] - Cron resource fails when the program takes a numerical argument.
+    * [CHEF-735] - Web Slice needs a override config file.
+    * [CHEF-833] - recursive copy of cached-copy in deploy resource fails on symlinked file
+    * [CHEF-946] - if rabbitmq is down, the generated web ui and validation keys are lost
+    * [CHEF-1039] - chef-solr doesn't actually log to specified log file.
+    * [CHEF-1044] - Nested arrays of hashes break node indexing
+    * [CHEF-1048] - Creating an Invalid Role in WebUI causes 500
+    * [CHEF-1069] - Chef::Node does not properly validate the name parameter
+    * [CHEF-1076] - Role error messages are non-helpful to track down which
+      role caused the problem (when loading roles from filesystem)
+    * [CHEF-1083] - chef-server-webui doesn't correctly rescue load error
+      when it tries to load itself from source checkout
+    * [CHEF-1057] - Support templates that are already on the file system
+  * Use chef user/group for non-privileged server processes
+    (-server,-server-webui,-solr).
+  * Sam Ruby released xchar.rb under MIT license.
+
+ -- Joshua Timberman <joshua@opscode.com>  Thu, 01 Apr 2010 13:01:55 -0600
+
+chef (0.8.8-3) unstable; urgency=low
+
+  * Fix conflicting chef-solr in chef package.  
+
+ -- Joshua Timberman <joshua@opscode.com>  Wed, 31 Mar 2010 10:24:53 -0600
+
 chef (0.8.8-2) unstable; urgency=low
 
   * Make sure chef-solr init script is handled before chef-solr-indexer. 

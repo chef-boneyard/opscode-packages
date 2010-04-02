@@ -58,6 +58,11 @@ chef_server_url    "http://localhost:4000"
 
 cookbook_path      [ "/srv/chef/cookbooks" ]
 
+# cookbook_tarball_path is the location where the server will store uploaded
+# cookbooks. These tarballs are downloaded by clients when Chef runs.
+
+cookbook_tarball_path "/var/lib/chef/cookbook-tarballs"
+
 # file_cache_path specifies where the client should cache cookbooks, server
 # cookie ID, and openid registration data.
 # valid value is any filesystem directory location.
@@ -108,3 +113,5 @@ Mixlib::Log::Formatter.show_time = true
 
 signing_ca_cert "/etc/chef/certificates/cert.pem"
 signing_ca_key "/etc/chef/certificates/key.pem"
+signing_ca_user "chef"
+signing_ca_group "chef"

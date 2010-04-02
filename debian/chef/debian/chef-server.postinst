@@ -17,6 +17,16 @@ case "$1" in
     elif [ ! -z $amqp_pass ]; then
       echo "amqp_pass \"$amqp_pass\"" >> $CONFIGFILE
     fi
+    if ! getent passwd chef > /dev/null; then
+      adduser --system --quiet \
+        --home /var/lib/chef --no-create-home \
+        --shell /bin/bash --group --gecos "Chef Daemon" chef
+    fi
+    chown -R chef:chef /etc/chef
+    chown -R chef:chef /var/lib/chef
+    chown -R chef:chef /var/log/chef
+    chown -R chef:chef /var/cache/chef
+    chown -R chef:chef /var/run/chef
   ;;
 
   abort-upgrade|abort-remove|abort-deconfigure)

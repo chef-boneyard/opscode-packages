@@ -204,6 +204,10 @@ chef/lib/chef/mixin/xml_escape.rb:
     Chef incorporates code adapted from Sam Ruby's xchar.rb.
     http://intertwingly.net/stories/2005/09/28/xchar.rb
 
+    Copyright (c) 2005 Sam Ruby
+
+    Licensed under the MIT License.
+
 chef-solr/solr/solr-home.tar.gz:
 
     Chef incorporates configuration data modified from SOLR. SOLR is licensed

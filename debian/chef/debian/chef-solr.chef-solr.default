@@ -1,4 +1,4 @@
-LOGFILE=/var/log/chef/solr-indexer.log
+LOGFILE=/var/log/chef/solr.log
 CONFIG=/etc/chef/solr.rb
 USER=chef
 GROUP=chef
