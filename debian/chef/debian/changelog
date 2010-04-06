@@ -1,4 +1,10 @@
-chef (0.8.10-1) lucid; urgency=low
+chef (0.8.10-2) unstable; urgency=low
+
+  * Add cache_options to server config.
+
+ -- Joshua Timberman <joshua@opscode.com>  Mon, 05 Apr 2010 16:26:29 -0600
+
+chef (0.8.10-1) unstable; urgency=low
 
   * New upstream release. 
     * [CHEF-252] - If a template's source doesn't end in .erb, but exists, we
