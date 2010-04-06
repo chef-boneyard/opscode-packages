@@ -201,13 +201,14 @@ chef/lib/chef/mixin/deep_merge.rb:
       WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 chef/lib/chef/mixin/xml_escape.rb:
-    Chef incorporates code adapted from Sam Ruby's xchar.rb.
-    http://intertwingly.net/stories/2005/09/28/xchar.rb
+    Chef incorporates code adapted from Sam Ruby's xchar.rb 
+    (http://intertwingly.net/stories/2005/09/28/xchar.rb)
 
-    Copyright (c) 2005 Sam Ruby
+    Copyright (c) 2005, Sam Ruby
 
-    Licensed under the MIT License.
-
+    Licensed under the MIT License, as part of the Builder::XChar library
+    (Unused by Chef).
+    
 chef-solr/solr/solr-home.tar.gz:
 
     Chef incorporates configuration data modified from SOLR. SOLR is licensed
