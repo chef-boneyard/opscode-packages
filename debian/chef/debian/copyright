@@ -16,6 +16,7 @@ Contributors and Copyright holders:
     * Copyright 2008-2010, Joshua Timberman <joshua@opscode.com>
     * Copyright 2009, Sean Cribbs <seancribbs@gmail.com>
     * Copyright 2009, Christopher Brown <cb@opscode.com>
+    * Copyright 2010, Stephen Delano <stephen@opscode.com>
     * Copyright 2009-2010, Nuo Yan <nuo@opscode.com>
     * Copyright 2009, Chris Walters <cw@opscode.com>
     * Copyright 2009, Thom May <thom@clearairturbulence.org>
@@ -23,11 +24,19 @@ Contributors and Copyright holders:
     * Copyright 2009-2010, Daniel DeLeo <dan@kallistec.com>
     * Copyright 2009, Jason Jackson <jason.jackson@monster.com>
     * Copyright 2009, Mathew Landauer <matthew@openaustralia.org>
-    * Copyright 2009, Jan Zimmek <jan.zimmek@web.de>
+    * Copyright 2009-2010, Jan Zimmek <jan.zimmek@web.de>
     * Copyright 2009, CleanOffer, Inc <info@cleanoffer.com>
     * Copyright 2009, Phusion <info@phusion.nl>
     * Copyright 2009-2010, Matthew Kent <mkent@magoazul.com>
     * Copyright 2009, David Balatero <dbalatero@gmail.com>
+    * Copyright 2009 Mathieu Sauve-Frankel <msf@kisoku.net>
+    * Author: Hongli Lai <hongli@phusion.nl>
+    * Author: Dreamcat4 <dreamcat4@gmail.com>
+    * Author: Stephen Haynes <sh@nomitor.com>
+    * Author: Jesse Nelson <spheromak@gmail.com>
+    * Author: Cary Penniman <cary@rightscale.com>
+    * Author: John Hampton <john@cleanoffer.com>
+    * Author: Lee Jensen <ljensen@engineyard.com>
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
@@ -40,6 +49,17 @@ distributed under the License is distributed on an "AS IS" BASIS,
 WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
+
+chef/lib/chef/streaming_cookbook_uploader.rb:
+
+  Chef incorporates code modified from Stanislav Vitvitskiy's multipart POST
+  class:
+    http://stanislavvitvitskiy.blogspot.com/2008/12/multipart-post-in-ruby.html
+
+  Permission granted by the author to use/modify/distribute this code without
+  attribution.
+
+  Original author: Stanislav Vitvitskiy
 
 chef/lib/chef/mixin/command.rb:
   Chef incorporates code modified from Open4 (http://www.codeforpeople.com/lib/ruby/open4/),
@@ -164,7 +184,7 @@ chef-server-webui/public/javascripts/yetii-min.js:
     Licensed under the BSD License. The full text of the BSD license is
     available in /usr/share/common-licenses/BSD on Debian systems.
 
-chef-server-webui/public/facebox/facebox.js
+chef-server-webui/public/facebox/*
 
     Chef incorporates code from facebox.
 
@@ -173,6 +193,8 @@ chef-server-webui/public/facebox/facebox.js
     Facebox is licensed under the MIT License.
 
 chef/lib/chef/mixin/deep_merge.rb:
+chef/spec/unit/mixin/deep_merge_spec.rb:
+
     Chef incorporates code modified from deep_merge
     (http://trac.misuse.org/science/wiki/DeepMerge)
 
@@ -200,15 +222,16 @@ chef/lib/chef/mixin/deep_merge.rb:
       OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
       WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
+
 chef/lib/chef/mixin/xml_escape.rb:
-    Chef incorporates code adapted from Sam Ruby's xchar.rb 
+    Chef incorporates code adapted from Sam Ruby's xchar.rb
     (http://intertwingly.net/stories/2005/09/28/xchar.rb)
 
     Copyright (c) 2005, Sam Ruby
 
     Licensed under the MIT License, as part of the Builder::XChar library
     (Unused by Chef).
-    
+
 chef-solr/solr/solr-home.tar.gz:
 
     Chef incorporates configuration data modified from SOLR. SOLR is licensed
