@@ -7,3 +7,9 @@
     The Chef source bundles SOLR and SOLR Jetty, but these are not used
     in the resulting packages, the Debian-packaged solr and solr-jetty
     packages are configured instead in the chef-solr package.
+
+./chef-solr/solr/solr-jetty.tar.gz
+
+    This file from upstream source contains binaries with no source and
+    is removed with the repack script.
+
