@@ -1,2 +1,2 @@
 version=3
-http://githubredir.debian.net/github/opscode/chef /([0..9].*).tar.gz
+http://githubredir.debian.net/github/opscode/chef /([0..9].*).tar.gz debian debian/repack.sh
