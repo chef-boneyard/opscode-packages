@@ -29,6 +29,7 @@ fi
 
 ## Remove undistributable files from source.
 rm -vfr $UP_BASE/chef-solr/solr/solr-jetty.tar.gz
+rm -vfr $UP_BASE/chef/distro/suse/etc/init.d/chef-client
 ## End
 
 mv "$UP_BASE" "$DIR/$REPACK_DIR"
