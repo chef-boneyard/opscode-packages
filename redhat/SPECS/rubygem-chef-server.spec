@@ -1,169 +1,243 @@
-# Generated from chef-server-0.6.2.gem by gem2rpm -*- rpm-spec -*-
-%define ruby_sitelib %(ruby -rrbconfig -e "puts Config::CONFIG['sitelibdir']")
-%define gemdir %(ruby -rubygems -e 'puts Gem::dir' 2>/dev/null)
-%define gemname chef-server
-%define geminstdir %{gemdir}/gems/%{gemname}-%{version}
+# Generated from chef-server-0.8.8.gem by gem2rpm -*- rpm-spec -*-
+%global gemdir %(ruby -rubygems -e 'puts Gem::dir' 2>/dev/null)
+%global gemname chef-server
+%global geminstdir %{gemdir}/gems/%{gemname}-%{version}
 
-Summary: A systems integration framework
+%global rubyabi 1.8
+
+%global chef_user chef
+%global chef_group chef
+
+Summary: Merb application providing centralized management for Chef
 Name: rubygem-%{gemname}
-Version: 0.7.10
+Version: 0.8.10
 Release: 1%{?dist}
 Group: Development/Languages
-License: Apache 
+License: ASL 2.0
 URL: http://wiki.opscode.com/display/chef
-Source0: %{gemname}-%{version}.gem
+Source0: http://gems.rubyforge.org/gems/%{gemname}-%{version}.gem
+# Upstream wants the openid gem installed while we can use ruby-openid just
+# fine.
+Patch0: rubygem-chef-server-0.8.10-gemspec.patch
+## XXX: ticket
+Source1: chef-server.1
+Source2: chef-server-webui.1
+Source3: chef-server.logrotate
+Source4: chef-server-webui.logrotate
+Source5: chef-server.init
+Source6: chef-server-webui.init
+Source7: chef-server.sysconf
+Source8: chef-server-webui.sysconf
+Source9: server.rb
+Source10: webui.rb
+%if 0%{?rhel}
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
-Requires: couchdb >= 0.9.0
-Requires: rubygems
-Requires: rubygem(stomp) >= 0
-Requires: rubygem(stompserver) >= 0
-Requires: rubygem(ferret) >= 0
-Requires: rubygem(merb-core) >= 0
-Requires: rubygem(merb-haml) >= 0
-Requires: rubygem(merb-assets) >= 0
-Requires: rubygem(merb-helpers) >= 0
-Requires: rubygem(mongrel) >= 0
-Requires: rubygem(haml) >= 0
-Requires: rubygem(ruby-openid) >= 0
-Requires: rubygem(json) >= 0
-Requires: rubygem(coderay) >= 0
-Requires: rubygem-chef >= %{version}-%{release}
-Requires: rubygem-chef-server-slice >= %{version}-%{release}
-BuildRequires: rubygems
+%endif
+Requires: ruby >= 1.8.6
+Requires: ruby(rubygems)
+Requires: ruby(abi) = %{rubyabi}
+Requires: rubygem(merb-core)
+Requires: rubygem(merb-haml)
+Requires: rubygem(merb-assets)
+Requires: rubygem(merb-helpers)
+Requires: rubygem(thin)
+Requires: rubygem(haml)
+Requires: ruby(openid)
+Requires: rubygem(json)
+Requires: rubygem(coderay)
+Requires: rubygem(chef)
+Requires: rubygem(chef-solr)
+BuildRequires: ruby(rubygems)
+BuildRequires: ruby(abi) = %{rubyabi}
 BuildArch: noarch
 Provides: rubygem(%{gemname}) = %{version}
 
 %description
-A systems integration framework, built to bring the benefits of configuration
-management to your entire infrastructure.
+The Chef Server is a Merb application that provides centralized storage and
+distribution for recipes stored in "cookbooks," management and authentication
+of client nodes and node data, and search indexes for that data.
+
+This package contains the chef-server Merb application and associated files.
+
+%package doc
+Summary: Documentation for %{name}
+Group: Documentation
+
+Requires: %{name} = %{version}-%{release}
+
+%description doc
+This package contains documentation for %{name}.
+
+%package -n chef-server
+Summary: Server component of the Chef systems integration framework
+Group: System Environment/Base
+
+Requires: %{name} = %{version}-%{release}
+Requires: rubygem(chef-server-api) = %{version}-%{release}
+Requires: chef-common, chef-solr
+Requires(pre): shadow-utils
+Requires(post): chkconfig
+Requires(preun): chkconfig
+Requires(postun): initscripts
+
+%description -n chef-server
+The chef-server package provides a merb binary wrapper that loads up
+the chef-server-api application.
+
+%package -n chef-server-webui
+Summary: WebUI component of the Chef systems integration framework
+Group: System Environment/Base
+
+Requires: %{name} = %{version}-%{release}
+Requires: rubygem(chef-server-webui) = %{version}-%{release}
+Requires: chef-server = %{version}-%{release}
+Requires(post): chkconfig
+Requires(preun): chkconfig
+Requires(postun): initscripts
+
+%description -n chef-server-webui
+The chef-server-webui package provides a merb binary wrapper that loads up
+the chef-server-api application.
 
 %prep
+%setup -q -c -T
+
+mkdir -p .%{gemdir}
+gem install -V \
+  --local \
+  --install-dir $(pwd)/%{gemdir} \
+  --force --rdoc \
+  %{SOURCE0}
+
+pushd .%{gemdir}
+%patch0 -p0
 
 %build
 
 %install
 rm -rf %{buildroot}
 mkdir -p %{buildroot}%{gemdir}
-gem install --local --install-dir %{buildroot}%{gemdir} \
-            --force --rdoc %{SOURCE0}
+cp -a .%{gemdir}/* %{buildroot}%{gemdir}/
+
 mkdir -p %{buildroot}/%{_bindir}
 mv %{buildroot}%{gemdir}/bin/* %{buildroot}/%{_bindir}
 rmdir %{buildroot}%{gemdir}/bin
 find %{buildroot}%{geminstdir}/bin -type f | xargs chmod a+x
-install -Dp -m0644 %SOURCE2 %{buildroot}%{_sysconfdir}/chef/indexer.rb
-install -Dp -m0644 %SOURCE2 %{buildroot}%{_sysconfdir}/chef/server.rb
+
+find %{buildroot}%{geminstdir}/bin -type f | \
+  xargs -n 1 sed -i -e 's"^#!/usr/bin/env ruby"#!/usr/bin/ruby"'
+
+install -Dp -m0644 %{SOURCE1} %{buildroot}%{_mandir}/man1/chef-server.1
+install -Dp -m0644 %{SOURCE2} %{buildroot}%{_mandir}/man1/chef-server-webui.1
+
+install -Dp -m0644 \
+  %{SOURCE3} %{buildroot}%{_sysconfdir}/logrotate.d/chef-server
+install -Dp -m0644 \
+  %{SOURCE4} %{buildroot}%{_sysconfdir}/logrotate.d/chef-server-webui
+
+# XXX: changes to %%_initddir on > f9
+#install -Dp -m0755 \
+#  %{buildroot}%{geminstdir}/distro/redhat/etc/init.d/chef-client \
+#  %{buildroot}%{_initrddir}/chef-client
+
+install -Dp -m0755 \
+  %{SOURCE5} %{buildroot}%{_initrddir}/chef-server
+install -Dp -m0755 \
+  %{SOURCE6} %{buildroot}%{_initrddir}/chef-server-webui
+
+install -Dp -m0644 \
+  %{SOURCE7} %{buildroot}%{_sysconfdir}/sysconfig/chef-server
+install -Dp -m0644 \
+  %{SOURCE8} %{buildroot}%{_sysconfdir}/sysconfig/chef-server-webui
+
+install -Dp -m0644 \
+  %{SOURCE9} %{buildroot}%{_sysconfdir}/chef/server.rb
+install -Dp -m0644 \
+  %{SOURCE10} %{buildroot}%{_sysconfdir}/chef/webui.rb
+
+mkdir -p %{buildroot}%{_localstatedir}/{log/chef,lib/chef,run/chef,cache/chef}
 
 %clean
 rm -rf %{buildroot}
 
+%post -n chef-server
+/sbin/chkconfig --add chef-server
+
+%preun -n chef-server
+if [ $1 -eq 0 ]; then
+  /sbin/service chef-server stop > /dev/null 2>&1 || :
+  /sbin/chkconfig --del chef-server
+fi
+
+%postun -n chef-server
+if [ "$1" -ge "1" ] ; then
+    /sbin/service chef-server condrestart >/dev/null 2>&1 || :
+fi
+
+%pre -n chef-server
+getent group %{chef_group} >/dev/null || groupadd -r %{chef_group}
+getent passwd %{chef_user} >/dev/null || \
+useradd -r -g %{chef_group} -d %{_localstatedir}/lib/chef -s /sbin/nologin \
+  -c "Chef user" %{chef_user}
+exit 0
+
+%post -n chef-server-webui
+/sbin/chkconfig --add chef-server-webui
+
+%preun -n chef-server-webui
+if [ $1 -eq 0 ]; then
+  /sbin/service chef-server-webui stop > /dev/null 2>&1 || :
+  /sbin/chkconfig --del chef-server-webui
+fi
+
+%postun -n chef-server-webui
+if [ "$1" -ge "1" ] ; then
+    /sbin/service chef-server-webui condrestart >/dev/null 2>&1 || :
+fi
+
 %files
-%defattr(-, root, root, -)
-%{_bindir}/chef-server
-%{_bindir}/chef-indexer
-%{gemdir}/gems/%{gemname}-%{version}/
-%doc %{gemdir}/doc/%{gemname}-%{version}
-%doc %{geminstdir}/README.rdoc
-%doc %{geminstdir}/LICENSE
+%defattr(-,root,root,-)
+%doc %{geminstdir}/[A-Z]*
+%dir %{geminstdir}
+%{geminstdir}/app
+%{geminstdir}/bin
+%{geminstdir}/config
+%{geminstdir}/lib
+%{geminstdir}/public
+%{geminstdir}/*.ru
 %{gemdir}/cache/%{gemname}-%{version}.gem
 %{gemdir}/specifications/%{gemname}-%{version}.gemspec
 
-# mkdir -p /var/run/chef
-# mkdir -p /var/cache/chef
-# mkdir -p /var/log/chef
-# mkdir -p /var/lib/chef
-# mkdir -p /srv/chef
+%files doc
+%defattr(-,root,root,-)
+%{gemdir}/doc/%{gemname}-%{version}
 
-%post
-/sbin/chkconfig --add chef-indexer
-/sbin/chkconfig --add chef-server
+%files -n chef-server
+%defattr(-,root,root,-)
+%{_bindir}/chef-server
+%{_mandir}/man1/chef-server.1*
+%{_initrddir}/chef-server
+%config(noreplace) %{_sysconfdir}/sysconfig/chef-server
+%config(noreplace) %{_sysconfdir}/logrotate.d/chef-server
+%config(noreplace) %{_sysconfdir}/chef/server.rb
+%attr(-,%{chef_user},root) %dir %{_localstatedir}/log/chef
+%attr(-,%{chef_user},root) %dir %{_localstatedir}/cache/chef
+%attr(-,%{chef_user},root) %dir %{_localstatedir}/run/chef
+%attr(-,%{chef_user},root) %dir %{_localstatedir}/lib/chef
 
-%preun
-if [ $1 = 0 ]; then
-  /sbin/service chef-server stop > /dev/null 2>&1
-  /sbin/chkconfig --del chef-server
-  /sbin/service chef-indexer stop > /dev/null 2>&1
-  /sbin/chkconfig --del chef-indexer
-fi
+%files -n chef-server-webui
+%defattr(-,root,root,-)
+%{_bindir}/chef-server-webui
+%{_mandir}/man1/chef-server-webui.1*
+%{_initrddir}/chef-server-webui
+%config(noreplace) %{_sysconfdir}/sysconfig/chef-server-webui
+%config(noreplace) %{_sysconfdir}/logrotate.d/chef-server-webui
+%config(noreplace) %{_sysconfdir}/chef/webui.rb
 
 %changelog
-* Sat Sep 19 2009 Joshua Timberman <joshua@opscode.com> - 0.7.10-2
-- Add couchdb to dependencies.
-- Add chef-server-slice to dependencies.
-- Add server config file.
-- Add chef-server,indexer init scripts.
-- Add chef-server,indexer man pages.
-
-* Thu Sep 17 2009 Matthew Kent <matt@bravenet.com> - 0.7.10-1
+* Mon Apr 05 2010 Matthew Kent <mkent@magoazul.com> - 0.8.10-1
 - New upstream version.
 
-* Tue Aug 18 2009 Matthew Kent <matt@bravenet.com> - 0.7.8-4
-- Version match chef rpm.
-
-* Mon Aug 17 2009 Matthew Kent <matt@bravenet.com> - 0.7.8-3
-- Version match chef rpm.
-
-* Sun Aug 16 2009 Matthew Kent <matt@bravenet.com> - 0.7.8-2
-- New upstream version.
-- remove requires for syntax
-- add requires for coderay
-
-* Mon Jun 29 2009 Matthew Kent <matt@bravenet.com> - 0.7.4-1
-- New upstream version.
-
-* Mon Jun 15 2009 Matthew Kent <matt@bravenet.com> - 0.7.0-2
-- Version match chef rpms.
-
-* Thu Jun 11 2009 Matthew Kent <matt@bravenet.com> - 0.7.0-1
-- New upstream version, drop all patches.
-
-* Tue Jun 09 2009 Matthew Kent <matt@bravenet.com> - 0.6.2-11
-- Patches from CHEF-178, already included upstream.
-
-* Mon Jun 08 2009 Matthew Kent <matt@bravenet.com> - 0.6.2-10
-- Patches from CHEF-277, already included upstream.
-
-* Thu Jun 04 2009 Matthew Kent <matt@bravenet.com> - 0.6.2-9
-- More patches against stable, already included upstream.
-
-* Sat May 30 2009 Matthew Kent <matt@bravenet.com> - 0.6.2-8
-- More patches against stable, already included upstream.
-
-* Wed May 27 2009 Matthew Kent <matt@bravenet.com> - 0.6.2-7
-- Another patch against stable, submitted as a ticket.
-
-* Fri May 22 2009 Matthew Kent <matt@bravenet.com> - 0.6.2-6
-- More patches against stable, all submitted as tickets.
-- Mark config files deployed by the chef server recipe.
-
-* Wed May 13 2009 Matthew Kent <matt@bravenet.com> - 0.6.2-5
-- More patches against stable, all submitted as tickets. 
-
-* Mon May 11 2009 Matthew Kent <matt@bravenet.com> - 0.6.2-4
-- New strategy: package only the rubygem. All other work will be handled by the
-  bootstrap. Better meshes with the current development model.
-
-* Wed May 06 2009 Matthew Kent <matt@bravenet.com> - 0.6.2-3
-- Break into distinct rpms for the rubygems libraries and the init scripts +
-  configs. This should allow someone to use mod_passenger if they want.
-- chef-server gets requires on rubygem-chef-server-slice
-- move chef user to chef-client
-- new init script and config
-
-* Mon May 04 2009 Matthew Kent <matt@bravenet.com> - 0.6.2-1
-- run new gem through gem2rpm, merge changes
-- rebase patches against 0.6.2 tag, drop those included
-
-* Sun Apr 13 2009 Matthew Kent <matt@bravenet.com> - 0.5.6-4
-- new set of patches based off github branch
-- bring back yum caching
-- bump release to match chef rpm
-
-* Fri Apr 02 2009 Matthew Kent <matt@bravenet.com> - 0.5.6-2
-- add proper initscripts and configuration files
-- add chef user
-- requires couchdb
-- generated series of relative patches from git repo of submitted tickets:
-  CHEF-192, CHEF-198, CHEF-200. Dropped 0 byte ones.
-
-* Wed Mar 25 2009 Matthew Kent <matt@bravenet.com> - 0.5.6-1
+* Mon Mar 29 2010 Matthew Kent <mkent@magoazul.com> - 0.8.8-1
 - Initial package
+- Thanks to Joshua Timberman for the nice descriptions.

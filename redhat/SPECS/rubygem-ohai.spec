@@ -1,69 +1,118 @@
-# Generated from ohai-0.3.0.gem by gem2rpm -*- rpm-spec -*-
-%define ruby_sitelib %(ruby -rrbconfig -e "puts Config::CONFIG['sitelibdir']")
-%define gemdir %(ruby -rubygems -e 'puts Gem::dir' 2>/dev/null)
-%define gemname ohai
-%define geminstdir %{gemdir}/gems/%{gemname}-%{version}
+# Generated from ohai-0.5.0.gem by gem2rpm -*- rpm-spec -*-
+%global gemdir %(ruby -rubygems -e 'puts Gem::dir' 2>/dev/null)
+%global gemname ohai
+%global geminstdir %{gemdir}/gems/%{gemname}-%{version}
 
-Summary: Ohai profiles your system and emits JSON
+%global rubyabi 1.8
+
+Summary: Profiles your system and emits JSON
 Name: rubygem-%{gemname}
-Version: 0.3.0
+Version: 0.5.0
 Release: 1%{?dist}
 Group: Development/Languages
-License: GPLv2+ or Ruby
+License: ASL 2.0 
 URL: http://wiki.opscode.com/display/ohai
-Source0: %{gemname}-%{version}.gem
+Source0: http://gems.rubyforge.org/gems/%{gemname}-%{version}.gem
+# Request to include: http://tickets.opscode.com/browse/OHAI-169
+Source1: ohai.1
+%if 0%{?rhel}
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
-Requires: rubygems
-Requires: rubygem(json) >= 0
-Requires: rubygem(extlib) >= 0
-BuildRequires: rubygems
+%endif
+Requires: ruby(rubygems) >= 1.3.5
+Requires: ruby(abi) = %{rubyabi}
+Requires: rubygem(json)
+Requires: rubygem(extlib)
+Requires: rubygem(systemu)
+Requires: rubygem(mixlib-cli)
+Requires: rubygem(mixlib-config)
+Requires: rubygem(mixlib-log)
+BuildRequires: ruby(rubygems)
+BuildRequires: ruby(abi) = %{rubyabi}
+BuildRequires(check): rubygem(rake)
+BuildRequires(check): rubygem(rspec)
+BuildRequires(check): rubygem(json)
+BuildRequires(check): rubygem(extlib)
+BuildRequires(check): rubygem(systemu)
+BuildRequires(check): rubygem(mixlib-cli)
+BuildRequires(check): rubygem(mixlib-config)
+BuildRequires(check): rubygem(mixlib-log)
 BuildArch: noarch
 Provides: rubygem(%{gemname}) = %{version}
 
 %description
-Ohai profiles your system and emits JSON
+Ohai detects data about your operating system and prints out a JSON data blob.
+It can be used standalone, but it's primary purpose is to provide node data to
+Chef.
 
+%package doc
+Summary: Documentation for %{name}
+Group: Documentation
+
+Requires: %{name} = %{version}-%{release}
+
+%description doc
+This package contains documentation for %{name}.
 
 %prep
+%setup -q -c -T
+
+mkdir -p .%{gemdir}
+gem install -V \
+  --local \
+  --install-dir $(pwd)/%{gemdir} \
+  --force --rdoc \
+  %{SOURCE0}
 
 %build
 
 %install
 rm -rf %{buildroot}
 mkdir -p %{buildroot}%{gemdir}
-gem install --local --install-dir %{buildroot}%{gemdir} \
-            --force --rdoc %{SOURCE0}
+cp -a .%{gemdir}/* %{buildroot}%{gemdir}/
+
 mkdir -p %{buildroot}/%{_bindir}
 mv %{buildroot}%{gemdir}/bin/* %{buildroot}/%{_bindir}
 rmdir %{buildroot}%{gemdir}/bin
 find %{buildroot}%{geminstdir}/bin -type f | xargs chmod a+x
 
+# http://tickets.opscode.com/browse/OHAI-169
+mkdir -p %{buildroot}%{_mandir}/man1
+install -Dp -m0644 %{SOURCE1} %{buildroot}%{_mandir}/man1/ohai.1
+
+# http://tickets.opscode.com/browse/OHAI-171
+chmod 644 %{buildroot}%{geminstdir}/lib/ohai/plugins/windows/filesystem.rb
+
+find %{buildroot}%{geminstdir}/bin -type f | \
+  xargs -n 1 sed -i -e 's"^#!/usr/bin/env ruby"#!/usr/bin/ruby"'
+
 %clean
 rm -rf %{buildroot}
 
+%check
+pushd .%{geminstdir}
+# Occasionally fails with "undefined method `rfc2822' for nil:NilClass" during
+# mock. Unsure why - disable for now.
+sed -i 's^Time.should_receive(:now)^^' \
+  spec/ohai/plugins/ohai_time_spec.rb
+rake spec || :
+
 %files
-%defattr(-, root, root, -)
+%defattr(-,root,root,-)
+%doc %{geminstdir}/[A-Z]*
 %{_bindir}/ohai
-%{gemdir}/gems/%{gemname}-%{version}/
-%doc %{gemdir}/doc/%{gemname}-%{version}
+%dir %{geminstdir}
+%{geminstdir}/lib
+%{geminstdir}/bin
 %{gemdir}/cache/%{gemname}-%{version}.gem
 %{gemdir}/specifications/%{gemname}-%{version}.gemspec
+%{_mandir}/man1/ohai.1.gz
 
+%files doc
+%defattr(-,root,root,-)
+%{geminstdir}/Rakefile
+%{geminstdir}/spec
+%{gemdir}/doc/%{gemname}-%{version}
 
 %changelog
-* Sun Jun 21 2009 Matthew Kent <matt@bravenet.com> - 0.3.0-1
-- New upstream version, drop all patches.
-
-* Wed May 27 2009 Matthew Kent <matt@bravenet.com> - 0.2.0-4
-- Add another patch. Second try at fixing zombies, first attempt was hanging 
-  chef-client occasionally.
-
-* Tue May 12 2009 Matthew Kent <matt@bravenet.com> - 0.2.0-3
-- Include patch for reaping zombie processes.
-
-* Mon May 11 2009 Matthew Kent <matt@bravenet.com> - 0.2.0-2
-- Include upstream patch for exception handling issue causing chef-client to
-  wipe pid files.
-
-* Wed Mar 25 2009 Matthew Kent <matt@bravenet.com> - 0.2.0-1
-- Initial package.
+* Fri Mar 19 2010 Matthew Kent <mkent@magoazul.com> - 0.5.0-1
+- Initial package

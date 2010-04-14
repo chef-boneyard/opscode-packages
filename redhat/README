@@ -1,1 +1,5 @@
 Packaging data for redhat/ and related platforms
+
+Currently this only covers Chef and Ohai under CentOS/RHEL. Please see EPEL
+(http://fedoraproject.org/wiki/EPEL) or ELFF (http://elff.bravenet.com/)
+for dependencies.

@@ -1,0 +1,35 @@
+#!/bin/bash
+
+/sbin/service rabbitmq-server start &> /dev/null
+/sbin/service rabbitmq-server status &> /dev/null
+if [ $? -ne 0 ]; then
+  echo "rabbitmq-server not running, can't set password"
+  exit 1
+fi
+
+passwd="/etc/chef/amqp_passwd"
+
+if [ ! -e $passwd ]; then
+  echo "Creating $passwd and setting up rabbitmq"
+
+  cat /dev/urandom | tr -dc _A-Z-a-z-0-9 | head -c8 > /etc/chef/amqp_passwd
+  chmod 600 /etc/chef/amqp_passwd
+  chown chef.root /etc/chef/amqp_passwd
+
+  rabbitmqctl list_vhosts | grep /chef > /dev/null || \
+    rabbitmqctl add_vhost /chef
+
+  # create or change existing
+  rabbitmqctl list_users | grep chef > /dev/null || \
+    rabbitmqctl add_user chef `cat $passwd`
+  rabbitmqctl list_users | grep chef > /dev/null && \
+    rabbitmqctl change_password chef `cat $passwd`
+
+  rabbitmqctl list_user_permissions chef | grep /chef > /dev/null || \
+    rabbitmqctl set_permissions -p /chef chef ".*" ".*" ".*"
+else
+  echo "$passwd exists, changing nothing"
+  exit 1
+fi
+
+exit 0

@@ -1,161 +1,220 @@
-# thank you mandriva! 
-# http://wiki.mandriva.com/en/Rpmbuild_and_git#The_git_Way
-#%define chef_apply_git_patch_series \
-#  for patch in $(awk '/^Patch.*:/ { print "%{_sourcedir}/"$2 }' %{_specdir}/%{name}.spec); \
-#  do \
-#    if [ -s $patch ]; then \
-#      git-apply --exclude="spec/*" --whitespace=nowarn $patch; \
-#    fi \
-#  done
-#BuildRequires: git
+# Generated from chef-0.8.8.gem by gem2rpm -*- rpm-spec -*-
+%global gemdir %(ruby -rubygems -e 'puts Gem::dir' 2>/dev/null)
+%global gemname chef
+%global geminstdir %{gemdir}/gems/%{gemname}-%{version}
 
-# Generated from chef-0.6.2.gem by gem2rpm -*- rpm-spec -*-
-%define ruby_sitelib %(ruby -rrbconfig -e "puts Config::CONFIG['sitelibdir']")
-%define gemdir %(ruby -rubygems -e 'puts Gem::dir' 2>/dev/null)
-%define gemname chef
-%define geminstdir %{gemdir}/gems/%{gemname}-%{version}
+%global rubyabi 1.8
 
-Summary: A systems integration framework
+%global chef_user chef
+%global chef_group chef
+
+Summary: Client libraries for the Chef systems integration framework
 Name: rubygem-%{gemname}
-Version: 0.7.10
+Version: 0.8.10
 Release: 1%{?dist}
 Group: Development/Languages
-License: Apache 
+License: ASL 2.0
 URL: http://wiki.opscode.com/display/chef
-Source0: %{gemname}-%{version}.gem
+Source0: http://gems.rubyforge.org/gems/%{gemname}-%{version}.gem
+# This are shipped in the gem but a couple are missing and dated
+# XXX: ticket #
+Source1: chef-client.8
+Source2: chef-solo.8
+Source3: knife.8
+Source4: shef.8
+# Not in the gem - fedora specific
+# XXX: ticket #
+Source5: chef-client.logrotate
+# Out of date in the gem
+# XXX: ticket #
+Source6: chef-client.init
+Source7: client.rb
+Source8: solo.rb
+Source9: chef-client.sysconf
+Source10: chef-create-amqp_passwd
+%if 0%{?rhel}
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
-Requires: rubygems
-Requires: rubygem(mixlib-config) >= 1.0.12
-Requires: rubygem(mixlib-cli) >= 0
-Requires: rubygem(mixlib-log) >= 0
-Requires: rubygem(ruby-openid) >= 0
-Requires: rubygem(json) >= 0
-Requires: rubygem(erubis) >= 0
-Requires: rubygem(extlib) >= 0
-Requires: rubygem(stomp) >= 0
-Requires: rubygem(ohai) >= 0
-BuildRequires: rubygems
+%endif
+Requires: ruby >= 1.8.6
+Requires: ruby(rubygems)
+Requires: ruby(abi) = %{rubyabi}
+Requires: rubygem(mixlib-config)
+Requires: rubygem(mixlib-cli)
+Requires: rubygem(mixlib-log)
+Requires: rubygem(mixlib-authentication)
+Requires: rubygem(ohai)
+Requires: rubygem(bunny)
+Requires: rubygem(json)
+Requires: rubygem(erubis)
+Requires: rubygem(extlib)
+Requires: rubygem(moneta)
+# Chef works with passwords
+Requires: ruby-shadow
+BuildRequires: ruby(rubygems)
+BuildRequires: ruby(abi) = %{rubyabi}
 BuildArch: noarch
 Provides: rubygem(%{gemname}) = %{version}
 
-# Series of patches carried in git @ http://github.com/mdkent/chef/tree/0.7.10-el5
-#
-# Currently generated from within the chef/ subdirectory via:
-# git-format-patch --relative --suffix=".chef.patch" 0.7.10
-#Patch0001: 
-
 %description
-A systems integration framework, built to bring the benefits of configuration
-management to your entire infrastructure.
+Chef is a systems integration framework and configuration management library
+written in Ruby. Chef provides a Ruby library and API that can be used to
+bring the benefits of configuration management to an entire infrastructure.
 
+Chef can be run as a client (chef-client) to a server, or run as a standalone
+tool (chef-solo). Configuration recipes are written in a pure Ruby DSL.
+
+%package doc
+Summary: Documentation for %{name}
+Group: Documentation
+
+Requires: %{name} = %{version}-%{release}
+
+%description doc
+This package contains documentation for %{name}.
+
+%package -n chef
+Summary: Client component of the Chef systems integration framework
+Group: System Environment/Base
+
+Requires: %{name} = %{version}-%{release}
+Requires(pre): shadow-utils
+Requires(post): chkconfig
+Requires(preun): chkconfig
+Requires(postun): initscripts
+
+%description -n chef
+This package contains the chef-client and chef-solo binaries and associated
+files.
+
+%package -n chef-common
+Summary: Utility scripts used to config/init Chef
+Group: System Environment/Base
+
+Requires: %{name} = %{version}-%{release}
+
+%description -n chef-common
+This package contains utility scripts used to configure and initialize Chef.
 
 %prep
+%setup -q -c -T
+
+mkdir -p .%{gemdir}
+gem install -V \
+  --local \
+  --install-dir $(pwd)/%{gemdir} \
+  --force --rdoc \
+  %{SOURCE0}
 
 %build
 
 %install
 rm -rf %{buildroot}
 mkdir -p %{buildroot}%{gemdir}
-gem install --local --install-dir %{buildroot}%{gemdir} \
-            --force --rdoc %{SOURCE0}
+cp -a .%{gemdir}/* %{buildroot}%{gemdir}/
+
 mkdir -p %{buildroot}/%{_bindir}
 mv %{buildroot}%{gemdir}/bin/* %{buildroot}/%{_bindir}
 rmdir %{buildroot}%{gemdir}/bin
 find %{buildroot}%{geminstdir}/bin -type f | xargs chmod a+x
 
-# can't apply normal patches to gems
-#pushd %{buildroot}%{geminstdir}
-#  %chef_apply_git_patch_series
-#popd
+find %{buildroot}%{geminstdir}/bin -type f | \
+  xargs -n 1 sed -i -e 's"^#!/usr/bin/env ruby"#!/usr/bin/ruby"'
+
+mkdir -p %{buildroot}%{_mandir}/man8
+for man in \
+  %{SOURCE1} %{SOURCE2} %{SOURCE3} %{SOURCE4}
+do $i
+  install -p -m0644 $man %{buildroot}%{_mandir}/man8/
+done
+
+install -Dp -m0644 \
+  %{SOURCE5} %{buildroot}%{_sysconfdir}/logrotate.d/chef-client
+
+# XXX: changes to %%_initddir on > f9
+#install -Dp -m0755 \
+#  %{buildroot}%{geminstdir}/distro/redhat/etc/init.d/chef-client \
+#  %{buildroot}%{_initrddir}/chef-client
+
+install -Dp -m0755 \
+  %{SOURCE6} %{buildroot}%{_initrddir}/chef-client
+
+install -Dp -m0644 \
+  %{SOURCE7} %{buildroot}%{_sysconfdir}/chef/client.rb
+install -Dp -m0644 \
+  %{SOURCE8} %{buildroot}%{_sysconfdir}/chef/solo.rb
+
+install -Dp -m0644 \
+  %{SOURCE9} %{buildroot}%{_sysconfdir}/sysconfig/chef-client
+
+mkdir -p %{buildroot}%{_localstatedir}/{log/chef,run/chef,cache/chef}
+
+install -Dp -m0755 \
+  %{SOURCE10} %{buildroot}%{_sbindir}/chef-create-amqp_passwd
+
 
 %clean
 rm -rf %{buildroot}
 
+%post -n chef
+/sbin/chkconfig --add chef-client
+
+%preun -n chef
+if [ $1 -eq 0 ]; then
+  /sbin/service chef-client stop > /dev/null 2>&1 || :
+  /sbin/chkconfig --del chef-client
+fi
+
+%postun -n chef
+if [ "$1" -ge "1" ] ; then
+    /sbin/service chef-client condrestart >/dev/null 2>&1 || :
+fi
+
+%pre -n chef
+getent group %{chef_group} >/dev/null || groupadd -r %{chef_group}
+getent passwd %{chef_user} >/dev/null || \
+useradd -r -g %{chef_group} -d %{_localstatedir}/lib/chef -s /sbin/nologin \
+  -c "Chef user" %{chef_user}
+exit 0
+
 %files
-%defattr(-, root, root, -)
-%{_bindir}/chef-client
-%{_bindir}/chef-solo
-%{gemdir}/gems/%{gemname}-%{version}/
-%doc %{gemdir}/doc/%{gemname}-%{version}
-%doc %{geminstdir}/README.rdoc
-%doc %{geminstdir}/LICENSE
+%defattr(-,root,root,-)
+%doc %{geminstdir}/[A-Z]*
+%dir %{geminstdir}
+%{geminstdir}/bin
+%{geminstdir}/lib
+# We already install what's required - also stuff for other gems is shipped
+# XXX: ticket num
+%exclude %{geminstdir}/distro
 %{gemdir}/cache/%{gemname}-%{version}.gem
 %{gemdir}/specifications/%{gemname}-%{version}.gemspec
 
+%files doc
+%defattr(-,root,root,-)
+%{gemdir}/doc/%{gemname}-%{version}
+
+%files -n chef
+%defattr(-,root,root,-)
+%{_bindir}/chef-client
+%{_bindir}/chef-solo
+%{_bindir}/knife
+%{_bindir}/shef
+%{_mandir}/man8/*
+%{_initrddir}/chef-client
+%config(noreplace) %{_sysconfdir}/sysconfig/chef-client
+%config(noreplace) %{_sysconfdir}/logrotate.d/chef-client
+%config(noreplace) %{_sysconfdir}/chef/client.rb
+%config(noreplace) %{_sysconfdir}/chef/solo.rb
+%attr(-,%{chef_user},root) %dir %{_localstatedir}/log/chef
+%attr(-,%{chef_user},root) %dir %{_localstatedir}/cache/chef
+%attr(-,%{chef_user},root) %dir %{_localstatedir}/run/chef
+
+%files -n chef-common
+%{_sbindir}/chef-create-amqp_passwd
 
 %changelog
-* Thu Sep 17 2009 Matthew Kent <matt@bravenet.com> - 0.7.10-1
-- New upstream version.
-- Drop patch series.
-- mixlib-config requires to 1.0.12.
-
-* Tue Aug 18 2009 Matthew Kent <matt@bravenet.com> - 0.7.8-4
-- Roll in fix for CHEF-500.
-
-* Mon Aug 17 2009 Matthew Kent <matt@bravenet.com> - 0.7.8-3
-- Roll in fix for CHEF-481.
-
-* Sun Aug 16 2009 Matthew Kent <matt@bravenet.com> - 0.7.8-2
+* Mon Apr 05 2010 Matthew Kent <mkent@magoazul.com> - 0.8.10-1
 - New upstream version.
 
-* Mon Jun 29 2009 Matthew Kent <matt@bravenet.com> - 0.7.4-1
-- New upstream version.
-- Drop patch series.
-
-* Mon Jun 15 2009 Matthew Kent <matt@bravenet.com> - 0.7.0-2
-- Add set of patches for a few issues, submitted as tickets. 
-
-* Thu Jun 11 2009 Matthew Kent <matt@bravenet.com> - 0.7.0-1
-- New upstream version, drop all patches.
-
-* Tue Jun 09 2009 Matthew Kent <matt@bravenet.com> - 0.6.2-11
-- Patches from CHEF-178, already included upstream.
-
-* Mon Jun 08 2009 Matthew Kent <matt@bravenet.com> - 0.6.2-10
-- Patches from CHEF-277, already included upstream.
-
-* Thu Jun 04 2009 Matthew Kent <matt@bravenet.com> - 0.6.2-9
-- More patches against stable, already included upstream.
-
-* Sat May 30 2009 Matthew Kent <matt@bravenet.com> - 0.6.2-8
-- More patches against stable, already included upstream.
-
-* Wed May 27 2009 Matthew Kent <matt@bravenet.com> - 0.6.2-7
-- Another patch against stable, submitted as a ticket. 
-
-* Fri May 22 2009 Matthew Kent <matt@bravenet.com> - 0.6.2-6
-- More patches against stable, all submitted as tickets. 
-- Remove python-json Requires
-
-* Wed May 13 2009 Matthew Kent <matt@bravenet.com> - 0.6.2-5
-- More patches against stable, all submitted as tickets. 
-
-* Mon May 11 2009 Matthew Kent <matt@bravenet.com> - 0.6.2-4
-- New strategy: package only the rubygem. All other work will be handled by the
-  bootstrap. Better meshes with the current development model.
-
-* Wed May 06 2009 Matthew Kent <matt@bravenet.com> - 0.6.2-3
-- Break into distinct rpms for the rubygems libraries and the init scripts +
-  configs.
-- moved chef user creation here
-- new init script and config
-
-* Mon May 04 2009 Matthew Kent <matt@bravenet.com> - 0.6.2-1
-- run new gem through gem2rpm, merge changes
-- rebase patches against 0.6.2 tag, drop those included
-- includes patch to fix extra dependencies caused by executable perl
-
-* Sun Apr 13 2009 Matthew Kent <matt@bravenet.com> - 0.5.6-4
-- new set of patches based off github branch
-
-* Wed Apr 08 2009 Matthew Kent <matt@bravenet.com> - 0.5.6-3
-- add proper initscripts and configuration files
-- yum speed patches (14/16) disabled, need to sort out licensing still
-- start/stop not quite working, bug with pid file getting removed
-
-* Fri Apr 02 2009 Matthew Kent <matt@bravenet.com> - 0.5.6-2
-- generated series of relative patches from git repo of submitted tickets:
-  CHEF-192, CHEF-198, CHEF-200. Dropped 0 byte ones.
-
-* Wed Mar 25 2009 Matthew Kent <matt@bravenet.com> - 0.5.6-1
+* Thu Mar 25 2010 Matthew Kent <matt@bravenet.com> - 0.8.8-1
 - Initial package
+- Thanks to Joshua Timberman for the Debian packaging used as a reference
