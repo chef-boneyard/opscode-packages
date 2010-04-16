@@ -26,6 +26,20 @@ up from an init script as a thin server on port 4000.
 Chef server uses CouchDB to store node attribute data and RabbitMQ for an
 AMQP message queue.
 
+Init Scripts
+------------
+
+The init scripts in the Debian packaging use the /etc/default directory to
+store default settings. This varies by the Chef services, but the default
+settings used by each are set.
+
+When changing the port for 'chef-server', be sure to change the value of
+chef_server_url in the /etc/chef config files to match the new port.
+
+/etc/chef/client.rb:chef_server_url    "http://localhost:4000"
+/etc/chef/server.rb:chef_server_url    "http://localhost:4000"
+/etc/chef/webui.rb:chef_server_url    "http://localhost:4000"
+
 A note about Recommends
 -----------------------
 
