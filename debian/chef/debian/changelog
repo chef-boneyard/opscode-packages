@@ -5,6 +5,7 @@ chef (0.8.10-3) unstable; urgency=low
   * Use /var/lib for cookbooks,roles,nodes instead of /srv.
   * Add json_attribs and recipe_url examples to solo.rb.
   * Specify conflicts for chef-indexer to ensure removal on upgrade.
+  * Add repack script to remove undistributable files.
 
  -- Joshua Timberman <joshua@opscode.com>  Sat, 17 Apr 2010 23:48:43 -0600
 
