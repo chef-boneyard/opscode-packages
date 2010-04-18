@@ -1,3 +1,13 @@
+chef (0.8.10-3) unstable; urgency=low
+
+  * Depend on adduser for postinst scripts.
+  * Clarify settings in comments of config files.
+  * Use /var/lib for cookbooks,roles,nodes instead of /srv.
+  * Add json_attribs and recipe_url examples to solo.rb.
+  * Specify conflicts for chef-indexer to ensure removal on upgrade.
+
+ -- Joshua Timberman <joshua@opscode.com>  Sat, 17 Apr 2010 23:48:43 -0600
+
 chef (0.8.10-2) unstable; urgency=low
 
   * Add cache_options to server config.
