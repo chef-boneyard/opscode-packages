@@ -20,10 +20,13 @@ chef (0.8.10-1) unstable; urgency=low
   * New upstream release. 
     * [CHEF-252] - If a template's source doesn't end in .erb, but exists, we
       still get a 500 error.
-    * [CHEF-653] - Cron resource fails when the program takes a numerical argument.
+    * [CHEF-653] - Cron resource fails when the program takes a numerical
+      argument.
     * [CHEF-735] - Web Slice needs a override config file.
-    * [CHEF-833] - recursive copy of cached-copy in deploy resource fails on symlinked file
-    * [CHEF-946] - if rabbitmq is down, the generated web ui and validation keys are lost
+    * [CHEF-833] - recursive copy of cached-copy in deploy resource fails on
+      symlinked file
+    * [CHEF-946] - if rabbitmq is down, the generated web ui and validation keys
+      are lost
     * [CHEF-1039] - chef-solr doesn't actually log to specified log file.
     * [CHEF-1044] - Nested arrays of hashes break node indexing
     * [CHEF-1048] - Creating an Invalid Role in WebUI causes 500
@@ -59,15 +62,19 @@ chef (0.8.8-1) unstable; urgency=low
     * [CHEF-780] - Invalid file parameters of a cookbook upload request cause
       an authentication failure
     * [CHEF-961] - Bad use of sudo in chef-server rake tasks
-    * [CHEF-965] - chef-server logs excessively regardless of the log_level setting
-    * [CHEF-1009] - "WebUIUser" fails to index, snake-casing name to invalid value.
+    * [CHEF-965] - chef-server logs excessively regardless of the log_level
+      setting
+    * [CHEF-1009] - "WebUIUser" fails to index, snake-casing name to invalid
+      value.
     * [CHEF-1014] - Remote directory does not work with chef-solo.
     * [CHEF-1015] - Permission denied to /var/chef/ca/key.pem when running
       chef-server under non-root user
     * [CHEF-1018] - chef-solr should report version
     * [CHEF-959] - Add a command-line switch for the pid_file option
-    * [CHEF-1020] - Features tests should not start a merb inside the cucumber process
-    * [CHEF-1033] - knife ssh should be able to use screen for real interactivity
+    * [CHEF-1020] - Features tests should not start a merb inside the cucumber
+      process
+    * [CHEF-1033] - knife ssh should be able to use screen for real
+      interactivity
     * [CHEF-1022] - chef-* commands should support -P or --pidfile that sets
       Chef::Config[:pid_file]
   * Remove quilt patches: fix_reindex, pidfile_option and chef-solr_version,
