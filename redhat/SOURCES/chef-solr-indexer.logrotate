@@ -3,6 +3,6 @@
   weekly
   compress
   postrotate
-    /etc/init.d/chef-solr-indexer condrestart
+    /etc/init.d/chef-solr-indexer condrestart >/dev/null || :
   endscript
 }

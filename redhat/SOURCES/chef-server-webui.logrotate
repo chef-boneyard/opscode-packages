@@ -3,6 +3,6 @@
   weekly
   compress
   postrotate
-    /etc/init.d/chef-server-webui condrestart
+    /etc/init.d/chef-server-webui condrestart >/dev/null || :
   endscript
 }

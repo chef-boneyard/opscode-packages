@@ -3,6 +3,6 @@
   weekly
   compress
   postrotate
-    /etc/init.d/chef-client condrestart
+    /etc/init.d/chef-client condrestart >/dev/null || :
   endscript
 }
