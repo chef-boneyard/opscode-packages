@@ -11,7 +11,7 @@
 Summary: Merb application providing centralized management for Chef
 Name: rubygem-%{gemname}
 Version: 0.8.10
-Release: 1%{?dist}
+Release: 2%{?dist}
 Group: Development/Languages
 License: ASL 2.0
 URL: http://wiki.opscode.com/display/chef
@@ -235,6 +235,10 @@ fi
 %config(noreplace) %{_sysconfdir}/chef/webui.rb
 
 %changelog
+* Fri Apr 16 2010 Matthew Kent <mkent@magoazul.com> - 0.8.10-2
+- Eat logrotate output.
+- Strict directory ownership.
+
 * Mon Apr 05 2010 Matthew Kent <mkent@magoazul.com> - 0.8.10-1
 - New upstream version.
 
