@@ -71,7 +71,7 @@ install/chef-server::
 	cp -rf chef-server/config debian/chef-server/usr/share/chef-server
 	cp -rf chef-server/lib    debian/chef-server/usr/share/chef-server
 	cp -rf chef-server/public debian/chef-server/usr/share/chef-server
-	dh_installinit -pchef-server -- defaults 90 02
+	dh_installinit --name=chef-server -- defaults 90 02
 
 install/chef-server-api::
 	cp chef-server-api/README.rdoc debian/chef-server-api/usr/share/doc/chef-server-api
@@ -82,7 +82,7 @@ install/chef-server-api::
 	find debian/chef-server-api -type f -perm +755 -exec chmod 644 {} \;
 
 install/chef-server-webui::
-	cp debian/etc/chef/webui.rb  debian/chef-server-webui/usr/share/chef-webui
+	cp debian/etc/chef/webui.rb  debian/chef-server-webui/usr/share/chef-server-webui
 	cp chef-server/bin/chef-server-webui debian/chef-server/usr/bin
 	cp chef-server/config-webui.ru debian/chef-server/usr/share/chef-server
 	cp chef-server-webui/README.rdoc debian/chef-server-webui/usr/share/doc/chef-server-webui
@@ -92,7 +92,7 @@ install/chef-server-webui::
 	cp -rf chef-server-webui/lib    debian/chef-server-webui/usr/share/chef-server-webui
 	rm debian/chef-server-webui/usr/share/chef-server-webui/public/images/treeBuilderImages/Thumbs.db
 	find debian/chef-server-webui -type f -perm +755 -exec chmod 644 {} \;
-	dh_installinit -pchef-server-webui -- defaults 95 02
+	dh_installinit --name=chef-server-webui -- defaults 95 02
 
 clean::
 	$(CHEF_INSTALL_SETUP_CMD)
