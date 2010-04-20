@@ -29,6 +29,7 @@ test -x $DAEMON || exit 0
 
 if [ ! -d /var/run/chef ]; then
   mkdir /var/run/chef
+  chown $USER:$GROUP /var/run/chef
 fi
 
 DAEMON_OPTS="-d -P $PIDFILE -c $CONFIG -L $LOGFILE -u $USER -g $GROUP"

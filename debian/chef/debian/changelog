@@ -1,6 +1,11 @@
 chef (0.8.10-4) unstable; urgency=low
 
   * API package conflicts with chef-server-slice.
+  * don't remove cache on removal.
+  * change ownership of /var/run/chef created by init scripts.  
+  * make config files read only by owner in postinst.
+  * set update-rc.d priorities in init scripts. 
+  * render config file templates in /usr/share and copy if they don't exist.
 
  -- Joshua Timberman <joshua@opscode.com>  Sun, 18 Apr 2010 10:36:26 -0600
 

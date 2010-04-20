@@ -1,33 +1,39 @@
 #!/bin/bash -e
 
 . /usr/share/debconf/confmodule
+. /etc/default/chef-server-webui
 
 export PATH=$PATH:/sbin:/usr/sbin:/bin:/usr/bin
 
+TEMPLATE=/usr/share/chef-server-webui/webui.rb
 CONFIGFILE=/etc/chef/webui.rb
 
 webui_conf_has_pass() {
-  egrep -q "^web_ui_admin_default_password \".*\"$" $CONFIGFILE
+  egrep -q "^web_ui_admin_default_password \".*\"$" $TEMPLATE
 }
 
 case "$1" in
   configure)
     db_get chef-server-webui/admin_password && chef_webui_pass="$RET"
     if webui_conf_has_pass && [ ! -z $chef_webui_pass ]; then
-      sed -i "s/web_ui_admin_default_password \".*\"/web_ui_admin_default_password \"$chef_webui_pass\"/g" $CONFIGFILE
+      sed -i "s/web_ui_admin_default_password \".*\"/web_ui_admin_default_password \"$chef_webui_pass\"/g" $TEMPLATE
     elif [ ! -z $chef_webui_pass ]; then
-      echo "web_ui_admin_default_password \"$chef_webui_pass\"" >> $CONFIGFILE
+      echo "web_ui_admin_default_password \"$chef_webui_pass\"" >> $TEMPLATE
     fi
     if ! getent passwd chef > /dev/null; then
       adduser --system --quiet \
         --home /var/lib/chef --no-create-home \
         --shell /bin/bash --group --gecos "Chef Daemon" chef
     fi
-    chown -R chef:chef /etc/chef
-    chown -R chef:chef /var/lib/chef
-    chown -R chef:chef /var/log/chef
-    chown -R chef:chef /var/cache/chef
-    chown -R chef:chef /var/run/chef
+    chown -R $USER:$GROUP /etc/chef
+    chown -R $USER:$GROUP /var/lib/chef
+    chown -R $USER:$GROUP /var/log/chef
+    chown -R $USER:$GROUP /var/cache/chef
+    chown -R $USER:$GROUP /var/run/chef
+    if [ ! -f $CONFIGFILE ]; then
+      cp $TEMPLATE $CONFIGFILE
+    fi
+    chmod 0600 $CONFIGFILE $TEMPLATE
   ;;
 
   abort-upgrade|abort-remove|abort-deconfigure)
