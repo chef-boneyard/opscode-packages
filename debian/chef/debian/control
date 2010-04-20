@@ -64,7 +64,7 @@ Architecture: all
 Depends: ${misc:Depends}, ruby, merb-slices, libmerb-assets-ruby, libmerb-haml-ruby, libmerb-helpers-ruby, rabbitmq-server (>= 1.6), couchdb (>= 0.9.1), thin, libjson-ruby, libchef-ruby (= ${source:Version}), chef-solr (= ${source:Version})
 Recommends: ohai (>= 0.4.0), chef (= ${source:Version})
 Replaces: chef-server-slice
-Conflicts: chef-server-api (<< ${source:Version})
+Conflicts: chef-server-slice, chef-server-api (<< ${source:Version})
 Description: Merb slice providing REST API for Chef client access
  Chef is a systems integration framework and configuration management library
  written in Ruby. Chef provides a Ruby library and API that can be used to
@@ -83,7 +83,7 @@ Package: chef-server-webui
 Architecture: all
 Depends: ${misc:Depends}, ruby, merb-slices, libmerb-param-protection-ruby, libmerb-assets-ruby, libmerb-haml-ruby, libmerb-helpers-ruby, thin, libopenid-ruby, libjson-ruby, libchef-ruby (= ${source:Version}), libcoderay-ruby, chef-server (= ${source:Version}), adduser
 Suggests: chef (= ${source:Version}), apache2, nginx
-Conflicts: chef-server-slice (<< 0.8.2), chef-server-webui (<< ${source:Version})
+Conflicts: chef-server-slice, chef-server-webui (<< ${source:Version})
 Description: Merb app slice providing Web interface to API server for Chef
  Chef is a systems integration framework and configuration management library
  written in Ruby. Chef provides a Ruby library and API that can be used to

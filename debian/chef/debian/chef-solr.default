@@ -1,2 +1,0 @@
-LOGFILE=/var/log/chef/solr.log
-CONFIG=/etc/chef/solr.rb

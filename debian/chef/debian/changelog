@@ -1,3 +1,9 @@
+chef (0.8.10-4) unstable; urgency=low
+
+  * API package conflicts with chef-server-slice.
+
+ -- Joshua Timberman <joshua@opscode.com>  Sun, 18 Apr 2010 10:36:26 -0600
+
 chef (0.8.10-3) unstable; urgency=low
 
   * Depend on adduser for postinst scripts.
