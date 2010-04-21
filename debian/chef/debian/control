@@ -10,7 +10,7 @@ Homepage: http://wiki.opscode.com/display/chef/Home
 
 Package: chef
 Architecture: all
-Depends: ${misc:Depends}, ruby1.8, liberubis-ruby1.8, libjson-ruby1.8, libextlib-ruby1.8 (>= 0.9.13-1), ohai (>= 0.4.0), libchef-ruby1.8 (= ${source:Version}), libopenssl-ruby1.8, libmixlib-authentication-ruby1.8 (>= 1.1.0-1)
+Depends: ${misc:Depends}, ruby1.8, liberubis-ruby1.8, libjson-ruby1.8, libextlib-ruby1.8 (>= 0.9.13-1), ohai (>= 0.4.0), libchef-ruby1.8 (= ${source:Version}), libopenssl-ruby1.8, libmixlib-authentication-ruby1.8 (>= 1.1.0-1), ucf
 Recommends: irb1.8
 Description: System integration framework written in Ruby
  Chef is a systems integration framework and configuration management library
@@ -25,7 +25,7 @@ Description: System integration framework written in Ruby
 
 Package: chef-solr
 Architecture: all
-Depends: ${misc:Depends}, ruby1.8, rabbitmq-server (>= 1.6), default-jre-headless | java6-runtime-headless, libjson-ruby1.8, libchef-ruby1.8 (= ${source:Version}), solr-jetty (>=1.4.0), libxml-ruby1.8, adduser
+Depends: ${misc:Depends}, ruby1.8, rabbitmq-server (>= 1.6), default-jre-headless | java6-runtime-headless, libjson-ruby1.8, libchef-ruby1.8 (= ${source:Version}), solr-jetty (>=1.4.0), libxml-ruby1.8, adduser, ucf
 Suggests: chef (= ${source:Version})
 Replaces: chef-indexer
 Conflicts: chef-indexer
@@ -40,7 +40,7 @@ Description: Manages search indexes of Chef node attributes using SOLR
 
 Package: chef-server
 Architecture: all
-Depends: ${misc:Depends}, ruby, merb-slices, libmerb-assets-ruby, libmerb-haml-ruby, libmerb-helpers-ruby, chef-server-api (= ${source:Version}), thin, libjson-ruby, libchef-ruby (= ${source:Version}), libuuidtools-ruby1.8, adduser, libjs-jquery (>= 1.3.2)
+Depends: ${misc:Depends}, ruby, merb-slices, libmerb-assets-ruby, libmerb-haml-ruby, libmerb-helpers-ruby, chef-server-api (= ${source:Version}), thin, libjson-ruby, libchef-ruby (= ${source:Version}), libuuidtools-ruby1.8, adduser, libjs-jquery (>= 1.3.2), ucf
 Recommends: chef (= ${source:Version}), chef-solr (= ${source:Version})
 Suggests: nginx, apache2, rake, chef-server-webui (=${source:Version})
 Description: Merb application providing centralized management for Chef
@@ -79,7 +79,7 @@ Description: Merb slice providing REST API for Chef client access
 
 Package: chef-server-webui
 Architecture: all
-Depends: ${misc:Depends}, ruby, merb-slices, libmerb-param-protection-ruby, libmerb-assets-ruby, libmerb-haml-ruby, libmerb-helpers-ruby, thin, libopenid-ruby, libjson-ruby, libchef-ruby (= ${source:Version}), libcoderay-ruby, chef-server (= ${source:Version}), adduser, libjs-jquery-ui (>= 1.7.1)
+Depends: ${misc:Depends}, ruby, merb-slices, libmerb-param-protection-ruby, libmerb-assets-ruby, libmerb-haml-ruby, libmerb-helpers-ruby, thin, libopenid-ruby, libjson-ruby, libchef-ruby (= ${source:Version}), libcoderay-ruby, chef-server (= ${source:Version}), adduser, libjs-jquery-ui (>= 1.7.1), ucf
 Suggests: chef (= ${source:Version}), apache2, nginx
 Conflicts: chef-server-slice
 Description: Merb app slice providing Web interface to API server for Chef

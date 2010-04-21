@@ -5,9 +5,13 @@
 
 set -e
 
+TEMPLATE=/usr/share/chef/solr.rb
+CONFIGFILE=/etc/chef/solr.rb
+
 case "$1" in
     purge)
       rm -rf /var/log/chef/solr*
+      ucf --purge $TEMPLATEFILE $CONFIGFILE
     ;;
     remove|upgrade|failed-upgrade|abort-install|abort-upgrade|disappear)
     ;;

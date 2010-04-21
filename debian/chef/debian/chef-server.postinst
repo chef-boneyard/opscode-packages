@@ -9,31 +9,31 @@ TEMPLATE=/usr/share/chef-server/server.rb
 CONFIGFILE=/etc/chef/server.rb
 
 server_conf_has_pass() {
-  egrep -q "^amqp_pass \".*\"$" /etc/chef/server.rb
+  egrep -q "^amqp_pass \".*\"$" $CONFIGFILE
 }
 
 case "$1" in
   configure)
-    db_get chef-solr/amqp_password && amqp_pass="$RET"
-    if server_conf_has_pass && [ ! -z $amqp_pass ]; then
-      sed -i "s/amqp_pass \".*\"/amqp_pass \"$amqp_pass\"/g" $TEMPLATE
-    elif [ ! -z $amqp_pass ]; then
-      echo "amqp_pass \"$amqp_pass\"" >> $TEMPLATE
-    fi
-    if ! getent passwd chef > /dev/null; then
-      adduser --system --quiet \
-        --home /var/lib/chef --no-create-home \
-        --shell /bin/bash --group --gecos "Chef Daemon" chef
-    fi
-    chown -R $USER:$GROUP /etc/chef
-    chown -R $USER:$GROUP /var/lib/chef
-    chown -R $USER:$GROUP /var/log/chef
-    chown -R $USER:$GROUP /var/cache/chef
-    chown -R $USER:$GROUP /var/run/chef
     if [ ! -f $CONFIGFILE ]; then
-      cp $TEMPLATE $CONFIGFILE
+      db_get chef-solr/amqp_password && amqp_pass="$RET"
+      if server_conf_has_pass && [ ! -z $amqp_pass ]; then
+        sed "s/amqp_pass \".*\"/amqp_pass \"$amqp_pass\"/g" $TEMPLATE > $CONFIGFILE
+      elif [ ! -z $amqp_pass ]; then
+        echo "amqp_pass \"$amqp_pass\"" >> $CONFIGFILE
+      fi
+      ucf --debconf-ok $TEMPLATE $CONFIGFILE
+      test -f $CONFIGFILE && chmod 0640 $CONFIGFILE
+      if ! getent passwd chef > /dev/null; then
+        adduser --system --quiet \
+          --home /var/lib/chef --no-create-home \
+          --shell /bin/bash --group --gecos "Chef Daemon" chef
+      fi
+      chown -R $USER:$GROUP /etc/chef
+      chown -R $USER:$GROUP /var/lib/chef
+      chown -R $USER:$GROUP /var/log/chef
+      chown -R $USER:$GROUP /var/cache/chef
+      chown -R $USER:$GROUP /var/run/chef
     fi
-    chmod 0600 $CONFIGFILE
   ;;
 
   abort-upgrade|abort-remove|abort-deconfigure)

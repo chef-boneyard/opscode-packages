@@ -5,12 +5,16 @@
 
 set -e
 
+TEMPLATE=/usr/share/chef/server.rb
+CONFIGFILE=/etc/chef/server.rb
+
 case "$1" in
     remove)
     ;;
     purge)
-      rm -rf /var/log/chef/server*
-      rm -rf /var/log/chef/merb*
+      rm -rf /var/log/chef/server.log*
+      rm -rf /var/log/chef/merb.log*
+      ucf --purge $TEMPLATEFILE $CONFIGFILE
     ;;
     upgrade|failed-upgrade|abort-install|abort-upgrade|disappear)
     ;;
