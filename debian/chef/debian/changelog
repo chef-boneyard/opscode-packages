@@ -1,3 +1,10 @@
+chef (0.8.10-5) lucid; urgency=low
+
+  * use system jquery (libjs-jquery, libjs-jquery-ui) instead of vendored
+    jquery for non-plugin javascripts.
+
+ -- Joshua Timberman <joshua@opscode.com>  Tue, 20 Apr 2010 17:51:55 -0600
+
 chef (0.8.10-4) unstable; urgency=low
 
   * API package conflicts with chef-server-slice.
