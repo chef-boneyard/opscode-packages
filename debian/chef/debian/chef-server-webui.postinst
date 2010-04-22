@@ -12,10 +12,10 @@ case "$1" in
   configure)
     if [ ! -f $CONFIGFILE ]; then
       db_get chef-server-webui/admin_password && chef_webui_pass="$RET"
+      ucf --debconf-ok $TEMPLATE $CONFIGFILE
       if [ ! -z $chef_webui_pass ]; then
         sed "s/web_ui_admin_default_password \".*\"/web_ui_admin_default_password \"$chef_webui_pass\"/g" $TEMPLATE > $CONFIGFILE
       fi
-      ucf --debconf-ok $TEMPLATE $CONFIGFILE
       test -f $CONFIGFILE && chmod 0640 $CONFIGFILE
       if ! getent passwd chef > /dev/null; then
         adduser --system --quiet \

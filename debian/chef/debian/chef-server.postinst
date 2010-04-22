@@ -12,10 +12,10 @@ case "$1" in
   configure)
     if [ ! -f $CONFIGFILE ]; then
       db_get chef-solr/amqp_password && amqp_pass="$RET"
+      ucf --debconf-ok $TEMPLATE $CONFIGFILE
       if [ ! -z $amqp_pass ]; then
         sed "s/amqp_pass \".*\"/amqp_pass \"$amqp_pass\"/g" $TEMPLATE > $CONFIGFILE
       fi
-      ucf --debconf-ok $TEMPLATE $CONFIGFILE
       test -f $CONFIGFILE && chmod 0640 $CONFIGFILE
       if ! getent passwd chef > /dev/null; then
         adduser --system --quiet \
