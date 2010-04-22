@@ -7,20 +7,12 @@ export PATH=$PATH:/sbin:/usr/sbin:/bin:/usr/bin
 TEMPLATE=/usr/share/chef/client.rb
 CONFIGFILE=/etc/chef/client.rb
 
-client_conf_has_server() {
-  egrep -q "^chef_server_url *\".*\"$" $CONFIGFILE
-}
-
 case "$1" in
   configure|reconfigure)
     if [ ! -f $CONFIGFILE ]; then
       db_get chef/chef_server_url && server_url="$RET"
       if [ ! -z $server_url ]; then
-        if client_conf_has_server; then
-          sed "s#chef_server_url *\".*\"#chef_server_url    \"$server_url\"#" $TEMPLATE > $CONFIGFILE
-        else
-          echo "chef_server_url    \"$server_url\"" >> $CONFIGFILE
-        fi
+        sed "s#chef_server_url *\".*\"#chef_server_url    \"$server_url\"#" $TEMPLATE > $CONFIGFILE
       fi
       ucf --debconf-ok $TEMPLATE $CONFIGFILE
       test -f $CONFIGFILE && chmod 0640 $CONFIGFILE

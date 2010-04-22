@@ -127,3 +127,7 @@ signing_ca_cert "/etc/chef/certificates/cert.pem"
 signing_ca_key "/etc/chef/certificates/key.pem"
 signing_ca_user "chef"
 signing_ca_group "chef"
+
+# amqp_pass sets the password for the AMQP virtual host in rabbitmq-server.
+
+amqp_pass "testing"

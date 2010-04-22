@@ -1,8 +1,11 @@
-chef (0.8.10-5) lucid; urgency=low
+chef (0.8.10-5) unstable; urgency=low
 
   * use system jquery (libjs-jquery, libjs-jquery-ui) instead of vendored
     jquery for non-plugin javascripts.
   * use ucf for managing config files modified from templates.
+  * Switch to dpkg-source 3.0 (quilt) format.
+  * remove var/run/chef from chef-server*.dirs.
+  * add remote_fs requirement to init scripts.
 
  -- Joshua Timberman <joshua@opscode.com>  Tue, 20 Apr 2010 17:51:55 -0600
 

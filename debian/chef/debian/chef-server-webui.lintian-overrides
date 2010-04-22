@@ -1,2 +1,0 @@
-# chef-server-webui breaks with the jquery supplied by Debian/Ubuntu packaging.
-chef-server-webui: embedded-javascript-library

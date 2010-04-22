@@ -8,18 +8,12 @@ export PATH=$PATH:/sbin:/usr/sbin:/bin:/usr/bin
 TEMPLATE=/usr/share/chef-server/server.rb
 CONFIGFILE=/etc/chef/server.rb
 
-server_conf_has_pass() {
-  egrep -q "^amqp_pass \".*\"$" $CONFIGFILE
-}
-
 case "$1" in
   configure)
     if [ ! -f $CONFIGFILE ]; then
       db_get chef-solr/amqp_password && amqp_pass="$RET"
-      if server_conf_has_pass && [ ! -z $amqp_pass ]; then
+      if [ ! -z $amqp_pass ]; then
         sed "s/amqp_pass \".*\"/amqp_pass \"$amqp_pass\"/g" $TEMPLATE > $CONFIGFILE
-      elif [ ! -z $amqp_pass ]; then
-        echo "amqp_pass \"$amqp_pass\"" >> $CONFIGFILE
       fi
       ucf --debconf-ok $TEMPLATE $CONFIGFILE
       test -f $CONFIGFILE && chmod 0640 $CONFIGFILE

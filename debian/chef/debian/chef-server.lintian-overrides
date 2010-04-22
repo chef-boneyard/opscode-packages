@@ -1,2 +1,0 @@
-# chef-server breaks with the jquery supplied by Debian/Ubuntu packaging.
-chef-server: embedded-javascript-library

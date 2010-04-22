@@ -8,18 +8,12 @@ export PATH=$PATH:/sbin:/usr/sbin:/bin:/usr/bin
 TEMPLATE=/usr/share/chef-server-webui/webui.rb
 CONFIGFILE=/etc/chef/webui.rb
 
-webui_conf_has_pass() {
-  egrep -q "^web_ui_admin_default_password \".*\"$" $CONFIG
-}
-
 case "$1" in
   configure)
     if [ ! -f $CONFIGFILE ]; then
       db_get chef-server-webui/admin_password && chef_webui_pass="$RET"
-      if webui_conf_has_pass && [ ! -z $chef_webui_pass ]; then
+      if [ ! -z $chef_webui_pass ]; then
         sed "s/web_ui_admin_default_password \".*\"/web_ui_admin_default_password \"$chef_webui_pass\"/g" $TEMPLATE > $CONFIGFILE
-      elif [ ! -z $chef_webui_pass ]; then
-        echo "web_ui_admin_default_password \"$chef_webui_pass\"" >> $CONFIGFILE
       fi
       ucf --debconf-ok $TEMPLATE $CONFIGFILE
       test -f $CONFIGFILE && chmod 0640 $CONFIGFILE
