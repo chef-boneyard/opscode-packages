@@ -6,6 +6,8 @@
 export PATH=$PATH:/sbin:/usr/sbin:/bin:/usr/bin
 
 TEMPLATE=/usr/share/chef-solr/solr.rb
+TMPDIR=`mktemp -d` # used for holding temp files
+TMPFILE=`mktemp -p ${TMPDIR}` # used for holding rendered template
 CONFIGFILE=/etc/chef/solr.rb
 
 rabbitmq_has_vhost() {
@@ -26,24 +28,30 @@ case "$1" in
   configure)
     if [ ! -f $CONFIGFILE ]; then
       db_get chef-solr/amqp_password && amqp_pass="$RET"
-      ucf --debconf-ok $TEMPLATE $CONFIGFILE
+			tsed=`mktemp -p ${TMPDIR}`
+			cat << EOF > $tsed
+s/^amqp_pass \".*\"/amqp_pass \"${amqp_pass}\"/g
+EOF
       if ! rabbitmq_has_vhost; then
         rabbitmqctl add_vhost /chef
       fi
       if ! rabbitmq_has_user; then
-        rabbitmqctl add_user chef $amqp_pass
+        # NOTE: Bug filed with upstream to allow password from a file.
+        rabbitmqctl add_user chef "$amqp_pass"
       fi
       if ! rabbitmq_has_perms; then
         rabbitmqctl set_permissions -p /chef chef ".*" ".*" ".*"
       fi
-      if [ ! -z $amqp_pass ]; then
-        sed "s/amqp_pass \".*\"/amqp_pass \"$amqp_pass\"/g" $TEMPLATE > $CONFIGFILE
+      if [ -n "$amqp_pass" ]; then
+        sed -f $tsed $TEMPLATE > $TMPFILE
       fi
+      ucf --debconf-ok $TMPFILE $CONFIGFILE
       test -f $CONFIGFILE && chmod 0640 $CONFIGFILE
+			rm -rf $TMPDIR
       if ! getent passwd chef > /dev/null; then
         adduser --system --quiet \
           --home /var/lib/chef --no-create-home \
-          --shell /bin/bash --group --gecos "Chef Daemon" chef
+          --shell /bin/false --group --gecos "Chef Daemon" chef
       fi
       chown -R $USER:$GROUP /etc/chef
       chown -R $USER:$GROUP /var/lib/chef

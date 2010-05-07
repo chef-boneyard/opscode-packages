@@ -42,7 +42,7 @@ ssl_verify_mode    :verify_none
 # valid values are any HTTP URL.
 # Corresponds to chef-client -S
 
-chef_server_url    "http://localhost:4000"
+chef_server_url "http://localhost:4000"
 
 # file_cache_path specifies where the client should cache cookbooks, server
 # cookie ID, and openid registration data.
