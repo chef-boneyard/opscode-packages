@@ -1,3 +1,17 @@
+ohai (0.5.2-1) unstable; urgency=low
+
+  * New upstream release (0.5.2).
+    * [OHAI-170] - Rackspace cloud detection fails on machines with strictly intracloud traffic
+    * [OHAI-171] - executable script-without-shebang
+    * [OHAI-174] - ohai problems with dropping privileges
+    * [OHAI-159] - php plugin
+    * [OHAI-160] - lua plugin
+    * [OHAI-161] - mono plugin
+    * [OHAI-162] - groovy plugin
+    * [OHAI-178] - don't use ruby plugin to guess OS
+
+ -- Joshua Timberman <joshua@opscode.com>  Thu, 06 May 2010 23:09:49 -0600
+
 ohai (0.5.0-2) unstable; urgency=low
 
   * Remove rubygems patch missed bin/ohai. 
