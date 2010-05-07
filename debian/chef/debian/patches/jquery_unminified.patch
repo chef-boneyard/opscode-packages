@@ -1,0 +1,769 @@
+# Description: patch in the unminified jquery scripts for the minified
+# files we nuked with repack.sh.
+Index: chef-0.8.10/chef-server-webui/public/javascripts/jquery.tools.js
+===================================================================
+--- /dev/null	1970-01-01 00:00:00.000000000 +0000
++++ chef-0.8.10/chef-server-webui/public/javascripts/jquery.tools.js	2010-05-06 21:06:35.000000000 -0600
+@@ -0,0 +1,551 @@
++/**
++ * @license 
++ * jQuery Tools 1.2.0 / Mask - Dim the lights
++ * 
++ * NO COPYRIGHTS OR LICENSES. DO WHAT YOU LIKE.
++ * 
++ * http://flowplayer.org/tools/toolbox/mask.html
++ *
++ * Since: Mar 2010
++ * Date:    Tue Apr 20 19:26:58 2010 +0000 
++ */
++(function($) { 	
++
++	// static constructs
++	$.tools = $.tools || {version: '1.2.0'};
++	
++	var tool;
++	
++	tool = $.tools.expose = {
++		
++		conf: {	
++			maskId: 'exposeMask',
++			loadSpeed: 'slow',
++			closeSpeed: 'fast',
++			closeOnClick: true,
++			closeOnEsc: true,
++			
++			// css settings
++			zIndex: 9998,
++			opacity: 0.8,
++			startOpacity: 0,
++			color: '#fff',
++			
++			// callbacks
++			onLoad: null,
++			onClose: null
++		}
++	};
++
++	/* one of the greatest headaches in the tool. finally made it */
++	function viewport() {
++				
++		// the horror case
++		if ($.browser.msie) {
++			
++			// if there are no scrollbars then use window.height
++			var d = $(document).height(), w = $(window).height();
++			
++			return [
++				window.innerWidth || 							// ie7+
++				document.documentElement.clientWidth || 	// ie6  
++				document.body.clientWidth, 					// ie6 quirks mode
++				d - w < 20 ? w : d
++			];
++		} 
++		
++		// other well behaving browsers
++		return [$(window).width(), $(document).height()]; 
++	} 
++	
++	function call(fn) {
++		if (fn) { return fn.call($.mask); }
++	}
++	
++	var mask, exposed, loaded, config, overlayIndex;		
++	
++	
++	$.mask = {
++		
++		load: function(conf, els) {
++			
++			// already loaded ?
++			if (loaded) { return this; }			
++			
++			// configuration
++			if (typeof conf == 'string') {
++				conf = {color: conf};	
++			}
++			
++			// use latest config
++			conf = conf || config;
++			
++			config = conf = $.extend($.extend({}, tool.conf), conf);
++
++			// get the mask
++			mask = $("#" + conf.maskId);
++				
++			// or create it
++			if (!mask.length) {
++				mask = $('<div/>').attr("id", conf.maskId);
++				$("body").append(mask);
++			}
++			
++			// set position and dimensions 			
++			var size = viewport();
++				
++			mask.css({				
++				position:'absolute', 
++				top: 0, 
++				left: 0,
++				width: size[0],
++				height: size[1],
++				display: 'none',
++				opacity: conf.startOpacity,					 		
++				zIndex: conf.zIndex 
++			});
++			
++			// background color 
++			var bg = mask.css("backgroundColor");
++			
++			if (!bg || bg == 'transparent' || bg == 'rgba(0, 0, 0, 0)') {
++				mask.css("backgroundColor", conf.color);	
++			}			
++			
++			// onBeforeLoad
++			if (call(conf.onBeforeLoad) === false) {
++				return this;
++			}
++			
++			// esc button
++			if (conf.closeOnEsc) {						
++				$(document).bind("keydown.mask", function(e) {							
++					if (e.keyCode == 27) {
++						$.mask.close(e);	
++					}		
++				});			
++			}
++			
++			// mask click closes
++			if (conf.closeOnClick) {
++				mask.bind("click.mask", function(e)  {
++					$.mask.close(e);		
++				});					
++			}			
++			
++			// resize mask when window is resized
++			$(window).bind("resize.mask", function() {
++				$.mask.fit();
++			});
++			
++			// exposed elements
++			if (els && els.length) {
++				
++				overlayIndex = els.eq(0).css("zIndex");
++
++				// make sure element is positioned absolutely or relatively
++				$.each(els, function() {
++					var el = $(this);
++					if (!/relative|absolute|fixed/i.test(el.css("position"))) {
++						el.css("position", "relative");		
++					}					
++				});
++			 
++				// make elements sit on top of the mask
++				exposed = els.css({ zIndex: Math.max(conf.zIndex + 1, overlayIndex == 'auto' ? 0 : overlayIndex)});			
++			}	
++			
++			// reveal mask
++			mask.css({display: 'block'}).fadeTo(conf.loadSpeed, conf.opacity, function() {
++				$.mask.fit(); 
++				call(conf.onLoad);
++			});
++			
++			loaded = true;			
++			return this;				
++		},
++		
++		close: function() {
++			if (loaded) {
++				
++				// onBeforeClose
++				if (call(config.onBeforeClose) === false) { return this; }
++					
++				mask.fadeOut(config.closeSpeed, function()  {					
++					call(config.onClose);					
++					if (exposed) {
++						exposed.css({zIndex: overlayIndex});
++					}				
++				});				
++				
++				// unbind various event listeners
++				$(document).unbind("keydown.mask");
++				mask.unbind("click.mask");
++				$(window).unbind("resize.mask");
++	
++				loaded = false;
++			}
++			
++			return this; 
++		},
++		
++		fit: function() {
++			if (loaded) {
++				var size = viewport();				
++				mask.css({width: size[0], height: size[1]});
++			}				
++		},
++		
++		getMask: function() {
++			return mask;	
++		},
++		
++		isLoaded: function() {
++			return loaded;	
++		}, 
++		
++		getConf: function() {
++			return config;	
++		},
++		
++		getExposed: function() {
++			return exposed;	
++		}		
++	};
++	
++	$.fn.mask = function(conf) {
++		$.mask.load(conf);
++		return this;		
++	};			
++	
++	$.fn.expose = function(conf) {
++		$.mask.load(conf, this);
++		return this;			
++	};
++
++
++})(jQuery);
++/**
++ * @license 
++ * jQuery Tools 1.2.0 Tooltip - UI essentials
++ * 
++ * NO COPYRIGHTS OR LICENSES. DO WHAT YOU LIKE.
++ * 
++ * http://flowplayer.org/tools/tooltip/
++ *
++ * Since: November 2008
++ * Date:    Tue Apr 20 19:26:58 2010 +0000 
++ */
++(function($) { 
++
++	/* 
++		removed: oneInstance, lazy, 
++		tip must next to the trigger 
++		isShown(fully), layout, tipClass, layout
++	*/
++	
++	// static constructs
++	$.tools = $.tools || {version: '1.2.0'};
++	
++	$.tools.tooltip = {
++		
++		conf: { 
++			
++			// default effect variables
++			effect: 'toggle',			
++			fadeOutSpeed: "fast",
++			predelay: 0,
++			delay: 30,
++			opacity: 1,			
++			tip: 0,
++			
++			// 'top', 'bottom', 'right', 'left', 'center'
++			position: ['top', 'center'], 
++			offset: [0, 0],
++			relative: false,
++			cancelDefault: true,
++			
++			// type to event mapping 
++			events: {
++				def: 			"mouseenter,mouseleave",
++				input: 		"focus,blur",
++				widget:		"focus mouseenter,blur mouseleave",
++				tooltip:		"mouseenter,mouseleave"
++			},
++			
++			// 1.2
++			layout: '<div/>',
++			tipClass: 'tooltip'
++		},
++		
++		addEffect: function(name, loadFn, hideFn) {
++			effects[name] = [loadFn, hideFn];	
++		} 
++	};
++	
++	
++	var effects = { 
++		toggle: [ 
++			function(done) { 
++				var conf = this.getConf(), tip = this.getTip(), o = conf.opacity;
++				if (o < 1) { tip.css({opacity: o}); }
++				tip.show();
++				done.call();
++			},
++			
++			function(done) { 
++				this.getTip().hide();
++				done.call();
++			} 
++		],
++		
++		fade: [
++			function(done) { this.getTip().fadeIn(this.getConf().fadeInSpeed, done); },  
++			function(done) { this.getTip().fadeOut(this.getConf().fadeOutSpeed, done); } 
++		]		
++	};   
++
++		
++	/* calculate tip position relative to the trigger */  	
++	function getPosition(trigger, tip, conf) {	
++
++		
++		// get origin top/left position 
++		var top = conf.relative ? trigger.position().top : trigger.offset().top, 
++			 left = conf.relative ? trigger.position().left : trigger.offset().left,
++			 pos = conf.position[0];
++
++		top  -= tip.outerHeight() - conf.offset[0];
++		left += trigger.outerWidth() + conf.offset[1];
++		
++		// adjust Y		
++		var height = tip.outerHeight() + trigger.outerHeight();
++		if (pos == 'center') 	{ top += height / 2; }
++		if (pos == 'bottom') 	{ top += height; }
++		
++		// adjust X
++		pos = conf.position[1]; 	
++		var width = tip.outerWidth() + trigger.outerWidth();
++		if (pos == 'center') 	{ left -= width / 2; }
++		if (pos == 'left')   	{ left -= width; }	 
++		
++		return {top: top, left: left};
++	}		
++
++	
++	
++	function Tooltip(trigger, conf) {
++
++		var self = this, 
++			 fire = trigger.add(self),
++			 tip,
++			 timer = 0,
++			 pretimer = 0, 
++			 title = trigger.attr("title"),
++			 effect = effects[conf.effect],
++			 shown,
++				 
++			 // get show/hide configuration
++			 isInput = trigger.is(":input"), 
++			 isWidget = isInput && trigger.is(":checkbox, :radio, select, :button"),			
++			 type = trigger.attr("type"),
++			 evt = conf.events[type] || conf.events[isInput ? (isWidget ? 'widget' : 'input') : 'def']; 
++		
++		
++		// check that configuration is sane
++		if (!effect) { throw "Nonexistent effect \"" + conf.effect + "\""; }					
++		
++		evt = evt.split(/,\s*/); 
++		if (evt.length != 2) { throw "Tooltip: bad events configuration for " + type; } 
++		
++		
++		// trigger --> show  
++		trigger.bind(evt[0], function(e) {
++			if (conf.predelay) {
++				clearTimeout(timer);
++				pretimer = setTimeout(function() { self.show(e); }, conf.predelay);	
++				
++			} else {
++				self.show(e);	
++			}
++			
++		// trigger --> hide
++		}).bind(evt[1], function(e)  {
++			if (conf.delay)  {
++				clearTimeout(pretimer);
++				timer = setTimeout(function() { self.hide(e); }, conf.delay);	
++				
++			} else {
++				self.hide(e);		
++			}
++			
++		}); 
++		
++		
++		// remove default title
++		if (title && conf.cancelDefault) { 
++			trigger.removeAttr("title");
++			trigger.data("title", title);			
++		}		
++		
++		$.extend(self, {
++				
++			show: function(e) { 
++
++				// tip not initialized yet
++				if (!tip) {
++					
++					// find a "manual" tooltip
++					if (title) { 
++						tip = $(conf.layout).addClass(conf.tipClass).appendTo(document.body).hide();
++					} else if (conf.tip) { 
++						tip = $(conf.tip).eq(0);
++						
++					} else {	
++						tip = trigger.next();  
++						if (!tip.length) { tip = trigger.parent().next(); } 	 
++					}
++					
++					if (!tip.length) { throw "Cannot find tooltip for " + trigger;	}
++				} 
++			 	
++			 	if (self.isShown()) { return self; }  
++				
++			 	// stop previous animation
++			 	tip.stop(true, true); 
++			 	
++			 	
++				// get position
++				var pos = getPosition(trigger, tip, conf);			
++				
++				// title attribute
++				if (title) { tip.html(title); } 				
++				
++				// onBeforeShow
++				e = e || $.Event();
++				e.type = "onBeforeShow";
++				fire.trigger(e, [pos]);				
++				if (e.isDefaultPrevented()) { return self; }
++		
++				
++				// onBeforeShow may have altered the configuration
++				pos = getPosition(trigger, tip, conf);
++				
++				// set position
++				tip.css({position:'absolute', top: pos.top, left: pos.left});					
++				
++				shown = true;
++				
++				// invoke effect 
++				effect[0].call(self, function() {
++					e.type = "onShow";
++					shown = 'full';
++					fire.trigger(e);		 
++				});					
++
++	 	
++				// tooltip events       
++				var event = conf.events.tooltip.split(/,\s*/);
++
++				tip.bind(event[0], function() { 
++					clearTimeout(timer);
++					clearTimeout(pretimer);
++				});
++				
++				if (event[1] && !trigger.is("input:not(:checkbox, :radio), textarea")) { 					
++					tip.bind(event[1], function(e) {
++
++						// being moved to the trigger element
++						if (e.relatedTarget != trigger[0]) {
++							trigger.trigger(evt[1].split(" ")[0]);
++						}
++					}); 
++				} 
++				
++				return self;
++			},
++			
++			hide: function(e) {
++
++				if (!tip || !self.isShown()) { return self; }
++			
++				// onBeforeHide
++				e = e || $.Event();
++				e.type = "onBeforeHide";
++				fire.trigger(e);				
++				if (e.isDefaultPrevented()) { return; }
++	
++				shown = false;
++				
++				effects[conf.effect][1].call(self, function() {
++					e.type = "onHide";
++					shown = false;
++					fire.trigger(e);		 
++				});
++				
++				return self;
++			},
++			
++			isShown: function(fully) {
++				return fully ? shown == 'full' : shown;	
++			},
++				
++			getConf: function() {
++				return conf;	
++			},
++				
++			getTip: function() {
++				return tip;	
++			},
++			
++			getTrigger: function() {
++				return trigger;	
++			}		
++
++		});		
++
++		// callbacks	
++		$.each("onHide,onBeforeShow,onShow,onBeforeHide".split(","), function(i, name) {
++				
++			// configuration
++			if ($.isFunction(conf[name])) { 
++				$(self).bind(name, conf[name]); 
++			}
++
++			// API
++			self[name] = function(fn) {
++				$(self).bind(name, fn);
++				return self;
++			};
++		});
++		
++	}
++		
++	
++	// jQuery plugin implementation
++	$.fn.tooltip = function(conf) {
++		
++		// return existing instance
++		var api = this.data("tooltip");
++		if (api) { return api; }
++
++		conf = $.extend(true, {}, $.tools.tooltip.conf, conf);
++		
++		// position can also be given as string
++		if (typeof conf.position == 'string') {
++			conf.position = conf.position.split(/,?\s/);	
++		}
++		
++		// install tooltip for each entry in jQuery object
++		this.each(function() {
++			api = new Tooltip($(this), conf); 
++			$(this).data("tooltip", api); 
++		});
++		
++		return conf.api ? api: this;		 
++	};
++		
++}) (jQuery);
++
++		
++
+Index: chef-0.8.10/chef-server-webui/public/javascripts/yetii.js
+===================================================================
+--- /dev/null	1970-01-01 00:00:00.000000000 +0000
++++ chef-0.8.10/chef-server-webui/public/javascripts/yetii.js	2010-05-06 21:06:54.000000000 -0600
+@@ -0,0 +1,206 @@
++/*
++Yetii - Yet (E)Another Tab Interface Implementation
++version 1.6
++http://www.kminek.pl/lab/yetii/
++Copyright (c) Grzegorz Wojcik
++Code licensed under the BSD License:
++http://www.kminek.pl/bsdlicense.txt
++*/
++
++function Yetii() {
++
++	this.defaults = {
++		
++		id: null,
++		active: 1,
++		interval: null,
++		wait: null,
++		persist: null,
++		tabclass: 'tab',
++		activeclass: 'active',
++		callback: null,
++		leavecallback: null
++	
++	};
++	
++	this.activebackup = null;
++	
++	for (var n in arguments[0]) { this.defaults[n]=arguments[0][n]; };	
++	
++	this.getTabs = function() {
++        	
++        var retnode = [];
++        var elem = document.getElementById(this.defaults.id).getElementsByTagName('*');
++		
++		var regexp = new RegExp("(^|\\s)" + this.defaults.tabclass.replace(/\-/g, "\\-") + "(\\s|$)");
++	
++        for (var i = 0; i < elem.length; i++) {
++			if (regexp.test(elem[i].className)) retnode.push(elem[i]);
++        }
++    
++        return retnode;
++    
++    };
++	
++	this.links = document.getElementById(this.defaults.id + '-nav').getElementsByTagName('a');
++	this.listitems = document.getElementById(this.defaults.id + '-nav').getElementsByTagName('li');
++	
++	this.show = function(number) {
++        
++        for (var i = 0; i < this.tabs.length; i++) {
++			
++			this.tabs[i].style.display = ((i+1)==number) ? 'block' : 'none';
++				
++			if ((i+1)==number) {
++				this.addClass(this.links[i], this.defaults.activeclass);
++				this.addClass(this.listitems[i], this.defaults.activeclass + 'li');
++			} else {
++				this.removeClass(this.links[i], this.defaults.activeclass);
++				this.removeClass(this.listitems[i], this.defaults.activeclass + 'li');
++			}
++		
++		}
++		
++		
++		if (this.defaults.leavecallback && (number != this.activebackup)) this.defaults.leavecallback(this.defaults.active);
++		
++		this.activebackup = number;
++		
++		
++		this.defaults.active = number;
++		
++		if (this.defaults.callback) this.defaults.callback(number);
++		
++    
++    };
++	
++	this.rotate = function(interval) {
++    
++        this.show(this.defaults.active);
++        this.defaults.active++;
++    
++        if (this.defaults.active > this.tabs.length) this.defaults.active = 1;
++    
++	
++        var self = this;
++		
++		if (this.defaults.wait) clearTimeout(this.timer2);
++		 
++        this.timer1 = setTimeout(function(){self.rotate(interval);}, interval*1000);
++    
++    };
++	
++	this.next = function() {
++
++        var _target = (this.defaults.active + 1 > this.tabs.length) ? 1 : this.defaults.active + 1;
++        this.show(_target);
++        this.defaults.active = _target;
++
++    };
++	
++	this.previous = function() {
++
++        var _target = ((this.defaults.active - 1) == 0) ? this.tabs.length : this.defaults.active - 1;
++        this.show(_target);
++        this.defaults.active = _target; 
++
++    };
++	
++	this.previous = function() {
++		
++		this.defaults.active--;
++    	if(!this.defaults.active) this.defaults.active = this.tabs.length;
++		this.show(this.defaults.active);
++	
++	};
++	
++	this.gup = function(name) {
++		name = name.replace(/[\[]/,"\\\[").replace(/[\]]/,"\\\]");
++		var regexS = "[\\?&]"+name+"=([^&#]*)";
++		var regex = new RegExp( regexS );
++		var results = regex.exec( window.location.href );
++		if (results == null) return null;
++		else return results[1];
++	};
++	
++	this.parseurl = function(tabinterfaceid) {
++		
++		var result = this.gup(tabinterfaceid);
++		
++		if (result==null) return null;
++		if (parseInt(result)) return parseInt(result); 
++		if (document.getElementById(result)) {	
++			for (var i=0;i<this.tabs.length;i++) {
++				if (this.tabs[i].id == result) return (i+1);
++			}
++		}
++		
++		return null;
++		
++	};
++
++	this.createCookie = function(name,value,days) {
++		if (days) {
++			var date = new Date();
++			date.setTime(date.getTime()+(days*24*60*60*1000));
++			var expires = "; expires="+date.toGMTString();
++		}
++		else var expires = "";
++		document.cookie = name+"="+value+expires+"; path=/";
++	};
++	
++	this.readCookie = function(name) {
++		var nameEQ = name + "=";
++		var ca = document.cookie.split(';');
++		for(var i=0;i < ca.length;i++) {
++			var c = ca[i];
++			while (c.charAt(0)==' ') c = c.substring(1,c.length);
++			if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length,c.length);
++		}
++		return null;
++	};
++	
++	this.contains = function(el, item, from) {
++		return el.indexOf(item, from) != -1;
++	};
++	
++	this.hasClass = function(el, className){
++		return this.contains(el.className, className, ' ');
++	};
++	
++	this.addClass = function(el, className){
++		if (!this.hasClass(el, className)) el.className = (el.className + ' ' + className).replace(/\s{2,}/g, ' ').replace(/^\s+|\s+$/g, '');
++	};
++	
++	this.removeClass = function(el, className){
++		el.className = el.className.replace(new RegExp('(^|\\s)' + className + '(?:\\s|$)'), '$1');
++		el.className.replace(/\s{2,}/g, ' ').replace(/^\s+|\s+$/g, '');
++	};
++
++
++	this.tabs = this.getTabs();
++	this.defaults.active = (this.parseurl(this.defaults.id)) ? this.parseurl(this.defaults.id) : this.defaults.active;
++	if (this.defaults.persist && this.readCookie(this.defaults.id)) this.defaults.active = this.readCookie(this.defaults.id);  
++	this.activebackup = this.defaults.active;
++	this.show(this.defaults.active);
++	
++	var self = this;
++	for (var i = 0; i < this.links.length; i++) {
++	this.links[i].customindex = i+1;
++	this.links[i].onclick = function(){ 
++		
++		if (self.timer1) clearTimeout(self.timer1);
++		if (self.timer2) clearTimeout(self.timer2); 
++		
++		self.show(this.customindex);
++		if (self.defaults.persist) self.createCookie(self.defaults.id, this.customindex, 0);
++		
++		if (self.defaults.wait) self.timer2 = setTimeout(function(){self.rotate(self.defaults.interval);}, self.defaults.wait*1000);
++		
++		return false;
++	};
++    }
++	
++	if (this.defaults.interval) this.rotate(this.defaults.interval);
++	
++};

@@ -29,7 +29,10 @@ fi
 
 ## Remove undistributable files from source.
 rm -vfr $UP_BASE/chef-solr/solr/solr-jetty.tar.gz
-rm -vfr $UP_BASE/chef/distro/suse/etc/init.d/chef-client
+rm -vfr $UP_BASE/chef-server-webui/public/javascripts/yetii-min.js
+rm -vfr $UP_BASE/chef-server-webui/public/javascripts/jquery.jeditable.mini.js
+rm -vfr $UP_BASE/chef-server-webui/public/javascripts/jquery.tools.min.js
+rm -vfr $UP_BASE/features/data/solr/jetty/work/Jetty_0_0_0_0_8983_solr.war__solr__k1kf17/webapp/admin/jquery-1.2.3.min.js
 ## End
 
 mv "$UP_BASE" "$DIR/$REPACK_DIR"

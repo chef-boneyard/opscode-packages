@@ -1,3 +1,5 @@
 chef_solr_ruby18.patch
 solr_load_path.patch
 remove_rubygems.patch
+jquery_unminified.patch
+jquery_versions.patch

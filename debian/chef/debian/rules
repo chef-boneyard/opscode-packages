@@ -13,6 +13,8 @@ CDBS_NO_DOC_SYMLINKING = ""
 PACKAGED_RUBY_SETUP_CMD = /usr/lib/ruby/1.8/setup.rb
 DEB_RUBY_SETUP_CMD = debian-setup.rb
 DEB_RUBY_CONFIG_ARGS = --installdirs=std
+JAVASCRIPTS = chef-server-webui/public/javascripts
+MINJS = perl -0 -e 'use JavaScript::Minifier::XS qw(minify);print minify(<>);'
 
 CHEF_INSTALL_SETUP_CMD = \
   if [ ! -L chef/$(DEB_RUBY_SETUP_CMD) ] ; then \
@@ -51,7 +53,7 @@ install/libchef-ruby1.8::
 
 install/chef-solr::
 	cp -rf $(CURDIR)/debian/etc/chef/solr.rb debian/chef-solr/usr/share/chef-solr
-	cp -rf $(CURDIR)/debian/etc/chef/solr-jetty debian/chef-solr/usr/share/chef-solr
+	cp -rf $(CURDIR)/debian/etc/chef/solr-jetty debian/chef-solr/etc/chef
 	cp chef-solr/bin/chef-solr-indexer debian/chef-solr/usr/sbin
 	cp chef-solr/bin/chef-solr-rebuild debian/chef-solr/usr/sbin
 	cp chef-solr/bin/chef-solr debian/chef-solr/usr/sbin
@@ -91,6 +93,8 @@ install/chef-server-webui::
 	cp -rf chef-server-webui/public debian/chef-server-webui/usr/share/chef-server-webui
 	cp -rf chef-server-webui/lib    debian/chef-server-webui/usr/share/chef-server-webui
 	rm debian/chef-server-webui/usr/share/chef-server-webui/public/images/treeBuilderImages/Thumbs.db
+	$(MINJS) $(JAVASCRIPTS)/jquery.tools.js > debian/chef-server-webui/usr/share/$(JAVASCRIPTS)/jquery.tools.min.js
+	$(MINJS) $(JAVASCRIPTS)/yetii.js > debian/chef-server-webui/usr/share/$(JAVASCRIPTS)/yetii-min.js
 	find debian/chef-server-webui -type f -perm +755 -exec chmod 644 {} \;
 	dh_installinit --name=chef-server-webui -- defaults 95 02
 
