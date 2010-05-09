@@ -1,8 +1,8 @@
 #! /bin/sh
 ### BEGIN INIT INFO
 # Provides:           chef-server-webui
-# Required-Start:     $remote_fs $network
-# Required-Stop:      $remote_fs $network
+# Required-Start:     $remote_fs $network chef-server
+# Required-Stop:      $remote_fs $network chef-server
 # Default-Start:      2 3 4 5
 # Default-Stop:       0 1 6
 # Short-Description:  Start a chef-server-webui

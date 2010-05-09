@@ -1,4 +1,20 @@
-chef (0.8.14-1) unstable; urgency=low
+chef (0.8.14-2) lucid; urgency=low
+
+  * Adding jeditable unminified source to chef-server-webui.
+  * Fixing link to jquery-ui by creating symlink to wildcard in
+    chef-server-webui.postinst, because the filename varies by version
+    across ubuntu/debian releases.
+  * Patch CHEF-1194, fix method name for showing cookbooks in webui.
+  * Fixing copyright of chef-client.init.
+  * Adding required-start/stop for chef-server-webui, chef-server,
+    chef-solr-indexer.
+  * openid dirs are only needed in the webui package.
+  * remove spurious db_gets from *.config.
+  * test for /usr/bin/ucf before trying to run the command in *postrm.
+
+ -- Joshua Timberman <joshua@opscode.com>  Sat, 08 May 2010 18:35:53 -0600
+
+chef (0.8.14-1) lucid; urgency=low
 
   * New upstream release (0.8.14).
 

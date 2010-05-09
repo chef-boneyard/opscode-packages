@@ -94,6 +94,7 @@ install/chef-server-webui::
 	cp -rf chef-server-webui/lib    debian/chef-server-webui/usr/share/chef-server-webui
 	rm debian/chef-server-webui/usr/share/chef-server-webui/public/images/treeBuilderImages/Thumbs.db
 	$(MINJS) $(JAVASCRIPTS)/jquery.tools.js > debian/chef-server-webui/usr/share/$(JAVASCRIPTS)/jquery.tools.min.js
+	$(MINJS) $(JAVASCRIPTS)/jquery.jeditable.js > debian/chef-server-webui/usr/share/$(JAVASCRIPTS)/jquery.jeditable.mini.js
 	$(MINJS) $(JAVASCRIPTS)/yetii.js > debian/chef-server-webui/usr/share/$(JAVASCRIPTS)/yetii-min.js
 	find debian/chef-server-webui -type f -perm +755 -exec chmod 644 {} \;
 	dh_installinit --name=chef-server-webui -- defaults 95 02

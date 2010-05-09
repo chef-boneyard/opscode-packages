@@ -14,7 +14,7 @@ case "$1" in
     purge)
       rm -rf /var/log/chef/server.log*
       rm -rf /var/log/chef/merb.log*
-      ucf --purge $TEMPLATEFILE $CONFIGFILE
+      test -x /usr/bin/ucf && ucf --purge $TEMPLATEFILE $CONFIGFILE
       rm -rf $CONFIGFILE $CONFIGFILE.ucf-old $CONFIGFILE.ucf-new $CONFIGFILE.ucf-dist
     ;;
     upgrade|failed-upgrade|abort-install|abort-upgrade|disappear)
