@@ -16,7 +16,7 @@ case "$1" in
       db_get chef-server-webui/admin_password && chef_webui_pass="$RET"
 			tsed=`mktemp -p ${TMPDIR}`
 			cat << EOF > $tsed
-s/^web_ui_admin_default_password \".*\"/web_ui_admin_default_password \"$chef_webui_pass\"/g"
+s/^web_ui_admin_default_password \".*\"/web_ui_admin_default_password \"$chef_webui_pass\"/g
 EOF
       if [ -n "$chef_webui_pass" ]; then
         sed -f $tsed $TEMPLATE > $TMPFILE

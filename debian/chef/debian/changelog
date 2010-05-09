@@ -1,4 +1,10 @@
-chef (0.8.14-2) lucid; urgency=low
+chef (0.8.14-3) unstable; urgency=low
+
+  * Fix typo in chef-server-webui.postinst sed file.
+
+ -- Joshua Timberman <joshua@opscode.com>  Sat, 08 May 2010 21:40:00 -0600
+
+chef (0.8.14-2) unstable; urgency=low
 
   * Adding jeditable unminified source to chef-server-webui.
   * Fixing link to jquery-ui by creating symlink to wildcard in
@@ -14,7 +20,7 @@ chef (0.8.14-2) lucid; urgency=low
 
  -- Joshua Timberman <joshua@opscode.com>  Sat, 08 May 2010 18:35:53 -0600
 
-chef (0.8.14-1) lucid; urgency=low
+chef (0.8.14-1) unstable; urgency=low
 
   * New upstream release (0.8.14).
 
@@ -68,7 +74,7 @@ chef (0.8.12-1) unstable; urgency=low
     * [CHEF-462] - http_request should allow for setting HTTP Header
     * [CHEF-489] - Ruby 1.9 Support for Chef
     * [CHEF-510] - be able to use debian/ubuntu libjs-jquery packaged
-      library for chef-server 
+      library for chef-server
     * [CHEF-600] - Refactoring RubyGems provider to use output_of_command
   		for better diagnostics
     * [CHEF-632] - remote_file resource should display an INFO message at
@@ -124,9 +130,9 @@ chef (0.8.10-4) unstable; urgency=low
 
   * API package conflicts with chef-server-slice.
   * don't remove cache on removal.
-  * change ownership of /var/run/chef created by init scripts.  
+  * change ownership of /var/run/chef created by init scripts.
   * make config files read only by owner in postinst.
-  * set update-rc.d priorities in init scripts. 
+  * set update-rc.d priorities in init scripts.
   * render config file templates in /usr/share and copy if they don't exist.
 
  -- Joshua Timberman <joshua@opscode.com>  Sun, 18 Apr 2010 10:36:26 -0600
@@ -150,7 +156,7 @@ chef (0.8.10-2) unstable; urgency=low
 
 chef (0.8.10-1) unstable; urgency=low
 
-  * New upstream release. 
+  * New upstream release.
     * [CHEF-252] - If a template's source doesn't end in .erb, but exists, we
       still get a 500 error.
     * [CHEF-653] - Cron resource fails when the program takes a numerical
@@ -177,13 +183,13 @@ chef (0.8.10-1) unstable; urgency=low
 
 chef (0.8.8-3) unstable; urgency=low
 
-  * Fix conflicting chef-solr in chef package.  
+  * Fix conflicting chef-solr in chef package.
 
  -- Joshua Timberman <joshua@opscode.com>  Wed, 31 Mar 2010 10:24:53 -0600
 
 chef (0.8.8-2) unstable; urgency=low
 
-  * Make sure chef-solr init script is handled before chef-solr-indexer. 
+  * Make sure chef-solr init script is handled before chef-solr-indexer.
   * Copyright file fixes.
 
  -- Joshua Timberman <joshua@opscode.com>  Mon, 29 Mar 2010 01:14:49 -0600
@@ -255,9 +261,9 @@ chef (0.8.6-10) unstable; urgency=low
 
 chef (0.8.6-9) unstable; urgency=low
 
-  * Clarify usage of chef server URI prompt debconf. 
+  * Clarify usage of chef server URI prompt debconf.
   * Clarify usage of amqp password prompt from debconf.
-  * Clarify usage of webui password prompt from debconf. 
+  * Clarify usage of webui password prompt from debconf.
 
  -- Joshua Timberman <joshua@opscode.com>  Thu, 11 Mar 2010 16:43:52 -0700
 
