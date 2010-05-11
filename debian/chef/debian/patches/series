@@ -1,4 +1,3 @@
-CHEF-1194_fix_cookbook_show.patch
 chef_solr_ruby18.patch
 solr_load_path.patch
 remove_rubygems.patch

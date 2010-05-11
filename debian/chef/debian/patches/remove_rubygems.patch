@@ -56,8 +56,8 @@ Index: chef-0.8.14+dfsg.orig/chef-server/bin/chef-server
 -require "rubygems"
  require "merb-core"
  
--CHEF_SERVER_VERSION = "0.8.14"
-+CHEF_SERVER_VERSION = "0.8.14" unless defined?(CHEF_SERVER_VERSION)
+-CHEF_SERVER_VERSION = "0.8.16"
++CHEF_SERVER_VERSION = "0.8.16" unless defined?(CHEF_SERVER_VERSION)
  
 -[ 'chef', 'chef-server-api' ].each do |lib|
 -  $:.unshift(File.expand_path(File.join(File.dirname(__FILE__), "..", "..", "lib")))
@@ -94,9 +94,9 @@ Index: chef-0.8.14+dfsg.orig/chef-server/bin/chef-server-webui
 -  library = File.expand_path(File.join(File.dirname(__FILE__), "..", "..", lib, "lib", "#{lib}.rb"))
 -  require library if File.exists?(library)
 -end
-+CHEF_SERVER_VERSION = "0.8.14" unless defined?(CHEF_SERVER_VERSION)
++CHEF_SERVER_VERSION = "0.8.16" unless defined?(CHEF_SERVER_VERSION)
  
--CHEF_SERVER_VERSION = "0.8.14"
+-CHEF_SERVER_VERSION = "0.8.16"
 +require "chef"
 +require "/usr/share/chef-server-webui/lib/chef-server-webui"
  
