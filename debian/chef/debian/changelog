@@ -1,3 +1,21 @@
+chef (0.8.16-1) unstable; urgency=low
+
+  * New upstream release (0.8.16).
+    * [CHEF-1194] - WebUI - show of cookbook fails
+    * [CHEF-1196] - Commit bc411a1ded418a385af23bbec7d1cc6b013cb08b breaks
+      template owner setting
+    * [CHEF-1204] - Mixlib CLI update breaks shef
+    * [CHEF-1207] - Leftover debug output in chef-solo
+    * [CHEF-1208] - CHEF-1207 breaks chef-client
+
+ -- Joshua Timberman <joshua@opscode.com>  Tue, 11 May 2010 14:27:09 -0600
+
+chef (0.8.14-4) unstable; urgency=low
+
+  * Make chef-server depend on chef-solr so configuration for amqp exists.
+
+ -- Joshua Timberman <joshua@opscode.com>  Tue, 11 May 2010 10:12:20 -0600
+
 chef (0.8.14-3) unstable; urgency=low
 
   * Fix typo in chef-server-webui.postinst sed file.
@@ -23,6 +41,27 @@ chef (0.8.14-2) unstable; urgency=low
 chef (0.8.14-1) unstable; urgency=low
 
   * New upstream release (0.8.14).
+    * [CHEF-702] - chef server should 404 when recipes can't be found
+    * [CHEF-982] - Node gets overwritten when using 'knife node create foobar'
+      when 'foobar' already exists
+    * [CHEF-1086] - chef-solr jetty listening on all interfaces
+    * [CHEF-1088] - chef-server, chef-server-api, and chef-server-webui do not
+      load /etc/chef/server.rb if run as  a Rack app without their wrapper script.
+    * [CHEF-1104] - intermittent closed stream error on packages and templates
+    * [CHEF-1169] - Chef raises NotFound outside of chef server
+    * [CHEF-1188] - Chef::Client squashes errors in its save_node method,
+      destroying valuable debugging info
+    * [CHEF-1189] - Authenticated subversion checkouts fail due to prompt
+    * [CHEF-1190] - Chef should always print stderr and stdout when a shelled-out
+      command fails
+    * [CHEF-1191] - hotfix for all applications always cd-ing to root leaves a
+      failing test
+    * [CHEF-462] - http_request should allow for setting HTTP Header
+    * [CHEF-792] - Extend the interface provider to add ethtool options
+    * [CHEF-909] - Rollback on deploy errors
+    * [CHEF-1021] - Pass environment, group and cwd to run on deploy
+    * [CHEF-1171] - Knife should grow the ability to manage webui users
+    * [CHEF-966] - useradd provider should support creation of system users
 
  -- Joshua Timberman <joshua@opscode.com>  Fri, 07 May 2010 12:50:54 -0600
 
