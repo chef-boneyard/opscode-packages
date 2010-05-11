@@ -1,3 +1,13 @@
+ohai (0.5.4-1) unstable; urgency=low
+
+  * New upstream release (0.5.4).
+    * [OHAI-185] - Specs fail on all platforms other than darwin
+    * [OHAI-187] - Ohai plugin breaks shef
+    * [OHAI-190] - Chef plugin for ohai uses the same namespace as the chef
+      attributes
+
+ -- Joshua Timberman <joshua@opscode.com>  Tue, 11 May 2010 16:37:21 -0600
+
 ohai (0.5.2-1) unstable; urgency=low
 
   * New upstream release (0.5.2).
