@@ -12,32 +12,30 @@ CONFIGFILE=/etc/chef/webui.rb
 
 case "$1" in
   configure)
-    if [ ! -f $CONFIGFILE ]; then
-      db_get chef-server-webui/admin_password && chef_webui_pass="$RET"
-			tsed=`mktemp -p ${TMPDIR}`
-			cat << EOF > $tsed
+    db_get chef-server-webui/admin_password && chef_webui_pass="$RET"
+		tsed=`mktemp -p ${TMPDIR}`
+    cat << EOF > $tsed
 s/^web_ui_admin_default_password \".*\"/web_ui_admin_default_password \"$chef_webui_pass\"/g
 EOF
-      if [ -n "$chef_webui_pass" ]; then
-        sed -f $tsed $TEMPLATE > $TMPFILE
-      fi
-      ucf --debconf-ok $TMPFILE $CONFIGFILE
-      test -f $CONFIGFILE && chmod 0640 $CONFIGFILE
-      rm -rf $TMPDIR
-      # the jquery-ui javascript file doesn't have a consistent name across
-      # debian and ubuntu versions. Symlink it here with a wildcard works.
-      ln -fs /usr/share/javascript/jquery-ui/jquery-ui*.min.js /usr/share/chef-server-webui/public/javascripts/jquery-ui-1.7.1.custom.min.js
-      if ! getent passwd chef > /dev/null; then
-        adduser --system --quiet \
-          --home /var/lib/chef --no-create-home \
-          --shell /bin/false --group --gecos "Chef Daemon" chef
-      fi
-      chown -R $USER:$GROUP /etc/chef
-      chown -R $USER:$GROUP /var/lib/chef
-      chown -R $USER:$GROUP /var/log/chef
-      chown -R $USER:$GROUP /var/cache/chef
-      chown -R $USER:$GROUP /var/run/chef
+    if [ -n "$chef_webui_pass" ]; then
+      sed -f $tsed $TEMPLATE > $TMPFILE
     fi
+    ucf --debconf-ok $TMPFILE $CONFIGFILE
+    test -f $CONFIGFILE && chmod 0640 $CONFIGFILE
+    rm -rf $TMPDIR
+    # the jquery-ui javascript file doesn't have a consistent name across
+    # debian and ubuntu versions. Symlink it here with a wildcard works.
+    ln -fs /usr/share/javascript/jquery-ui/jquery-ui*.min.js /usr/share/chef-server-webui/public/javascripts/jquery-ui-1.7.1.custom.min.js
+    if ! getent passwd chef > /dev/null; then
+      adduser --system --quiet \
+        --home /var/lib/chef --no-create-home \
+        --shell /bin/false --group --gecos "Chef Daemon" chef
+    fi
+    chown -R $USER:$GROUP /etc/chef
+    chown -R $USER:$GROUP /var/lib/chef
+    chown -R $USER:$GROUP /var/log/chef
+    chown -R $USER:$GROUP /var/cache/chef
+    chown -R $USER:$GROUP /var/run/chef
   ;;
 
   abort-upgrade|abort-remove|abort-deconfigure)

@@ -26,39 +26,37 @@ rabbitmq_has_perms() {
 
 case "$1" in
   configure)
-    if [ ! -f $CONFIGFILE ]; then
-      db_get chef-solr/amqp_password && amqp_pass="$RET"
-			tsed=`mktemp -p ${TMPDIR}`
-			cat << EOF > $tsed
+    db_get chef-solr/amqp_password && amqp_pass="$RET"
+    tsed=`mktemp -p ${TMPDIR}`
+    cat << EOF > $tsed
 s/^amqp_pass \".*\"/amqp_pass \"${amqp_pass}\"/g
 EOF
-      if ! rabbitmq_has_vhost; then
-        rabbitmqctl add_vhost /chef
-      fi
-      if ! rabbitmq_has_user; then
-        # NOTE: Bug filed with upstream to allow password from a file.
-        rabbitmqctl add_user chef "$amqp_pass"
-      fi
-      if ! rabbitmq_has_perms; then
-        rabbitmqctl set_permissions -p /chef chef ".*" ".*" ".*"
-      fi
-      if [ -n "$amqp_pass" ]; then
-        sed -f $tsed $TEMPLATE > $TMPFILE
-      fi
-      ucf --debconf-ok $TMPFILE $CONFIGFILE
-      test -f $CONFIGFILE && chmod 0640 $CONFIGFILE
-			rm -rf $TMPDIR
-      if ! getent passwd chef > /dev/null; then
-        adduser --system --quiet \
-          --home /var/lib/chef --no-create-home \
-          --shell /bin/false --group --gecos "Chef Daemon" chef
-      fi
-      chown -R $USER:$GROUP /etc/chef
-      chown -R $USER:$GROUP /var/lib/chef
-      chown -R $USER:$GROUP /var/log/chef
-      chown -R $USER:$GROUP /var/cache/chef
-      chown -R $USER:$GROUP /var/run/chef
+    if ! rabbitmq_has_vhost; then
+      rabbitmqctl add_vhost /chef
     fi
+    if ! rabbitmq_has_user; then
+      # NOTE: Bug filed with upstream to allow password from a file.
+      rabbitmqctl add_user chef "$amqp_pass"
+    fi
+    if ! rabbitmq_has_perms; then
+      rabbitmqctl set_permissions -p /chef chef ".*" ".*" ".*"
+    fi
+    if [ -n "$amqp_pass" ]; then
+      sed -f $tsed $TEMPLATE > $TMPFILE
+    fi
+    ucf --debconf-ok $TMPFILE $CONFIGFILE
+    test -f $CONFIGFILE && chmod 0640 $CONFIGFILE
+    rm -rf $TMPDIR
+    if ! getent passwd chef > /dev/null; then
+      adduser --system --quiet \
+        --home /var/lib/chef --no-create-home \
+        --shell /bin/false --group --gecos "Chef Daemon" chef
+    fi
+    chown -R $USER:$GROUP /etc/chef
+    chown -R $USER:$GROUP /var/lib/chef
+    chown -R $USER:$GROUP /var/log/chef
+    chown -R $USER:$GROUP /var/cache/chef
+    chown -R $USER:$GROUP /var/run/chef
   ;;
 
   abort-upgrade|abort-remove|abort-deconfigure)

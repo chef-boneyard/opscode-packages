@@ -12,29 +12,27 @@ CONFIGFILE=/etc/chef/server.rb
 
 case "$1" in
   configure)
-    if [ ! -f $CONFIGFILE ]; then
-      db_get chef-solr/amqp_password && amqp_pass="$RET"
-			tsed=`mktemp -p ${TMPDIR}`
-			cat << EOF > $tsed
+    db_get chef-solr/amqp_password && amqp_pass="$RET"
+    tsed=`mktemp -p ${TMPDIR}`
+    cat << EOF > $tsed
 s/^amqp_pass \".*\"/amqp_pass \"${amqp_pass}\"/g
 EOF
-      if [ ! -z "$amqp_pass" ]; then
-        sed -f $tsed $TEMPLATE > $TMPFILE
-      fi
-      ucf --debconf-ok $TMPFILE $CONFIGFILE
-      test -f $CONFIGFILE && chmod 0640 $CONFIGFILE
-      rm -rf $TMPDIR
-      if ! getent passwd chef > /dev/null; then
-        adduser --system --quiet \
-          --home /var/lib/chef --no-create-home \
-          --shell /bin/false --group --gecos "Chef Daemon" chef
-      fi
-      chown -R $USER:$GROUP /etc/chef
-      chown -R $USER:$GROUP /var/lib/chef
-      chown -R $USER:$GROUP /var/log/chef
-      chown -R $USER:$GROUP /var/cache/chef
-      chown -R $USER:$GROUP /var/run/chef
+    if [ ! -z "$amqp_pass" ]; then
+      sed -f $tsed $TEMPLATE > $TMPFILE
     fi
+    ucf --debconf-ok $TMPFILE $CONFIGFILE
+    test -f $CONFIGFILE && chmod 0640 $CONFIGFILE
+    rm -rf $TMPDIR
+    if ! getent passwd chef > /dev/null; then
+      adduser --system --quiet \
+        --home /var/lib/chef --no-create-home \
+        --shell /bin/false --group --gecos "Chef Daemon" chef
+    fi
+    chown -R $USER:$GROUP /etc/chef
+    chown -R $USER:$GROUP /var/lib/chef
+    chown -R $USER:$GROUP /var/log/chef
+    chown -R $USER:$GROUP /var/cache/chef
+    chown -R $USER:$GROUP /var/run/chef
   ;;
 
   abort-upgrade|abort-remove|abort-deconfigure)
