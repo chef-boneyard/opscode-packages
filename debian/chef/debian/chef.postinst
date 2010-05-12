@@ -10,14 +10,12 @@ CONFIGFILE=/etc/chef/client.rb
 
 case "$1" in
   configure|reconfigure)
-    if [ ! -f $CONFIGFILE ]; then
-      db_get chef/chef_server_url && server_url="$RET"
-      if [ -n "$server_url" ]; then
-        sed "s#chef_server_url \".*\"#chef_server_url \"$server_url\"#" $TEMPLATE > $TMPFILE
-      fi
-      ucf --debconf-ok $TMPFILE $CONFIGFILE
-      test -f $CONFIGFILE && chmod 0640 $CONFIGFILE
+    db_get chef/chef_server_url && server_url="$RET"
+    if [ -n "$server_url" ]; then
+      sed "s#chef_server_url \".*\"#chef_server_url \"$server_url\"#" $TEMPLATE > $TMPFILE
     fi
+    ucf --debconf-ok $TMPFILE $CONFIGFILE
+    test -f $CONFIGFILE && chmod 0640 $CONFIGFILE
   ;;
 
   abort-upgrade|abort-remove|abort-deconfigure)

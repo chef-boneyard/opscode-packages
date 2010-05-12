@@ -10,7 +10,7 @@ Homepage: http://wiki.opscode.com/display/chef/Home
 
 Package: chef
 Architecture: all
-Depends: ${misc:Depends}, ruby1.8, liberubis-ruby1.8, libjson-ruby1.8, libextlib-ruby1.8 (>= 0.9.13-1), ohai (>= 0.4.0), libchef-ruby1.8 (= ${source:Version}), libopenssl-ruby1.8, libmixlib-authentication-ruby1.8 (>= 1.1.0-1), ucf
+Depends: ${misc:Depends}, ruby1.8, liberubis-ruby1.8, libjson-ruby1.8, libextlib-ruby1.8 (>= 0.9.13), ohai (>= 0.4.0), libchef-ruby1.8 (= ${source:Version}), libopenssl-ruby1.8, libmixlib-authentication-ruby1.8 (>= 1.1.0), ucf
 Recommends: irb1.8
 Description: System integration framework written in Ruby
  Chef is a systems integration framework and configuration management library
