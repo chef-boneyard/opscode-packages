@@ -1,3 +1,11 @@
+chef (0.8.16-2) unstable; urgency=low
+
+  * Remove conditional on CONFIGFILE existence. Fixes user creation on
+    upgrades.
+  * Loosen version requirements on dependencies for chef for backportability.
+
+ -- Joshua Timberman <joshua@opscode.com>  Wed, 12 May 2010 12:02:26 -0600
+
 chef (0.8.16-1) unstable; urgency=low
 
   * New upstream release (0.8.16).
