@@ -1,10 +1,10 @@
-ohai (0.5.4-3) lucid; urgency=low
+ohai (0.5.4-3) unstable; urgency=low
 
   * Fix remove_rubygems patch for new version of bin/ohai. 
 
  -- Joshua Timberman <joshua@opscode.com>  Tue, 11 May 2010 20:05:36 -0600
 
-ohai (0.5.4-2) lucid; urgency=low
+ohai (0.5.4-2) unstable; urgency=low
 
   * Fix source package for launchpad.
 
@@ -41,7 +41,7 @@ ohai (0.5.0-2) unstable; urgency=low
 
  -- Joshua Timberman <joshua@opscode.com>  Tue, 09 Mar 2010 19:21:06 -0700
 
-ohai (0.5.0-1) lucid; urgency=low
+ohai (0.5.0-1) unstable; urgency=low
 
   * New upstream release (0.5.0).
     * [OHAI-155] - Chef summons army of dmidecode Zombies
