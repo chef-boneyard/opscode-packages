@@ -1,3 +1,11 @@
+ohai (0.5.4-4) lucid; urgency=low
+
+  * Update standards version to 3.8.4.
+  * Fix use ohai binary from source instead of the one mangled by setup.rb.
+  * Build-depend graphviz so rdoc gets created properly for ohai-doc.
+
+ -- Joshua Timberman <joshua@opscode.com>  Wed, 12 May 2010 11:03:32 -0600
+
 ohai (0.5.4-3) unstable; urgency=low
 
   * Fix remove_rubygems patch for new version of bin/ohai. 
