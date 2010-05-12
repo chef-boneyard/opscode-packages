@@ -1,3 +1,15 @@
+ohai (0.5.4-3) lucid; urgency=low
+
+  * Fix remove_rubygems patch for new version of bin/ohai. 
+
+ -- Joshua Timberman <joshua@opscode.com>  Tue, 11 May 2010 20:05:36 -0600
+
+ohai (0.5.4-2) lucid; urgency=low
+
+  * Fix source package for launchpad.
+
+ -- Joshua Timberman <joshua@opscode.com>  Tue, 11 May 2010 17:26:26 -0600
+
 ohai (0.5.4-1) unstable; urgency=low
 
   * New upstream release (0.5.4).
