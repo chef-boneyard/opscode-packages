@@ -1,4 +1,4 @@
-ohai (0.5.4-4) lucid; urgency=low
+ohai (0.5.4-4) unstable; urgency=low
 
   * Update standards version to 3.8.4.
   * Fix use ohai binary from source instead of the one mangled by setup.rb.
