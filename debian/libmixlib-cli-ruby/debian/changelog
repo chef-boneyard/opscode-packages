@@ -1,3 +1,9 @@
+libmixlib-cli-ruby (1.2.0-1) unstable; urgency=low
+
+  * New upstream release.
+
+ -- Joshua Timberman <joshua@opscode.com>  Fri, 14 May 2010 14:55:56 -0600
+
 libmixlib-cli-ruby (1.1.0-1) unstable; urgency=low
 
   * New upstream version bump for consistency with upcoming Chef release.
