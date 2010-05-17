@@ -7,6 +7,7 @@ var/lib/chef/solr/solr-jetty/solr
 var/lib/chef/solr/solr-jetty/solr/WEB-INF
 var/cache/chef/solr/data
 var/log/chef
+var/run/chef
 etc/chef
 etc/chef/solr-jetty
 usr/sbin
