@@ -1,0 +1,29 @@
+Source: libformatador-ruby
+Section: ruby
+Priority: extra
+Maintainer: Joshua Timberman <joshua@opscode.com>
+Uploaders: Debian Ruby Extras Maintainers <pkg-ruby-extras-maintainers@lists.alioth.debian.org>
+Build-Depends: debhelper (>= 7), cdbs, ruby-pkg-tools (>= 0.14)
+Build-Depends-Indep: ruby1.8, libsetup-ruby1.8
+Standards-Version: 3.8.4
+Homepage: http://github.com/geemus/formatador
+
+Package: libformatador-ruby
+Architecture: all
+Depends: libformatador-ruby1.8, ${shlibs:Depends}, ${misc:Depends}
+Description: Ruby STDOUT text formatting library
+ formatador allows you to call class methods to print single lines or use
+ tags similar to HTML to set formatting options.
+ .
+ This package is a dependency package, which depends on the package
+ containing actual Ruby formatador libraries for the default Ruby version
+ (currently 1.8).
+
+Package: libformatador-ruby1.8
+Architecture: all
+Depends: ruby1.8, ${shlibs:Depends}, ${misc:Depends}
+Description: Ruby 1.8 STDOUT text formatting library
+ formatador allows you to call class methods to print single lines or use
+ tags similar to HTML to set formatting options.
+ .
+ This package contains formatador libraries for Ruby 1.8.

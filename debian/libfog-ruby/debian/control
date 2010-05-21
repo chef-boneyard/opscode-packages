@@ -1,0 +1,53 @@
+Source: libfog-ruby
+Section: ruby
+Priority: extra
+Maintainer: Joshua Timberman <joshua@opscode.com>
+Uploaders: Debian Ruby Extras Maintainers <pkg-ruby-extras-maintainers@lists.alioth.debian.org>
+Build-Depends: debhelper (>= 7), cdbs, ruby-pkg-tools (>= 0.14)
+Build-Depends-Indep: ruby1.8, libsetup-ruby1.8
+Standards-Version: 3.8.4
+Homepage: http://github.com/geemus/fog
+
+Package: libfog-ruby
+Architecture: all
+Depends: libfog-ruby1.8, ${shlibs:Depends}, ${misc:Depends}
+Description: Ruby cloud computing library
+ fog helps you interact with cloud services. The quick and dirty, top to bottom:
+ .
+ * Models provide a simplified interface, making clouds easier to
+   work with and switch between.
+ * Requests allow power users to get the most out of the features
+   of each individual cloud.
+ * Mocks make testing and integrating a breeze.
+ .
+ fog works with:
+ .
+ * AWS (EC2, S3, SimpleDB)
+ * Rackspace (Files, Servers)
+ * Slicehost
+ * Terremark vCloud Express
+ .
+ This package is a dependency package, which depends on the package
+ containing actual Ruby fog libraries for the default Ruby version
+ (currently 1.8).
+
+Package: libfog-ruby1.8
+Architecture: all
+Depends: ruby1.8, ${shlibs:Depends}, ${misc:Depends}, libexcon-ruby1.8 (>= 0.0.24), libformatador-ruby1.8 (>= 0.0.10), libhmac-ruby1.8, libjson-ruby1.8, libnet-ssh-ruby1.8, libnokogiri-ruby1.8, libmime-types-ruby
+Description: Ruby cloud computing library
+ fog helps you interact with cloud services. The quick and dirty, top to bottom:
+ .
+ * Models provide a simplified interface, making clouds easier to
+   work with and switch between.
+ * Requests allow power users to get the most out of the features
+   of each individual cloud.
+ * Mocks make testing and integrating a breeze.
+ .
+ fog works with:
+ .
+ * AWS (EC2, S3, SimpleDB)
+ * Rackspace (Files, Servers)
+ * Slicehost
+ * Terremark vCloud Express
+ .
+ This package contains fog libraries for Ruby 1.8.

@@ -1,0 +1,31 @@
+Source: libexcon-ruby
+Section: ruby
+Priority: extra
+Maintainer: Joshua Timberman <joshua@opscode.com>
+Uploaders: Debian Ruby Extras Maintainers <pkg-ruby-extras-maintainers@lists.alioth.debian.org>
+Build-Depends: debhelper (>= 7), cdbs, ruby-pkg-tools (>= 0.14)
+Build-Depends-Indep: ruby1.8, libsetup-ruby1.8
+Standards-Version: 3.8.4
+Homepage: http://github.com/geemus/excon
+
+Package: libexcon-ruby
+Architecture: all
+Depends: libexcon-ruby1.8, ${shlibs:Depends}, ${misc:Depends}
+Description: Ruby library for Http(s) EXtended CONnections
+ excon provides extended http(s) connection capability to return response
+ objects that contain body, headers and status attributes. It also allows
+ passing a block that allows processing each chunk in the results.
+ .
+ This package is a dependency package, which depends on the package
+ containing actual Ruby excon libraries for the default Ruby version
+ (currently 1.8).
+
+Package: libexcon-ruby1.8
+Architecture: all
+Depends: ruby1.8, ${shlibs:Depends}, ${misc:Depends}, libopenssl-ruby1.8
+Description: Ruby 1.8 library for Http(s) EXtended CONnections
+ excon provides extended http(s) connection capability to return response
+ objects that contain body, headers and status attributes. It also allows
+ passing a block that allows processing each chunk in the results.
+ .
+ This package contains excon libraries for Ruby 1.8.

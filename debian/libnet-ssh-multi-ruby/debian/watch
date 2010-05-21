@@ -1,0 +1,3 @@
+version=3
+http://rubyforge.org/frs/?group_id=274 \
+.*/net-ssh-multi-(.*)\.tar.gz
