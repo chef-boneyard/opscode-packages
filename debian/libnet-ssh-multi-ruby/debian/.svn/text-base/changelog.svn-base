@@ -1,5 +1,0 @@
-libnet-ssh-multi-ruby (1.0.1-1) unstable; urgency=low
-
-  * Initial release. (Closes: #574846)
-
- -- Joshua Timberman <joshua@opscode.com>  Sun, 21 Mar 2010 10:49:04 -0600
