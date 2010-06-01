@@ -8,6 +8,13 @@ Build-Depends-Indep: ruby1.8, libsetup-ruby1.8
 Standards-Version: 3.8.4
 Homepage: http://github.com/geemus/fog
 
+Package: fog
+Architecture: all
+Depends: libfog-ruby, ${shlibs:Depens}, ${misc:Depends}, irb
+Description: IRB console for Ruby cloud computing library
+  The fog commandline utility provides an IRB console session with the 
+  libfog-ruby preloaded and ready to use.
+
 Package: libfog-ruby
 Architecture: all
 Depends: libfog-ruby1.8, ${shlibs:Depends}, ${misc:Depends}

@@ -16,7 +16,7 @@ License:
 
 The Debian packaging is:
 
-    Copyright (C) 2009 Joshua Timberman <joshua@opscode.com>
+    Copyright (C) 2009 Opscode, Inc <legal@opscode.com>
 
 and is licensed under the LGPL version 2.1, 
 see `/usr/share/common-licenses/LGPL-2.1'.
