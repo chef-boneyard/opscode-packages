@@ -1,4 +1,5 @@
-# Description: Use ruby1.8 specifically as Chef doesn't support ruby1.9 yet.
+# Description: Use ruby1.8 specifically as Chef Solr/Server doesn't support
+# ruby1.9 yet.
 Index: chef-0.8.6/chef-solr/bin/chef-solr
 ===================================================================
 --- chef-0.8.6.orig/chef-solr/bin/chef-solr	2010-03-07 01:39:44.000000000 -0700

@@ -1,0 +1,10 @@
+# Description: remove rubygems
+Index: geemus-fog-a761d7e/lib/fog.rb
+===================================================================
+--- geemus-fog-a761d7e.orig/lib/fog.rb	2010-05-21 13:08:38.000000000 -0600
++++ geemus-fog-a761d7e/lib/fog.rb	2010-05-21 13:08:41.000000000 -0600
+@@ -1,4 +1,3 @@
+-require 'rubygems'
+ require 'base64'
+ require 'cgi'
+ require 'digest/md5'

@@ -1,3 +1,47 @@
+ohai (0.5.4-4) unstable; urgency=low
+
+  * Update standards version to 3.8.4.
+  * Fix use ohai binary from source instead of the one mangled by setup.rb.
+  * Build-depend graphviz so rdoc gets created properly for ohai-doc.
+
+ -- Joshua Timberman <joshua@opscode.com>  Wed, 12 May 2010 11:03:32 -0600
+
+ohai (0.5.4-3) unstable; urgency=low
+
+  * Fix remove_rubygems patch for new version of bin/ohai. 
+
+ -- Joshua Timberman <joshua@opscode.com>  Tue, 11 May 2010 20:05:36 -0600
+
+ohai (0.5.4-2) unstable; urgency=low
+
+  * Fix source package for launchpad.
+
+ -- Joshua Timberman <joshua@opscode.com>  Tue, 11 May 2010 17:26:26 -0600
+
+ohai (0.5.4-1) unstable; urgency=low
+
+  * New upstream release (0.5.4).
+    * [OHAI-185] - Specs fail on all platforms other than darwin
+    * [OHAI-187] - Ohai plugin breaks shef
+    * [OHAI-190] - Chef plugin for ohai uses the same namespace as the chef
+      attributes
+
+ -- Joshua Timberman <joshua@opscode.com>  Tue, 11 May 2010 16:37:21 -0600
+
+ohai (0.5.2-1) unstable; urgency=low
+
+  * New upstream release (0.5.2).
+    * [OHAI-170] - Rackspace cloud detection fails on machines with strictly intracloud traffic
+    * [OHAI-171] - executable script-without-shebang
+    * [OHAI-174] - ohai problems with dropping privileges
+    * [OHAI-159] - php plugin
+    * [OHAI-160] - lua plugin
+    * [OHAI-161] - mono plugin
+    * [OHAI-162] - groovy plugin
+    * [OHAI-178] - don't use ruby plugin to guess OS
+
+ -- Joshua Timberman <joshua@opscode.com>  Thu, 06 May 2010 23:09:49 -0600
+
 ohai (0.5.0-2) unstable; urgency=low
 
   * Remove rubygems patch missed bin/ohai. 
@@ -5,7 +49,7 @@ ohai (0.5.0-2) unstable; urgency=low
 
  -- Joshua Timberman <joshua@opscode.com>  Tue, 09 Mar 2010 19:21:06 -0700
 
-ohai (0.5.0-1) lucid; urgency=low
+ohai (0.5.0-1) unstable; urgency=low
 
   * New upstream release (0.5.0).
     * [OHAI-155] - Chef summons army of dmidecode Zombies

@@ -1,0 +1,48 @@
+.TH "FOG" "1" "May 2010" "" ""
+.
+.SH "NAME"
+\fBfog\fR \-\- Interactive Ruby REPL for fog
+.
+.SH "SYNOPSIS"
+\fBfog\fR \fI[CREDENTIAL]\fR
+.
+.SH "DESCRIPTION"
+\fBfog\fR is a command line REPL console used to work with cloud computing resources in an \fBirb(1)\fR.
+.
+.P
+It uses \fBlibfog\-ruby\fR to provide access to the APIs for various cloud computing offerings from Amazon EC2, Rackspace Cloud, Terremark vCloud and Slicehost.
+.
+.SH "USAGE"
+Create \fB~/.fog\fR with the credentials to use for the specific cloud computing APIs. Multiple credentials can be specified by \fICREDENTIAL\fR. The default if not specified is \fBdefault\fR. If \fBfog\fR cannot find the specified credntial in \fB~/.fog\fR it will display a message similar to the following.
+.
+.IP "" 4
+.
+.nf
+
+:default:
+  :aws_access_key_id:     INTENTIONALLY_LEFT_BLANK
+  :aws_secret_access_key: INTENTIONALLY_LEFT_BLANK
+  :rackspace_api_key:     INTENTIONALLY_LEFT_BLANK
+  :rackspace_username:    INTENTIONALLY_LEFT_BLANK
+  :slicehost_password:    INTENTIONALLY_LEFT_BLANK
+  :terremark_username:    INTENTIONALLY_LEFT_BLANK
+  :terremark_password:    INTENTIONALLY_LEFT_BLANK
+.
+.fi
+.
+.IP "" 0
+.
+.SH "AUTHOR"
+fog is Copyright (c) 2010 Wesley Beary and distributed under the MIT license:
+.
+.P
+Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+.
+.P
+The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+.
+.P
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+.
+.P
+This manual page was written by Joshua Timberman \fIjoshua@opscode.com\fR. Permission is granted to copy, distribute and / or modify this document under the terms of the MIT License, above.

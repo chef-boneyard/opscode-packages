@@ -1,0 +1,12 @@
+# Description: correct loading for fog when not installed in a RubyGems context
+Index: geemus-fog-a761d7e/bin/fog
+===================================================================
+--- geemus-fog-a761d7e.orig/bin/fog	2010-05-21 12:27:26.000000000 -0600
++++ geemus-fog-a761d7e/bin/fog	2010-05-21 12:27:37.000000000 -0600
+@@ -1,5 +1,5 @@
+ #!/usr/bin/env ruby
+-require File.join(File.dirname(__FILE__), '..', 'lib', 'fog')
++require 'fog'
+ require 'irb'
+ require 'yaml'
+ require File.join('fog', 'credentials')

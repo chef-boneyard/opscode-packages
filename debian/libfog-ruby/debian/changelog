@@ -1,0 +1,11 @@
+libfog-ruby (0.1.0-2) unstable; urgency=low
+
+  * quilt patch to fix load path for fog binary. 
+
+ -- Joshua Timberman <joshua@opscode.com>  Fri, 21 May 2010 13:24:26 -0600
+
+libfog-ruby (0.1.0-1) unstable; urgency=low
+
+  * Initial release. (Closes: #578229)
+
+ -- Joshua Timberman <joshua@opscode.com>  Thu, 20 May 2010 22:52:19 -0600

@@ -5,4 +5,8 @@ _Description: New password for the 'chef' AMQP user in the RabbitMQ vhost "/chef
   RabbitMQ's rabbitmqctl program to set this password. The default user
   and vhost are assumed (chef and /chef, respectively).
   .
+  RabbitMQ does not have the capability to read the password from a file, and
+  this will be passed via "" on the command-line. As such, do not use shell
+  meta-characters that could cause errors such as !.
+  .
   This will be used in /etc/chef/solr.rb and /etc/chef/server.rb as 'amqp_pass'.

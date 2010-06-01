@@ -1,32 +1,39 @@
-#!/bin/bash -e
+#!/bin/bash
+set -e
 
 . /usr/share/debconf/confmodule
+. /etc/default/chef-server
 
 export PATH=$PATH:/sbin:/usr/sbin:/bin:/usr/bin
-CONFIGFILE=/etc/chef/server.rb
 
-server_conf_has_pass() {
-  egrep -q "^amqp_pass \".*\"$" /etc/chef/server.rb
-}
+TEMPLATE=/usr/share/chef-server/server.rb
+TMPDIR=`mktemp -d` # used for holding temp files
+TMPFILE=`mktemp -p ${TMPDIR}` # used for holding rendered template
+CONFIGFILE=/etc/chef/server.rb
 
 case "$1" in
   configure)
     db_get chef-solr/amqp_password && amqp_pass="$RET"
-    if server_conf_has_pass && [ ! -z $amqp_pass ]; then
-      sed -i "s/amqp_pass \".*\"/amqp_pass \"$amqp_pass\"/g" $CONFIGFILE
-    elif [ ! -z $amqp_pass ]; then
-      echo "amqp_pass \"$amqp_pass\"" >> $CONFIGFILE
+    tsed=`mktemp -p ${TMPDIR}`
+    cat << EOF > $tsed
+s/^amqp_pass \".*\"/amqp_pass \"${amqp_pass}\"/g
+EOF
+    if [ ! -z "$amqp_pass" ]; then
+      sed -f $tsed $TEMPLATE > $TMPFILE
     fi
+    ucf --debconf-ok $TMPFILE $CONFIGFILE
+    test -f $CONFIGFILE && chmod 0640 $CONFIGFILE
+    rm -rf $TMPDIR
     if ! getent passwd chef > /dev/null; then
       adduser --system --quiet \
         --home /var/lib/chef --no-create-home \
-        --shell /bin/bash --group --gecos "Chef Daemon" chef
+        --shell /bin/false --group --gecos "Chef Daemon" chef
     fi
-    chown -R chef:chef /etc/chef
-    chown -R chef:chef /var/lib/chef
-    chown -R chef:chef /var/log/chef
-    chown -R chef:chef /var/cache/chef
-    chown -R chef:chef /var/run/chef
+    chown -R $USER:$GROUP /etc/chef
+    chown -R $USER:$GROUP /var/lib/chef
+    chown -R $USER:$GROUP /var/log/chef
+    chown -R $USER:$GROUP /var/cache/chef
+    chown -R $USER:$GROUP /var/run/chef
   ;;
 
   abort-upgrade|abort-remove|abort-deconfigure)

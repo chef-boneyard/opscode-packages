@@ -1,28 +1,22 @@
 # Description: Remove requirement of rubygems
 # Requiring RubyGems is discouraged by the Debian Ruby Extras team
 # per http://pkg-ruby-extras.alioth.debian.org/upstream-devs.html
-Index: opscode-ohai-68e07be/bin/ohai
+Index: ohai-0.5.4/bin/ohai
 ===================================================================
---- opscode-ohai-68e07be.orig/bin/ohai	2010-03-09 19:19:42.000000000 -0700
-+++ opscode-ohai-68e07be/bin/ohai	2010-03-09 19:19:47.000000000 -0700
-@@ -19,8 +19,6 @@
- # limitations under the License.
+--- ohai-0.5.4.orig/bin/ohai	2010-05-11 20:03:19.000000000 -0600
++++ ohai-0.5.4/bin/ohai	2010-05-11 20:04:27.000000000 -0600
+@@ -20,12 +20,8 @@
  #
  
--require 'rubygems'
--
- $: << File.join(File.dirname(__FILE__), "..", "lib")
+ 
+-begin
+-  require 'rubygems'
+-rescue LoadError
+-  # must be debian! ;)
+-  missing_rubygems = true
+-end
++# must be debian! ;)
++missing_rubygems = true
  begin
-   require 'rubygems'
-Index: opscode-ohai-68e07be/lib/ohai/system.rb
-===================================================================
---- opscode-ohai-68e07be.orig/lib/ohai/system.rb	2010-03-09 19:19:53.000000000 -0700
-+++ opscode-ohai-68e07be/lib/ohai/system.rb	2010-03-09 19:19:57.000000000 -0700
-@@ -16,7 +16,6 @@
- # limitations under the License.
- #
- 
--require 'rubygems'
- require 'extlib'
- require 'ohai/log'
- require 'ohai/mixin/from_file'
+   # if we're in a source code checkout, we want to run the code from that.
+   # have to do this *after* rubygems is loaded.

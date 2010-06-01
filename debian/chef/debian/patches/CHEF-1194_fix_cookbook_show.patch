@@ -1,0 +1,14 @@
+# Description: CHEF-1194 upstream typo bugfix.
+Index: chef-0.8.14+dfsg.orig/chef-server-webui/app/helpers/application_helper.rb
+===================================================================
+--- chef-0.8.14+dfsg.orig.orig/chef-server-webui/app/helpers/application_helper.rb	2010-05-08 20:20:39.000000000 -0600
++++ chef-0.8.14+dfsg.orig/chef-server-webui/app/helpers/application_helper.rb	2010-05-08 20:20:45.000000000 -0600
+@@ -112,7 +112,7 @@
+         count
+       end
+       
+-      def syntax_hightlight(uri)
++      def syntax_highlight(uri)
+         code = Chef::REST.new(Chef::Config[:chef_server_url]).get_rest(uri)
+         CodeRay.encode_tokens(CodeRay.scan(code, :ruby), :span)
+       end

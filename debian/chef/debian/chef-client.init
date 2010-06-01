@@ -1,14 +1,14 @@
 #! /bin/sh
 ### BEGIN INIT INFO
 # Provides:           chef-client
-# Required-Start:     $network
-# Required-Stop:      $network
+# Required-Start:     $remote_fs $network
+# Required-Stop:      $remote_fs $network
 # Default-Start:      2 3 4 5
 # Default-Stop:       0 1 6
 # Short-Description:  Start a chef-client.
 ### END INIT INFO
 #
-# Copyright (c) 2009 Joshua Timberman, <joshua@opscode.com>
+# Copyright (c) 2009-2010 Opscode, Inc, <legal@opscode.com>
 #
 # chef-client         Startup script for chef-client.
 # chkconfig: - 99 02
@@ -18,7 +18,7 @@ PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin
 DAEMON=/usr/bin/chef-client
 NAME=chef-client
 DESC=chef-client
-PIDFILE=/var/run/chef/client.pid
+PIDFILE=/var/run/chef-client.pid
 
 test -x $DAEMON || exit 0
 

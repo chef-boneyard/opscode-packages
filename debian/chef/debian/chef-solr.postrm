@@ -5,9 +5,14 @@
 
 set -e
 
+TEMPLATE=/usr/share/chef/solr.rb
+CONFIGFILE=/etc/chef/solr.rb
+
 case "$1" in
     purge)
       rm -rf /var/log/chef/solr*
+      test -x /usr/bin/ucf && ucf --purge $TEMPLATEFILE $CONFIGFILE
+      rm -rf $CONFIGFILE $CONFIGFILE.ucf-old $CONFIGFILE.ucf-new $CONFIGFILE.ucf-dist
     ;;
     remove|upgrade|failed-upgrade|abort-install|abort-upgrade|disappear)
     ;;

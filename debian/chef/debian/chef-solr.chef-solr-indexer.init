@@ -1,8 +1,8 @@
 #! /bin/sh
 ### BEGIN INIT INFO
 # Provides:           chef-solr-indexer
-# Required-Start:     $network
-# Required-Stop:      $network
+# Required-Start:     $remote_fs $network rabbitmq-server chef-solr
+# Required-Stop:      $remote_fs $network rabbitmq-server chef-solr
 # Default-Start:      2 3 4 5
 # Default-Stop:       0 1 6
 # Short-Description:  Start a chef-solr-indexer.
@@ -28,6 +28,7 @@ test -x $DAEMON || exit 0
 
 if [ ! -d /var/run/chef ]; then
   mkdir /var/run/chef
+  chown $USER:$GROUP /var/run/chef
 fi
 
 DAEMON_OPTS="-d -P $PIDFILE -c $CONFIG -L $LOGFILE -u $USER -g $GROUP"

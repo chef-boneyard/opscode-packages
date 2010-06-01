@@ -1,0 +1,1318 @@
+# Description: patch in the unminified jquery scripts for the minified
+# files we nuked with repack.sh.
+Index: chef-0.8.14+dfsg.orig/chef-server-webui/public/javascripts/jquery.tools.js
+===================================================================
+--- /dev/null	1970-01-01 00:00:00.000000000 +0000
++++ chef-0.8.14+dfsg.orig/chef-server-webui/public/javascripts/jquery.tools.js	2010-05-08 18:39:59.000000000 -0600
+@@ -0,0 +1,551 @@
++/**
++ * @license 
++ * jQuery Tools 1.2.0 / Mask - Dim the lights
++ * 
++ * NO COPYRIGHTS OR LICENSES. DO WHAT YOU LIKE.
++ * 
++ * http://flowplayer.org/tools/toolbox/mask.html
++ *
++ * Since: Mar 2010
++ * Date:    Tue Apr 20 19:26:58 2010 +0000 
++ */
++(function($) { 	
++
++	// static constructs
++	$.tools = $.tools || {version: '1.2.0'};
++	
++	var tool;
++	
++	tool = $.tools.expose = {
++		
++		conf: {	
++			maskId: 'exposeMask',
++			loadSpeed: 'slow',
++			closeSpeed: 'fast',
++			closeOnClick: true,
++			closeOnEsc: true,
++			
++			// css settings
++			zIndex: 9998,
++			opacity: 0.8,
++			startOpacity: 0,
++			color: '#fff',
++			
++			// callbacks
++			onLoad: null,
++			onClose: null
++		}
++	};
++
++	/* one of the greatest headaches in the tool. finally made it */
++	function viewport() {
++				
++		// the horror case
++		if ($.browser.msie) {
++			
++			// if there are no scrollbars then use window.height
++			var d = $(document).height(), w = $(window).height();
++			
++			return [
++				window.innerWidth || 							// ie7+
++				document.documentElement.clientWidth || 	// ie6  
++				document.body.clientWidth, 					// ie6 quirks mode
++				d - w < 20 ? w : d
++			];
++		} 
++		
++		// other well behaving browsers
++		return [$(window).width(), $(document).height()]; 
++	} 
++	
++	function call(fn) {
++		if (fn) { return fn.call($.mask); }
++	}
++	
++	var mask, exposed, loaded, config, overlayIndex;		
++	
++	
++	$.mask = {
++		
++		load: function(conf, els) {
++			
++			// already loaded ?
++			if (loaded) { return this; }			
++			
++			// configuration
++			if (typeof conf == 'string') {
++				conf = {color: conf};	
++			}
++			
++			// use latest config
++			conf = conf || config;
++			
++			config = conf = $.extend($.extend({}, tool.conf), conf);
++
++			// get the mask
++			mask = $("#" + conf.maskId);
++				
++			// or create it
++			if (!mask.length) {
++				mask = $('<div/>').attr("id", conf.maskId);
++				$("body").append(mask);
++			}
++			
++			// set position and dimensions 			
++			var size = viewport();
++				
++			mask.css({				
++				position:'absolute', 
++				top: 0, 
++				left: 0,
++				width: size[0],
++				height: size[1],
++				display: 'none',
++				opacity: conf.startOpacity,					 		
++				zIndex: conf.zIndex 
++			});
++			
++			// background color 
++			var bg = mask.css("backgroundColor");
++			
++			if (!bg || bg == 'transparent' || bg == 'rgba(0, 0, 0, 0)') {
++				mask.css("backgroundColor", conf.color);	
++			}			
++			
++			// onBeforeLoad
++			if (call(conf.onBeforeLoad) === false) {
++				return this;
++			}
++			
++			// esc button
++			if (conf.closeOnEsc) {						
++				$(document).bind("keydown.mask", function(e) {							
++					if (e.keyCode == 27) {
++						$.mask.close(e);	
++					}		
++				});			
++			}
++			
++			// mask click closes
++			if (conf.closeOnClick) {
++				mask.bind("click.mask", function(e)  {
++					$.mask.close(e);		
++				});					
++			}			
++			
++			// resize mask when window is resized
++			$(window).bind("resize.mask", function() {
++				$.mask.fit();
++			});
++			
++			// exposed elements
++			if (els && els.length) {
++				
++				overlayIndex = els.eq(0).css("zIndex");
++
++				// make sure element is positioned absolutely or relatively
++				$.each(els, function() {
++					var el = $(this);
++					if (!/relative|absolute|fixed/i.test(el.css("position"))) {
++						el.css("position", "relative");		
++					}					
++				});
++			 
++				// make elements sit on top of the mask
++				exposed = els.css({ zIndex: Math.max(conf.zIndex + 1, overlayIndex == 'auto' ? 0 : overlayIndex)});			
++			}	
++			
++			// reveal mask
++			mask.css({display: 'block'}).fadeTo(conf.loadSpeed, conf.opacity, function() {
++				$.mask.fit(); 
++				call(conf.onLoad);
++			});
++			
++			loaded = true;			
++			return this;				
++		},
++		
++		close: function() {
++			if (loaded) {
++				
++				// onBeforeClose
++				if (call(config.onBeforeClose) === false) { return this; }
++					
++				mask.fadeOut(config.closeSpeed, function()  {					
++					call(config.onClose);					
++					if (exposed) {
++						exposed.css({zIndex: overlayIndex});
++					}				
++				});				
++				
++				// unbind various event listeners
++				$(document).unbind("keydown.mask");
++				mask.unbind("click.mask");
++				$(window).unbind("resize.mask");
++	
++				loaded = false;
++			}
++			
++			return this; 
++		},
++		
++		fit: function() {
++			if (loaded) {
++				var size = viewport();				
++				mask.css({width: size[0], height: size[1]});
++			}				
++		},
++		
++		getMask: function() {
++			return mask;	
++		},
++		
++		isLoaded: function() {
++			return loaded;	
++		}, 
++		
++		getConf: function() {
++			return config;	
++		},
++		
++		getExposed: function() {
++			return exposed;	
++		}		
++	};
++	
++	$.fn.mask = function(conf) {
++		$.mask.load(conf);
++		return this;		
++	};			
++	
++	$.fn.expose = function(conf) {
++		$.mask.load(conf, this);
++		return this;			
++	};
++
++
++})(jQuery);
++/**
++ * @license 
++ * jQuery Tools 1.2.0 Tooltip - UI essentials
++ * 
++ * NO COPYRIGHTS OR LICENSES. DO WHAT YOU LIKE.
++ * 
++ * http://flowplayer.org/tools/tooltip/
++ *
++ * Since: November 2008
++ * Date:    Tue Apr 20 19:26:58 2010 +0000 
++ */
++(function($) { 
++
++	/* 
++		removed: oneInstance, lazy, 
++		tip must next to the trigger 
++		isShown(fully), layout, tipClass, layout
++	*/
++	
++	// static constructs
++	$.tools = $.tools || {version: '1.2.0'};
++	
++	$.tools.tooltip = {
++		
++		conf: { 
++			
++			// default effect variables
++			effect: 'toggle',			
++			fadeOutSpeed: "fast",
++			predelay: 0,
++			delay: 30,
++			opacity: 1,			
++			tip: 0,
++			
++			// 'top', 'bottom', 'right', 'left', 'center'
++			position: ['top', 'center'], 
++			offset: [0, 0],
++			relative: false,
++			cancelDefault: true,
++			
++			// type to event mapping 
++			events: {
++				def: 			"mouseenter,mouseleave",
++				input: 		"focus,blur",
++				widget:		"focus mouseenter,blur mouseleave",
++				tooltip:		"mouseenter,mouseleave"
++			},
++			
++			// 1.2
++			layout: '<div/>',
++			tipClass: 'tooltip'
++		},
++		
++		addEffect: function(name, loadFn, hideFn) {
++			effects[name] = [loadFn, hideFn];	
++		} 
++	};
++	
++	
++	var effects = { 
++		toggle: [ 
++			function(done) { 
++				var conf = this.getConf(), tip = this.getTip(), o = conf.opacity;
++				if (o < 1) { tip.css({opacity: o}); }
++				tip.show();
++				done.call();
++			},
++			
++			function(done) { 
++				this.getTip().hide();
++				done.call();
++			} 
++		],
++		
++		fade: [
++			function(done) { this.getTip().fadeIn(this.getConf().fadeInSpeed, done); },  
++			function(done) { this.getTip().fadeOut(this.getConf().fadeOutSpeed, done); } 
++		]		
++	};   
++
++		
++	/* calculate tip position relative to the trigger */  	
++	function getPosition(trigger, tip, conf) {	
++
++		
++		// get origin top/left position 
++		var top = conf.relative ? trigger.position().top : trigger.offset().top, 
++			 left = conf.relative ? trigger.position().left : trigger.offset().left,
++			 pos = conf.position[0];
++
++		top  -= tip.outerHeight() - conf.offset[0];
++		left += trigger.outerWidth() + conf.offset[1];
++		
++		// adjust Y		
++		var height = tip.outerHeight() + trigger.outerHeight();
++		if (pos == 'center') 	{ top += height / 2; }
++		if (pos == 'bottom') 	{ top += height; }
++		
++		// adjust X
++		pos = conf.position[1]; 	
++		var width = tip.outerWidth() + trigger.outerWidth();
++		if (pos == 'center') 	{ left -= width / 2; }
++		if (pos == 'left')   	{ left -= width; }	 
++		
++		return {top: top, left: left};
++	}		
++
++	
++	
++	function Tooltip(trigger, conf) {
++
++		var self = this, 
++			 fire = trigger.add(self),
++			 tip,
++			 timer = 0,
++			 pretimer = 0, 
++			 title = trigger.attr("title"),
++			 effect = effects[conf.effect],
++			 shown,
++				 
++			 // get show/hide configuration
++			 isInput = trigger.is(":input"), 
++			 isWidget = isInput && trigger.is(":checkbox, :radio, select, :button"),			
++			 type = trigger.attr("type"),
++			 evt = conf.events[type] || conf.events[isInput ? (isWidget ? 'widget' : 'input') : 'def']; 
++		
++		
++		// check that configuration is sane
++		if (!effect) { throw "Nonexistent effect \"" + conf.effect + "\""; }					
++		
++		evt = evt.split(/,\s*/); 
++		if (evt.length != 2) { throw "Tooltip: bad events configuration for " + type; } 
++		
++		
++		// trigger --> show  
++		trigger.bind(evt[0], function(e) {
++			if (conf.predelay) {
++				clearTimeout(timer);
++				pretimer = setTimeout(function() { self.show(e); }, conf.predelay);	
++				
++			} else {
++				self.show(e);	
++			}
++			
++		// trigger --> hide
++		}).bind(evt[1], function(e)  {
++			if (conf.delay)  {
++				clearTimeout(pretimer);
++				timer = setTimeout(function() { self.hide(e); }, conf.delay);	
++				
++			} else {
++				self.hide(e);		
++			}
++			
++		}); 
++		
++		
++		// remove default title
++		if (title && conf.cancelDefault) { 
++			trigger.removeAttr("title");
++			trigger.data("title", title);			
++		}		
++		
++		$.extend(self, {
++				
++			show: function(e) { 
++
++				// tip not initialized yet
++				if (!tip) {
++					
++					// find a "manual" tooltip
++					if (title) { 
++						tip = $(conf.layout).addClass(conf.tipClass).appendTo(document.body).hide();
++					} else if (conf.tip) { 
++						tip = $(conf.tip).eq(0);
++						
++					} else {	
++						tip = trigger.next();  
++						if (!tip.length) { tip = trigger.parent().next(); } 	 
++					}
++					
++					if (!tip.length) { throw "Cannot find tooltip for " + trigger;	}
++				} 
++			 	
++			 	if (self.isShown()) { return self; }  
++				
++			 	// stop previous animation
++			 	tip.stop(true, true); 
++			 	
++			 	
++				// get position
++				var pos = getPosition(trigger, tip, conf);			
++				
++				// title attribute
++				if (title) { tip.html(title); } 				
++				
++				// onBeforeShow
++				e = e || $.Event();
++				e.type = "onBeforeShow";
++				fire.trigger(e, [pos]);				
++				if (e.isDefaultPrevented()) { return self; }
++		
++				
++				// onBeforeShow may have altered the configuration
++				pos = getPosition(trigger, tip, conf);
++				
++				// set position
++				tip.css({position:'absolute', top: pos.top, left: pos.left});					
++				
++				shown = true;
++				
++				// invoke effect 
++				effect[0].call(self, function() {
++					e.type = "onShow";
++					shown = 'full';
++					fire.trigger(e);		 
++				});					
++
++	 	
++				// tooltip events       
++				var event = conf.events.tooltip.split(/,\s*/);
++
++				tip.bind(event[0], function() { 
++					clearTimeout(timer);
++					clearTimeout(pretimer);
++				});
++				
++				if (event[1] && !trigger.is("input:not(:checkbox, :radio), textarea")) { 					
++					tip.bind(event[1], function(e) {
++
++						// being moved to the trigger element
++						if (e.relatedTarget != trigger[0]) {
++							trigger.trigger(evt[1].split(" ")[0]);
++						}
++					}); 
++				} 
++				
++				return self;
++			},
++			
++			hide: function(e) {
++
++				if (!tip || !self.isShown()) { return self; }
++			
++				// onBeforeHide
++				e = e || $.Event();
++				e.type = "onBeforeHide";
++				fire.trigger(e);				
++				if (e.isDefaultPrevented()) { return; }
++	
++				shown = false;
++				
++				effects[conf.effect][1].call(self, function() {
++					e.type = "onHide";
++					shown = false;
++					fire.trigger(e);		 
++				});
++				
++				return self;
++			},
++			
++			isShown: function(fully) {
++				return fully ? shown == 'full' : shown;	
++			},
++				
++			getConf: function() {
++				return conf;	
++			},
++				
++			getTip: function() {
++				return tip;	
++			},
++			
++			getTrigger: function() {
++				return trigger;	
++			}		
++
++		});		
++
++		// callbacks	
++		$.each("onHide,onBeforeShow,onShow,onBeforeHide".split(","), function(i, name) {
++				
++			// configuration
++			if ($.isFunction(conf[name])) { 
++				$(self).bind(name, conf[name]); 
++			}
++
++			// API
++			self[name] = function(fn) {
++				$(self).bind(name, fn);
++				return self;
++			};
++		});
++		
++	}
++		
++	
++	// jQuery plugin implementation
++	$.fn.tooltip = function(conf) {
++		
++		// return existing instance
++		var api = this.data("tooltip");
++		if (api) { return api; }
++
++		conf = $.extend(true, {}, $.tools.tooltip.conf, conf);
++		
++		// position can also be given as string
++		if (typeof conf.position == 'string') {
++			conf.position = conf.position.split(/,?\s/);	
++		}
++		
++		// install tooltip for each entry in jQuery object
++		this.each(function() {
++			api = new Tooltip($(this), conf); 
++			$(this).data("tooltip", api); 
++		});
++		
++		return conf.api ? api: this;		 
++	};
++		
++}) (jQuery);
++
++		
++
+Index: chef-0.8.14+dfsg.orig/chef-server-webui/public/javascripts/yetii.js
+===================================================================
+--- /dev/null	1970-01-01 00:00:00.000000000 +0000
++++ chef-0.8.14+dfsg.orig/chef-server-webui/public/javascripts/yetii.js	2010-05-08 18:39:59.000000000 -0600
+@@ -0,0 +1,206 @@
++/*
++Yetii - Yet (E)Another Tab Interface Implementation
++version 1.6
++http://www.kminek.pl/lab/yetii/
++Copyright (c) Grzegorz Wojcik
++Code licensed under the BSD License:
++http://www.kminek.pl/bsdlicense.txt
++*/
++
++function Yetii() {
++
++	this.defaults = {
++		
++		id: null,
++		active: 1,
++		interval: null,
++		wait: null,
++		persist: null,
++		tabclass: 'tab',
++		activeclass: 'active',
++		callback: null,
++		leavecallback: null
++	
++	};
++	
++	this.activebackup = null;
++	
++	for (var n in arguments[0]) { this.defaults[n]=arguments[0][n]; };	
++	
++	this.getTabs = function() {
++        	
++        var retnode = [];
++        var elem = document.getElementById(this.defaults.id).getElementsByTagName('*');
++		
++		var regexp = new RegExp("(^|\\s)" + this.defaults.tabclass.replace(/\-/g, "\\-") + "(\\s|$)");
++	
++        for (var i = 0; i < elem.length; i++) {
++			if (regexp.test(elem[i].className)) retnode.push(elem[i]);
++        }
++    
++        return retnode;
++    
++    };
++	
++	this.links = document.getElementById(this.defaults.id + '-nav').getElementsByTagName('a');
++	this.listitems = document.getElementById(this.defaults.id + '-nav').getElementsByTagName('li');
++	
++	this.show = function(number) {
++        
++        for (var i = 0; i < this.tabs.length; i++) {
++			
++			this.tabs[i].style.display = ((i+1)==number) ? 'block' : 'none';
++				
++			if ((i+1)==number) {
++				this.addClass(this.links[i], this.defaults.activeclass);
++				this.addClass(this.listitems[i], this.defaults.activeclass + 'li');
++			} else {
++				this.removeClass(this.links[i], this.defaults.activeclass);
++				this.removeClass(this.listitems[i], this.defaults.activeclass + 'li');
++			}
++		
++		}
++		
++		
++		if (this.defaults.leavecallback && (number != this.activebackup)) this.defaults.leavecallback(this.defaults.active);
++		
++		this.activebackup = number;
++		
++		
++		this.defaults.active = number;
++		
++		if (this.defaults.callback) this.defaults.callback(number);
++		
++    
++    };
++	
++	this.rotate = function(interval) {
++    
++        this.show(this.defaults.active);
++        this.defaults.active++;
++    
++        if (this.defaults.active > this.tabs.length) this.defaults.active = 1;
++    
++	
++        var self = this;
++		
++		if (this.defaults.wait) clearTimeout(this.timer2);
++		 
++        this.timer1 = setTimeout(function(){self.rotate(interval);}, interval*1000);
++    
++    };
++	
++	this.next = function() {
++
++        var _target = (this.defaults.active + 1 > this.tabs.length) ? 1 : this.defaults.active + 1;
++        this.show(_target);
++        this.defaults.active = _target;
++
++    };
++	
++	this.previous = function() {
++
++        var _target = ((this.defaults.active - 1) == 0) ? this.tabs.length : this.defaults.active - 1;
++        this.show(_target);
++        this.defaults.active = _target; 
++
++    };
++	
++	this.previous = function() {
++		
++		this.defaults.active--;
++    	if(!this.defaults.active) this.defaults.active = this.tabs.length;
++		this.show(this.defaults.active);
++	
++	};
++	
++	this.gup = function(name) {
++		name = name.replace(/[\[]/,"\\\[").replace(/[\]]/,"\\\]");
++		var regexS = "[\\?&]"+name+"=([^&#]*)";
++		var regex = new RegExp( regexS );
++		var results = regex.exec( window.location.href );
++		if (results == null) return null;
++		else return results[1];
++	};
++	
++	this.parseurl = function(tabinterfaceid) {
++		
++		var result = this.gup(tabinterfaceid);
++		
++		if (result==null) return null;
++		if (parseInt(result)) return parseInt(result); 
++		if (document.getElementById(result)) {	
++			for (var i=0;i<this.tabs.length;i++) {
++				if (this.tabs[i].id == result) return (i+1);
++			}
++		}
++		
++		return null;
++		
++	};
++
++	this.createCookie = function(name,value,days) {
++		if (days) {
++			var date = new Date();
++			date.setTime(date.getTime()+(days*24*60*60*1000));
++			var expires = "; expires="+date.toGMTString();
++		}
++		else var expires = "";
++		document.cookie = name+"="+value+expires+"; path=/";
++	};
++	
++	this.readCookie = function(name) {
++		var nameEQ = name + "=";
++		var ca = document.cookie.split(';');
++		for(var i=0;i < ca.length;i++) {
++			var c = ca[i];
++			while (c.charAt(0)==' ') c = c.substring(1,c.length);
++			if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length,c.length);
++		}
++		return null;
++	};
++	
++	this.contains = function(el, item, from) {
++		return el.indexOf(item, from) != -1;
++	};
++	
++	this.hasClass = function(el, className){
++		return this.contains(el.className, className, ' ');
++	};
++	
++	this.addClass = function(el, className){
++		if (!this.hasClass(el, className)) el.className = (el.className + ' ' + className).replace(/\s{2,}/g, ' ').replace(/^\s+|\s+$/g, '');
++	};
++	
++	this.removeClass = function(el, className){
++		el.className = el.className.replace(new RegExp('(^|\\s)' + className + '(?:\\s|$)'), '$1');
++		el.className.replace(/\s{2,}/g, ' ').replace(/^\s+|\s+$/g, '');
++	};
++
++
++	this.tabs = this.getTabs();
++	this.defaults.active = (this.parseurl(this.defaults.id)) ? this.parseurl(this.defaults.id) : this.defaults.active;
++	if (this.defaults.persist && this.readCookie(this.defaults.id)) this.defaults.active = this.readCookie(this.defaults.id);  
++	this.activebackup = this.defaults.active;
++	this.show(this.defaults.active);
++	
++	var self = this;
++	for (var i = 0; i < this.links.length; i++) {
++	this.links[i].customindex = i+1;
++	this.links[i].onclick = function(){ 
++		
++		if (self.timer1) clearTimeout(self.timer1);
++		if (self.timer2) clearTimeout(self.timer2); 
++		
++		self.show(this.customindex);
++		if (self.defaults.persist) self.createCookie(self.defaults.id, this.customindex, 0);
++		
++		if (self.defaults.wait) self.timer2 = setTimeout(function(){self.rotate(self.defaults.interval);}, self.defaults.wait*1000);
++		
++		return false;
++	};
++    }
++	
++	if (this.defaults.interval) this.rotate(this.defaults.interval);
++	
++};
+Index: chef-0.8.14+dfsg.orig/chef-server-webui/public/javascripts/jquery.jeditable.js
+===================================================================
+--- /dev/null	1970-01-01 00:00:00.000000000 +0000
++++ chef-0.8.14+dfsg.orig/chef-server-webui/public/javascripts/jquery.jeditable.js	2010-05-08 18:45:09.000000000 -0600
+@@ -0,0 +1,544 @@
++/*
++ * Jeditable - jQuery in place edit plugin
++ *
++ * Copyright (c) 2006-2009 Mika Tuupola, Dylan Verheul
++ *
++ * Licensed under the MIT license:
++ *   http://www.opensource.org/licenses/mit-license.php
++ *
++ * Project home:
++ *   http://www.appelsiini.net/projects/jeditable
++ *
++ * Based on editable by Dylan Verheul <dylan_at_dyve.net>:
++ *    http://www.dyve.net/jquery/?editable
++ *
++ */
++
++/**
++  * Version 1.7.1
++  *
++  * ** means there is basic unit tests for this parameter. 
++  *
++  * @name  Jeditable
++  * @type  jQuery
++  * @param String  target             (POST) URL or function to send edited content to **
++  * @param Hash    options            additional options 
++  * @param String  options[method]    method to use to send edited content (POST or PUT) **
++  * @param Function options[callback] Function to run after submitting edited content **
++  * @param String  options[name]      POST parameter name of edited content
++  * @param String  options[id]        POST parameter name of edited div id
++  * @param Hash    options[submitdata] Extra parameters to send when submitting edited content.
++  * @param String  options[type]      text, textarea or select (or any 3rd party input type) **
++  * @param Integer options[rows]      number of rows if using textarea ** 
++  * @param Integer options[cols]      number of columns if using textarea **
++  * @param Mixed   options[height]    'auto', 'none' or height in pixels **
++  * @param Mixed   options[width]     'auto', 'none' or width in pixels **
++  * @param String  options[loadurl]   URL to fetch input content before editing **
++  * @param String  options[loadtype]  Request type for load url. Should be GET or POST.
++  * @param String  options[loadtext]  Text to display while loading external content.
++  * @param Mixed   options[loaddata]  Extra parameters to pass when fetching content before editing.
++  * @param Mixed   options[data]      Or content given as paramameter. String or function.**
++  * @param String  options[indicator] indicator html to show when saving
++  * @param String  options[tooltip]   optional tooltip text via title attribute **
++  * @param String  options[event]     jQuery event such as 'click' of 'dblclick' **
++  * @param String  options[submit]    submit button value, empty means no button **
++  * @param String  options[cancel]    cancel button value, empty means no button **
++  * @param String  options[cssclass]  CSS class to apply to input form. 'inherit' to copy from parent. **
++  * @param String  options[style]     Style to apply to input form 'inherit' to copy from parent. **
++  * @param String  options[select]    true or false, when true text is highlighted ??
++  * @param String  options[placeholder] Placeholder text or html to insert when element is empty. **
++  * @param String  options[onblur]    'cancel', 'submit', 'ignore' or function ??
++  *             
++  * @param Function options[onsubmit] function(settings, original) { ... } called before submit
++  * @param Function options[onreset]  function(settings, original) { ... } called before reset
++  * @param Function options[onerror]  function(settings, original, xhr) { ... } called on error
++  *             
++  * @param Hash    options[ajaxoptions]  jQuery Ajax options. See docs.jquery.com.
++  *             
++  */
++
++(function($) {
++
++    $.fn.editable = function(target, options) {
++            
++        if ('disable' == target) {
++            $(this).data('disabled.editable', true);
++            return;
++        }
++        if ('enable' == target) {
++            $(this).data('disabled.editable', false);
++            return;
++        }
++        if ('destroy' == target) {
++            $(this)
++                .unbind($(this).data('event.editable'))
++                .removeData('disabled.editable')
++                .removeData('event.editable');
++            return;
++        }
++        
++        var settings = $.extend({}, $.fn.editable.defaults, {target:target}, options);
++        
++        /* setup some functions */
++        var plugin   = $.editable.types[settings.type].plugin || function() { };
++        var submit   = $.editable.types[settings.type].submit || function() { };
++        var buttons  = $.editable.types[settings.type].buttons 
++                    || $.editable.types['defaults'].buttons;
++        var content  = $.editable.types[settings.type].content 
++                    || $.editable.types['defaults'].content;
++        var element  = $.editable.types[settings.type].element 
++                    || $.editable.types['defaults'].element;
++        var reset    = $.editable.types[settings.type].reset 
++                    || $.editable.types['defaults'].reset;
++        var callback = settings.callback || function() { };
++        var onedit   = settings.onedit   || function() { }; 
++        var onsubmit = settings.onsubmit || function() { };
++        var onreset  = settings.onreset  || function() { };
++        var onerror  = settings.onerror  || reset;
++          
++        /* show tooltip */
++        if (settings.tooltip) {
++            $(this).attr('title', settings.tooltip);
++        }
++        
++        settings.autowidth  = 'auto' == settings.width;
++        settings.autoheight = 'auto' == settings.height;
++        
++        return this.each(function() {
++                        
++            /* save this to self because this changes when scope changes */
++            var self = this;  
++                   
++            /* inlined block elements lose their width and height after first edit */
++            /* save them for later use as workaround */
++            var savedwidth  = $(self).width();
++            var savedheight = $(self).height();
++            
++            /* save so it can be later used by $.editable('destroy') */
++            $(this).data('event.editable', settings.event);
++            
++            /* if element is empty add something clickable (if requested) */
++            if (!$.trim($(this).html())) {
++                $(this).html(settings.placeholder);
++            }
++            
++            $(this).bind(settings.event, function(e) {
++                
++                /* abort if disabled for this element */
++                if (true === $(this).data('disabled.editable')) {
++                    return;
++                }
++                
++                /* prevent throwing an exeption if edit field is clicked again */
++                if (self.editing) {
++                    return;
++                }
++                
++                /* abort if onedit hook returns false */
++                if (false === onedit.apply(this, [settings, self])) {
++                   return;
++                }
++                
++                /* prevent default action and bubbling */
++                e.preventDefault();
++                e.stopPropagation();
++                
++                /* remove tooltip */
++                if (settings.tooltip) {
++                    $(self).removeAttr('title');
++                }
++                
++                /* figure out how wide and tall we are, saved width and height */
++                /* are workaround for http://dev.jquery.com/ticket/2190 */
++                if (0 == $(self).width()) {
++                    //$(self).css('visibility', 'hidden');
++                    settings.width  = savedwidth;
++                    settings.height = savedheight;
++                } else {
++                    if (settings.width != 'none') {
++                        settings.width = 
++                            settings.autowidth ? $(self).width()  : settings.width;
++                    }
++                    if (settings.height != 'none') {
++                        settings.height = 
++                            settings.autoheight ? $(self).height() : settings.height;
++                    }
++                }
++                //$(this).css('visibility', '');
++                
++                /* remove placeholder text, replace is here because of IE */
++                if ($(this).html().toLowerCase().replace(/(;|")/g, '') == 
++                    settings.placeholder.toLowerCase().replace(/(;|")/g, '')) {
++                        $(this).html('');
++                }
++                                
++                self.editing    = true;
++                self.revert     = $(self).html();
++                $(self).html('');
++
++                /* create the form object */
++                var form = $('<form />');
++                
++                /* apply css or style or both */
++                if (settings.cssclass) {
++                    if ('inherit' == settings.cssclass) {
++                        form.attr('class', $(self).attr('class'));
++                    } else {
++                        form.attr('class', settings.cssclass);
++                    }
++                }
++
++                if (settings.style) {
++                    if ('inherit' == settings.style) {
++                        form.attr('style', $(self).attr('style'));
++                        /* IE needs the second line or display wont be inherited */
++                        form.css('display', $(self).css('display'));                
++                    } else {
++                        form.attr('style', settings.style);
++                    }
++                }
++
++                /* add main input element to form and store it in input */
++                var input = element.apply(form, [settings, self]);
++
++                /* set input content via POST, GET, given data or existing value */
++                var input_content;
++                
++                if (settings.loadurl) {
++                    var t = setTimeout(function() {
++                        input.disabled = true;
++                        content.apply(form, [settings.loadtext, settings, self]);
++                    }, 100);
++
++                    var loaddata = {};
++                    loaddata[settings.id] = self.id;
++                    if ($.isFunction(settings.loaddata)) {
++                        $.extend(loaddata, settings.loaddata.apply(self, [self.revert, settings]));
++                    } else {
++                        $.extend(loaddata, settings.loaddata);
++                    }
++                    $.ajax({
++                       type : settings.loadtype,
++                       url  : settings.loadurl,
++                       data : loaddata,
++                       async : false,
++                       success: function(result) {
++                          window.clearTimeout(t);
++                          input_content = result;
++                          input.disabled = false;
++                       }
++                    });
++                } else if (settings.data) {
++                    input_content = settings.data;
++                    if ($.isFunction(settings.data)) {
++                        input_content = settings.data.apply(self, [self.revert, settings]);
++                    }
++                } else {
++                    input_content = self.revert; 
++                }
++                content.apply(form, [input_content, settings, self]);
++
++                input.attr('name', settings.name);
++        
++                /* add buttons to the form */
++                buttons.apply(form, [settings, self]);
++         
++                /* add created form to self */
++                $(self).append(form);
++         
++                /* attach 3rd party plugin if requested */
++                plugin.apply(form, [settings, self]);
++
++                /* focus to first visible form element */
++                $(':input:visible:enabled:first', form).focus();
++
++                /* highlight input contents when requested */
++                if (settings.select) {
++                    input.select();
++                }
++        
++                /* discard changes if pressing esc */
++                input.keydown(function(e) {
++                    if (e.keyCode == 27) {
++                        e.preventDefault();
++                        //self.reset();
++                        reset.apply(form, [settings, self]);
++                    }
++                });
++
++                /* discard, submit or nothing with changes when clicking outside */
++                /* do nothing is usable when navigating with tab */
++                var t;
++                if ('cancel' == settings.onblur) {
++                    input.blur(function(e) {
++                        /* prevent canceling if submit was clicked */
++                        t = setTimeout(function() {
++               58 24351   58 14202    0     0  79686      0 --:--:-- --:--:-- --:--:--  101k              reset.apply(form, [settings, self]);
++                        }, 500);
++                    });
++                } else if ('submit' == settings.onblur) {
++                    input.blur(function(e) {
++                        /* prevent double submit if submit was clicked */
++                        t = setTimeout(function() {
++                            form.submit();
++                        }, 200);
++                    });
++                } else if ($.isFunction(settings.onblur)) {
++                    input.blur(function(e) {
++                        settings.onblur.apply(self, [input.val(), settings]);
++                    });
++                } else {
++                    input.blur(function(e) {
++                      /* TODO: maybe something here */
++                    });
++                }
++
++                form.submit(function(e) {
++
++                    if (t) { 
++                        clearTimeout(t);
++                    }
++
++                    /* do no submit */
++                    e.preventDefault(); 
++            
++                    /* call before submit hook. */
++                    /* if it returns false abort submitting */                    
++                    if (false !== onsubmit.apply(form, [settings, self])) { 
++                        /* custom inputs call before submit hook. */
++                        /* if it returns false abort submitting */
++                        if (false !== submit.apply(form, [settings, self])) { 
++
++                          /* check if given target is function */
++                          if ($.isFunction(settings.target)) {
++                              var str = settings.target.apply(self, [input.val(), settings]);
++                              $(self).html(str);
++                              self.editing = false;
++                              callback.apply(self, [self.innerHTML, settings]);
++                              /* TODO: this is not dry */                              
++                              if (!$.trim($(self).html())) {
++                                  $(self).html(settings.placeholder);
++                              }
++                          } else {
++                              /* add edited content and id of edited element to POST */
++                              var submitdata = {};
++                              submitdata[settings.name] = input.val();
++                              submitdata[settings.id] = self.id;
++                              /* add extra data to be POST:ed */
++                              if ($.isFunction(settings.submitdata)) {
++                                  $.extend(submitdata, settings.submitdata.apply(self, [self.revert, settings]));
++                              } else {
++                                  $.extend(submitdata, settings.submitdata);
++                              }
++
++                              /* quick and dirty PUT support */
++                              if ('PUT' == settings.method) {
++                                  submitdata['_method'] = 'put';
++                              }
++
++                              /* show the saving indicator */
++                              $(self).html(settings.indicator);
++                              
++                              /* defaults for ajaxoptions */
++                              var ajaxoptions = {
++                                  type    : 'POST',
++                                  data    : submitdata,
++                                  dataType: 'html',
++                                  url     : settings.target,
++                                  success : function(result, status) {
++                                      if (ajaxoptions.dataType == 'html') {
++                                        $(self).html(result);
++                                      }
++                                      self.editing = false;
++                                      callback.apply(self, [result, settings]);
++                                      if (!$.trim($(self).html())) {
++                                          $(self).html(settings.placeholder);
++                                      }
++                                  },
++                                  error   : function(xhr, status, error) {
++                                      onerror.apply(form, [settings, self, xhr]);
++                                  }
++                              };
++                              
++                              /* override with what is given in settings.ajaxoptions */
++                              $.extend(ajaxoptions, settings.ajaxoptions);   
++                              $.ajax(ajaxoptions);          
++                              
++                            }
++                        }
++                    }
++                    
++                    /* show tooltip again */
++                    $(self).attr('title', settings.tooltip);
++                    
++                    return false;
++                });
++            });
++            
++            /* privileged methods */
++            this.reset = function(form) {
++                /* prevent calling reset twice when blurring */
++                if (this.editing) {
++                    /* before reset hook, if it returns false abort reseting */
++                    if (false !== onreset.apply(form, [settings, self])) { 
++                        $(self).html(self.revert);
++                        self.editing   = false;
++                        if (!$.trim($(self).html())) {
++                            $(self).html(settings.placeholder);
++                        }
++                        /* show tooltip again */
++                        if (settings.tooltip) {
++                            $(self).attr('title', settings.tooltip);                
++                        }
++                    }                    
++                }
++            };            
++        });
++
++    };
++
++
++    $.editable = {
++        types: {
++            defaults: {
++                element : function(settings, original) {
++                    var input = $('<input type="hidden"></input>');                
++                    $(this).append(input);
++                    return(input);
++                },
++                content : function(string, settings, original) {
++                    $(':input:first', this).val(string);
++                },
++                reset : function(settings, original) {
++                  original.reset(this);
++                },
++                buttons : function(settings, original) {
++                    var form = this;
++                    if (settings.submit) {
++                        /* if given html string use that */
++                        if (settings.submit.match(/>$/)) {
++                            var submit = $(settings.submit).click(function() {
++                                if (submit.attr("type") != "submit") {
++                                    form.submit();
++                                }
++                            });
++                        /* otherwise use button with given string as text */
++                        } else {
++                            var submit = $('<button type="submit" />');
++                            submit.html(settings.submit);                            
++                        }
++                        $(this).append(submit);
++                    }
++                    if (settings.cancel) {
++                        /* if given html string use that */
++                        if (settings.cancel.match(/>$/)) {
++                            var cancel = $(settings.cancel);
++                        /* otherwise use button with given string as text */
++                        } else {
++                            var cancel = $('<button type="cancel" />');
++                            cancel.html(settings.cancel);
++                        }
++                        $(this).append(cancel);
++
++                        $(cancel).click(function(event) {
++                            //original.reset();
++                            if ($.isFunction($.editable.types[settings.type].reset)) {
++                                var reset = $.editable.types[settings.type].reset;                                                            100 24351  100 24351    0     0   130k      0 --:--:-- --:--:-- --:--:--  169k
++    
++                            } else {
++                                var reset = $.editable.types['defaults'].reset;                                
++                            }
++                            reset.apply(form, [settings, original]);
++                            return false;
++                        });
++                    }
++                }
++            },
++            text: {
++                element : function(settings, original) {
++                    var input = $('<input />');
++                    if (settings.width  != 'none') { input.width(settings.width);  }
++                    if (settings.height != 'none') { input.height(settings.height); }
++                    /* https://bugzilla.mozilla.org/show_bug.cgi?id=236791 */
++                    //input[0].setAttribute('autocomplete','off');
++                    input.attr('autocomplete','off');
++                    $(this).append(input);
++                    return(input);
++                }
++            },
++            textarea: {
++                element : function(settings, original) {
++                    var textarea = $('<textarea />');
++                    if (settings.rows) {
++                        textarea.attr('rows', settings.rows);
++                    } else if (settings.height != "none") {
++                        textarea.height(settings.height);
++                    }
++                    if (settings.cols) {
++                        textarea.attr('cols', settings.cols);
++                    } else if (settings.width != "none") {
++                        textarea.width(settings.width);
++                    }
++                    $(this).append(textarea);
++                    return(textarea);
++                }
++            },
++            select: {
++               element : function(settings, original) {
++                    var select = $('<select />');
++                    $(this).append(select);
++                    return(select);
++                },
++                content : function(data, settings, original) {
++                    /* If it is string assume it is json. */
++                    if (String == data.constructor) {      
++                        eval ('var json = ' + data);
++                    } else {
++                    /* Otherwise assume it is a hash already. */
++                        var json = data;
++                    }
++                    for (var key in json) {
++                        if (!json.hasOwnProperty(key)) {
++                            continue;
++                        }
++                        if ('selected' == key) {
++                            continue;
++                        } 
++                        var option = $('<option />').val(key).append(json[key]);
++                        $('select', this).append(option);    
++                    }                    
++                    /* Loop option again to set selected. IE needed this... */ 
++                    $('select', this).children().each(function() {
++                        if ($(this).val() == json['selected'] || 
++                            $(this).text() == $.trim(original.revert)) {
++                                $(this).attr('selected', 'selected');
++                        }
++                    });
++                }
++            }
++        },
++
++        /* Add new input type */
++        addInputType: function(name, input) {
++            $.editable.types[name] = input;
++        }
++    };
++
++    // publicly accessible defaults
++    $.fn.editable.defaults = {
++        name       : 'value',
++        id         : 'id',
++        type       : 'text',
++        width      : 'auto',
++        height     : 'auto',
++        event      : 'click.editable',
++        onblur     : 'cancel',
++        loadtype   : 'GET',
++        loadtext   : 'Loading...',
++        placeholder: 'Click to edit',
++        loaddata   : {},
++        submitdata : {},
++        ajaxoptions: {}
++    };
++
++})(jQuery);

@@ -1,0 +1,13 @@
+# Description: set the jquery-ui version to the same from the debian package.
+Index: chef-0.8.10/chef-server-webui/app/views/layout/chef_server_webui.html.haml
+===================================================================
+--- chef-0.8.10.orig/chef-server-webui/app/views/layout/chef_server_webui.html.haml     2010-05-06 21:53:38.000000000 -0600
++++ chef-0.8.10/chef-server-webui/app/views/layout/chef_server_webui.html.haml  2010-05-06 21:54:28.000000000 -0600
+@@ -7,7 +7,7 @@
+     = css_include_tag "base", "themes/djime-cerulean/style", "chef", "/facebox/facebox.css", "jquery-ui-1.7.1.custom", "jquery.treeTable", "jsonedit_main.css"
+     = js_include_tag "jquery-1.3.2.min", "jquery.jeditable.mini", "jquery.livequery", "jquery.localscroll", "jquery.scrollTo", "jquery.tools.min"
+     = js_include_tag "/facebox/facebox.js"
+-    = js_include_tag "jquery-ui-1.7.1.custom.min"
++    = js_include_tag "jquery-ui-1.7.2.custom.min"
+     = js_include_tag "jquery.treeTable.min"
+     = js_include_tag "chef"
