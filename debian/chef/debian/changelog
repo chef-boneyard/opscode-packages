@@ -1,3 +1,9 @@
+chef (0.8.16-5) unstable; urgency=low
+
+  * chef-client.init pidfile location (Closes: #584816)
+
+ -- Joshua Timberman <joshua@opscode.com>  Wed, 09 Jun 2010 02:00:10 -0600
+
 chef (0.8.16-4) unstable; urgency=low
 
   * chef-client runs as root, create the pid file in /var/run. 

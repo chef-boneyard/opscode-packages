@@ -18,7 +18,7 @@ PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin
 DAEMON=/usr/bin/chef-client
 NAME=chef-client
 DESC=chef-client
-PIDFILE=/var/run/chef-client.pid
+PIDFILE=/var/run/chef/client.pid
 
 test -x $DAEMON || exit 0
 
