@@ -32,11 +32,17 @@ CHEF_REMOVE_SETUP_CMD = \
     mv chef/$(DEB_RUBY_SETUP_CMD).moved_away_by_debian_build chef/$(DEB_RUBY_SETUP_CMD) ; \
   fi
 
+install/chef-knife::
+	cp -f chef/distro/common/man/man8/knife.8 debian/chef-knife/usr/share/man/man8
+
 install/chef::
 	# init script name is different from the package:
 	dh_installinit --name chef-client -- defaults 99 02
 	cp -rf $(CURDIR)/debian/etc/chef/client.rb $(CURDIR)/debian/chef/usr/share/chef
 	cp -rf $(CURDIR)/debian/etc/chef/solo.rb $(CURDIR)/debian/chef/usr/share/chef
+	cp -f chef/distro/common/man/man8/chef-client.8 debian/chef/usr/share/man/man8
+	cp -f chef/distro/common/man/man8/chef-solo.8 debian/chef/usr/share/man/man8
+	cp -f chef/distro/debian/etc/default/chef-client debian/chef/etc/default
 
 install/libchef-ruby1.8::
 	# straight setup.rb won't build this correctly, see comment at top.
@@ -47,8 +53,8 @@ install/libchef-ruby1.8::
 	mkdir -p $(CURDIR)/debian/chef/usr/bin
 	mv $(CURDIR)/debian/libchef-ruby1.8/usr/bin/chef-client $(CURDIR)/debian/chef/usr/bin/
 	mv $(CURDIR)/debian/libchef-ruby1.8/usr/bin/chef-solo $(CURDIR)/debian/chef/usr/bin/
-	mv $(CURDIR)/debian/libchef-ruby1.8/usr/bin/knife $(CURDIR)/debian/chef/usr/bin/
 	mv $(CURDIR)/debian/libchef-ruby1.8/usr/bin/shef $(CURDIR)/debian/chef/usr/bin/
+	mv $(CURDIR)/debian/libchef-ruby1.8/usr/bin/knife $(CURDIR)/debian/chef-knife/usr/bin/
 	rmdir $(CURDIR)/debian/libchef-ruby1.8/usr/bin/
 
 install/chef-solr::
@@ -58,6 +64,8 @@ install/chef-solr::
 	cp chef-solr/bin/chef-solr-rebuild debian/chef-solr/usr/sbin
 	cp chef-solr/bin/chef-solr debian/chef-solr/usr/sbin
 	cp -r chef-solr/lib debian/chef-solr/usr/share/chef-solr
+	cp chef/distro/common/man/man1/chef-solr* debian/chef-solr/usr/share/man/man1
+	cp chef/distro/common/man/man8/chef-solr-rebuild debian/chef-solr/usr/share/man/man8
 	tar xvzf chef-solr/solr/solr-home.tar.gz -C debian/chef-solr/var/lib/chef/solr
 	dh_installinit --name=chef-solr -- defaults 84 02
 	dh_installinit --name=chef-solr-indexer -- defaults 85 02
@@ -69,6 +77,7 @@ install/chef-server::
 	cp chef-server/bin/chef-server debian/chef-server/usr/bin
 	cp chef-server/README.rdoc debian/chef-server/usr/share/doc/chef-server
 	cp chef-server/config.ru debian/chef-server/usr/share/chef-server
+	cp chef/distro/common/man/man1/chef-server debian/chef-solr/usr/share/man/man1
 	cp -rf chef-server/app    debian/chef-server/usr/share/chef-server
 	cp -rf chef-server/config debian/chef-server/usr/share/chef-server
 	cp -rf chef-server/lib    debian/chef-server/usr/share/chef-server
@@ -88,6 +97,7 @@ install/chef-server-webui::
 	cp chef-server/bin/chef-server-webui debian/chef-server/usr/bin
 	cp chef-server/config-webui.ru debian/chef-server/usr/share/chef-server
 	cp chef-server-webui/README.rdoc debian/chef-server-webui/usr/share/doc/chef-server-webui
+	cp chef/distro/common/man/man1/chef-server-webui debian/chef-solr/usr/share/man/man1
 	cp -rf chef-server-webui/app    debian/chef-server-webui/usr/share/chef-server-webui
 	cp -rf chef-server-webui/config debian/chef-server-webui/usr/share/chef-server-webui
 	cp -rf chef-server-webui/public debian/chef-server-webui/usr/share/chef-server-webui
