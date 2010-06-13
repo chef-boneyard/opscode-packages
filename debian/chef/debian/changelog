@@ -1,3 +1,9 @@
+chef (0.9.0-1~beta) unstable; urgency=low
+
+  * New upstream release (0.9) beta packaging.
+
+ -- Joshua Timberman <joshua@opscode.com>  Sun, 13 Jun 2010 09:26:22 -0600
+
 chef (0.8.16-5) unstable; urgency=low
 
   * chef-client.init pidfile location (Closes: #584816)
