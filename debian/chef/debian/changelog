@@ -1,6 +1,9 @@
-chef (0.9.0-1~beta) unstable; urgency=low
+chef (0.9.0-1) unstable; urgency=low
 
-  * New upstream release (0.9) beta packaging.
+  * New upstream release (0.9).
+  * debian/control: depend on rubygems due to Chef provider for gem_package
+  loading unconditionally.
+  * patches/remove_rubygems.patch: remove due to rubygems being a dependency.
 
  -- Joshua Timberman <joshua@opscode.com>  Sun, 13 Jun 2010 09:26:22 -0600
 

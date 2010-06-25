@@ -6,7 +6,7 @@ set -e
 
 export PATH=$PATH:/sbin:/usr/sbin:/bin:/usr/bin
 
-TEMPLATE=/usr/share/chef-server/server.rb
+TEMPLATE=/usr/share/chef-server-api/server.rb
 TMPDIR=`mktemp -d` # used for holding temp files
 TMPFILE=`mktemp -p ${TMPDIR}` # used for holding rendered template
 CONFIGFILE=/etc/chef/server.rb

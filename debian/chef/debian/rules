@@ -63,30 +63,25 @@ install/chef-solr::
 	dh_installinit --name=chef-solr-indexer -- defaults 85 02
 	dh_installlogrotate --name=chef-solr-indexer
 
-install/chef-server::
-	mkdir -p $(CURDIR)/debian/chef-server/usr/bin
-	cp debian/etc/chef/server.rb  debian/chef-server/usr/share/chef-server
-	cp chef-server/bin/chef-server debian/chef-server/usr/bin
-	cp chef-server/README.rdoc debian/chef-server/usr/share/doc/chef-server
-	cp chef-server/config.ru debian/chef-server/usr/share/chef-server
-	cp -rf chef-server/app    debian/chef-server/usr/share/chef-server
-	cp -rf chef-server/config debian/chef-server/usr/share/chef-server
-	cp -rf chef-server/lib    debian/chef-server/usr/share/chef-server
-	cp -rf chef-server/public debian/chef-server/usr/share/chef-server
-	dh_installinit --name=chef-server -- defaults 90 02
-
 install/chef-server-api::
+	mkdir -p $(CURDIR)/debian/chef-server-api/usr/sbin
+	mkdir -p $(CURDIR)/debian/chef-server-api/usr/share/chef-server-api
+	mkdir -p $(CURDIR)/debian/chef-server-api/usr/share/doc/chef-server-api
+	cp debian/etc/chef/server.rb  debian/chef-server-api/usr/share/chef-server-api
+	cp chef-server-api/bin/chef-server debian/chef-server-api/usr/sbin
 	cp chef-server-api/README.rdoc debian/chef-server-api/usr/share/doc/chef-server-api
 	cp -rf chef-server-api/app    debian/chef-server-api/usr/share/chef-server-api
 	cp -rf chef-server-api/config debian/chef-server-api/usr/share/chef-server-api
 	cp -rf chef-server-api/public debian/chef-server-api/usr/share/chef-server-api
 	cp -rf chef-server-api/lib    debian/chef-server-api/usr/share/chef-server-api
 	find debian/chef-server-api -type f -perm +755 -exec chmod 644 {} \;
+	dh_installinit --name=chef-server -- defaults 90 02
 
 install/chef-server-webui::
+	mkdir -p $(CURDIR)/debian/chef-server-webui/usr/sbin
 	cp debian/etc/chef/webui.rb  debian/chef-server-webui/usr/share/chef-server-webui
-	cp chef-server/bin/chef-server-webui debian/chef-server/usr/bin
-	cp chef-server/config-webui.ru debian/chef-server/usr/share/chef-server
+	cp chef-server-webui/bin/chef-server-webui debian/chef-server-webui/usr/sbin
+	cp chef-server-webui/config.ru debian/chef-server-webui/usr/share/chef-server-webui
 	cp chef-server-webui/README.rdoc debian/chef-server-webui/usr/share/doc/chef-server-webui
 	cp -rf chef-server-webui/app    debian/chef-server-webui/usr/share/chef-server-webui
 	cp -rf chef-server-webui/config debian/chef-server-webui/usr/share/chef-server-webui

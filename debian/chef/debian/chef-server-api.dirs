@@ -1,4 +1,8 @@
 var/cache/chef
 var/lib/chef/cookbooks
-usr/share/doc/chef-server-api
-usr/share/chef-server-api/app
+var/log/chef
+usr/share/doc/chef-server
+usr/share/chef-server
+etc/chef
+etc/chef/certificates
+usr/bin

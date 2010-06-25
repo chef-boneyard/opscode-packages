@@ -1,15 +1,23 @@
 #!/bin/sh
-# postrm script for chef-server-slice
+# postrm script for chef-server-api
 #
 # see: dh_installdeb(1)
 
 set -e
 
+TEMPLATE=/usr/share/chef/server.rb
+CONFIGFILE=/etc/chef/server.rb
+
 case "$1" in
     remove)
-      rm -rf /var/cache/chef
     ;;
-    purge|upgrade|failed-upgrade|abort-install|abort-upgrade|disappear)
+    purge)
+      rm -rf /var/log/chef/server.log*
+      rm -rf /var/log/chef/merb.log*
+      test -x /usr/bin/ucf && ucf --purge $TEMPLATEFILE $CONFIGFILE
+      rm -rf $CONFIGFILE $CONFIGFILE.ucf-old $CONFIGFILE.ucf-new $CONFIGFILE.ucf-dist
+    ;;
+    upgrade|failed-upgrade|abort-install|abort-upgrade|disappear)
     ;;
 
     *)
