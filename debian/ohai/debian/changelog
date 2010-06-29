@@ -1,6 +1,11 @@
+ohai (0.5.6-1) unstable; urgency=low
+
+  * New upstream release (0.5.6).
+
+ -- Joshua Timberman <joshua@opscode.com>  Tue, 29 Jun 2010 14:47:35 -0600
+
 ohai (0.5.4-4) unstable; urgency=low
 
-  * Update standards version to 3.8.4.
   * Fix use ohai binary from source instead of the one mangled by setup.rb.
   * Build-depend graphviz so rdoc gets created properly for ohai-doc.
 
@@ -9,6 +14,9 @@ ohai (0.5.4-4) unstable; urgency=low
 ohai (0.5.4-3) unstable; urgency=low
 
   * Fix remove_rubygems patch for new version of bin/ohai. 
+
+  [ Deepak Tripathi ]
+  * Bumped Standard Version to 3.8.4 (no changes)
 
  -- Joshua Timberman <joshua@opscode.com>  Tue, 11 May 2010 20:05:36 -0600
 
