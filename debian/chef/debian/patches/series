@@ -1,3 +1,4 @@
+chef_server_load_path.patch
 chef_solr_ruby18.patch
 solr_load_path.patch
 jquery_unminified.patch

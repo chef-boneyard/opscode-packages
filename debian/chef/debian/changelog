@@ -1,3 +1,39 @@
+chef (0.9.2+dfsg-1) unstable; urgency=low
+
+  * New upstream release (0.9.2).
+  * quilt patch: chef_server_load_path.patch
+    - fix merb-core attempting to load json gem (chef loads json anyway).
+
+ -- Joshua Timberman <joshua@opscode.com>  Tue, 29 Jun 2010 10:01:55 -0600
+
+chef (0.9.0-5) unstable; urgency=low
+
+  * debian/etc/chef/server.rb missing sandbox_path and checksum_path options
+    to handle sandboxed cookbook uploads properly.
+  * quilt patch: solr_load_path.patch
+    - fix solr library location for chef-server controller.
+
+ -- Joshua Timberman <joshua@opscode.com>  Mon, 28 Jun 2010 20:55:09 -0600
+
+chef (0.9.0-4) unstable; urgency=low
+
+  * quilt patch: chef_server_load_path.patch
+    - fix daemon location for chef-server-api, chef-server-webui 
+
+ -- Joshua Timberman <joshua@opscode.com>  Mon, 28 Jun 2010 16:05:14 -0600
+
+chef (0.9.0-3) unstable; urgency=low
+
+  * chef-server-api init and default named incorrectly. 
+
+ -- Joshua Timberman <joshua@opscode.com>  Mon, 28 Jun 2010 15:46:49 -0600
+
+chef (0.9.0-2) unstable; urgency=low
+
+  * debian/control: add missing librestclient-ruby dependency
+
+ -- Joshua Timberman <joshua@opscode.com>  Mon, 28 Jun 2010 13:37:39 -0600
+
 chef (0.9.0-1) unstable; urgency=low
 
   * New upstream release (0.9).

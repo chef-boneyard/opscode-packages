@@ -65,6 +65,11 @@ cookbook_path      [ "/var/lib/chef/cookbooks" ]
 
 cookbook_tarball_path "/var/lib/chef/cookbook-tarballs"
 
+# sandbox_path is the location where the chef server temporarily stores files
+# uploaded for cookbooks.
+
+sandbox_path "/var/cache/chef/sandboxes"
+
 # file_cache_path specifies where chef should cache cookbooks, server
 # cookie ID, and openid registration data.
 # valid value is any filesystem directory location.
@@ -74,7 +79,7 @@ file_cache_path    "/var/cache/chef"
 # node_path specifies a location for where to find node-specific recipes.
 # valid values are any filesystem direcory location.
 
-#node_path          "/var/lib/chef/nodes"
+node_path          "/var/lib/chef/nodes"
 
 # openid_store_path specifies a location where to keep openid nonces for clients.
 # valid values are any filesystem directory location.
@@ -112,6 +117,10 @@ openid_cstore_path "/var/lib/chef/openid/cstore"
 # for checksums of compared objects.
 
 cache_options({ :path => "/var/cache/chef/checksums", :skip_expires => true})
+
+# checksum_path sets the location for file checksums on sandbox uploads.
+
+checksum_path "/var/cache/chef/checksums"
 
 # Mixlib::Log::Formatter.show_time specifies whether the chef-client log should
 # contain timestamps.

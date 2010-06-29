@@ -10,7 +10,7 @@ Homepage: http://wiki.opscode.com/display/chef/Home
 
 Package: chef
 Architecture: all
-Depends: ${misc:Depends}, ruby1.8, liberubis-ruby1.8, libjson-ruby1.8, libextlib-ruby1.8 (>= 0.9.13), ohai (>= 0.4.0), libchef-ruby1.8 (= ${source:Version}), libopenssl-ruby1.8, libmixlib-authentication-ruby1.8 (>= 1.1.0), ucf
+Depends: ${misc:Depends}, ruby1.8, liberubis-ruby1.8, libjson-ruby1.8, libextlib-ruby1.8 (>= 0.9.13), ohai (>= 0.4.0), libchef-ruby1.8 (= ${source:Version}), libopenssl-ruby1.8, libmixlib-authentication-ruby1.8 (>= 1.1.0), ucf, libhighline-ruby1.8
 Recommends: irb1.8
 Description: System integration framework written in Ruby
  Chef is a systems integration framework and configuration management library
@@ -42,7 +42,7 @@ Package: chef-server
 Architecture: all
 Depends: ${misc:Depends}, ruby, chef-server-api (= ${source:Version}), chef-server-webui (= ${source:Version}), chef-solr (= ${source:Version})
 Recommends: chef (= ${source:Version})
-Suggests: nginx, apache2, rake, chef-server-webui (=${source:Version})
+Suggests: nginx, apache2, rake
 Description: Meta package that depends on Chef Server API and WebUI
  Chef is a systems integration framework and configuration management system
  written in Ruby. Chef provides a Ruby library and API that can be used to
@@ -111,7 +111,7 @@ Description: Ruby libraries for Chef system integration framework
 
 Package: libchef-ruby1.8
 Architecture: all
-Depends: ${misc:Depends}, ruby1.8, libopenssl-ruby1.8, libmixlib-authentication-ruby1.8 (>= 1.1.0), libmixlib-cli-ruby1.8 (>= 1.1.0), libmixlib-config-ruby1.8 (>= 1.1.0), libmixlib-log-ruby1.8 (>= 1.1.0), libohai-ruby1.8 (>= 0.4.0), libmoneta-ruby1.8, libbunny-ruby1.8, rubygems1.8
+Depends: ${misc:Depends}, ruby1.8, libopenssl-ruby1.8, libmixlib-authentication-ruby1.8 (>= 1.1.0), libmixlib-cli-ruby1.8 (>= 1.1.0), libmixlib-config-ruby1.8 (>= 1.1.0), libmixlib-log-ruby1.8 (>= 1.1.0), libohai-ruby1.8 (>= 0.4.0), libmoneta-ruby1.8, libbunny-ruby1.8, rubygems1.8, librestclient-ruby1.8
 Recommends: ohai (>= 0.4.0), chef (= ${source:Version})
 Suggests: rake, libshadow-ruby1.8
 Description: Ruby 1.8 libraries for Chef system integration framework
