@@ -1,6 +1,7 @@
 chef (0.9.4+dfsg-1) unstable; urgency=low
 
   * New upstream release (0.9.4).
+  * debian/watch: handle +dfsg in debian version.
 
  -- Joshua Timberman <joshua@opscode.com>  Tue, 29 Jun 2010 19:19:08 -0600
 
