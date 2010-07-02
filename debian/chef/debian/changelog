@@ -1,3 +1,16 @@
+chef (0.9.6+dfsg-1) unstable; urgency=low
+
+  * New upstream release (0.9.6).
+  * Upstream release fixes CHEF-1404, quilt patch removed.
+
+ -- Joshua Timberman <joshua@opscode.com>  Fri, 02 Jul 2010 15:52:34 -0600
+
+chef (0.9.4+dfsg-2) unstable; urgency=low
+
+  * Quilt patch for CHEF-1404. 
+
+ -- Joshua Timberman <joshua@opscode.com>  Fri, 02 Jul 2010 10:39:49 -0600
+
 chef (0.9.4+dfsg-1) unstable; urgency=low
 
   * New upstream release (0.9.4).
