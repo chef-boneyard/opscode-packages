@@ -7,7 +7,7 @@
 
 Summary: Merb app slice providing Web interface to API server for Chef
 Name: rubygem-%{gemname}
-Version: 0.8.10
+Version: 0.8.16
 Release: 1%{?dist}
 Group: Development/Languages
 License: ASL 2.0
@@ -15,7 +15,7 @@ URL: http://wiki.opscode.com/display/chef
 Source0: http://gems.rubyforge.org/gems/%{gemname}-%{version}.gem
 # Upstream wants the openid gem installed while we can use ruby-openid just
 # fine.
-Patch0: rubygem-chef-server-webui-0.8.10-gemspec.patch
+Patch0: rubygem-chef-server-webui-0.8.16-gemspec.patch
 %if 0%{?rhel}
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 %endif
@@ -95,6 +95,10 @@ rm -rf %{buildroot}
 %{gemdir}/doc/%{gemname}-%{version}
 
 %changelog
+* Mon May 24 2010 Matthew Kent <mkent@magoazul.com> - 0.8.16-1
+- New upstream version.
+- Update gemspec patch.
+
 * Mon Apr 05 2010 Matthew Kent <mkent@magoazul.com> - 0.8.10-1
 - New upstream version.
 

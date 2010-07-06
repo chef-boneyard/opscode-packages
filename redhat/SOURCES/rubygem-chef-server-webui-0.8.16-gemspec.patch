@@ -1,26 +1,26 @@
---- specifications/chef-server-0.8.10.gemspec.orig	2010-04-05 13:55:26.000000000 -0700
-+++ specifications/chef-server-0.8.10.gemspec	2010-04-05 13:56:29.000000000 -0700
-@@ -28,7 +28,6 @@
-       s.add_runtime_dependency(%q<merb-helpers>, ["~> 1.0.0"])
+--- specifications/chef-server-webui-0.8.16.gemspec.orig	2010-05-24 22:51:48.951762395 -0700
++++ specifications/chef-server-webui-0.8.16.gemspec	2010-05-24 22:52:08.944166988 -0700
+@@ -30,7 +30,6 @@
+       s.add_runtime_dependency(%q<json>, ["<= 1.4.2"])
        s.add_runtime_dependency(%q<thin>, [">= 0"])
        s.add_runtime_dependency(%q<haml>, [">= 0"])
 -      s.add_runtime_dependency(%q<ruby-openid>, [">= 0"])
-       s.add_runtime_dependency(%q<json>, [">= 0"])
        s.add_runtime_dependency(%q<coderay>, [">= 0"])
      else
-@@ -38,7 +37,6 @@
-       s.add_dependency(%q<merb-helpers>, ["~> 1.0.0"])
+       s.add_dependency(%q<merb-core>, ["~> 1.0.0"])
+@@ -42,7 +41,6 @@
+       s.add_dependency(%q<json>, ["<= 1.4.2"])
        s.add_dependency(%q<thin>, [">= 0"])
        s.add_dependency(%q<haml>, [">= 0"])
 -      s.add_dependency(%q<ruby-openid>, [">= 0"])
-       s.add_dependency(%q<json>, [">= 0"])
        s.add_dependency(%q<coderay>, [">= 0"])
      end
-@@ -49,7 +47,6 @@
-     s.add_dependency(%q<merb-helpers>, ["~> 1.0.0"])
+   else
+@@ -55,7 +53,6 @@
+     s.add_dependency(%q<json>, ["<= 1.4.2"])
      s.add_dependency(%q<thin>, [">= 0"])
      s.add_dependency(%q<haml>, [">= 0"])
 -    s.add_dependency(%q<ruby-openid>, [">= 0"])
-     s.add_dependency(%q<json>, [">= 0"])
      s.add_dependency(%q<coderay>, [">= 0"])
    end
+ end

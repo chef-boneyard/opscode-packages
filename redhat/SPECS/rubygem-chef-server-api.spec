@@ -7,7 +7,7 @@
 
 Summary: Merb slice providing REST API for Chef client access
 Name: rubygem-%{gemname}
-Version: 0.8.10
+Version: 0.8.16
 Release: 1%{?dist}
 Group: Development/Languages
 License: ASL 2.0
@@ -85,6 +85,9 @@ cp -a .%{gemdir}/* %{buildroot}%{gemdir}/
 %{gemdir}/doc/%{gemname}-%{version}
 
 %changelog
+* Mon May 24 2010 Matthew Kent <mkent@magoazul.com> - 0.8.16-1
+- New upstream version.
+
 * Mon Apr 05 2010 Matthew Kent <mkent@magoazul.com> - 0.8.10-1
 - New upstream version.
 

@@ -10,15 +10,15 @@
 
 Summary: Merb application providing centralized management for Chef
 Name: rubygem-%{gemname}
-Version: 0.8.10
-Release: 2%{?dist}
+Version: 0.8.16
+Release: 1%{?dist}
 Group: Development/Languages
 License: ASL 2.0
 URL: http://wiki.opscode.com/display/chef
 Source0: http://gems.rubyforge.org/gems/%{gemname}-%{version}.gem
 # Upstream wants the openid gem installed while we can use ruby-openid just
 # fine.
-Patch0: rubygem-chef-server-0.8.10-gemspec.patch
+Patch0: rubygem-chef-server-0.8.16-gemspec.patch
 ## XXX: ticket
 Source1: chef-server.1
 Source2: chef-server-webui.1
@@ -235,6 +235,13 @@ fi
 %config(noreplace) %{_sysconfdir}/chef/webui.rb
 
 %changelog
+* Mon May 24 2010 Matthew Kent <mkent@magoazul.com> - 0.8.16-1
+- New upstream version.
+- Update gemspec patch.
+
+* Wed Apr 21 2010 Matthew Kent <mkent@magoazul.com> - 0.8.10-3
+- Updated default configs.
+
 * Fri Apr 16 2010 Matthew Kent <mkent@magoazul.com> - 0.8.10-2
 - Eat logrotate output.
 - Strict directory ownership.

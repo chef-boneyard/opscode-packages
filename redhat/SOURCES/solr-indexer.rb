@@ -1,24 +1,21 @@
-# Configuration File For Chef Indexer (chef-indexer) 
+# Configuration File For Chef SOLR (chef-solr-indexer)
 #
-# The chef-indexer program runs on the Chef Server to generate search indexes
-# of node data stored in the Server's CouchDB store. Currently, the search 
-# uses ferret, a pure-Ruby search library. In a future version of Chef this 
-# will change, so please be aware.
+# chef-solr-indexer daemon reads this configuration file on startup, as set in
+# /etc/default/chef-solr-indexer.
 #
-# Chef uses a Ruby DSL for configuration, and this file may contain some
-# Ruby idioms. First, symbols. These are designated by a colon sigil, ie,
-# :value. Second, in Ruby, everything but false and nil (no quotes or other
-# designations) is true, including true, the integer 0 and the string "false".
-# So to set the value of a setting to false, write:
+# It is a Ruby DSL config file, and can embed regular Ruby code in addition to
+# the configuration settings. Some settings use Ruby symbols, which are a value
+# that starts with a colon. In Ruby, anything but 'false' or 'nil' is true. To
+# set something to false:
 #
 # some_setting false
 #
-# Third, Ruby class methods can be used, for example we tell the log to show
-# the current time stamp with Chef::Log::Formatter.show_time, below.
-#
 # log_location specifies where the indexer should log to.
 # valid values are: a quoted string specifying a file, or STDOUT with
-# no quotes. When run as a daemon (default), STDOUT will produce no output.
+# no quotes.
+# Corresponds to chef-solr-indexer -L
+# The chef-solr-indexer daemon is configured to log to /var/log/chef/solr.log in
+# /etc/sysconfig/chef-solr-indexer.
 
 log_location       STDOUT
 
@@ -27,13 +24,26 @@ log_location       STDOUT
 
 search_index_path    "/var/lib/chef/search_index"
 
-# set the jetty path to use Debian solr-jetty.
 solr_jetty_path "/var/lib/chef/solr/solr-jetty"
 solr_home_path  "/var/lib/chef/solr"
 solr_data_path  "/var/cache/chef/solr/data"
 solr_heap_size  "256M"
+
+# specifies the URL of the SOLR instance for the indexer to connect to.
+
 solr_url        "http://localhost:8983"
+
+# uses the solr_jetty_path option set above, and the etc directory is
+# actually a symbolic link to /etc/chef/solr-jetty.
+
 #solr_java_opts  "-DSTART=#{Chef::Config[:solr_jetty_path]}/etc/start.config"
+
+# Mixlib::Log::Formatter.show_time specifies whether the log should
+# contain timestamps.
+# valid values are true or false. The printed timestamp is rfc2822, for example:
+# Fri, 31 Jul 2009 19:19:46 -0600
+
+Mixlib::Log::Formatter.show_time = true
 
 # pid_file specifies the location of where chef-client daemon should keep the pid
 # file.
@@ -41,16 +51,8 @@ solr_url        "http://localhost:8983"
 
 pid_file           "/var/run/chef/solr-indexer.pid"
 
-# Mixlib::Log::Formatter.show_time specifies whether the chef-client log should
-# contain timestamps. 
-# valid values are true or false (no quotes, see above about Ruby idioms). The
-# printed timestamp is rfc2822, for example:
-# Fri, 31 Jul 2009 19:19:46 -0600
-
-Mixlib::Log::Formatter.show_time = true
+user "chef"
+group "chef"
 
 # rabbitmq password
 amqp_pass File.read('/etc/chef/amqp_passwd').chomp
-
-user "chef"
-group "chef"

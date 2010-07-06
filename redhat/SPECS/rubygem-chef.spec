@@ -10,8 +10,8 @@
 
 Summary: Client libraries for the Chef systems integration framework
 Name: rubygem-%{gemname}
-Version: 0.8.10
-Release: 1%{?dist}
+Version: 0.8.16
+Release: 2%{?dist}
 Group: Development/Languages
 License: ASL 2.0
 URL: http://wiki.opscode.com/display/chef
@@ -212,6 +212,19 @@ exit 0
 %{_sbindir}/chef-create-amqp_passwd
 
 %changelog
+* Thu May 27 2010 Matthew Kent <mkent@magoazul.com> - 0.8.16-2
+- Pass pidfile location in init script
+
+* Mon May 24 2010 Matthew Kent <mkent@magoazul.com> - 0.8.16-1
+- New upstream version.
+
+* Wed Apr 21 2010 Matthew Kent <mkent@magoazul.com> - 0.8.10-3
+- Updated default configs.
+
+* Fri Apr 16 2010 Matthew Kent <mkent@magoazul.com> - 0.8.10-2
+- Eat logrotate output.
+- Strict directory ownership.
+
 * Mon Apr 05 2010 Matthew Kent <mkent@magoazul.com> - 0.8.10-1
 - New upstream version.
 

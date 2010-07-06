@@ -7,14 +7,12 @@
 
 Summary: Profiles your system and emits JSON
 Name: rubygem-%{gemname}
-Version: 0.5.0
+Version: 0.5.4
 Release: 1%{?dist}
 Group: Development/Languages
 License: ASL 2.0 
 URL: http://wiki.opscode.com/display/ohai
 Source0: http://gems.rubyforge.org/gems/%{gemname}-%{version}.gem
-# Request to include: http://tickets.opscode.com/browse/OHAI-169
-Source1: ohai.1
 %if 0%{?rhel}
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 %endif
@@ -75,12 +73,7 @@ mv %{buildroot}%{gemdir}/bin/* %{buildroot}/%{_bindir}
 rmdir %{buildroot}%{gemdir}/bin
 find %{buildroot}%{geminstdir}/bin -type f | xargs chmod a+x
 
-# http://tickets.opscode.com/browse/OHAI-169
-mkdir -p %{buildroot}%{_mandir}/man1
-install -Dp -m0644 %{SOURCE1} %{buildroot}%{_mandir}/man1/ohai.1
-
-# http://tickets.opscode.com/browse/OHAI-171
-chmod 644 %{buildroot}%{geminstdir}/lib/ohai/plugins/windows/filesystem.rb
+install -Dp -m0644 %{buildroot}%{geminstdir}/docs/man/man1/ohai.1 %{buildroot}%{_mandir}/man1/ohai.1
 
 find %{buildroot}%{geminstdir}/bin -type f | \
   xargs -n 1 sed -i -e 's"^#!/usr/bin/env ruby"#!/usr/bin/ruby"'
@@ -111,8 +104,14 @@ rake spec || :
 %defattr(-,root,root,-)
 %{geminstdir}/Rakefile
 %{geminstdir}/spec
+%{geminstdir}/docs
 %{gemdir}/doc/%{gemname}-%{version}
 
 %changelog
+* Wed May 12 2010 Matthew Kent <mkent@magoazul.com> - 0.5.4-1
+- New upstream version.
+- Drop permissions fix, fixed upstream in OHAI-171.
+- Drop man page, fixed upstream in OHAI-169.
+
 * Fri Mar 19 2010 Matthew Kent <mkent@magoazul.com> - 0.5.0-1
 - Initial package
