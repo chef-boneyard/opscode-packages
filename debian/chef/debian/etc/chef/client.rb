@@ -50,6 +50,11 @@ chef_server_url "http://localhost:4000"
 
 file_cache_path    "/var/cache/chef"
 
+# file_backup_path specifies where chef will store backups of replaced files
+# from template, cookbook_file and remote_file resources.
+
+file_backup_path   "/var/lib/chef/backup"
+
 # pid_file specifies the location of where chef-client daemon should keep the pid
 # file.
 # valid value is any filesystem file location.

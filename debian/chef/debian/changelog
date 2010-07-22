@@ -1,3 +1,9 @@
+chef (0.9.6+dfsg-2) unstable; urgency=low
+
+  * debian/control: libchef-ruby1.8 should depend on libuuidtools-ruby1.8 
+
+ -- Joshua Timberman <joshua@opscode.com>  Tue, 06 Jul 2010 11:04:41 -0600
+
 chef (0.9.6+dfsg-1) unstable; urgency=low
 
   * New upstream release (0.9.6).

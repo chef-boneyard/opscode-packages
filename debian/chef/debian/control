@@ -60,7 +60,7 @@ Description: Meta package that depends on Chef Server API and WebUI
 
 Package: chef-server-api
 Architecture: all
-Depends: ${misc:Depends}, ruby, libmerb-assets-ruby, libmerb-haml-ruby, libmerb-helpers-ruby, rabbitmq-server (>= 1.6), couchdb (>= 0.9.1), thin, libjson-ruby, libchef-ruby (= ${source:Version}), chef-solr (= ${source:Version}), libuuidtools-ruby1.8, adduser, ucf
+Depends: ${misc:Depends}, ruby, libmerb-assets-ruby, libmerb-haml-ruby, libmerb-helpers-ruby, rabbitmq-server (>= 1.6), couchdb (>= 0.9.1), thin, libjson-ruby, libchef-ruby (= ${source:Version}), chef-solr (= ${source:Version}), adduser, ucf
 Recommends: chef (= ${source:Version})
 Replaces: chef-server-slice
 Conflicts: chef-server-slice
@@ -111,7 +111,7 @@ Description: Ruby libraries for Chef system integration framework
 
 Package: libchef-ruby1.8
 Architecture: all
-Depends: ${misc:Depends}, ruby1.8, libopenssl-ruby1.8, libmixlib-authentication-ruby1.8 (>= 1.1.0), libmixlib-cli-ruby1.8 (>= 1.1.0), libmixlib-config-ruby1.8 (>= 1.1.0), libmixlib-log-ruby1.8 (>= 1.1.0), libohai-ruby1.8 (>= 0.4.0), libmoneta-ruby1.8, libbunny-ruby1.8, rubygems1.8 | libgems-ruby1.8, librestclient-ruby1.8
+Depends: ${misc:Depends}, ruby1.8, libopenssl-ruby1.8, libmixlib-authentication-ruby1.8 (>= 1.1.0), libmixlib-cli-ruby1.8 (>= 1.1.0), libmixlib-config-ruby1.8 (>= 1.1.0), libmixlib-log-ruby1.8 (>= 1.1.0), libohai-ruby1.8 (>= 0.4.0), libmoneta-ruby1.8, libbunny-ruby1.8, rubygems1.8 | libgems-ruby1.8, librestclient-ruby1.8, libuuidtools-ruby1.8
 Recommends: ohai (>= 0.4.0), chef (= ${source:Version})
 Suggests: rake, libshadow-ruby1.8
 Description: Ruby 1.8 libraries for Chef system integration framework
