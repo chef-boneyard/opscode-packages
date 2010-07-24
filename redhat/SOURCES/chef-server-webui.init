@@ -24,13 +24,14 @@ prog="chef-server-webui"
 [ -f /etc/sysconfig/$prog ] && . /etc/sysconfig/$prog
 
 config=${CONFIG-/etc/chef/webui.rb}
-pidfile=${PIDFILE-/var/run/chef/server-webui.main.pid}
+mainpidfile=${MAINPIDFILE-/var/run/chef/server-webui.main.pid}
 lockfile=${LOCKFILE-/var/lock/subsys/$prog}
 logfile=${LOGFILE-/var/log/chef/server-webui.log}
 port=${PORT-4040}
 env=${ENVIRONMENT-production}
 adapter=${ADAPTER-thin}
 childpidfiles=${CHILDPIDFILES-/var/run/chef/server-webui.%s.pid}
+pidfile=${PIDFILES-/var/run/chef/server-webui.$port.pid}
 user=${SERVER_USER-chef}
 group=${SERVER_GROUP-chef}
 options=${OPTIONS-}

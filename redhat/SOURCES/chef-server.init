@@ -24,13 +24,14 @@ prog="chef-server"
 [ -f /etc/sysconfig/$prog ] && . /etc/sysconfig/$prog
 
 config=${CONFIG-/etc/chef/server.rb}
-pidfile=${PIDFILE-/var/run/chef/server.main.pid}
+mainpidfile=${MAINPIDFILE-/var/run/chef/server.main.pid}
 lockfile=${LOCKFILE-/var/lock/subsys/$prog}
 logfile=${LOGFILE-/var/log/chef/server.log}
 port=${PORT-4000}
 env=${ENVIRONMENT-production}
 adapter=${ADAPTER-thin}
 childpidfiles=${CHILDPIDFILES-/var/run/chef/server.%s.pid}
+pidfile=${PIDFILE-/var/run/chef/server.$port.pid}
 user=${SERVER_USER-chef}
 group=${SERVER_GROUP-chef}
 options=${OPTIONS-}

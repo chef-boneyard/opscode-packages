@@ -41,6 +41,14 @@ file_cache_path    "/var/cache/chef"
 
 cookbook_path      [ "/var/lib/chef/cookbooks" ]
 
+# role_path designates where the server should load role JSON and Ruby DSL
+# files from.
+# valid values are any filesystem directory location. Roles are a feature
+# that allow you to easily reuse lists of recipes and attribute settings.
+# Please see the Chef Wiki page for information on how to utilize the feature.
+# http://wiki.opscode.com/display/chef/Roles
+role_path          [ "/var/lib/chef/roles" ]
+
 # recipe_url specifies a remote URL to retrieve a tarball of cookbooks.
 # Corresponds to chef-solo -r
 

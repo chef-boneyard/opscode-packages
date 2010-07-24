@@ -7,7 +7,7 @@
 
 Summary: Profiles your system and emits JSON
 Name: rubygem-%{gemname}
-Version: 0.5.4
+Version: 0.5.6
 Release: 1%{?dist}
 Group: Development/Languages
 License: ASL 2.0 
@@ -108,6 +108,9 @@ rake spec || :
 %{gemdir}/doc/%{gemname}-%{version}
 
 %changelog
+* Sun Jul 18 2010 Matthew Kent <mkent@magoazul.com> - 0.5.6-1
+- New upstream version.
+
 * Wed May 12 2010 Matthew Kent <mkent@magoazul.com> - 0.5.4-1
 - New upstream version.
 - Drop permissions fix, fixed upstream in OHAI-171.

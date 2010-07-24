@@ -9,7 +9,6 @@
   done
 BuildRequires: git
 
-# Generated from chef-solr-0.8.8.gem by gem2rpm -*- rpm-spec -*-
 %global gemdir %(ruby -rubygems -e 'puts Gem::dir' 2>/dev/null)
 %global gemname chef-solr
 %global geminstdir %{gemdir}/gems/%{gemname}-%{version}
@@ -21,7 +20,7 @@ BuildRequires: git
 
 Summary: Manages search indexes of Chef node attributes using SOLR
 Name: rubygem-%{gemname}
-Version: 0.8.16
+Version: 0.9.6
 Release: 1%{?dist}
 Group: Development/Languages
 License: ASL 2.0
@@ -51,13 +50,6 @@ BuildRequires: ruby(rubygems)
 BuildRequires: ruby(abi) = %{rubyabi}
 BuildArch: noarch
 Provides: rubygem(%{gemname}) = %{version}
-
-# Series of patches carried in git @ http://github.com/mdkent/chef/tree/0.8.10-el5
-#
-# Currently generated via:
-# cd chef-solr && git format-patch --relative --suffix=".chef-solr.patch" 0.8.10
-#Patch0001: 0001-CHEF-1099-Drop-privileges-after-doing-clie.chef-solr.patch
-#Patch0002: 0002-CHEF-1087-Fix-various-chef-solr-logging-is.chef-solr.patch
 
 %description
 This package provides the chef-solr search engine which runs as a
@@ -202,7 +194,6 @@ exit 0
 %defattr(-,root,root,-)
 %doc %{geminstdir}/LICENSE
 %doc %{geminstdir}/README.rdoc
-%doc %{geminstdir}/VERSION
 %dir %{geminstdir}
 %{geminstdir}/bin
 %{geminstdir}/lib
@@ -238,6 +229,9 @@ exit 0
 %attr(-,%{chef_user},root) %{_localstatedir}/lib/chef/solr
 
 %changelog
+* Sun Jul 18 2010 Matthew Kent <mkent@magoazul.com> - 0.9.6-1
+- New upstream version.
+
 * Mon May 24 2010 Matthew Kent <mkent@magoazul.com> - 0.8.16-1
 - New upstream version.
 - Drop patches fixing chef-solr startup issues.

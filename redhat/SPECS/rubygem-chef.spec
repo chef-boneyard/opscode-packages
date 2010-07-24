@@ -10,7 +10,7 @@
 
 Summary: Client libraries for the Chef systems integration framework
 Name: rubygem-%{gemname}
-Version: 0.8.16
+Version: 0.9.6
 Release: 2%{?dist}
 Group: Development/Languages
 License: ASL 2.0
@@ -43,11 +43,14 @@ Requires: rubygem(mixlib-cli)
 Requires: rubygem(mixlib-log)
 Requires: rubygem(mixlib-authentication)
 Requires: rubygem(ohai)
+Requires: rubygem(rest-client)
 Requires: rubygem(bunny)
 Requires: rubygem(json)
 Requires: rubygem(erubis)
 Requires: rubygem(extlib)
 Requires: rubygem(moneta)
+Requires: rubygem(highline)
+Requires: rubygem(uuidtools)
 # Chef works with passwords
 Requires: ruby-shadow
 BuildRequires: ruby(rubygems)
@@ -212,6 +215,12 @@ exit 0
 %{_sbindir}/chef-create-amqp_passwd
 
 %changelog
+* Wed Jul 21 2010 Matthew Kent <mkent@magoazul.com> - 0.9.6-2
+- Updated client config.
+
+* Sun Jul 18 2010 Matthew Kent <mkent@magoazul.com> - 0.9.6-1
+- New upstream version.
+
 * Thu May 27 2010 Matthew Kent <mkent@magoazul.com> - 0.8.16-2
 - Pass pidfile location in init script
 
