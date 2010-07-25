@@ -1,3 +1,15 @@
+chef (0.9.6+dfsg-4) unstable; urgency=low
+
+  * Add NEWS file which will list important changes between versions. 
+
+ -- Joshua Timberman <joshua@opscode.com>  Sun, 25 Jul 2010 12:24:16 -0600
+
+chef (0.9.6+dfsg-3) unstable; urgency=low
+
+  * client.rb, add file_backup_path. 
+
+ -- Joshua Timberman <joshua@opscode.com>  Sun, 11 Jul 2010 02:40:45 -0600
+
 chef (0.9.6+dfsg-2) unstable; urgency=low
 
   * debian/control: libchef-ruby1.8 should depend on libuuidtools-ruby1.8 
