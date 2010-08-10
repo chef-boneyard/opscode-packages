@@ -39,7 +39,7 @@ running() {
   pid=`cat $MAINPID`
   [ -z "$pid" ] && return 1
   [ ! -d /proc/$pid ] && return 1
-  (ps -fp $pid | egrep -q "merb.*(merb : master|worker.*$PORT)") || return 1
+  (ps -fp $pid | egrep -q "merb : chef-server.*api.*$PORT)") || return 1
   return 0
 }
 

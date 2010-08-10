@@ -2,7 +2,12 @@ chef (0.9.8+dfsg-1) unstable; urgency=low
 
   * New upstream release (0.9.8)
   * debian/control: Chef now requires mixlib-authentication version 1.1.4.
+  * debian/control: Standards version 3.9.0 (no changes).
   * debian/*manpages: Use upstream manpages.
+  * debian/patches/chef_server_load_path.patch: fork for new chef-server
+    scripts.
+  * debian/source/format: Switch to 3.0 (quilt).
+  * chef-server*init: update for new process output
 
  -- Joshua Timberman <joshua@opscode.com>  Mon, 09 Aug 2010 22:55:44 -0600
 

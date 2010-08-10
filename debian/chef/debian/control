@@ -5,7 +5,7 @@ Maintainer: Joshua Timberman <joshua@opscode.com>
 Uploaders: Debian Ruby Extras Maintainers <pkg-ruby-extras-maintainers@lists.alioth.debian.org>
 Build-Depends: cdbs, debhelper (>= 7), ruby-pkg-tools (>= 0.14), quilt, po-debconf, libjavascript-minifier-xs-perl
 Build-Depends-Indep: ruby, rake
-Standards-Version: 3.8.4
+Standards-Version: 3.9.0
 Homepage: http://wiki.opscode.com/display/chef/Home
 
 Package: chef
