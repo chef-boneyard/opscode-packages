@@ -1,0 +1,12 @@
+Index: chef-0.9.6+dfsg/chef/lib/chef/resource.rb
+===================================================================
+--- chef-0.9.6+dfsg.orig/chef/lib/chef/resource.rb	2010-07-26 13:33:00.000000000 -0600
++++ chef-0.9.6+dfsg/chef/lib/chef/resource.rb	2010-07-26 13:33:06.000000000 -0600
+@@ -17,6 +17,7 @@
+ # limitations under the License.
+ #
+ 
++require 'ostruct'
+ require 'chef/mixin/params_validate'
+ require 'chef/mixin/check_helper'
+ require 'chef/mixin/language'

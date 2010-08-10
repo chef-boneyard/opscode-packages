@@ -1,3 +1,18 @@
+chef (0.9.8+dfsg-1) unstable; urgency=low
+
+  Important changes in 0.9.8:
+
+    * chef-server and chef-server-webui processes will be named accordingly in
+      ps output.
+    * Chef can now be configured to use an http/https proxy with the
+      `http_proxy` and `https_proxy` variables.
+    * Chef now saves expanded run list and role list to the `recipes` and
+      `roles` attributes on the node object.
+    * Chef's REPL, `shef` now supports its own configuration file. See:
+      - http://wiki.opscode.com/display/chef/Shef
+
+ -- Joshua Timberman <joshua@opscode.com>  Mon, 09 Aug 2010 23:10:46 -0600
+
 chef (0.9.6+dfsg-3) unstable; urgency=low
 
   When upgrading from Chef 0.8.x to 0.9.x, be aware of a couple important changes.

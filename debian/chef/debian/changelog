@@ -1,6 +1,22 @@
+chef (0.9.8+dfsg-1) unstable; urgency=low
+
+  * New upstream release (0.9.8)
+  * debian/control: Chef now requires mixlib-authentication version 1.1.4.
+  * debian/*manpages: Use upstream manpages.
+
+ -- Joshua Timberman <joshua@opscode.com>  Mon, 09 Aug 2010 22:55:44 -0600
+
+chef (0.9.6+dfsg-5) unstable; urgency=low
+
+  * debian/control: libchef-ruby1.8 should suggest ruby-dev1.8 for installing
+    gems with native extensions.
+
+ -- Joshua Timberman <joshua@opscode.com>  Tue, 27 Jul 2010 12:53:12 -0600
+
 chef (0.9.6+dfsg-4) unstable; urgency=low
 
   * Add NEWS file which will list important changes between versions. 
+  * quilt patch: require 'ostruct' at top of chef/resource.rb.
 
  -- Joshua Timberman <joshua@opscode.com>  Sun, 25 Jul 2010 12:24:16 -0600
 
