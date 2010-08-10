@@ -1,3 +1,9 @@
+chef (0.9.8+dfsg-2) unstable; urgency=low
+
+  * Fix stray ) in chef-server init scripts. 
+
+ -- Joshua Timberman <joshua@opscode.com>  Tue, 10 Aug 2010 09:48:30 -0600
+
 chef (0.9.8+dfsg-1) unstable; urgency=low
 
   * New upstream release (0.9.8)
