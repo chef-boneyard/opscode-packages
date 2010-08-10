@@ -20,7 +20,7 @@ BuildRequires: git
 
 Summary: Manages search indexes of Chef node attributes using SOLR
 Name: rubygem-%{gemname}
-Version: 0.9.6
+Version: 0.9.8
 Release: 1%{?dist}
 Group: Development/Languages
 License: ASL 2.0
@@ -229,6 +229,9 @@ exit 0
 %attr(-,%{chef_user},root) %{_localstatedir}/lib/chef/solr
 
 %changelog
+* Mon Aug 9 2010 Matthew Kent <mkent@magoazul.com> - 0.9.8-1
+- New upstream version.
+
 * Sun Jul 18 2010 Matthew Kent <mkent@magoazul.com> - 0.9.6-1
 - New upstream version.
 

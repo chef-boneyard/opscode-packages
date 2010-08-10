@@ -10,7 +10,7 @@
 
 Summary: Merb slice providing REST API for Chef client access
 Name: rubygem-%{gemname}
-Version: 0.9.6
+Version: 0.9.8
 Release: 1%{?dist}
 Group: Development/Languages
 License: ASL 2.0
@@ -161,6 +161,7 @@ exit 0
 %{geminstdir}/config
 %{geminstdir}/lib
 %{geminstdir}/public
+%{geminstdir}/*.ru
 %{gemdir}/cache/%{gemname}-%{version}.gem
 %{gemdir}/specifications/%{gemname}-%{version}.gemspec
 
@@ -183,6 +184,9 @@ exit 0
 %attr(-,%{chef_user},root) %dir %{_localstatedir}/lib/chef
 
 %changelog
+* Mon Aug 9 2010 Matthew Kent <mkent@magoazul.com> - 0.9.8-1
+- New upstream version.
+
 * Sun Jul 18 2010 Matthew Kent <mkent@magoazul.com> - 0.9.6-1
 - New upstream version.
 - api package broken out from chef-server.
