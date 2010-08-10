@@ -217,6 +217,7 @@ exit 0
 %changelog
 * Mon Aug 9 2010 Matthew Kent <mkent@magoazul.com> - 0.9.8-1
 - New upstream version.
+- Depend on newer version of mixlib-authentication
 
 * Wed Jul 21 2010 Matthew Kent <mkent@magoazul.com> - 0.9.6-2
 - Updated client config.
