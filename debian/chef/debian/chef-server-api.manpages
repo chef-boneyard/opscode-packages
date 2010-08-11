@@ -1,2 +1,2 @@
-debian/chef-server.1
-debian/chef-server-webui.1
+chef/distro/common/man/man1/chef-server.1
+chef/distro/common/man/man1/chef-server-webui.1
