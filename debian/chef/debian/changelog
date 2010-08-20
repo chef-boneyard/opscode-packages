@@ -1,3 +1,10 @@
+chef (0.9.8+dfsg-3) unstable; urgency=low
+
+  * debian/control: remove references to merb slices.
+  * debian/control: chef-server-api and -webui depend on merb-core
+
+ -- Joshua Timberman <joshua@opscode.com>  Fri, 20 Aug 2010 15:39:57 -0600
+
 chef (0.9.8+dfsg-2) unstable; urgency=low
 
   * Fix stray ) in chef-server init scripts. 

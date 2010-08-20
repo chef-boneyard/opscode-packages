@@ -20,7 +20,7 @@ Chef can be run in 'solo' mode though, which does not connect to a server. To
 do this, use the 'chef-solo' command instead of 'chef-client'.
 
 The 'chef-server', 'chef-server-api', 'chef-solr' packages will install a server.
-Chef server is a Merb application slice, and by default the server will start
+Chef server is a Merb application, and by default the server will start
 up from an init script as a thin server on port 4000.
 
 Chef server uses CouchDB to store node attribute data and RabbitMQ for an

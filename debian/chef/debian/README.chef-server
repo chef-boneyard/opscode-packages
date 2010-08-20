@@ -5,7 +5,7 @@ The chef-server provides a RESTful API to manage an infrastructure. Normal
 system management with the server is with the command-line tool, knife,
 which is provided by the 'chef' package. Chef also has a Web User Interface
 (WebUI) that can be used to manage the chef-server through a web browser.
-Both the chef-server-api and chef-server-webui are Merb application slices.
+Both the chef-server-api and chef-server-webui are Merb applications.
 For more information about Merb, see its home page.
 
 http://merbivore.com/
@@ -16,13 +16,13 @@ script runs:
 
     chef-server -a thin -p 4000 -e production
 
-This uses the 'thin' adapter for the Merb application slice. It runs a Merb
+This uses the 'thin' adapter for the Merb application. It runs a Merb
 'master' process that spawns one or more workers (controlled with the -c 
 parameter to the chef-server command). If only one worker is spawned, the 
 master process is replaced by the worker.
 
     $ ps awux | grep merb
-    root      3005  0.0  1.2  34040  1508 ?        S    Feb11   0:00 merb : worker (port 4000)
+    chef      1043  0.0  0.8 155820 70508 ?        Sl   Aug18   2:36 merb : chef-server (api) : worker (port 4000)
 
 Clients connect to the chef-server through the "chef_server_url" value
 in the /etc/chef/client.rb config file. The chef-client program can also
