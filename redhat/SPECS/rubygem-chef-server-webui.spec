@@ -7,7 +7,7 @@
 
 Summary: Merb app slice providing Web interface to API server for Chef
 Name: rubygem-%{gemname}
-Version: 0.9.6
+Version: 0.9.8
 Release: 1%{?dist}
 Group: Development/Languages
 License: ASL 2.0
@@ -167,6 +167,9 @@ fi
 %config(noreplace) %{_sysconfdir}/chef/webui.rb
 
 %changelog
+* Mon Aug 9 2010 Matthew Kent <mkent@magoazul.com> - 0.9.8-1
+- New upstream version.
+
 * Sun Jul 18 2010 Matthew Kent <mkent@magoazul.com> - 0.9.6-1
 - New upstream version.
 - webui package broken out from chef-server.

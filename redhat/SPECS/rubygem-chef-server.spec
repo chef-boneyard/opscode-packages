@@ -7,7 +7,7 @@
 
 Summary: Merb application providing centralized management for Chef
 Name: rubygem-%{gemname}
-Version: 0.9.6
+Version: 0.9.8
 Release: 1%{?dist}
 Group: Development/Languages
 License: ASL 2.0
@@ -92,6 +92,9 @@ rm -rf %{buildroot}
 %files -n chef-server
 
 %changelog
+* Mon Aug 9 2010 Matthew Kent <mkent@magoazul.com> - 0.9.8-1
+- New upstream version.
+
 * Sun Jul 18 2010 Matthew Kent <mkent@magoazul.com> - 0.9.6-1
 - New upstream version.
 - We become a meta package to install the required chef server components.
