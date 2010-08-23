@@ -34,6 +34,8 @@ CHEF_REMOVE_SETUP_CMD = \
 
 install/chef::
 	# init script name is different from the package:
+	cp -f $(CURDIR)/chef/distro/debian/etc/init.d/chef-client $(CURDIR)/debian/chef-client.init
+	cp -f $(CURDIR)/chef/distro/debian/etc/default/chef-client $(CURDIR)/debian/chef-client.default
 	dh_installinit --name chef-client -- defaults 99 02
 	cp -rf $(CURDIR)/debian/etc/chef/client.rb $(CURDIR)/debian/chef/usr/share/chef
 	cp -rf $(CURDIR)/debian/etc/chef/solo.rb $(CURDIR)/debian/chef/usr/share/chef
@@ -52,6 +54,10 @@ install/libchef-ruby1.8::
 	rmdir $(CURDIR)/debian/libchef-ruby1.8/usr/bin/
 
 install/chef-solr::
+	cp -f $(CURDIR)/chef/distro/debian/etc/default/chef-solr $(CURDIR)/debian/chef-solr.chef-solr.default
+	cp -f $(CURDIR)/chef/distro/debian/etc/default/chef-solr-indexer $(CURDIR)/debian/chef-solr.chef-solr-indexer.default
+	cp -f $(CURDIR)/chef/distro/debian/etc/init.d/chef-solr $(CURDIR)/debian/chef-solr.chef-solr.init
+	cp -f $(CURDIR)/chef/distro/debian/etc/init.d/chef-solr-indexer $(CURDIR)/debian/chef-solr.chef-solr-indexer.init
 	cp -rf $(CURDIR)/debian/etc/chef/solr.rb debian/chef-solr/usr/share/chef-solr
 	cp -rf $(CURDIR)/debian/etc/chef/solr-jetty debian/chef-solr/etc/chef
 	cp chef-solr/bin/chef-solr-indexer debian/chef-solr/usr/sbin
@@ -64,6 +70,8 @@ install/chef-solr::
 	dh_installlogrotate --name=chef-solr-indexer
 
 install/chef-server-api::
+	cp -f $(CURDIR)/chef/distro/debian/etc/default/chef-server $(CURDIR)/debian/chef-server-api.chef-server.default
+	cp -f $(CURDIR)/chef/distro/debian/etc/init.d/chef-server $(CURDIR)/debian/chef-server-api.chef-server.init
 	mkdir -p $(CURDIR)/debian/chef-server-api/usr/sbin
 	mkdir -p $(CURDIR)/debian/chef-server-api/usr/share/chef-server-api
 	mkdir -p $(CURDIR)/debian/chef-server-api/usr/share/doc/chef-server-api
@@ -78,6 +86,8 @@ install/chef-server-api::
 	dh_installinit --name=chef-server -- defaults 90 02
 
 install/chef-server-webui::
+	cp -f $(CURDIR)/chef/distro/debian/etc/default/chef-server-webui $(CURDIR)/debian/chef-server-webui.chef-server-webui.default
+	cp -f $(CURDIR)/chef/distro/debian/etc/init.d/chef-server-webui $(CURDIR)/debian/chef-server-webui.chef-server-webui.init
 	mkdir -p $(CURDIR)/debian/chef-server-webui/usr/sbin
 	cp debian/etc/chef/webui.rb  debian/chef-server-webui/usr/share/chef-server-webui
 	cp chef-server-webui/bin/chef-server-webui debian/chef-server-webui/usr/sbin
