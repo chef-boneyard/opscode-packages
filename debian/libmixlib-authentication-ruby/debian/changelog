@@ -1,7 +1,7 @@
 libmixlib-authentication-ruby (1.1.4-1) unstable; urgency=low
 
   * New upstream release (1.1.4)
-  * debian/control: conflicts with older chef
+  * debian/control: this version breaks older chef auth
 
  -- Joshua Timberman <joshua@opscode.com>  Sun, 25 Jul 2010 14:58:58 -0600
 
