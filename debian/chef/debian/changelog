@@ -1,3 +1,9 @@
+chef (0.9.8+dfsg-4) unstable; urgency=low
+
+  * debian/rules: use upstream source's init scripts
+
+ -- Joshua Timberman <joshua@opscode.com>  Fri, 27 Aug 2010 12:49:58 -0600
+
 chef (0.9.8+dfsg-3) unstable; urgency=low
 
   * debian/control: remove references to merb slices.
