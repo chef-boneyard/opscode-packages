@@ -11,6 +11,7 @@ Homepage: http://github.com/opscode/mixlib-authentication/tree/master
 Package: libmixlib-authentication-ruby
 Architecture: all
 Depends: libmixlib-authentication-ruby1.8, ${shlibs:Depends}, ${misc:Depends}
+Conflicts: chef (<= 0.9)
 Description: Ruby mixin client/server header signing authentication/verification
  Provides a class based object to do header signing authentication.
  A multiline hash for authorization will be encoded in multiple
@@ -23,6 +24,7 @@ Description: Ruby mixin client/server header signing authentication/verification
 Package: libmixlib-authentication-ruby1.8
 Architecture: all
 Depends: ruby1.8, libmixlib-log-ruby1.8, ${shlibs:Depends}, ${misc:Depends}
+Conflicts: chef (<= 0.9)
 Description: Ruby mixin client/server header signing authentication/verification
  Provides a class based object to do header signing authentication.
  A multiline hash for authorization will be encoded in multiple
