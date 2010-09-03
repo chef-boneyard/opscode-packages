@@ -1,5 +1,26 @@
-coderay (0.9.1-1) unstable; urgency=low
+coderay (0.9.4-1) unstable; urgency=low
+
+  * New upstream release 
+  * debian/control
+      + add ruby1.9.1 package
+
+ -- Joshua Timberman <joshua@opscode.com>  Fri, 03 Sep 2010 01:17:22 -0600
+
+coderay (0.9.3-1) UNRELEASED; urgency=low
+
+  * New upstream release
+  * Bumped Standard Version to 3.8.4
+  * debian/control
+      + added myself to uploaders.
+  * debian/copright
+      + added debian's copyright information.
+  * added debian/source.
+  * Switch to quilt 3.0 format.
+  
+ -- Deepak Tripathi <apenguinlinux@gmail.com>  Sun, 16 May 2010 00:39:17 -0400
+
+coderay (0.8.359-1) unstable; urgency=low
 
   * Initial release (Closes: #540662)
 
- -- Joshua Timberman <joshua@opscode.com>  Mon, 04 Jan 2010 23:10:26 -0700
+ -- Joshua Timberman <joshua@opscode.com>  Sun, 09 Aug 2009 08:07:54 -0600

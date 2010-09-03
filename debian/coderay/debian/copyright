@@ -15,11 +15,11 @@ License:
     See /usr/share/common-licenses/LGPL-2.1 
 
 The Debian packaging is:
-
+    Copyright (C) 2010 Deepak Tripathi <apenguinlinux@gmail.com>
     Copyright (C) 2009 Opscode, Inc <legal@opscode.com>
-
-and is licensed under the LGPL version 2.1, 
-see `/usr/share/common-licenses/LGPL-2.1'.
+    Copyright (C) 2009 Joshua Timberman <joshua@opscode.com>
+and is licensed under the GPL version 3, 
+see `/usr/share/common-licenses/GPL-3'.
 
 ./lib/term/ansicolor.rb:
 
@@ -63,4 +63,5 @@ see `/usr/share/common-licenses/LGPL-2.1'.
     GNU LESSER GENERAL PUBLIC LICENSE
     Version 2.1, February 1999
 
-    See /usr/share/common-licenses/LGPL-2.1 
+    See /usr/share/common-licenses/LGPL-2.1
+
