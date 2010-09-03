@@ -5,7 +5,7 @@ Maintainer: Joshua Timberman <joshua@opscode.com>
 Uploaders: Debian Ruby Extras Maintainers <pkg-ruby-extras-maintainers@lists.alioth.debian.org>, Deepak Tripathi <apenguinlinux@gmail.com>
 Build-Depends: debhelper (>= 7), cdbs, ruby-pkg-tools (>= 0.8)
 Build-Depends-Indep: ruby1.8, ruby1.9.1
-Standards-Version: 3.8.4
+Standards-Version: 3.9.1
 Homepage: http://coderay.rubychan.de/
 
 Package: coderay

@@ -3,6 +3,9 @@ coderay (0.9.4-1) unstable; urgency=low
   * New upstream release 
   * debian/control
       + add ruby1.9.1 package
+      + standard version to 3.9.1
+  * debian/rules
+      + 1.9.1 package needs to remove same as 1.8 package
 
  -- Joshua Timberman <joshua@opscode.com>  Fri, 03 Sep 2010 01:17:22 -0600
 
