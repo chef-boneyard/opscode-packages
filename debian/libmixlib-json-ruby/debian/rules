@@ -1,0 +1,4 @@
+#!/usr/bin/make -f
+
+include /usr/share/cdbs/1/rules/debhelper.mk
+include /usr/share/ruby-pkg-tools/1/class/ruby-setup-rb.mk

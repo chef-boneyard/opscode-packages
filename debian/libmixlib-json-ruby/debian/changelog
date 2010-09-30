@@ -1,0 +1,5 @@
+libmixlib-json-ruby (0.1.0-1) unstable; urgency=low
+
+  * Initial release.
+
+ -- Joshua Timberman <joshua@opscode.com>  Thu, 30 Sep 2010 13:42:32 -0700

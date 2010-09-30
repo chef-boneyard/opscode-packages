@@ -1,0 +1,59 @@
+Source: libmixlib-json-ruby
+Section: ruby
+Priority: extra
+Maintainer: Joshua Timberman <joshua@opscode.com>
+Uploaders: Debian Ruby Extras Maintainers <pkg-ruby-extras-maintainers@lists.alioth.debian.org>, Paul van Tilburg <paulvt@debian.org>, Tollef Fog Heen <tfheen@err.no>
+Build-Depends: debhelper (>= 7), cdbs, ruby-pkg-tools (>= 0.14)
+Build-Depends-Indep: ruby1.8, libsetup-ruby1.8, ruby1.9.1, libsetup-ruby1.9.1
+Standards-Version: 3.8.7
+Homepage: http://github.com/opscode/mixlib-json
+
+Package: libmixlib-json-ruby
+Architecture: all
+Depends: libmixlib-json-ruby1.8, ${shlibs:Depends}, ${misc:Depends}
+Description: abstracts choosing a ruby JSON library with API
+ Mixlib-json provides an abstraction for picking an appropriate Ruby
+ JSON library based on what it detects is available on the system.
+ .
+ This library has the following load preference:
+ .
+    * YAJL-Ruby
+    * JSON (Gem)
+    * ActiveSupport
+ .
+ It also provides a simple API to operate with JSON.
+ .
+ This package is a dependency package, which depends on the package
+ containing actual Ruby mixlib-json libraries for the default Ruby version
+ (currently 1.8).
+
+Package: libmixlib-json-ruby1.8
+Architecture: all
+Depends: ruby1.8, ${shlibs:Depends}, ${misc:Depends}
+Description: abstracts choosing a ruby JSON library with API
+ Mixlib-json provides an abstraction for picking an appropriate Ruby
+ JSON library based on what it detects is available on the system.
+ .
+ This library has the following load preference:
+ .
+    * YAJL-Ruby
+    * JSON (Gem)
+    * ActiveSupport
+ .
+ This package contains the mixlib-json library for the default Ruby version
+ (currently 1.8).
+
+Package: libmixlib-json-ruby1.8
+Architecture: all
+Depends: ruby1.8, ${shlibs:Depends}, ${misc:Depends}
+Description: abstracts choosing a ruby JSON library with API
+ Mixlib-json provides an abstraction for picking an appropriate Ruby
+ JSON library based on what it detects is available on the system.
+ .
+ This library has the following load preference:
+ .
+    * YAJL-Ruby
+    * JSON (Gem)
+    * ActiveSupport
+ .
+ This package contains the mixlib-json library for Ruby 1.9.
