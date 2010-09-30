@@ -22,3 +22,8 @@ install/libcoderay-ruby1.8::
 	mv $(CURDIR)/debian/libcoderay-ruby1.8/usr/bin/coderay* $(CURDIR)/debian/coderay/usr/bin/
 	rmdir $(CURDIR)/debian/libcoderay-ruby1.8/usr/bin
 	rm  $(CURDIR)/debian/libcoderay-ruby1.8/usr/lib/ruby/1.8/README
+
+install/libcoderay-ruby1.9.1::
+	mv $(CURDIR)/debian/libcoderay-ruby1.9.1/usr/bin/coderay* $(CURDIR)/debian/coderay/usr/bin/
+	rmdir $(CURDIR)/debian/libcoderay-ruby1.9.1/usr/bin
+	rm  $(CURDIR)/debian/libcoderay-ruby1.9.1/usr/lib/ruby/1.8/README

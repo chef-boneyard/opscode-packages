@@ -2,10 +2,10 @@ Source: coderay
 Section: ruby
 Priority: extra
 Maintainer: Joshua Timberman <joshua@opscode.com>
-Uploaders: Debian Ruby Extras Maintainers <pkg-ruby-extras-maintainers@lists.alioth.debian.org>
+Uploaders: Debian Ruby Extras Maintainers <pkg-ruby-extras-maintainers@lists.alioth.debian.org>, Deepak Tripathi <apenguinlinux@gmail.com>
 Build-Depends: debhelper (>= 7), cdbs, ruby-pkg-tools (>= 0.8)
-Build-Depends-Indep: ruby1.8
-Standards-Version: 3.8.3
+Build-Depends-Indep: ruby1.8, ruby1.9.1
+Standards-Version: 3.9.1
 Homepage: http://coderay.rubychan.de/
 
 Package: coderay
@@ -53,3 +53,17 @@ Description: Ruby 1.8 library for syntax highlighting
  CodeRay can output to HTML, JSON, XML, Yaml.
  This is package contains the library for the current default
  version of Ruby 1.8.
+
+Package: libcoderay-ruby1.9.1
+Architecture: all
+Depends: ${misc:Depends}, ruby1.9.1
+Description: Ruby 1.9 library for syntax highlighting
+ CodeRay is a Ruby library that can scan an input file or text in a web
+ page and encode it as syntax highlighted output.
+ .
+ CodeRay supports many input languages including: C, C++, CSS, Delphi, diff,
+ Groovy, HTML, RHTML (Erb+HTML), Nitro-XHTML, Java, JavaScript, JSON, PHP,
+ Python, Ruby, SQL and YAML.
+ .
+ CodeRay can output to HTML, JSON, XML, Yaml.
+ This is package contains the library for Ruby 1.9
