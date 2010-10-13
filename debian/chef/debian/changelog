@@ -1,8 +1,14 @@
-chef (0.9.8+dfsg-4) unstable; urgency=low
+chef (0.9.10.rc.3+dfsg-1) unstable; urgency=low
 
-  * debian/rules: use upstream source's init scripts
+  * New upstream release (0.9.10).
+  * debian/control: Depend on ohai 0.5.8.
+  * debian/rules: use upstream source's init scripts except chef-solr (need
+    - update for upstream to support retries)
+  * debian/patches/solr_load_path.patch: delete, use -2.
+  * debian/patches/solr_load_path-2.patch:
+    - upstream changed ordering in some of the Index files, rewrite the patch
 
- -- Joshua Timberman <joshua@opscode.com>  Fri, 27 Aug 2010 12:49:58 -0600
+ -- Joshua Timberman <joshua@opscode.com>  Tue, 12 Oct 2010 14:38:53 -0600
 
 chef (0.9.8+dfsg-3) unstable; urgency=low
 

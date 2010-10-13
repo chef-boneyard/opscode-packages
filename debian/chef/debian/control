@@ -5,12 +5,12 @@ Maintainer: Joshua Timberman <joshua@opscode.com>
 Uploaders: Debian Ruby Extras Maintainers <pkg-ruby-extras-maintainers@lists.alioth.debian.org>
 Build-Depends: cdbs, debhelper (>= 7), ruby-pkg-tools (>= 0.14), quilt, po-debconf, libjavascript-minifier-xs-perl
 Build-Depends-Indep: ruby, rake
-Standards-Version: 3.9.0
+Standards-Version: 3.9.1
 Homepage: http://wiki.opscode.com/display/chef/Home
 
 Package: chef
 Architecture: all
-Depends: ${misc:Depends}, ruby1.8, liberubis-ruby1.8, libjson-ruby1.8, libextlib-ruby1.8 (>= 0.9.13), ohai (>= 0.4.0), libchef-ruby1.8 (= ${source:Version}), libopenssl-ruby1.8, libmixlib-authentication-ruby1.8 (>= 1.1.4), ucf, libhighline-ruby1.8
+Depends: ${misc:Depends}, ruby1.8, liberubis-ruby1.8, libjson-ruby1.8, libextlib-ruby1.8 (>= 0.9.13), ohai (>= 0.5.8), libchef-ruby1.8 (= ${source:Version}), libopenssl-ruby1.8, libmixlib-authentication-ruby1.8 (>= 1.1.4), ucf, libhighline-ruby1.8
 Recommends: irb1.8
 Description: System integration framework written in Ruby
  Chef is a systems integration framework and configuration management library
@@ -111,8 +111,8 @@ Description: Ruby libraries for Chef system integration framework
 
 Package: libchef-ruby1.8
 Architecture: all
-Depends: ${misc:Depends}, ruby1.8, libopenssl-ruby1.8, libmixlib-authentication-ruby1.8 (>= 1.1.4), libmixlib-cli-ruby1.8 (>= 1.1.0), libmixlib-config-ruby1.8 (>= 1.1.0), libmixlib-log-ruby1.8 (>= 1.1.0), libohai-ruby1.8 (>= 0.4.0), libmoneta-ruby1.8, libbunny-ruby1.8, rubygems1.8 | libgems-ruby1.8, librestclient-ruby1.8, libuuidtools-ruby1.8
-Recommends: ohai (>= 0.4.0), chef (= ${source:Version})
+Depends: ${misc:Depends}, ruby1.8, libopenssl-ruby1.8, libmixlib-authentication-ruby1.8 (>= 1.1.4), libmixlib-cli-ruby1.8 (>= 1.1.0), libmixlib-config-ruby1.8 (>= 1.1.0), libmixlib-log-ruby1.8 (>= 1.1.0), libohai-ruby1.8 (>= 0.5.8), libmoneta-ruby1.8, libbunny-ruby1.8, rubygems1.8 | libgems-ruby1.8, librestclient-ruby1.8, libuuidtools-ruby1.8
+Recommends: ohai (>= 0.5.8), chef (= ${source:Version})
 Suggests: rake, libshadow-ruby1.8
 Description: Ruby 1.8 libraries for Chef system integration framework
  Chef is a systems integration framework and configuration management library
