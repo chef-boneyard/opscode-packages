@@ -1,0 +1,16 @@
+# Description: fixes chef-solr startup when using -L specifying log location.
+Index: chef-0.9.10.rc.2+dfsg.orig/chef-solr/lib/chef/solr/application/solr.rb
+===================================================================
+--- chef-0.9.10.rc.2+dfsg.orig.orig/chef-solr/lib/chef/solr/application/solr.rb	2010-10-13 13:02:16.000000000 -0600
++++ chef-0.9.10.rc.2+dfsg.orig/chef-solr/lib/chef/solr/application/solr.rb	2010-10-13 13:02:26.000000000 -0600
+@@ -189,8 +189,8 @@
+               # Don't need it anymore
+               Chef::Log.close
+ 
+-              STDOUT.reopen(@logfile)
+-              STDERR.reopen(@logfile)
++              #STDOUT.reopen(@logfile)
++              #STDERR.reopen(@logfile)
+               @logfile.close
+             end
+ 
