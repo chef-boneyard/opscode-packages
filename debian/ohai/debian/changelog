@@ -1,3 +1,9 @@
+ohai (0.5.8.rc.0-1) unstable; urgency=low
+
+  * New upstream release (0.5.8).
+
+ -- Joshua Timberman <joshua@opscode.com>  Tue, 12 Oct 2010 14:25:25 -0600
+
 ohai (0.5.6-1) unstable; urgency=low
 
   * New upstream release (0.5.6).
