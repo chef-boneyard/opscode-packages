@@ -1,3 +1,4 @@
+solr_load_path-2.patch
 chef_server_load_path-2.patch
-solr_load_path.patch
 jquery_unminified.patch
+CHEF-1382_solr_log_file.patch
