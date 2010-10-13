@@ -1,0 +1,64 @@
+# Description: set the load path for chef-solr's binaries correctly for Debian
+# FHS compliant location. No plans for upstream to change this.
+Index: chef-0.9.10.rc.2+dfsg.orig/chef-server-api/lib/chef-server-api.rb
+===================================================================
+--- chef-0.9.10.rc.2+dfsg.orig.orig/chef-server-api/lib/chef-server-api.rb	2010-10-12 17:15:13.000000000 -0600
++++ chef-0.9.10.rc.2+dfsg.orig/chef-server-api/lib/chef-server-api.rb	2010-10-12 17:17:34.000000000 -0600
+@@ -1,2 +1,3 @@
++$:.unshift File.join(File.dirname(__FILE__), "..", "..", "chef-solr", "lib")
+ CHEF_SERVER_VERSION = "0.8.11"
+ CHEF_SERVER_API_ROOT = File.expand_path(File.dirname(__FILE__) + '/../')
+Index: chef-0.9.10.rc.2+dfsg.orig/chef-server-webui/lib/chef-server-webui.rb
+===================================================================
+--- chef-0.9.10.rc.2+dfsg.orig.orig/chef-server-webui/lib/chef-server-webui.rb	2010-10-12 17:18:09.000000000 -0600
++++ chef-0.9.10.rc.2+dfsg.orig/chef-server-webui/lib/chef-server-webui.rb	2010-10-12 17:20:50.000000000 -0600
+@@ -1,4 +1,5 @@
+ require 'chef-server-webui/version'
++$:.unshift File.join(File.dirname(__FILE__), "..", "..", "chef-solr", "lib")
+ 
+ CHEF_SERVER_WEBUI_VERSION = ::ChefServerWebui::VERSION
+ CHEF_SERVER_WEBUI_ROOT = File.expand_path(File.dirname(__FILE__) + '/../')
+Index: chef-0.9.10.rc.2+dfsg.orig/chef-solr/bin/chef-solr
+===================================================================
+--- chef-0.9.10.rc.2+dfsg.orig.orig/chef-solr/bin/chef-solr	2010-10-12 17:12:04.000000000 -0600
++++ chef-0.9.10.rc.2+dfsg.orig/chef-solr/bin/chef-solr	2010-10-12 17:13:03.000000000 -0600
+@@ -19,8 +19,8 @@
+ 
+ $:.unshift(File.expand_path(File.join(File.dirname(__FILE__), "..", "lib")))
+ $:.unshift(File.expand_path(File.join(File.dirname(__FILE__), "..", "..", "chef", "lib")))
++$:.unshift(File.expand_path(File.join(File.dirname(__FILE__), "..", "share", "chef-solr", "lib")))
+ 
+-require 'rubygems'
+ require 'chef/solr/application/solr'
+ 
+ Chef::Solr::Application::Solr.new.run
+Index: chef-0.9.10.rc.2+dfsg.orig/chef-solr/bin/chef-solr-indexer
+===================================================================
+--- chef-0.9.10.rc.2+dfsg.orig.orig/chef-solr/bin/chef-solr-indexer	2010-10-12 17:13:09.000000000 -0600
++++ chef-0.9.10.rc.2+dfsg.orig/chef-solr/bin/chef-solr-indexer	2010-10-12 17:13:31.000000000 -0600
+@@ -17,10 +17,9 @@
+ # limitations under the License.
+ #
+ 
+-require 'rubygems'
+-
+ $:.unshift(File.expand_path(File.join(File.dirname(__FILE__), "..", "lib")))
+ $:.unshift(File.expand_path(File.join(File.dirname(__FILE__), "..", "..", "chef", "lib")))
++$:.unshift(File.expand_path(File.join(File.dirname(__FILE__), "..", "share", "chef-solr", "lib")))
+ 
+ require 'chef/solr/application/indexer'
+ 
+Index: chef-0.9.10.rc.2+dfsg.orig/chef-solr/bin/chef-solr-rebuild
+===================================================================
+--- chef-0.9.10.rc.2+dfsg.orig.orig/chef-solr/bin/chef-solr-rebuild	2010-10-12 17:13:45.000000000 -0600
++++ chef-0.9.10.rc.2+dfsg.orig/chef-solr/bin/chef-solr-rebuild	2010-10-12 17:14:54.000000000 -0600
+@@ -19,8 +19,8 @@
+ 
+ $:.unshift(File.expand_path(File.join(File.dirname(__FILE__), "..", "lib")))
+ $:.unshift(File.expand_path(File.join(File.dirname(__FILE__), "..", "..", "chef", "lib")))
++$:.unshift(File.expand_path(File.join(File.dirname(__FILE__), "..", "share", "chef-solr", "lib")))
+ 
+-require 'rubygems'
+ require 'chef/solr/application/rebuild'
+ 
+ Chef::Solr::Application::Rebuild.new.run
