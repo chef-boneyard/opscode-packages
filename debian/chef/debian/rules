@@ -54,10 +54,8 @@ install/libchef-ruby1.8::
 	rmdir $(CURDIR)/debian/libchef-ruby1.8/usr/bin/
 
 install/chef-solr::
-	cp -f $(CURDIR)/chef/distro/debian/etc/default/chef-solr $(CURDIR)/debian/chef-solr.chef-solr.default
 	cp -f $(CURDIR)/chef/distro/debian/etc/default/chef-solr-indexer $(CURDIR)/debian/chef-solr.chef-solr-indexer.default
 	cp -f $(CURDIR)/chef/distro/debian/etc/init.d/chef-solr-indexer $(CURDIR)/debian/chef-solr.chef-solr-indexer.init
-	perl -pi -e "s#STARTTIME=5#STARTTIME=100#" $(CURDIR)/debian/chef-solr.chef-solr.default
 	perl -pi -e "s#DAEMON=/usr/bin/chef-solr-indexer#DAEMON=/usr/sbin/chef-solr-indexer#" $(CURDIR)/debian/chef-solr.chef-solr-indexer.init
 	cp -rf $(CURDIR)/debian/etc/chef/solr.rb debian/chef-solr/usr/share/chef-solr
 	cp -rf $(CURDIR)/debian/etc/chef/solr-jetty debian/chef-solr/etc/chef
