@@ -1,12 +1,17 @@
-chef (0.9.10.rc.3+dfsg-1) unstable; urgency=low
+chef (0.9.12+dfsg-1) unstable; urgency=low
 
-  * New upstream release (0.9.10).
+  * New upstream release (0.9.12).
   * debian/control: Depend on ohai 0.5.8.
+  * debian/control: depend on mixlib-log 1.2.0 (fixes CHEF-1382).
   * debian/rules: use upstream source's init scripts except chef-solr (need
-    - update for upstream to support retries)
+    + update for upstream to support retries)
   * debian/patches/solr_load_path.patch: delete, use -2.
   * debian/patches/solr_load_path-2.patch:
-    - upstream changed ordering in some of the Index files, rewrite the patch
+    + upstream changed ordering in some of the Index files, rewrite the patch
+  * debian/etc/chef/server.rb:
+    + Resolve checksum_path setting conflict.
+  * debian/chef-server-api.postinst, debian/chef.postinst:
+    + handle checksum_path location change.
 
  -- Joshua Timberman <joshua@opscode.com>  Tue, 12 Oct 2010 14:38:53 -0600
 

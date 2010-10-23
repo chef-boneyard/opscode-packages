@@ -56,12 +56,20 @@ chef_server_url    "http://localhost:4000"
 #
 # See the Chef Wiki for more information about setting up a local repository for
 # working on cookbooks: http://wiki.opscode.com/display/chef/Chef+Repository
+#
+# NOTE: cookbook_path is a deprecated setting for the Chef Server. This option
+# remains here for compatibility because the default in Chef is not FHS compliant.
+# This option may be removed in a future version.
 
 cookbook_path      [ "/var/lib/chef/cookbooks" ]
 
 # cookbook_tarball_path is the location where the server will store uploaded
 # cookbook tarballs. These tarballs can be downloaded with knife, for
 # redistribution.
+#
+# NOTE: cookbook_tarball_path is a deprecated setting for the Chef Server.
+# This option remains here for compatibility because the default in Chef is
+# not FHS compliant. This option may be removed in a future version.
 
 cookbook_tarball_path "/var/lib/chef/cookbook-tarballs"
 
@@ -69,6 +77,11 @@ cookbook_tarball_path "/var/lib/chef/cookbook-tarballs"
 # uploaded for cookbooks.
 
 sandbox_path "/var/cache/chef/sandboxes"
+
+# checksum_path sets the location for the checksum index for each cookbook
+# file uploaded.
+
+checksum_path "/var/lib/chef/cookbook_index"
 
 # file_cache_path specifies where chef should cache cookbooks, server
 # cookie ID, and openid registration data.
@@ -117,10 +130,6 @@ openid_cstore_path "/var/lib/chef/openid/cstore"
 # for checksums of compared objects.
 
 cache_options({ :path => "/var/cache/chef/checksums", :skip_expires => true})
-
-# checksum_path sets the location for file checksums on sandbox uploads.
-
-checksum_path "/var/cache/chef/checksums"
 
 # Mixlib::Log::Formatter.show_time specifies whether the chef-client log should
 # contain timestamps.

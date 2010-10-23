@@ -19,6 +19,11 @@ case "$1" in
     test -f $CONFIGFILE && chmod 0640 $CONFIGFILE
   ;;
 
+  upgrade)
+    mkdir -p /var/lib/chef/cookbook_index
+    find /var/cache/chef/checksums/ -type d -exec mv {} /var/lib/chef/cookbook_index \;
+  ;;
+
   abort-upgrade|abort-remove|abort-deconfigure)
   ;;
 
