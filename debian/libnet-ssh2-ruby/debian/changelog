@@ -1,0 +1,32 @@
+libnet-ssh2-ruby (2.0.23-1) unstable; urgency=low
+
+  * Non-maintainer upload.
+  * New upstream version.
+  * debian/watch:
+    + source now lives on github
+  * debian/control:
+    + Bump Standards-Version to 3.9.1 (no changes needed).
+  * debian/source/format:
+    + Use source format '3.0 (quilt)'.
+
+ -- Joshua Timberman <joshua@opscode.com>  Sat, 23 Oct 2010 08:05:46 -0600
+
+libnet-ssh2-ruby (2.0.15-1) unstable; urgency=low
+
+  * Team upload.
+  * New upstream version.
+  * debian/control:
+    + Bump Standards-Version to 3.8.4 (no changes needed).
+    + Drop 1.9 package, add 1.9.1 package (Closes: #569872).
+
+ -- Marco Rodrigues <gothicx@sapo.pt>  Wed, 24 Feb 2010 21:26:22 +0000
+
+libnet-ssh2-ruby (2.0.13-1) unstable; urgency=low
+
+  [ Christopher Lunsford ]
+  * Initial release (Closes: #543302)
+
+  [ Ryan Niebur ]
+  * fix watch file
+
+ -- Christopher Lunsford <binarymutant@gmail.com>  Sun, 23 Aug 2009 17:40:00 -0400

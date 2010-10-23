@@ -1,0 +1,42 @@
+Source: libnet-ssh2-ruby
+Section: ruby
+Priority: optional
+Maintainer: Christopher Lunsford <binarymutant@gmail.com>
+Uploaders: Debian Ruby Extras Maintainers <pkg-ruby-extras-maintainers@lists.alioth.debian.org>
+Build-Depends: cdbs, debhelper (>= 7), ruby1.8, ruby1.9.1, ruby-pkg-tools
+Standards-Version: 3.9.1
+Homepage: http://net-ssh.rubyforge.org/
+Vcs-Browser: http://svn.debian.org/viewsvn/pkg-ruby-extras/trunk/libnet-ssh2-ruby/
+Vcs-Svn: svn://svn.debian.org/svn/pkg-ruby-extras/trunk/libnet-ssh2-ruby/
+
+Package: libnet-ssh2-ruby
+Architecture: all
+Depends: libnet-ssh2-ruby1.8, ${misc:Depends}
+Description: Ruby implementation of the SSH2 client protocol
+ Net::SSH is a pure-Ruby implementation of the SSH2 client protocol. It allows
+ you to write programs that invoke and interact with processes on remote
+ servers, via SSH2.
+ .
+ Metapackage for libnet-ssh2-ruby1.8
+
+Package: libnet-ssh2-ruby1.8
+Architecture: all
+Replaces: libnet-ssh-ruby1.8
+Depends: ruby1.8, ${misc:Depends}
+Description: Ruby implementation of the SSH2 client protocol
+ Net::SSH is a pure-Ruby implementation of the SSH2 client protocol. It allows
+ you to write programs that invoke and interact with processes on remote
+ servers, via SSH2.
+ .
+ This package is built for Ruby 1.8.
+
+Package: libnet-ssh2-ruby1.9.1
+Architecture: all
+Provides: libnet-ssh2-ruby
+Depends: ruby1.9.1, ${misc:Depends}
+Description: Ruby implementation of the SSH2 client protocol
+ Net::SSH is a pure-Ruby implementation of the SSH2 client protocol. It allows
+ you to write programs that invoke and interact with processes on remote
+ servers, via SSH2.
+ .
+ This package is built for Ruby 1.9.1.
