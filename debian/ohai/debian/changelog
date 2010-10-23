@@ -1,6 +1,7 @@
-ohai (0.5.8.rc.0-1) unstable; urgency=low
+ohai (0.5.8-1) unstable; urgency=low
 
   * New upstream release (0.5.8).
+  * Bumped Standard Version to 3.9.1 (no changes)
 
  -- Joshua Timberman <joshua@opscode.com>  Tue, 12 Oct 2010 14:25:25 -0600
 
