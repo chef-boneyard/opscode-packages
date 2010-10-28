@@ -1,0 +1,10 @@
+Document: rubygems-doc
+Title: RubyGems documentation
+Author: Chad Fowler, Rich Kilmer, Jim Weirich and others
+Abstract: This docuement is genareted from RubyGems' source code and 
+ describes RubyGems' classes and methods
+Section: Programming
+
+Format: HTML
+Index: /usr/share/doc/rubygems-doc/html/index.html
+Files: /usr/share/doc/rubygems-doc/html/*.html

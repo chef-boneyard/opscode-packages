@@ -1,0 +1,41 @@
+.TH GEM@@VERSION@@ "1" "Dec 2007" "gem@@VERSION@@ 1.0.0" "User Commands"
+.SH NAME
+gem@@VERSION@@ \- the front end to RubyGems
+.SH SYNOPSIS
+.IP
+gem@@VERSION@@ command [arguments...] [options...]
+.IP
+gem@@VERSION@@ \fB\-h\fR | \-\-help
+.IP
+gem@@VERSION@@ \fB\-v\fR | \-\-version
+.fi
+.SH DESCRIPTION
+.B gem@@VERSION@@
+is the front end to RubyGems, a sophisticated package manager for Ruby. This is a
+basic help message containing pointers to more information.
+.PP
+Further help:
+.TP
+gem@@VERSION@@ help commands
+list all 'gem@@VERSION@@' commands
+.TP
+gem@@VERSION@@ help examples
+show some examples of usage
+.TP
+gem@@VERSION@@ help <COMMAND>
+show help on COMMAND
+.IP
+(e.g. 'gem@@VERSION@@ help install')
+.IP
+.PP
+Further information:
+.IP
+http://rubygems.org/
+.SH EXAMPLES
+.IP
+.nf
+gem@@VERSION@@ install rake
+gem@@VERSION@@ list \fB\-\-local\fR
+gem@@VERSION@@ build package.gemspec
+gem@@VERSION@@ help install
+.fi

@@ -1,0 +1,21 @@
+#!/bin/sh
+# 
+
+set -e
+
+case "$1" in
+  configure)
+        rm -f /var/lib/gems/1.8/source_cache
+        update-alternatives --quiet --install /usr/bin/gem gem \
+            /usr/bin/gem1.8 180 \
+	    --slave /usr/share/man/man1/gem.1.gz gem.1.gz \
+	    /usr/share/man/man1/gem1.8.1.gz \
+            --slave /etc/bash_completion.d/gem bash_completion_gem \
+            /etc/bash_completion.d/gem1.8
+       ;;
+  *)
+esac
+
+#DEBHELPER#
+
+exit 0

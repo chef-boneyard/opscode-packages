@@ -1,0 +1,41 @@
+#! /bin/sh /usr/share/dpatch/dpatch-run
+## 03_disable_update_system.dpatch by James Healy <jimmy@deefa.com>
+##
+## All lines beginning with `## DP:' are a description of the patch.
+## DP: Disable gem update --system functionality, as it can break things. Users should use apt instead
+
+@DPATCH@
+--- a/lib/rubygems/commands/update_command.rb
++++ b/lib/rubygems/commands/update_command.rb
+@@ -48,18 +48,22 @@ class Gem::Commands::UpdateCommand < Gem
+     hig = {}
+ 
+     if options[:system] then
+-      say "Updating RubyGems"
++      if ENV.include?('REALLY_GEM_UPDATE_SYSTEM')
++        say "Updating RubyGems"
+ 
+-      unless options[:args].empty? then
+-        raise "No gem names are allowed with the --system option"
+-      end
++        unless options[:args].empty? then
++          raise "No gem names are allowed with the --system option"
++        end
+ 
+-      rubygems_update = Gem::Specification.new
+-      rubygems_update.name = 'rubygems-update'
+-      rubygems_update.version = Gem::Version.new Gem::VERSION
+-      hig['rubygems-update'] = rubygems_update
++        rubygems_update = Gem::Specification.new
++        rubygems_update.name = 'rubygems-update'
++        rubygems_update.version = Gem::Version.new Gem::VERSION
++        hig['rubygems-update'] = rubygems_update
+ 
+-      options[:user_install] = false
++        options[:user_install] = false
++      else
++        fail "gem update --system is disabled on Debian, because it will overwrite the content of the rubygems Debian package, and might break your Debian system in subtle ways. The Debian-supported way to update rubygems is through apt-get, using Debian official repositories.\nIf you really know what you are doing, you can still update rubygems by setting the REALLY_GEM_UPDATE_SYSTEM environment variable, but please remember that this is completely unsupported by Debian."
++      end
+     else
+       say "Updating installed gems"
+ 

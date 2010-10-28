@@ -1,0 +1,19 @@
+#! /bin/sh /usr/share/dpatch/dpatch-run
+## 08_tighter_search_regex.dpatch by Daigo Moriwaki <daigo@debian.org>
+##
+## All lines beginning with `## DP:' are a description of the patch.
+## DP: Included at 0.8.11-2
+
+@DPATCH@
+diff -urNad trunk~/lib/rubygems/source_index.rb trunk/lib/rubygems/source_index.rb
+--- trunk~/lib/rubygems/source_index.rb	2008-04-05 08:06:49.000000000 +0900
++++ trunk/lib/rubygems/source_index.rb	2008-05-10 15:40:39.000000000 +0900
+@@ -248,7 +248,7 @@
+                     end
+     else
+       version_requirement = platform_only || Gem::Requirement.default
+-      gem_pattern = /#{gem_pattern}/i
++      gem_pattern = /^#{gem_pattern}/i
+     end
+ 
+     unless Gem::Requirement === version_requirement then

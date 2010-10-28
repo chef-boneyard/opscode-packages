@@ -1,0 +1,367 @@
+libgems-ruby (1.3.7-2~hardy1) hardy; urgency=low
+
+  * Backport to hardy
+
+ -- Joshua Timberman <joshua@opscode.com>  Tue, 26 Oct 2010 15:06:57 -0600
+
+libgems-ruby (1.3.7-2) unstable; urgency=high
+
+  * Team upload.
+  * Drop rubygems for 1.9.1, as it was moved to the ruby1.9.1 source package
+    in version 1.9.2.0-1.
+  * Provide a way to override Debian's disabling of gem update --system by
+    setting an environment variable.
+    This change is a compromise solution to solve long-standing user complaints
+    about Rubygems in Debian.
+
+ -- Lucas Nussbaum <lucas@lucas-nussbaum.net>  Sat, 11 Sep 2010 08:07:37 +0200
+
+libgems-ruby (1.3.7-1) unstable; urgency=low
+
+  [ Lucas Nussbaum ]
+  * Team upload.
+  * Drop rdoc1.8 and rdoc1.9.1 from Build-Depends, as those packages were
+    merged into ruby1.8 and ruby1.9.1.
+
+  [ Daigo Moriwaki ]
+  * New upstream release. (Closes: #589511)
+  * Converted dpatch to quilt.
+  * Removed: debian/patches/20100408-version_requirements-r2459.dpatch,
+    which has been applied by the upstream.
+
+ -- Daigo Moriwaki <daigo@debian.org>  Mon, 19 Jul 2010 18:45:43 +0900
+
+libgems-ruby (1.3.6-2) unstable; urgency=low
+
+  * Added a patch: debian/patches/20100408-version_requirements-r2459.dpatch
+    fixing an undefined method error (version_requirements=), which is a
+    backport from the upstream r2459. Thanks to Jeremy Lal.
+    (Closes: #576870)
+
+ -- Daigo Moriwaki <daigo@debian.org>  Thu, 08 Apr 2010 21:54:01 +0900
+
+libgems-ruby (1.3.6-1) unstable; urgency=low
+
+  * New upstream release (Closes: #574801)
+  * Added debian/README.source due to depending on dpatch to build.
+  * debian/control: Bumped up Standards-Version to 3.8.4.
+
+ -- Daigo Moriwaki <daigo@debian.org>  Wed, 07 Apr 2010 19:22:46 +0900
+
+libgems-ruby (1.3.5-2) unstable; urgency=low
+
+  * debian/rules: Fixed a FTBFS bug. Thanks to Jon Bernard for a patch.
+    (Closes: #549778)
+
+ -- Daigo Moriwaki <daigo@debian.org>  Mon, 26 Oct 2009 19:59:51 +0900
+
+libgems-ruby (1.3.5-1) unstable; urgency=low
+
+  * New upstream release.
+  * Removed rubygems1.9 package. Instread, provide rubygems1.9.1 for
+    ruby1.9.1.
+  * added debian/fixshebang.sh to fix a shebang line.
+  * debian/control: Bumped up Standards-Version to 3.8.2.
+
+ -- Daigo Moriwaki <daigo@debian.org>  Sat, 08 Aug 2009 14:30:17 +0900
+
+libgems-ruby (1.3.4-1) unstable; urgency=low
+
+  * New upstream release.
+
+ -- Daigo Moriwaki <daigo@debian.org>  Sun, 14 Jun 2009 17:33:44 +0900
+
+libgems-ruby (1.3.3-1) unstable; urgency=low
+
+  * New upstream release
+  * Gems failed to build a gem package with a gemspec that does not have a
+    homepage attribute. This issue has been fixed by the upstream. 
+    (Closes: #529713)
+
+ -- Daigo Moriwaki <daigo@debian.org>  Thu, 21 May 2009 23:02:55 +0900
+
+libgems-ruby (1.3.2-1) unstable; urgency=low
+
+  [ Daigo Moriwaki ]
+  * New upstream release.
+  * debian/control:
+    - Bumped up the Standards-Version to 3.8.1.
+    - Depend ${misc:Depends} as well.
+  * debian/rules:
+    - Removed a deprecated dependency to a 'TODO' file.
+  * Bumped up the compat level to 7.
+    - debian/compat
+    - debian/control.
+
+  [ Gunnar Wolf ]
+  * Changed section to Ruby as per ftp-masters' request
+
+ -- Daigo Moriwaki <daigo@debian.org>  Tue, 28 Apr 2009 21:18:02 +0900
+
+libgems-ruby (1.3.1-1) experimental; urgency=low
+
+  * New upstream release.
+  * Removed debian/patches/21_avoid_ioseek.dpatch since the upstream checks
+    I/O errors now.
+
+ -- Daigo Moriwaki <daigo@debian.org>  Wed, 19 Nov 2008 00:03:20 +0900
+
+libgems-ruby (1.2.0-3) unstable; urgency=low
+
+  * debian/control:
+    - `rubygems' is present again to provide a dependency
+      package referring to rubygems1.8. 
+    - Bumped up Standards-Version to 3.8.0: used ${binary:Version} instread.
+
+ -- Daigo Moriwaki <daigo@debian.org>  Sun, 31 Aug 2008 23:56:21 +0900
+
+libgems-ruby (1.2.0-2) unstable; urgency=low
+
+  * debian/rules: Fixed a file conflict with libruby1.9 (Closes: #493309)
+
+ -- Daigo Moriwaki <daigo@debian.org>  Sun, 03 Aug 2008 21:32:36 +0900
+
+libgems-ruby (1.2.0-1) unstable; urgency=low
+
+  * New upstream release. (Closes: #487820)
+  * debian/control: Specified a minimum version of ruby1.9 because the 
+    rubygems package was merged.
+
+ -- Daigo Moriwaki <daigo@debian.org>  Thu, 26 Jun 2008 23:10:40 +0900
+
+libgems-ruby (1.1.1-2) experimental; urgency=low
+
+  * The rubygems and libgems-ruby1.8 packages are now deprecated and merged
+    into a new rubygems1.8 package. In addition, this source also provides 
+    rubygems1.9. 
+
+ -- Daigo Moriwaki <daigo@debian.org>  Sun, 08 Jun 2008 22:31:57 +0900
+
+libgems-ruby (1.1.1-1) unstable; urgency=low
+
+  * New upstream release.
+  * No "instaling" (typo) found. Fixed by the upstream. (Closes: #443135)
+  * debian/patches/01_default_gem_path.dpatch: install executables to
+    /var/lib/gems/1.8/bin. (Closes: #458987, #480250)
+  * debian/control: 'rubygems' package now Suggests ruby1.8-dev and
+    build-essential since some gems may require native build. 
+    (Closes: #466189)
+  * gem now respects --http-proxy. Fixed by the upstream. (Closes: #414703)
+
+ -- Daigo Moriwaki <daigo@debian.org>  Sat, 10 May 2008 16:28:31 +0900
+
+libgems-ruby (1.0.1-4) unstable; urgency=low
+
+  * debian/etc/bash_completion.d/gem1.8: The completion did not work
+    because of a wrong function name. This issue has been fixed. 
+    Thanks to Victor Serbin.
+
+ -- Daigo Moriwaki <daigo@debian.org>  Thu, 27 Dec 2007 23:46:36 +0900
+
+libgems-ruby (1.0.1-3) unstable; urgency=low
+
+  * BTS numbers to be closed were wrong at 1.0.0-1.
+    (Closes: #457065, #457180)
+
+ -- Daigo Moriwaki <daigo@debian.org>  Thu, 27 Dec 2007 23:31:56 +0900
+
+libgems-ruby (1.0.1-2) unstable; urgency=low
+
+  * debian/postrm: Only the /var/lib/gems/1.8 directory should be removed.
+
+ -- Daigo Moriwaki <daigo@debian.org>  Thu, 27 Dec 2007 23:19:00 +0900
+
+libgems-ruby (1.0.1-1) unstable; urgency=low
+
+  * New upstream release.
+  * debian/control: depends rdoc1.8 instead of rake. Explicitly use 
+    rdoc1.8 to generate documentations because rake depends on RubyGems.
+
+ -- Daigo Moriwaki <daigo@debian.org>  Tue, 25 Dec 2007 21:04:14 +0900
+
+libgems-ruby (1.0.0-1) unstable; urgency=low
+
+  [ Daigo Moriwaki ]
+  * New upstream release (Closes: #45706, #45718, #443135).
+  * Removed patches since the upstream has resolved the issues
+    - debian/patches/03_config_file.dpatch
+    - debian/patches/04_gem_runner.dpatch
+    - debian/patches/06_dependency_list.dpatch
+    - debian/patches/07_security.dpatch
+    - debian/patches/10_datadir.dpatch
+  * Replaced patches with a new and upstream-friendly way.
+    Thanks to James Healy <jimmy at deefa dot com>.
+    - Removed debian/patches/01_rubygems.dpatch
+    - Removed debian/patches/02_post-install.dpatch
+    - Added debian/patches/01_default_gem_path.dpatch
+  * Removed patches for --build-root command option, which is no longer 
+    supported.
+    - 05_gem_commands.dpatch
+    - 09_installer.dpatch 
+  * debian/patches/08_tighter_search_regex.dpatch: Followed the upstream 
+    changes. Thanks to James Healy.
+  * Added debian/patches/03_disable_update_system.dpatch: 
+    Disabled gem update --system (Closes: #452547).
+    Thanks to James Healy. 
+  * debian/patches/21_avoid_ioseek.dpatch: Added a description.
+  * Added debian/etc/bash_completion.d/gem1.8 instead of patching
+    by debian/patches/22_add_bash_completion.dpatch 
+    - Improved a description. Thanks to James Healy.
+    - Followed new options. 
+      Thanks to Victor Serbin <chepel at hotmail dot com>.
+  * Removed man pages and corrected debian/rules since the commands 
+    are gone.
+    - debian/gem_mirror.1
+    - debian/gem_server.sgml
+    - debian/gemlock.1, 
+    - debian/gemri.1
+    - debian/gemwhich.sgml
+    - debian/index_gem_repository.1
+  * debian/libgems-ruby1.8.docs: Included 'html/' (instead of 'docs/') 
+    where documents are correctly generated. 'Releases' is no longer 
+    provided.
+  * Added debian/rubygems.manpages. Thanks to James Healy.
+  * debian/control:
+    - Added rake in Build-Depends-Indep to generate documentations.
+    - Removed unnecessary docbook-to-man from Build-Depends-Indep.
+    - Bumped Standards-Version to 3.7.3.
+  * Added debian/prerm and debian/postrm: /usr/bin/gem and gem1.8 are 
+    now managed by Debian alternatives system.
+
+  [ Arnaud Cornet ]
+  * Use new Homepage dpkg header.
+
+ -- Daigo Moriwaki <daigo@debian.org>  Thu, 20 Dec 2007 20:03:53 +0900
+
+libgems-ruby (0.9.4-4) unstable; urgency=low
+
+  * debian/patches/22_add_bash_completion.dpatch: imported Ubuntu's work.
+    It enables bash completion for the gem command.
+    Thanks to Ubuntu MOTU Developers.
+  * move debian/README.Debian to debian/rubygems.README.Debian.
+
+ -- Daigo Moriwaki <daigo@debian.org>  Sun, 05 Aug 2007 09:53:12 +0900
+
+libgems-ruby (0.9.4-3) unstable; urgency=low
+
+  * debian/control: Replace deprecated ${Source-Version} with
+    ${source:Version}. Thanks to Paul van Tilburg.
+
+ -- Daigo Moriwaki <daigo@debian.org>  Wed, 01 Aug 2007 12:47:21 +0900
+
+libgems-ruby (0.9.4-2) unstable; urgency=low
+
+  * debian/control: The rubygems package depends on the libgems-ruby package
+    having a particuler version same as source's. (Closes: #434167)
+
+ -- Daigo Moriwaki <daigo@debian.org>  Wed, 01 Aug 2007 12:31:05 +0900
+
+libgems-ruby (0.9.4-1) unstable; urgency=low
+
+  * New upstream release. (Closes: #426190)
+  * Removed dummy entries in this changelog.
+
+ -- Daigo Moriwaki <daigo@debian.org>  Sun, 27 May 2007 16:17:35 +0900
+
+libgems-ruby (0.9.3-1) unstable; urgency=low
+
+  * New upstream release. (Closes: #407576)
+  * Stopped using the "Uploaders rule".
+  * debian/control
+    - Bumped up Standards-Version to 3.7.2.
+    - The rubygems package now depends on ruby1.8 instead of ruby because
+      shebangs in scripts are /usr/bin/ruby1.8.
+    - Description 'Homepage:' should preceed 2 spaces. (Closes: #415221)
+  * The upstream's URL has been changed. (Closes: #413251)
+  * The shebang of /usr/bin/gem is now "#!/usr/bin/ruby1.8" instead of
+    "#!/usr/bin/env ruby". (Closes: #416775)
+  * CVE-2007-0469: RubyGems did not check installation paths for gems
+    before writing files. (Closes: #408299)
+
+ -- Daigo Moriwaki <daigo@debian.org>  Sun, 27 May 2007 11:03:02 +0900
+
+libgems-ruby (0.9.0-6) unstable; urgency=low
+
+  * Installing gems on s390 did not work because of an IO.seek trouble.
+    Add a patch (debian/patches/21_avoid_ioseek.dpatch) for a workaround.
+    (Closes: #406388)
+
+ -- Daigo Moriwaki <daigo@debian.org>  Mon, 15 Jan 2007 20:36:33 +0900
+
+libgems-ruby (0.9.0-5) unstable; urgency=medium
+
+  * Nothing is changed but uploading to the unstable distribtion. In order to
+    make it into Etch's freeze, the urgency is bumped up.
+
+ -- Daigo Moriwaki <daigo@debian.org>  Fri, 13 Oct 2006 12:41:29 +0900
+
+libgems-ruby (0.9.0-4) experimental; urgency=low
+
+  * Fixed the watch-file again (typo in group_id). Thanks to Paul van Tilburg.
+
+ -- Daigo Moriwaki <daigo@debian.org>  Wed, 13 Sep 2006 12:39:31 +0900
+
+libgems-ruby (0.9.0-3) experimental; urgency=low
+
+  * Fixed the watch-file. Thanks to Paul van Tilburg.
+
+ -- Daigo Moriwaki <daigo@debian.org>  Mon, 11 Sep 2006 22:57:20 +0900
+
+libgems-ruby (0.9.0-2) experimental; urgency=low
+
+  * Apply a patch of Marcus Rueckert for the --build-root option of the gem
+    command where the files are to be installed.
+    http://rubyforge.org/pipermail/rubygems-developers/2006-June/002010.html
+
+ -- Daigo Moriwaki <daigo@debian.org>  Sat, 16 Jul 2006 15:57:00 +0900
+
+libgems-ruby (0.9.0-1) experimental; urgency=low
+
+  * New upstream release.
+  * debian/generate_yaml_index.sgml was removed because the upstream deleted
+    the command.
+  * Write man pages for gem, gemlock, gemri, index_gem_repository and
+    gem_mirror.
+  * Add a patch (debian/patches/10_datadir.dpatch) which removes the
+    unnecessary shebang.  
+
+ -- Daigo Moriwaki <daigo@debian.org>  Fri,  7 Jul 2006 15:25:30 +0900
+
+libgems-ruby (0.8.11-4) experimental; urgency=low
+
+  * Add ruby1.8-dev to the recommends as users may build gem native
+    extensions.  (Closes: #373843)
+  * Move Build-Depends-Indep to Build-Depends as per policy section 7.6.
+  * Put Standards-Version to the latest version, 3.7.2.
+  * Put the debhelper version that is depended on to 5.
+
+ -- Daigo Moriwaki <daigo@debian.org>  Fri, 16 Jun 2006 23:35:03 +0900
+
+libgems-ruby (0.8.11-3) experimental; urgency=low
+
+  * This package is now managed under pkg-ruby-extras
+    https://alioth.debian.org/projects/pkg-ruby-extras/.
+  * Add debian/control.in, which generates debian/control.
+  * debian/patches/01_rubygems.dpatch: Fix a bug. GEM_HOME is now available to
+    specify where gems are to be installed.
+
+ -- Daigo Moriwaki <daigo@debian.org>  Wed, 26 Apr 2006 23:49:18 +0900
+
+libgems-ruby (0.8.11-2) experimental; urgency=low
+
+  * debian/patches/08_tighter_search_regex.dpatch: new. fix a bug where the
+    regular expression in the local gem searching code was not using the ^ and
+    $ anchors on the gem name given on the command line, resulting in failures
+    when another gem then the specified has a substring match.  (Blair Zajac
+    <blair@orcaware.com>)
+
+  * debian/patches/09_installer.dpatch: new. fix a issue where executables
+    of installed gems were not uninstalled.
+
+ -- Daigo Moriwaki <beatles@sgtpepper.net>  Thu,  3 Nov 2005 14:54:00 +0900
+
+libgems-ruby (0.8.11-1) experimental; urgency=low
+
+  * Initial Release [closes: #282429].
+
+ -- Daigo Moriwaki <beatles@sgtpepper.net>  Sat, 10 Sep 2005 23:48:29 +0900

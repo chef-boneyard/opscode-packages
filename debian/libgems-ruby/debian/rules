@@ -1,0 +1,47 @@
+#!/usr/bin/make -f
+
+include /usr/share/cdbs/1/rules/debhelper.mk
+include /usr/share/cdbs/1/rules/patchsys-quilt.mk
+
+DEB_INSTALL_CHANGELOGS_ALL = ChangeLog debian/README.Debian
+
+RUBY18 = /usr/bin/ruby1.8
+RDOC = /usr/bin/rdoc1.8
+RUBY18LIBDIR = $(shell $(RUBY18) -rrbconfig -e "puts Config::CONFIG['rubylibdir']")
+
+DEB_INSTALL_DOCS_rubygems-doc += html
+
+DEB_INSTALL_DIRS_rubygems1.8 += usr/bin/ usr/lib/ruby/1.8/  var/lib/gems/1.8/
+
+DEB_INSTALL_MANPAGES_rubygems1.8 += debian/gem1.8.1
+
+clean::
+	rm -rf html
+	rm -f debian/gem1.*
+	rm -f debian/etc/bash_completion.d/gem1.*
+
+build/rubygems1.8::
+	$(RUBY18) setup.rb --no-rdoc --no-ri --prefix=$(CURDIR)/debian/$(cdbs_curpkg)
+
+build/rubygems-doc::
+	find lib -name "*.rb" | xargs $(RDOC) --fmt html --title RubyGems \
+	  --line-numbers --inline-source --main README -o html README
+
+install/rubygems1.8::
+	find $(CURDIR)/debian/ -type f -name "*.in" | \
+	  while read fname; \
+	  do \
+	    sed -e 's/@@VERSION@@/1\.8/g' -e 's/@@DOTLESS_VERSION@@/18/g' \
+		< $$fname > `expr $$fname : '\(.*\)\.in$$'`1.8; \
+	  done; \
+	  : \
+	done
+	mv $(CURDIR)/debian/gem1.8 $(CURDIR)/debian/gem1.8.1
+	mkdir -p $(CURDIR)/debian/$(cdbs_curpkg)/$(RUBY18LIBDIR)/
+	mkdir -p $(CURDIR)/debian/$(cdbs_curpkg)/usr/bin/
+	mv $(CURDIR)/debian/$(cdbs_curpkg)/lib/* $(CURDIR)/debian/$(cdbs_curpkg)/$(RUBY18LIBDIR)/
+	rm -rf $(CURDIR)/debian/$(cdbs_curpkg)/lib
+	mv $(CURDIR)/debian/$(cdbs_curpkg)/bin/gem1.8 $(CURDIR)/debian/$(cdbs_curpkg)/usr/bin/
+	rm -rf $(CURDIR)/debian/$(cdbs_curpkg)/bin/
+	dh_install -p$(cdbs_curpkg)\
+	  debian/etc/bash_completion.d/gem1.8 etc/bash_completion.d/

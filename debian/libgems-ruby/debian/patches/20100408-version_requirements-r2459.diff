@@ -1,0 +1,19 @@
+#! /bin/sh /usr/share/dpatch/dpatch-run
+## 20100408-version_requirements-r2459.dpatch by Daigo Moriwaki <daigo@debian.org>
+##
+## All lines beginning with `## DP:' are a description of the patch.
+## DP: Fixed an undefined method error (version_requirements=), a backport
+## DP: from the upstream r2459.
+
+
+@DPATCH@
+Index: libgems-ruby/lib/rubygems/dependency.rb
+===================================================================
+--- libgems-ruby.orig/lib/rubygems/dependency.rb	2010-07-19 19:32:32.000000000 +0900
++++ libgems-ruby/lib/rubygems/dependency.rb	2010-07-19 19:32:42.000000000 +0900
+@@ -1,4 +1,4 @@
+-require "rubygems/requirement"
++ require "rubygems/requirement"
+ 
+ ##
+ # The Dependency class holds a Gem name and a Gem::Requirement.

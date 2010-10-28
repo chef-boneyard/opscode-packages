@@ -1,0 +1,59 @@
+Source: libgems-ruby
+Section: ruby
+Priority: optional
+Maintainer: Daigo Moriwaki <daigo@debian.org>
+Uploaders: Debian Ruby Extras Maintainers <pkg-ruby-extras-maintainers@lists.alioth.debian.org>
+Build-Depends: cdbs, quilt , debhelper (>= 6.0.4), ruby1.8, ruby-pkg-tools
+Standards-Version: 3.8.4
+Homepage: http://rubygems.org/
+Vcs-Svn: svn://svn.debian.org/svn/pkg-ruby-extras/trunk/libgems-ruby/
+Vcs-Browser: http://svn.debian.org/viewsvn/pkg-ruby-extras/trunk/libgems-ruby/
+
+Package: rubygems1.8
+Architecture: all
+Depends: ${misc:Depends}, ruby1.8, rdoc1.8
+Suggests: ruby1.8-dev, build-essential, rubygems-doc
+Conflicts: libgems-ruby1.8, rubygems (<= 1.2.0-2) 
+Replaces: libgems-ruby1.8
+Description: package management framework for Ruby libraries/applications
+ This is a way to package Ruby libraries/applications for distribution.
+ RubyGems provides the ability to manage concurrent versions of libraries and
+ dependencies between those libraries. Using RubyGems, you can:
+   * download and install Ruby libraries easily
+   * not worry about libraries A and B depending on different versions of
+     library C
+   * easily remove libraries you no longer use
+ .
+ This package provides RubyGems with Ruby 1.8.
+
+Package: rubygems
+Architecture: all
+Depends: ${misc:Depends}, rubygems1.8 (= ${binary:Version})
+Description: package management framework for Ruby libraries/applications
+ This is a way to package Ruby libraries/applications for distribution.
+ RubyGems provides the ability to manage concurrent versions of libraries and
+ dependencies between those libraries. Using RubyGems, you can:
+   * download and install Ruby libraries easily
+   * not worry about libraries A and B depending on different versions of
+     library C
+   * easily remove libraries you no longer use
+ .
+ This is a dependency package which depends on Debian's default Ruby version
+ (currently 1.8.x).
+
+Package: rubygems-doc
+Section: doc
+Architecture: all
+Depends: ${misc:Depends} 
+Suggests: www-browse, ruby1.8 | ruby1.9.1
+Description: package management framework for Ruby libraries/applications
+ This is a way to package Ruby libraries/applications for distribution.
+ RubyGems provides the ability to manage concurrent versions of libraries and
+ dependencies between those libraries. Using RubyGems, you can:
+   * download and install Ruby libraries easily
+   * not worry about libraries A and B depending on different versions of
+     library C
+   * easily remove libraries you no longer use
+ .
+ This package provides documents of RubyGems, which is available for both 
+ Ruby 1.8 and 1.91.

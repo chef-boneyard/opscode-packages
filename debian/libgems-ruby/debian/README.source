@@ -1,0 +1,4 @@
+This package uses dpatch to build.
+Consult /usr/share/doc/dpatch/README.source.gz
+
+-- Daigo Moriwaki <daigo at debian dot org>  Wed, 07 Apr 2010
