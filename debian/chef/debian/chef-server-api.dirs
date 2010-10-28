@@ -1,5 +1,6 @@
 var/cache/chef
 var/lib/chef/cookbooks
+var/lib/chef/cookbook_index
 var/log/chef
 usr/share/doc/chef-server
 usr/share/chef-server

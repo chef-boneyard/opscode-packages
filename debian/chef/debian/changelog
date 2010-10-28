@@ -12,6 +12,7 @@ chef (0.9.12+dfsg-1) unstable; urgency=low
     + Resolve checksum_path setting conflict.
   * debian/chef-server-api.postinst, debian/chef.postinst:
     + handle checksum_path location change.
+  * debian/chef-server-api.dirs, add new cookbook_index directory.
 
  -- Joshua Timberman <joshua@opscode.com>  Tue, 12 Oct 2010 14:38:53 -0600
 
