@@ -39,7 +39,7 @@ EOF
   upgrade)
     mkdir -p /var/lib/chef/cookbook_index
     chown -R $USER:$GROUP /var/lib/chef/cookbook_index
-    find /var/cache/chef/checksums/ -type d -exec mv {} /var/lib/chef/cookbook_index \;
+    find /var/cache/chef/checksums/ -depth -mindepth 1 -type d -exec mv {} /var/lib/chef/cookbook_index \;
   ;;
 
   abort-upgrade|abort-remove|abort-deconfigure)
