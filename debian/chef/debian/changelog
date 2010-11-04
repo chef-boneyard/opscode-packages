@@ -5,9 +5,10 @@ chef (0.9.12+dfsg-1) unstable; urgency=low
   * debian/control: depend on mixlib-log 1.2.0 (fixes CHEF-1382).
   * debian/rules: use upstream source's init scripts except chef-solr (need
     + update for upstream to support retries)
-  * debian/patches/solr_load_path.patch: delete, use -2.
-  * debian/patches/solr_load_path-2.patch:
+  * debian/patches/solr_load_path.patch: delete, use -3.
+  * debian/patches/solr_load_path-3.patch:
     + upstream changed ordering in some of the Index files, rewrite the patch
+    + also account for version constant
   * debian/etc/chef/server.rb:
     + Resolve checksum_path setting conflict.
   * debian/chef-server-api.postinst, debian/chef.postinst:
