@@ -1,3 +1,10 @@
+chef (0.9.12+dfsg-2) unstable; urgency=low
+
+  * debian/chef-server-api.postinst, debian/chef.postinst:
+    + use \; to terminate find command instead of +.
+
+ -- Joshua Timberman <joshua@opscode.com>  Fri, 05 Nov 2010 17:13:35 -0600
+
 chef (0.9.12+dfsg-1) unstable; urgency=low
 
   * New upstream release (0.9.12).

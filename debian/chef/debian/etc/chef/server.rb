@@ -80,6 +80,9 @@ sandbox_path "/var/cache/chef/sandboxes"
 
 # checksum_path sets the location for the checksum index for each cookbook
 # file uploaded.
+#
+# NOTE: Important change in version 0.9.10+, this location is different
+# so it doesn't conflict with the cached checksums from the chef client.
 
 checksum_path "/var/lib/chef/cookbook_index"
 

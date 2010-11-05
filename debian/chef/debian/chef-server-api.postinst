@@ -34,6 +34,7 @@ EOF
     chown -R $USER:$GROUP /var/log/chef
     chown -R $USER:$GROUP /var/cache/chef
     chown -R $USER:$GROUP /var/run/chef
+    # Workaround configuration conflict w/ checksum cache and client cleanup
     mkdir -p /var/lib/chef/cookbook_index
     chown -R $USER:$GROUP /var/lib/chef/cookbook_index
     find /var/cache/chef/checksums/ -depth -mindepth 1 -type d -exec mv {} /var/lib/chef/cookbook_index \;

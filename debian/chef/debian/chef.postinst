@@ -17,6 +17,7 @@ case "$1" in
     fi
     ucf --debconf-ok $TMPFILE $CONFIGFILE
     test -f $CONFIGFILE && chmod 0640 $CONFIGFILE
+    # Workaround configuration conflict w/ checksum cache and client cleanup
     mkdir -p /var/lib/chef/cookbook_index
     find /var/cache/chef/checksums/ -depth -mindepth 1 -type d -exec mv {} /var/lib/chef/cookbook_index \;
   ;;
