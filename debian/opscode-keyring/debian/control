@@ -1,0 +1,16 @@
+Source: opscode-keyring
+Section: misc
+Priority: optional
+Maintainer: Sebastian Boehm <sebastian@sometimesfood.org>
+Build-Depends: debhelper (>= 7)
+Standards-Version: 3.8.3
+Homepage: http://github.com/sometimesfood/opscode-packages
+XS-Vcs-git: git://github.com/sometimesfood/opscode-packages.git
+XS-Vcs-Browser: http://github.com/sometimesfood/opscode-packages
+
+Package: opscode-keyring
+Architecture: all
+Depends: apt (>= 0.7.25)
+Description: GPG keyring of the opscode.com APT repository
+ This package contains the GPG keyring for the Opscode APT repository
+ at http://apt.opscode.com.

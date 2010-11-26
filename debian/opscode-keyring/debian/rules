@@ -1,0 +1,22 @@
+#!/usr/bin/make -f
+# -*- makefile -*-
+
+build:
+
+clean:
+	dh_clean
+
+binary: binary-indep
+
+binary-indep: clean
+	dh_testdir
+	dh_testroot
+	dh_install keyrings/opscode-keyring.gpg etc/apt/trusted.gpg.d
+	dh_installdeb
+	dh_fixperms
+	dh_installchangelogs
+	dh_installdocs
+	dh_compress
+	dh_md5sums --include-conffiles
+	dh_gencontrol
+	dh_builddeb
