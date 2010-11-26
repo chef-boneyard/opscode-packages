@@ -1,12 +1,12 @@
 Source: opscode-keyring
 Section: misc
 Priority: optional
-Maintainer: Sebastian Boehm <sebastian@sometimesfood.org>
+Maintainer: Joshua Timberman <joshua@opscode.com>
 Build-Depends: debhelper (>= 7)
 Standards-Version: 3.8.3
-Homepage: http://github.com/sometimesfood/opscode-packages
-XS-Vcs-git: git://github.com/sometimesfood/opscode-packages.git
-XS-Vcs-Browser: http://github.com/sometimesfood/opscode-packages
+Homepage: http://github.com/opscode/opscode-packages
+XS-Vcs-git: git://github.com/opscode/opscode-packages.git
+XS-Vcs-Browser: http://github.com/opscode/opscode-packages
 
 Package: opscode-keyring
 Architecture: all
