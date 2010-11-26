@@ -1,0 +1,4 @@
+/debian/files
+/debian/opscode-keyring
+/debian/opscode-keyring.debhelper.log
+/debian/opscode-keyring.substvars
