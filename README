@@ -8,11 +8,11 @@ freebsd/ - >:)
 
 For contributing to the overall packaging, please see the Opscode wiki page on contributing:
 
-  http://wiki.opscode.com/display/opscode/Contributing
+  http://wiki.opscode.com/display/chef/How+to+Contribute
 
 And on working with our git repositories:
 
-  http://wiki.opscode.com/display/opscode/Working+with+Git
+  http://wiki.opscode.com/display/chef/Working+with+git
 
 Open tickets in Jira, CHEF project, be sure to use the "Packaging" component:
 
