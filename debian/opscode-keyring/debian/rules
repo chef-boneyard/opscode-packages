@@ -8,9 +8,10 @@ clean:
 
 binary: binary-indep
 
-binary-indep: clean
+binary-indep:
 	dh_testdir
 	dh_testroot
+	dh_prep
 	dh_install keyrings/opscode-keyring.gpg etc/apt/trusted.gpg.d
 	dh_installdeb
 	dh_fixperms
