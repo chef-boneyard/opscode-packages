@@ -8,6 +8,8 @@ clean:
 
 binary: binary-indep
 
+binary-arch: binary-indep
+
 binary-indep:
 	dh_testdir
 	dh_testroot
