@@ -1,6 +1,8 @@
 #!/usr/bin/make -f
 # -*- makefile -*-
 
+.PHONY: build clean binary binary-arch binary-indep
+
 build:
 
 clean:
