@@ -6,12 +6,13 @@ Uploaders: Sebastian Boehm <sebastian@sometimesfood.org>
 Build-Depends: debhelper (>= 7)
 Standards-Version: 3.8.4
 Homepage: http://github.com/opscode/opscode-packages
-XS-Vcs-git: git://github.com/opscode/opscode-packages.git
-XS-Vcs-Browser: http://github.com/opscode/opscode-packages
+Vcs-git: git://github.com/opscode/opscode-packages.git
+Vcs-Browser: http://github.com/opscode/opscode-packages
 
 Package: opscode-keyring
 Architecture: all
 Depends: ${misc:Depends}, apt (>= 0.7.25)
 Description: GPG keyring of the opscode.com APT repository
- This package contains the GPG keyring for the Opscode APT repository
- at http://apt.opscode.com.
+ Opscode digitally sign their Release files. This package contains the
+ GPG keyring used for the Opscode APT repository at
+ http://apt.opscode.com.
