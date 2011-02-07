@@ -1,3 +1,18 @@
+chef (0.9.12+dfsg-3) unstable; urgency=low
+
+    * Debian has removed solr packages from Squeeze, so we need to have solr
+      available. This reduces complexity of the packaging, since we do update
+      the solr included in the Chef source when necessary.
+    * Downstream, Debian and Ubuntu may still wish to preserve the repacking
+      in the respective packaging files for chef-solr. Files affected in this
+      change:
+      - debian/chef-solr.links
+      - debian/repack.sh
+      - debian/rules
+      - debian/etc/chef/solr-jetty
+
+ -- Joshua Timberman <joshua@opscode.com>  Mon, 07 Feb 2011 08:29:49 -0700
+
 chef (0.9.12+dfsg-1) unstable; urgency=low
 
     * When upgrading the chef-server from 0.9.8 or earlier versions in the
