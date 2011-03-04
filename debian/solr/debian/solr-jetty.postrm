@@ -1,0 +1,40 @@
+#!/bin/sh
+
+set -e
+
+case "$1" in
+    remove)
+
+	# If permissions for the stuff under /var/lib/solr haven't
+	# been removed, remove them now
+	if [ -x /usr/sbin/dpkg-statoverride ]; then
+	    if dpkg-statoverride --quiet --list /var/lib/solr > /dev/null ; then
+		dpkg-statoverride --quiet --remove /var/lib/solr
+	    fi
+
+	    if dpkg-statoverride --quiet --list /var/lib/solr/data > /dev/null ; then
+		dpkg-statoverride --quiet --remove /var/lib/solr/data
+	    fi
+	fi
+
+	# Is there a way not to restart Jetty if it is due to be removed, too?
+	if [ -x /usr/sbin/invoke-rc.d ]; then
+	    invoke-rc.d jetty restart || true
+	fi
+
+    ;;
+
+    upgrade|purge|failed-upgrade|abort-install|abort-upgrade|disappear)
+
+	# do nothing
+
+    ;;
+
+    *)
+        echo "postrm called with unknown argument \`$1'" >&2
+        exit 1
+    ;;
+
+esac
+
+#DEBHELPER#

@@ -1,0 +1,45 @@
+The packaging workflow has been changed for version 1.4 to make use of GIT,
+topgit and debian source version 3.0 quilt. The workflow is described in this
+mail:
+
+http://lists.alioth.debian.org/pipermail/vcs-pkg-discuss/2009-December/000688.html
+
+Since this is to my knowledge the first package done with this particular
+workflow, please consider this packaging a work in progress.
+
+Additional information below:
+
+get-orig-source
+===============
+
+The upstream tarball is saved in the GIT repository with pristine-tar. For each
+upstream release there are two tarballs saved, one pristine and one stripped
+without upstream binaries (.jar, .war), which is used for packaging.
+
+The debian/signatures directory contains the upstream signatures of the
+original tarballs. You can check them against the appropriate keyring with:
+
+> pristine-tar checkout solr_1.4.0.orig.tar.gz
+> gpg --no-default-keyring --primary-keyring solr-keyring.gpg --import KEYS
+> gpgv --keyring solr-keyring.gpg debian/signatures/apache-solr-1.4.0.tgz.asc \
+                                  solr_1.4.0.orig.tar.gz
+
+git-import-orig
+===============
+
+The git-import-orig options used to import version 1.4.1:
+
+git-import-orig --no-merge --pristine-tar --upstream-version="1.4.1+dfsg1" \
+--filter "*.jar" \
+--filter "*.war" \
+--filter "apache-solr-1.4.1/docs" \
+--filter "apache-solr-1.4.1/src/site/src/documentation/skins/common/scripts" \
+--filter "apache-solr-1.4.1/src/site/src/documentation/content/xdocs/images" \
+
+git-buildpackage
+================
+
+The branch and tag names conform to gbp defaults. Please look at the gbp
+documentation to see how to easily build the package. However you can still
+build the package from branch master with dpkg-buildpackage and pristine-tar
+checkout.

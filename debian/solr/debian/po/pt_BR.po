@@ -1,0 +1,43 @@
+# solr Brazilian Portuguese translation
+# Copyright (C) 2007 THE solr'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the solr package.
+# Felipe Augusto van de Wiel (faw) <faw@debian.org>, 2007.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: solr (20071005)\n"
+"Report-Msgid-Bugs-To: pkg-java-maintainers@lists.alioth.debian.org\n"
+"POT-Creation-Date: 2007-10-04 07:18+0200\n"
+"PO-Revision-Date: 2007-10-05 02:03-0300\n"
+"Last-Translator: Felipe Augusto van de Wiel (faw) <faw@debian.org>\n"
+"Language-Team: l10n portuguese <debian-l10n-portuguese@lists.debian.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"pt_BR utf-8\n"
+
+#. Type: boolean
+#. Description
+#: ../solr-common.templates:2001
+msgid "Remove Solr index files?"
+msgstr "Remover os arquivos de índice do Solr?"
+
+#. Type: boolean
+#. Description
+#: ../solr-common.templates:2001
+msgid ""
+"The Solr data directory (/var/lib/solr), and the index files it contains, "
+"may be removed while purging the package."
+msgstr ""
+"O diretório de dados do Solr (/var/lib/solr), e os arquivos de índice que "
+"ele contém, podem ser removidos quando o pacote for expurgado (\"purge\")."
+
+#. Type: boolean
+#. Description
+#: ../solr-common.templates:2001
+msgid ""
+"You should not choose this option if you intend to re-use Solr's index files "
+"later."
+msgstr ""
+"Você não deveria escolher esta opção se sua intenção é reusar os arquivos de "
+"índice do Solr posteriormente."

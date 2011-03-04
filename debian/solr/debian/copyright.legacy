@@ -1,0 +1,25 @@
+This package was debianised by Jan-Pascal van Best <janpascal@vanbest.org> on
+Mon, 06 Aug 2007 11:07:34 +0200
+
+It was downloaded from
+    http://www.apache.org/dist/lucene/solr/1.2/apache-solr-1.2.tgz
+and then superfluous library .jars and generated .jars, .war and Javadoc
+was removed to generate the .orig.tar.gz file. Run 
+    debian/rules get-orig-source 
+to download the source tarball from Apache and repack it into the Debian source.
+
+Apache Solr is 
+    Copyright 2007,2008,2009 The Apache Software Foundation
+
+Authors: 
+    Doug Cutting <cutting@apache.org>
+    Erik Hatcher <ehatcher@apacher.org> 
+    Otis Gospodnetic <otis@apache.org> 
+    et.al.
+
+The Debian packaging is 
+    Copyright 2007,2008,2009 by Jan-Pascal van Best <janpascal@vanbest.org>
+
+Both the original software and the Debian packaging are licensed under the
+Apache License, version 2.0. On Debian systems, the complete text of the Apache
+License, version 2.0, can be found in `/usr/share/common-licenses/Apache-2.0'.

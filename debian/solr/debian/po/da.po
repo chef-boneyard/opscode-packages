@@ -1,0 +1,43 @@
+# Danish translation solr.
+# Copyright (C) 2010 solr & nedenstående oversættere.
+# This file is distributed under the same license as the solr package.
+# Joe Hansen <joedalton2@yahoo.dk>, 2010.R.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: solr\n"
+"Report-Msgid-Bugs-To: pkg-java-maintainers@lists.alioth.debian.org\n"
+"POT-Creation-Date: 2007-10-04 07:18+0200\n"
+"PO-Revision-Date: 2010-09-22 17:30+01:00\n"
+"Last-Translator: Joe Hansen <joedalton2@yahoo.dk>\n"
+"Language-Team: Danish <debian-l10n-danish@lists.debian.org> \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#. Type: boolean
+#. Description
+#: ../solr-common.templates:2001
+msgid "Remove Solr index files?"
+msgstr "Fjern Solr's indeksfiler?"
+
+#. Type: boolean
+#. Description
+#: ../solr-common.templates:2001
+msgid ""
+"The Solr data directory (/var/lib/solr), and the index files it contains, "
+"may be removed while purging the package."
+msgstr ""
+"Solr-datamappen (/var/lib/solr), og indeksfilerne den indeholder, "
+"må fjernes når pakken afinstalleres."
+
+#. Type: boolean
+#. Description
+#: ../solr-common.templates:2001
+msgid ""
+"You should not choose this option if you intend to re-use Solr's index files "
+"later."
+msgstr ""
+"Du skal ikke vælge denne indstilling, hvis du har planer om at genbruge "
+"Solr's indeksfiler."
+

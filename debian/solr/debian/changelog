@@ -1,0 +1,175 @@
+solr (1.4.1+dfsg1-2opscode1) lenny; urgency=low
+
+  * Use lucene-core-2.9.2 for lenny.
+
+ -- Bryan McLellan <btm@loftninjas.org>  Tue, 01 Mar 2011 13:01:13 -0800
+
+solr (1.4.1+dfsg1-2) unstable; urgency=low
+
+  * Add lucene-memory.jar to WEB-INF/lib. Closes: #573156.
+  * Increase depends version of libjaxp1.3-java. Closes: #575145.
+  * add jcl-over-slf4j.jar to WEB-INF/lib. Closes: #605766.
+
+ -- Thomas Koch <thomas@koch.ro>  Fri, 03 Dec 2010 11:09:05 +0100
+
+solr (1.4.1+dfsg1-1) unstable; urgency=low
+
+  * New upstream release (1.4.1). Closes: #602696.
+
+ -- Thomas Koch <thomas@koch.ro>  Tue, 30 Nov 2010 11:19:37 +0100
+
+solr (1.4.0+ds1-3) UNRELEASED; urgency=low
+
+  * Add Danish debconf translation. (Closes: #597763)
+
+ -- Jan-Pascal van Best <janpascal@vanbest.org>  Fri, 24 Sep 2010 11:28:57 +0200
+
+solr (1.4.0+ds1-2) unstable; urgency=low
+
+  * Team upload.
+  * Explicitely specify lucene_version in debian/ant.properties. (Closes:
+    #577357)
+  * Add spanish debconf translation. (Closes: #578614)
+
+ -- Torsten Werner <twerner@debian.org>  Sat, 24 Apr 2010 09:18:07 +0200
+
+solr (1.4.0+ds1-1) unstable; urgency=low
+
+  * New upstream release (1.4.0). Closes: #559143.
+  * Switched packaging to GIT. Closes: #540756.
+  * Build with newest lucene version. Closes: #540756.
+  * New version obsoletes Dependency bug. Closes: #521009.
+  * Added japanese translation. Thanks to Hideki Yamane. Closes: #554110.
+  * New Solr version builds with Lucene 2.9. Closes: #560611.
+  * solr-jetty works now. Did it ever work?
+
+ -- Thomas Koch <thomas.koch@ymc.ch>  Thu, 11 Feb 2010 15:05:54 +0100
+
+solr (1.3.0+ds1-2) unstable; urgency=low
+
+  * Moved Debian packaging source repository to git.
+
+ -- Jan-Pascal van Best <janpascal@vanbest.org>  Wed, 12 Aug 2009 11:36:53 +0200
+
+solr (1.3.0+ds1-1) unstable; urgency=low
+
+  * New upstream release (1.3.0). Closes: #521009.
+  * Removed dependency on javanet staxutils (see upstream issue SOLR-851).
+  * Disable unit tests that need network access or otherwise break on buildds. 
+    Closes: #534031.
+  * Change Section: to java.
+  * Fix Tomcat policy for Solr 1.3.0.
+  * Bump Standards-Version to 3.8.2 (no changes needed).
+  * Rename solr-tomcat6 package to solr-tomcat.
+  * Re-enable solr-jetty package now that Jetty6 is in sid.
+  * Update watch file to automatically repackage source
+  * Convert debian/copyright to machine-readable version
+
+ -- Jan-Pascal van Best <janpascal@vanbest.org>  Sun, 09 Aug 2009 13:40:18 +0200
+
+solr (1.2.0+ds2-6) unstable; urgency=low
+
+  * Update dependency from tomcat5.5 to tomcat6. Closes: #526259.
+  * Bump Standards-Version to 3.8.1 (no changes needed).
+  * Remove dpkg-statoverride stuff from solr-tomcat6.postinst. It's not needed
+    and does not work.
+
+ -- Jan-Pascal van Best <janpascal@vanbest.org>  Tue, 23 Jun 2009 15:37:07 +0200
+
+solr (1.2.0+ds2-5) unstable; urgency=low
+
+  * Use tomcat.policy symlink in original direction and have symlink 
+    set by maintainer scripts to prevent problems with solr upgrades. 
+    Closes: #516288.
+  * Have solr-tomcat5.5 depend on solr-common with the exact same version
+    to prevent later problems.
+
+ -- Jan-Pascal van Best <janpascal@vanbest.org>  Fri, 27 Feb 2009 22:47:55 +0100
+
+solr (1.2.0+ds2-4) unstable; urgency=low
+
+  * Updated watch file
+  * Add ${misc:Depends} to debian/control to take into account indirect
+    dependencies from debhelper
+  * Added depenency on libxpp3-java (typo in control file, closes: #483261).
+  * Moved /etc/solr/tomcat.policy to /etc/tomcat5.5/policy.d/ and reversed
+    symlink. Closes: #515945.
+  * Remove /etc/tomcat5/policy.d from solr-tomcat5.5.
+
+ -- Jan-Pascal van Best <janpascal@vanbest.org>  Thu, 19 Feb 2009 20:48:07 +0100
+
+solr (1.2.0+ds2-3) unstable; urgency=low
+
+  * Update Galician translations in gl.po (closes: 513148).
+  * Update to compile with Lucene 2.4.
+
+ -- Jan-Pascal van Best <janpascal@vanbest.org>  Wed, 28 Jan 2009 13:30:55 +0100
+
+solr (1.2.0+ds2-2) unstable; urgency=low
+
+  * Fix Swedish translation of debconf messages by renaming se.po to sv.po
+    (closes: #483416).
+  * Added DM-Upload-Allowed: yes to debian/control
+  * Restricted dependency on liblucene2-java to version << 2.4.0
+
+ -- Jan-Pascal van Best <janpascal@vanbest.org>  Mon, 13 Oct 2008 11:54:46 +0200
+
+solr (1.2.0+ds2-1) unstable; urgency=low
+
+  * New (fake) upstream version to work around a bug in dak.
+
+ -- Jan-Pascal van Best <janpascal@vanbest.org>  Mon, 08 Sep 2008 16:00:54 +0200
+
+solr (1.2.0+ds1-4) unstable; urgency=low
+
+  * Build with OpenJDK, move to main
+  * Update debian/copyright, refer to Apache 2.0 license in common-licenses
+  * Bump Standards-Version to 3.8.0
+  * Do not create unused directory /usr/share/tomcat5.5/conf/Catalina/localhost
+  * Install Solr docs from debian/rules instead of from debian/docs; remove
+    a few empty directories
+  * Do not compress .js, .xslt and .xsl files under doc/
+  * Update Debian README for the removal of solr-jetty; renamed to
+    README.Debian
+  * Added Swedish translation of debconf messages (closes: #483416).
+
+ -- Jan-Pascal van Best <janpascal@vanbest.org>  Wed, 20 Aug 2008 20:25:03 +0200
+
+solr (1.2.0+ds1-3) unstable; urgency=low
+
+  * Updated control file for new Vcs-* and Homepage fields
+  * Removed solr-jetty binary package since the jetty package 
+    has been removed from Lenny
+  * Update to Lucene 2.3
+
+ -- Jan-Pascal van Best <janpascal@vanbest.org>  Tue, 22 Apr 2008 17:08:50 +0200
+
+solr (1.2.0+ds1-2) unstable; urgency=low
+
+  * Run unit tests during build (closes: #441890).
+  * Rename /usr/share/solr/bin directory to /usr/share/solr/scripts, since
+    this directory contains only scripts.
+  * Install link to config file in /etc/tomcat5.5/Catalina/localhost because
+    this is the new location in recent Tomcat packaging.
+  * Remove portions of the copyright file that referred to libraries that are
+    not shipped with the Debian package for Solr.
+  * Debconf templates and debian/control reviewed by the debian-l10n-
+    english team as part of the Smith review project. (closes: #444655).
+  * Add Portuguese translation of debconf messages (closes: #442306, #445351).
+  * Add Tamil translation of debconf messages (closes: #445284).
+  * Add Czech translation of debconf messages (closes: #445652).
+  * Add Finnish translation of debconf messages (closes: #445701).
+  * Add Russian translation of debconf messages (closes: #446140).
+  * Add German translation of debconf messages (closes: #446284).
+  * Add Galician translation of debconf messages (closes: #446607).
+  * Add Vietnamese translation of debconf messages (closes: #446986).
+  * Add Brazilian Portuguese translation of debconf messages (closes: #447091).
+  * Add French translation of debconf messages (closes: #447223).
+
+ -- Jan-Pascal van Best <janpascal@vanbest.org>  Mon, 26 Nov 2007 12:02:17 +0100
+
+solr (1.2.0+ds1-1) unstable; urgency=low
+
+  * Initial upload (Closes: #426763)
+
+ -- Jan-Pascal van Best <janpascal@vanbest.org>  Thu, 06 Sep 2007 22:50:49 +0200

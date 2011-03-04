@@ -1,0 +1,49 @@
+#!/usr/bin/make -f
+
+export JAVA_HOME=/usr/lib/jvm/default-java/
+
+%:
+	dh $@
+
+override_dh_auto_build:
+	ant -Dversion=1.4.1 init-forrest-entities dist-solrj dist-jar dist-contrib compile make-manifest
+
+
+##!/usr/bin/make -f
+## -*- makefile -*-
+##
+#include /usr/share/cdbs/1/rules/debhelper.mk
+#include /usr/share/cdbs/1/class/ant.mk
+#
+## Uncomment this to turn on verbose mode.
+## export DH_VERBOSE=1
+#
+#CHANGESFILE = ../solr_$(DEB_VERSION)_$(DEB_BUILD_ARCH).changes
+#
+## Build with OpenJDK
+#JAVA_HOME = /usr/lib/jvm/default-java
+#
+## Set ant parameters
+#DEB_ANT_BUILD_TARGET = init-forrest-entities dist-solrj dist-jar dist-contrib compile make-manifest
+##DEB_ANT_CHECK_TARGET = test
+#DEB_JARS = ant-junit junit4
+#
+#DEB_INSTALL_CHANGELOGS_solr-common := CHANGES.txt
+#
+#DEB_COMPRESS_EXCLUDE = .xsl .js .xslt
+#
+#clean::
+#	rm -f debian/solr-keyring.gpg
+#	rm -rf src/test/test-files/solr/data
+#	rm -rf example/solr/data
+#	rm -rf example/multicore/core0/data
+#	rm -rf example/multicore/core1/data
+#
+#check:
+#	lintian -i $(CHANGESFILE)
+#	linda -i $(CHANGESFILE)
+#	zgrep "^---" ../solr_$(DEB_VERSION).diff.gz | grep -v debian ; [ $$? != 0 ]
+#	( dpkg --contents ../solr-common_$(DEB_VERSION)_all.deb ; \
+#	  dpkg --contents ../solr-tomcat_$(DEB_VERSION)_all.deb ; \
+#	  dpkg --contents ../solr-jetty_$(DEB_VERSION)_all.deb ; \
+#	) | less

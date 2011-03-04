@@ -1,0 +1,41 @@
+#!/bin/sh
+
+set -e
+
+# If proper permissions for the stuff under /var/lib/solr haven't
+# been set, set them now
+
+case "$1" in
+    configure)
+
+        # fixup for upgrade from solr-tomcat55, wich makes this tomcat55:root 750
+        chown root:root /var/lib/solr
+        chmod 755 /var/lib/solr
+
+        chown -R tomcat6:tomcat6 /var/lib/solr/data
+        chmod -R 770 /var/lib/solr/data
+
+        ln -sf /etc/solr/tomcat.policy /etc/tomcat6/policy.d/05solr.policy
+
+    ;;
+
+    abort-upgrade|abort-remove|abort-deconfigure)
+
+    ;;
+
+    *)
+        echo "postinst called with unknown argument \`$1'" >&2
+        exit 1
+    ;;
+
+esac
+
+invoke-rc.d --quiet tomcat6 restart || {
+    RESULT=$?
+    # Ignore if tomcat6 init script does not exist (yet)
+    if [ $RESULT != 100 ]; then
+	exit $RESULT
+    fi
+}
+
+#DEBHELPER#

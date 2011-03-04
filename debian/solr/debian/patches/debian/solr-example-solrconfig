@@ -1,0 +1,38 @@
+diff --git a/example/solr/conf/solrconfig.xml b/example/solr/conf/solrconfig.xml
+index 4a87355..fe0e4b0 100644
+--- a/example/solr/conf/solrconfig.xml
++++ b/example/solr/conf/solrconfig.xml
+@@ -46,19 +46,19 @@
+   <!-- A dir option by itself adds any files found in the directory to the
+        classpath, this is useful for including all jars in a directory.
+     -->
+-  <lib dir="../../contrib/extraction/lib" />
++  <!--lib dir="../../contrib/extraction/lib" /-->
+   <!-- When a regex is specified in addition to a directory, only the files in that
+        directory which completely match the regex (anchored on both ends)
+        will be included.
+     -->
+-  <lib dir="../../dist/" regex="apache-solr-cell-\d.*\.jar" />
+-  <lib dir="../../dist/" regex="apache-solr-clustering-\d.*\.jar" />
++  <!--lib dir="../../dist/" regex="apache-solr-cell-\d.*\.jar" />
++  <lib dir="../../dist/" regex="apache-solr-clustering-\d.*\.jar" /-->
+   <!-- If a dir option (with or without a regex) is used and nothing is found
+        that matches, it will be ignored
+     -->
+-  <lib dir="../../contrib/clustering/lib/downloads/" />
++  <!--lib dir="../../contrib/clustering/lib/downloads/" />
+   <lib dir="../../contrib/clustering/lib/" />
+-  <lib dir="/total/crap/dir/ignored" /> 
++  <lib dir="/total/crap/dir/ignored" /--> 
+   <!-- an exact path can be used to specify a specific file.  This will cause
+        a serious error to be logged if it can't be loaded.
+   <lib path="../a-jar-that-does-not-exist.jar" /> 
+@@ -68,7 +68,7 @@
+   <!-- Used to specify an alternate directory to hold all index data
+        other than the default ./data under the Solr home.
+        If replication is in use, this should match the replication configuration. -->
+-  <dataDir>${solr.data.dir:./solr/data}</dataDir>
++  <dataDir>/var/lib/solr/data</dataDir>
+ 
+ 
+   <!-- WARNING: this <indexDefaults> section only provides defaults for index writers

@@ -1,0 +1,46 @@
+#!/bin/sh
+
+set -e
+# Not needed
+# . /usr/share/debconf/confmodule
+
+# If proper permissions for the stuff under /var/lib/solr haven't
+# been set, set them now
+
+case "$1" in
+    configure)
+
+	if ! dpkg-statoverride --quiet --list /var/lib/solr > /dev/null; then
+	    dpkg-statoverride --quiet --update --add jetty root 0750 /var/lib/solr 
+	fi
+
+	if ! dpkg-statoverride --quiet --list /var/lib/solr/data > /dev/null ; then
+	    dpkg-statoverride --quiet --update --add jetty root 0750 /var/lib/solr/data 
+	fi
+
+	if [ -d /var/lib/solr/data/index ]; then
+	    chown -R jetty:root /var/lib/solr/data
+	fi
+
+	invoke-rc.d --quiet jetty restart || {
+	    RESULT=$?
+	    # Ignore if jetty init script does not exist (yet)
+	    if [ $RESULT != 100 ]; then
+		exit $RESULT
+	    fi
+	}
+
+    ;;
+
+    abort-upgrade|abort-remove|abort-deconfigure)
+
+    ;;
+
+    *)
+        echo "postinst called with unknown argument \`$1'" >&2
+        exit 1
+    ;;
+
+esac
+
+#DEBHELPER#

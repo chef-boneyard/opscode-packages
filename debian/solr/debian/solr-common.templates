@@ -1,0 +1,18 @@
+# These templates have been reviewed by the debian-l10n-english
+# team
+#
+# If modifications/additions/rewording are needed, please ask
+# debian-l10n-english@lists.debian.org for advice.
+#
+# Even minor modifications require translation updates and such
+# changes should be coordinated with translators and reviewers.
+
+Template: solr/purgeindexfiles
+Type: boolean
+Default: false
+_Description: Remove Solr index files?
+ The Solr data directory (/var/lib/solr), and the index files it contains, may
+ be removed while purging the package.
+ .
+ You should not choose this option if you intend to re-use Solr's index
+ files later.

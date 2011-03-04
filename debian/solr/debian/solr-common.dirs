@@ -1,0 +1,3 @@
+/etc/solr 
+/usr/share/solr/WEB-INF/lib/
+/var/lib/solr/data

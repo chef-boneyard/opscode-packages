@@ -1,0 +1,67 @@
+README for solr
+---------------
+
+Solr is an enterprise search server based on the Lucene Java library. The
+Debian packaging of Solr consists of three binary packages:
+- solr-common contains the Solr software itself and general configuration.
+- solr-tomcat installs Solr as a servlet in Tomcat 6. After installation,
+  point your browser to http://localhost:8080/solr/admin
+  to see the Solr web administration interface.
+- solr-jetty installs Solr as a servlet in the Jetty application server. 
+  The Solr admin interface is at http://localhost:8080/solr/admin/
+
+Homepage: http://lucene.apache.org/solr/
+
+Configuration
+-------------
+
+The solr-common package comes with an example configuration that is not
+at all suitable for production use! Please learn about solr and write
+your own configuration in /etc/solr.
+Certain features of the admin interface are disabled by tomcat policies.
+Have a look at /etc/solr/tomcat.policy if you want to enable them.
+
+MultiCore
+^^^^^^^^^
+
+Solr upstream does not really support the seperation of the application and
+configuration directory, but knows only a Solr "homedir". We could partly
+handle this by placing a symlink conf to /etc/solr/conf in /usr/share/solr.
+However the solr.xml file necessary to configure multicore must be placed
+directly into /usr/share/solr.
+So to avoid having a configuration file outside /etc it's recommended to place
+a symlink from /usr/share/solr/solr.xml to /etc/solr/solr.xml.
+
+If you want to use the dataDir parameter in the dynamic core admin interface
+make sure, that no datadir is specified in /etc/solr/conf/solrconfig.xml.
+Otherwise the latter one will always be taken.
+
+Replication
+-----------
+
+Solr's replication scripts are installed into /usr/share/solr/scripts
+Please note that there is a java based replication solution since Solr
+1.4 and that we still need to find out, whether upstream will continue
+to support the scripts based solution.
+Also have a look at Debian Bug 538229.
+
+Contrib
+-------
+
+Upstream provides additional functionality in so called contributions.
+We have so far included only the dataimporthandler without
+dataimporthandler-extras. The other contributions have dependencies not
+yet packaged for Debian.
+
+DataImportHandler
+-----------------
+
+If you use the handler with mysql, you need to install libmysql-java and
+add the following to your solrconfig.xml:
+
+  <lib path="/usr/share/java/mysql.jar" />
+
+The handler writes status information to
+/etc/solr/conf/dataimport.properties
+Make sure that the tomcat user can write to this file. Yes this is ugly,
+but nobody has teached the FHS to java developers yet.

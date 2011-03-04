@@ -1,0 +1,5 @@
+version=3
+
+opts=dversionmangle=s/\+ds\d+$// \
+  http://archive.apache.org/dist/lucene/solr/(?:[\d\.]+)/apache-solr-(.*).tgz \
+  debian

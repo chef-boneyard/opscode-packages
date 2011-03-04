@@ -1,0 +1,30 @@
+#!/bin/sh
+
+set -e
+
+case "$1" in
+    remove)
+
+        rm -f /etc/tomcat6/policy.d/05solr.policy
+
+	# Is there a way not to restart tomcat if it is due to be removed, too?
+	if [ -x /usr/sbin/invoke-rc.d ]; then
+	    invoke-rc.d tomcat6 restart || true
+	fi
+
+    ;;
+
+    upgrade|purge|failed-upgrade|abort-install|abort-upgrade|disappear)
+
+	# do nothing
+
+    ;;
+
+    *)
+        echo "postrm called with unknown argument \`$1'" >&2
+        exit 1
+    ;;
+
+esac
+
+#DEBHELPER#

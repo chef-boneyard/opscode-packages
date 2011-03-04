@@ -1,0 +1,58 @@
+TODO.Debian for solr
+--------------------
+
+- enable junit tests on build?
+- Build javadocs?
+- Review debian/tomcat.policy
+- Delete obsolete topgit branches from 1.3
+- What to do with the replication scripts? Fix them to be FHS compliant or
+  ignore them, because there is a java alternative in solr 1.4?
+- Use minimal default configuration instead of everything from the example
+- Do something with the example (package it, or supply the example files under
+  /usr/share/doc/solr)
+- Maybe: add solr-standalone package (using embedded Jetty like the Solr
+  example). 
+- Maybe: move the API docs to a separate package (it's 8.7 MB, and not generally
+  useful to people just interested in running Solr, only to those extending it).
+- Maybe: make seperate solrj client library package
+- Do a license check also of things that 'licensecheck -r' does not catch
+- Check what to do about the file KEYS.txt that was formerly copied to /usr/share/doc...
+
+Tests
+-----
+
+Some Tests fail:
+
+Jetty/Solr unresponsive:
+
+This tests may fail due to 
+http://bugs.debian.org/cgi-bin/bugreport.cgi?bug=560056
+
+org.apache.solr.TestDistributedSearch
+org.apache.solr.TestSolrCoreProperties
+org.apache.solr.client.solrj.TestBatchUpdate
+org.apache.solr.client.solrj.TestLBHttpSolrServer
+org.apache.solr.client.solrj.embedded.JettyWebappTest
+org.apache.solr.client.solrj.embedded.LargeVolumeBinaryJettyTest
+org.apache.solr.client.solrj.embedded.LargeVolumeJettyTest
+org.apache.solr.client.solrj.embedded.MultiCoreExampleJettyTest
+org.apache.solr.client.solrj.embedded.SolrExampleJettyTest
+org.apache.solr.client.solrj.embedded.SolrExampleStreamingTest
+org.apache.solr.client.solrj.response.TestSpellCheckResponse
+org.apache.solr.handler.TestReplicationHandler
+org.apache.solr.schema.TestBinaryField
+org.apache.solr.servlet.CacheHeaderTest
+org.apache.solr.servlet.NoCacheHeaderTest
+
+don't know why:
+org.apache.solr.core.TestJmxMonitoredMap
+
+disabled by patch debian/disable-tests-that-break-on-buildd because internet access:
+org.apache.solr.common.util.ContentStreamTest
+org.apache.solr.servlet.SolrRequestParserTest
+
+missed lucene-memory.jar (should be fixed now):
+org.apache.solr.highlight.HighlighterTest
+
+missing class: org.apache.solr.handler.extraction.ExtractingRequestHandler
+org.apache.solr.client.solrj.embedded.SolrExampleEmbeddedTest

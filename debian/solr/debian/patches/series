@@ -1,0 +1,5 @@
+debian/fix-lucene-lock-directory
+debian/use-debian-java-libraries
+fixes/SOLR-2260_syntax_error_in_shell_script_abo
+debian/solr-example-solrconfig
+debian-changes-1.4.1+dfsg1-2

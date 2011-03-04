@@ -1,0 +1,19 @@
+#!/bin/sh
+
+set -e
+
+if [ "$1" = "purge"  ]; then
+    if [ -e /usr/share/debconf/confmodule ]; then
+	. /usr/share/debconf/confmodule
+	db_input high solr/purgeindexfiles || true
+	db_go || true
+	db_get solr/purgeindexfiles || true
+	if [ "$RET" = "true" ]; then
+	    rm -rf /var/lib/solr
+	fi
+    else
+	rm -rf /var/lib/solr
+    fi
+fi
+
+#DEBHELPER#

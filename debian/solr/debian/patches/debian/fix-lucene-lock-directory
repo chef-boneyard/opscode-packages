@@ -1,0 +1,12 @@
+diff --git a/src/java/org/apache/solr/core/SolrCore.java b/src/java/org/apache/solr/core/SolrCore.java
+index a6f0962..07dbf90 100644
+--- a/src/java/org/apache/solr/core/SolrCore.java
++++ b/src/java/org/apache/solr/core/SolrCore.java
+@@ -360,6 +360,7 @@ public final class SolrCore implements SolrInfoMBean {
+ 
+   void initIndex() {
+     try {
++      System.setProperty( "org.apache.lucene.lockDir", dataDir );
+       File dirFile = new File(getNewIndexDir());
+       boolean indexExists = dirFile.canRead();
+       boolean firstTime;

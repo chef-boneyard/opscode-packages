@@ -1,0 +1,86 @@
+Source: solr
+Section: java
+Priority: optional
+Maintainer: Debian Java Maintainers <pkg-java-maintainers@lists.alioth.debian.org>
+Uploaders: Jan-Pascal van Best <janpascal@vanbest.org>, Thomas Koch <thomas@koch.ro>
+DM-Upload-Allowed: yes
+Homepage: http://lucene.apache.org/solr/
+Vcs-Browser: http://git.debian.org/?p=pkg-java/solr.git
+Vcs-Git: git://git.debian.org/git/pkg-java/solr.git
+Standards-Version: 3.9.1
+Build-Depends: debhelper (>= 8), po-debconf,
+ default-jdk,
+ ant (>= 1.7.0), ant-optional (>= 1.7.0), 
+ libcommons-codec-java (>= 1.4),
+ libcommons-csv-java (>= 0.1-SNAPSHOT+svn678580),
+ libcommons-fileupload-java (>= 1.2.1),
+ libcommons-httpclient-java (>= 3.1),
+ libcommons-io-java (>= 1.4),
+ libjaxp1.3-java (>= 1.3.04),
+ libjetty-java (>= 6.1.21),
+ liblucene2-java (>= 2.9.1),
+ libservlet2.5-java (>= 6.0.20),
+ libslf4j-java (>= 1.5.10),
+ libxml-commons-external-java (>= 1.3.04),
+ glassfish-mail (>= 1:2ur2-b04),
+ junit4,
+ libjmock-java
+
+Package: solr-common
+Architecture: all
+Depends: ${misc:Depends},
+ debconf (>= 1.5),
+ openjdk-6-jre-headless | java5-runtime-headless | java6-runtime-headless,
+ libcommons-codec-java (>= 1.4),
+ libcommons-csv-java (>= 0.1-SNAPSHOT+svn678580),
+ libcommons-fileupload-java (>= 1.2.1),
+ libcommons-httpclient-java (>= 3.1),
+ libcommons-io-java (>= 1.4),
+ libjaxp1.3-java (>= 1.3.05-1),
+ libjetty-java (>= 6.1.21),
+ liblucene2-java (>= 2.9.1),
+ libservlet2.5-java (>= 6.0.20),
+ libslf4j-java (>= 1.5.10),
+ libxml-commons-external-java (>= 1.3.04),
+ glassfish-mail (>= 1:2ur2-b04),
+Recommends: solr-tomcat (>= ${binary:Version}) | solr-jetty (>= ${binary:Version})
+Suggests: libmysql-java
+Description: enterprise search server based on Lucene - common files
+ Solr is an open source enterprise search server based on the Lucene 
+ Java search library, with XML/HTTP and JSON APIs, hit highlighting, 
+ faceted search, caching, replication, and a web administration 
+ interface. It runs in a Java servlet container such as Tomcat.
+ .
+ This package provides the common files for Solr. Install
+ solr-tomcat or solr-jetty to use Solr under Tomcat or Jetty.
+ .
+ This package also contains the dataimporthandler contrib while omiting
+ dataimporthandler-extras, clustering, extraction and velocity due to missing
+ dependencies.
+ .
+ libmysql-java is necessary to connect the dataimporthandler to MySQL.
+
+Package: solr-tomcat
+Architecture: all
+Depends: ${misc:Depends}, solr-common (= ${binary:Version}), tomcat6 (>= 6.0.20)
+Conflicts: solr-jetty, solr-tomcat6
+Description: enterprise search server based on Lucene - Tomcat integration
+ Solr is an open source enterprise search server based on the Lucene 
+ Java search library, with XML/HTTP and JSON APIs, hit highlighting, 
+ faceted search, caching, replication, and a web administration 
+ interface. It runs in a Java servlet container such as Tomcat.
+ .
+ This package provides the Tomcat integration files for Solr. 
+
+Package: solr-jetty
+Architecture: all
+Depends: ${misc:Depends}, solr-common (= ${binary:Version}), jetty (>= 6.1.22),
+ libjetty-extra-java (>= 6.1.22)
+Conflicts: solr-tomcat
+Description: enterprise search server based on Lucene - Jetty integration
+ Solr is an open source enterprise search server based on the Lucene 
+ Java search library, with XML/HTTP and JSON APIs, hit highlighting, 
+ faceted search, caching, replication, and a web administration 
+ interface. It runs in a Java servlet container such as Tomcat.
+ .
+ This package provides the Jetty integration files for Solr. 

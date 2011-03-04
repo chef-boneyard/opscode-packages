@@ -1,0 +1,39 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: solr\n"
+"Report-Msgid-Bugs-To: pkg-java-maintainers@lists.alioth.debian.org\n"
+"POT-Creation-Date: 2007-10-04 07:18+0200\n"
+"PO-Revision-Date: 2007-10-07 23:12+0200\n"
+"Last-Translator: Esko Arajärvi <edu@iki.fi>\n"
+"Language-Team: Finnish <debian-l10n-finnish@lists.debian.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Poedit-Language: Finnish\n"
+"X-Poedit-Country: FINLAND\n"
+
+#. Type: boolean
+#. Description
+#: ../solr-common.templates:2001
+msgid "Remove Solr index files?"
+msgstr "Poistetaanko Solr hakemistotiedostot?"
+
+#. Type: boolean
+#. Description
+#: ../solr-common.templates:2001
+msgid ""
+"The Solr data directory (/var/lib/solr), and the index files it contains, "
+"may be removed while purging the package."
+msgstr ""
+"Solrin tietohakemisto (/var/lib/solr) ja sen sisältämät hakemistotiedostot "
+"voidaan poistaa poistettaessa (purge) paketti."
+
+#. Type: boolean
+#. Description
+#: ../solr-common.templates:2001
+msgid ""
+"You should not choose this option if you intend to re-use Solr's index files "
+"later."
+msgstr ""
+"Älä valitse tätä vaihtoehtoa, jos aiot käyttää Solrin hakemistotiedostoja "
+"uudelleen myöhemmin."

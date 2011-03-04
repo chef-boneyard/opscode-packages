@@ -1,0 +1,50 @@
+Description: Upstream changes introduced in version 1.4.1+dfsg1-2
+ This patch has been created by dpkg-source during the package build.
+ Here's the last changelog entry, hopefully it gives details on why
+ those changes were made:
+ .
+ solr (1.4.1+dfsg1-2) unstable; urgency=low
+ .
+   * Add lucene-memory.jar to WEB-INF/lib. Closes: #573156.
+   * Increase depends version of libjaxp1.3-java. Closes: #575145.
+   * add jcl-over-slf4j.jar to WEB-INF/lib. Closes: #605766.
+ .
+ The person named in the Author field signed this changelog entry.
+Author: Thomas Koch <thomas@koch.ro>
+Bug-Debian: http://bugs.debian.org/573156
+Bug-Debian: http://bugs.debian.org/575145
+Bug-Debian: http://bugs.debian.org/605766
+
+---
+The information above should follow the Patch Tagging Guidelines, please
+checkout http://dep.debian.net/deps/dep3/ to learn about the format. Here
+are templates for supplementary fields that you might want to add:
+
+Origin: <vendor|upstream|other>, <url of original patch>
+Bug: <url in upstream bugtracker>
+Bug-Debian: http://bugs.debian.org/<bugnumber>
+Bug-Ubuntu: https://launchpad.net/bugs/<bugnumber>
+Forwarded: <no|not-needed|url proving that it has been forwarded>
+Reviewed-By: <name and email of someone who approved the patch>
+Last-Update: <YYYY-MM-DD>
+
+--- solr-1.4.1+dfsg1.orig/common-build.xml
++++ solr-1.4.1+dfsg1/common-build.xml
+@@ -92,7 +92,7 @@
+   <property name="javadoc.link.junit"
+             value="http://junit.sourceforge.net/javadoc/"/>
+   <property name="javadoc.link.lucene"
+-            value="http://lucene.apache.org/java/2_9_3/api/all/"/>
++            value="http://lucene.apache.org/java/2_9_2/api/all/"/>
+   <property name="javadoc.packages" value="org.apache.solr.*"/>
+   <property name="build.docs" value="${dest}/docs"/>
+   <property name="build.javadoc" value="${common.dir}/${build.docs}/api"/>
+@@ -114,7 +114,7 @@
+        The version suffix of the Lucene artifacts checked into "lib" 
+        IF YOU CHANGE THIS, SANITY CHECK "javadoc.link.lucene"
+   -->
+-  <property name="lucene_version" value="2.9.3"/>
++  <property name="lucene_version" value="2.9.2"/>
+   <!-- The version number to assign to the Maven artifacts. -->
+   <property name="maven_version" value="1.4.2-SNAPSHOT"/>
+ 
