@@ -2,6 +2,7 @@ chef (0.9.12+dfsg-3) unstable; urgency=low
 
   * Un-repack solr from chef-solr for upstream packages. The following files
     are affected:
+    - debian/control - removed solr-jetty depend
     - debian/chef-solr.links - removed
     - debian/repack.sh - solr removal removed
     - debian/rules - jetty configs removed

@@ -12,3 +12,4 @@ etc/chef
 etc/chef/solr-jetty
 usr/sbin
 usr/share/chef-solr
+usr/share/chef-solr/solr
