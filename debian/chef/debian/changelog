@@ -2,7 +2,7 @@ chef (0.9.14+dfsg-1) unstable; urgency=low
 
   * New upstream release
 
- -- Bryan McLellan <btm@loftninjas.org> Tue, 08 Mar 2011 12:26:41 -0800
+ -- Bryan McLellan <btm@loftninjas.org>  Tue, 08 Mar 2011 12:26:41 -0800
 
 chef (0.9.12+dfsg-2) unstable; urgency=low
 
