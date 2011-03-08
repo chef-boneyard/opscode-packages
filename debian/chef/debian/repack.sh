@@ -28,10 +28,12 @@ if [ `ls -1 "$UP_BASE" | wc -l` -eq 1 ]; then
 fi
 
 ## Remove undistributable files from source.
+rm -vfr $UP_BASE/chef-solr/solr/solr-jetty.tar.gz
 rm -vfr $UP_BASE/chef-server-webui/public/javascripts/yetii-min.js
 rm -vfr $UP_BASE/chef-server-webui/public/javascripts/jquery.jeditable.mini.js
 rm -vfr $UP_BASE/chef-server-webui/public/javascripts/jquery.tools.min.js
 rm -vfr $UP_BASE/chef-server-webui/public/javascripts/jquery-ui-1.7.1.custom.min.js
+rm -vfr $UP_BASE/features/data/solr/jetty/work/Jetty_0_0_0_0_8983_solr.war__solr__k1kf17/webapp/admin/jquery-1.2.3.min.js
 ## End
 
 mv "$UP_BASE" "$DIR/$REPACK_DIR"

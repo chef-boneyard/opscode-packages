@@ -63,6 +63,7 @@ install/chef-solr::
 	cp chef-solr/bin/chef-solr-rebuild debian/chef-solr/usr/sbin
 	cp chef-solr/bin/chef-solr debian/chef-solr/usr/sbin
 	cp -r chef-solr/lib debian/chef-solr/usr/share/chef-solr
+	tar xvzf chef-solr/solr/solr-home.tar.gz -C debian/chef-solr/var/lib/chef/solr
 	dh_installinit --name=chef-solr -- defaults 84 02
 	dh_installinit --name=chef-solr-indexer -- defaults 85 02
 	dh_installlogrotate --name=chef-solr-indexer
