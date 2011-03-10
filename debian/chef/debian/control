@@ -10,7 +10,7 @@ Homepage: http://wiki.opscode.com/display/chef/Home
 
 Package: chef
 Architecture: all
-Depends: ${misc:Depends}, ruby1.8, liberubis-ruby1.8, libjson-ruby1.8, libextlib-ruby1.8 (>= 0.9.13), ohai (>= 0.5.8), libchef-ruby1.8 (= ${source:Version}), libopenssl-ruby1.8, libmixlib-authentication-ruby1.8 (>= 1.1.4), ucf, libhighline-ruby1.8
+Depends: ${misc:Depends}, ruby1.8, liberubis-ruby1.8, libjson-ruby1.8 (>= 1.4.6), libextlib-ruby1.8 (>= 0.9.13), ohai (>= 0.5.8), libchef-ruby1.8 (= ${source:Version}), libopenssl-ruby1.8, libmixlib-authentication-ruby1.8 (>= 1.1.4), ucf, libhighline-ruby1.8
 Recommends: irb1.8
 Description: System integration framework written in Ruby
  Chef is a systems integration framework and configuration management library
@@ -25,7 +25,7 @@ Description: System integration framework written in Ruby
 
 Package: chef-solr
 Architecture: all
-Depends: ${misc:Depends}, ruby1.8, rabbitmq-server (>= 1.6), default-jre-headless | java6-runtime-headless, libjson-ruby1.8, libchef-ruby1.8 (= ${source:Version}), solr-jetty (>=1.4.0), libxml-ruby1.8, adduser, ucf
+Depends: ${misc:Depends}, ruby1.8, rabbitmq-server (>= 1.6), default-jre-headless | java6-runtime-headless, libjson-ruby1.8 (>= 1.4.6), libchef-ruby1.8 (= ${source:Version}), solr-jetty (>=1.4.0), libxml-ruby1.8, adduser, ucf
 Suggests: chef (= ${source:Version})
 Replaces: chef-indexer
 Conflicts: chef-indexer
@@ -60,7 +60,7 @@ Description: Meta package that depends on Chef Server API and WebUI
 
 Package: chef-server-api
 Architecture: all
-Depends: ${misc:Depends}, ruby, merb-core, libmerb-assets-ruby, libmerb-haml-ruby, libmerb-helpers-ruby, rabbitmq-server (>= 1.6), couchdb (>= 0.9.1), thin, libjson-ruby, libchef-ruby (= ${source:Version}), chef-solr (= ${source:Version}), adduser, ucf
+Depends: ${misc:Depends}, ruby, merb-core, libmerb-assets-ruby, libmerb-haml-ruby, libmerb-helpers-ruby, rabbitmq-server (>= 1.6), couchdb (>= 0.9.1), thin, libjson-ruby (>= 1.4.6), libchef-ruby (= ${source:Version}), chef-solr (= ${source:Version}), adduser, ucf
 Recommends: chef (= ${source:Version})
 Replaces: chef-server-slice
 Conflicts: chef-server-slice
@@ -80,7 +80,7 @@ Description: Merb application providing REST API for Chef client access
 
 Package: chef-server-webui
 Architecture: all
-Depends: ${misc:Depends}, ruby, merb-core, libmerb-param-protection-ruby, libmerb-assets-ruby, libmerb-haml-ruby, libmerb-helpers-ruby, thin, libopenid-ruby, libjson-ruby, libchef-ruby (= ${source:Version}), libcoderay-ruby, chef-server (= ${source:Version}), adduser, libjs-jquery-ui (>= 1.7.1), ucf
+Depends: ${misc:Depends}, ruby, merb-core, libmerb-param-protection-ruby, libmerb-assets-ruby, libmerb-haml-ruby, libmerb-helpers-ruby, thin, libopenid-ruby, libjson-ruby (>= 1.4.6), libchef-ruby (= ${source:Version}), libcoderay-ruby, chef-server (= ${source:Version}), adduser, libjs-jquery-ui (>= 1.7.1), ucf
 Suggests: chef (= ${source:Version}), apache2, nginx
 Conflicts: chef-server-slice
 Description: Merb application providing Web interface to API server for Chef
