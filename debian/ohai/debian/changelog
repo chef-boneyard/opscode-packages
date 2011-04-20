@@ -1,3 +1,16 @@
+ohai (0.6.2-2) unstable; urgency=low
+
+  * Remove extlib from depends
+
+ -- Bryan McLellan <btm@loftninjas.org>  Tue, 19 Apr 2011 20:14:55 +0000
+
+ohai (0.6.2-1) unstable; urgency=low
+
+  * New upstream release (0.6.2)
+  * Switch to libyajl-ruby from libjson-ruby1.8
+
+ -- Bryan McLellan <btm@loftninjas.org>  Fri, 15 Apr 2011 18:58:55 +0000
+
 ohai (0.5.8-1) unstable; urgency=low
 
   * New upstream release (0.5.8).
