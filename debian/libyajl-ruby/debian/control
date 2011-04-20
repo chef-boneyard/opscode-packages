@@ -1,0 +1,20 @@
+Source: libyajl-ruby
+Section: ruby
+Priority: optional
+Maintainer: Debian Ruby Extras Maintainers <pkg-ruby-extras-maintainers@lists.alioth.debian.org>
+Uploaders:  <>
+DM-Upload-Allowed: yes
+Build-Depends: debhelper (>= 7.0.50~), gem2deb (>= 0.2.1)
+Standards-Version: 3.9.1
+#Vcs-Git: git://git.debian.org/pkg-ruby-extras/libyajl-ruby.git
+#Vcs-Browser: http://git.debian.org/?p=pkg-ruby-extras/libyajl-ruby;a=summary
+Homepage: http://github.com/brianmario/yajl-ruby
+XS-Ruby-Versions: all
+
+Package: libyajl-ruby
+Architecture: any
+XB-Ruby-Versions: ${ruby:Versions}
+Depends: ${shlibs:Depends}, ${misc:Depends}, ruby1.8 | ruby-interpreter
+# rake-compiler (>= 0.7.5, development), rspec (>= 2.0.0, development), activesupport (>= 0, development), json (>= 0, development)
+Description: Ruby C bindings to the excellent Yajl JSON stream-based parser library.
+ <insert long description, indented with spaces>
