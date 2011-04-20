@@ -1,7 +1,13 @@
+chef (0.9.16+dfsg-1) unstable; urgency=low
+
+  * New upstream release
+
+ -- Bryan McLellan <btm@loftninjas.org>  Wed, 20 Apr 2011 19:02:33 +0000
+
 chef (0.9.14+dfsg-1) unstable; urgency=low
 
   * New upstream release
-  * dbian/control Depend on libjson-ruby1.8 >= 1.4.6 (fixes CHEF-2098)
+  * debian/control Depend on libjson-ruby1.8 >= 1.4.6 (fixes CHEF-2098)
 
  -- Bryan McLellan <btm@loftninjas.org>  Tue, 08 Mar 2011 12:26:41 -0800
 
