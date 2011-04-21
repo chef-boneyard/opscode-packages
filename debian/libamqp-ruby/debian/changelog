@@ -1,0 +1,5 @@
+libamqp-ruby (0.7.1-0opscode1) unstable; urgency=low
+
+  * Initial release
+
+ -- Bryan McLellan <btm@loftninjas.org>  Thu, 21 Apr 2011 22:38:15 +0000

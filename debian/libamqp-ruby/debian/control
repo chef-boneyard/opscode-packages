@@ -1,0 +1,19 @@
+Source: libamqp-ruby
+Section: ruby
+Priority: optional
+Maintainer: Debian Ruby Extras Maintainers <pkg-ruby-extras-maintainers@lists.alioth.debian.org>
+Uploaders: Bryan McLellan <btm@loftninjas.org>
+DM-Upload-Allowed: yes
+Build-Depends: debhelper (>= 7.0.50~), gem2deb (>= 0.2.1)
+Standards-Version: 3.9.1
+#Vcs-Git: git://git.debian.org/pkg-ruby-extras/libamqp-ruby.git
+#Vcs-Browser: http://git.debian.org/?p=pkg-ruby-extras/libamqp-ruby;a=summary
+Homepage: http://github.com/ruby-amqp/amqp
+XS-Ruby-Versions: all
+
+Package: libamqp-ruby
+Architecture: all
+XB-Ruby-Versions: ${ruby:Versions}
+Depends: ${shlibs:Depends}, ${misc:Depends}, ruby1.8 | ruby-interpreter, libeventmachine-ruby (>= 0.12.4)
+Description: AMQP client implementation in Ruby/EventMachine.
+ An implementation of the AMQP protocol in Ruby/EventMachine for writing clients to the RabbitMQ message broker.

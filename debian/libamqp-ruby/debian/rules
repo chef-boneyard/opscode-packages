@@ -1,0 +1,23 @@
+#!/usr/bin/make -f
+#export DH_VERBOSE=1
+#
+# Uncomment to ignore all test failures (but the tests will run anyway)
+#export DH_RUBY_IGNORE_TESTS=all
+#
+# Uncomment to ignore some test failures (but the tests will run anyway).
+# Valid values:
+#export DH_RUBY_IGNORE_TESTS=ruby1.8 ruby1.9.1 require-rubygems
+#
+# If you need to specify the .gemspec (eg there is more than one)
+#export DH_RUBY_GEMSPEC=gem.gemspec
+
+%:
+	dh $@ --buildsystem=ruby --with ruby
+
+override_dh_install:
+	# Remove unneeded utility and wrapper scripts
+	rm -f $(CURDIR)/debian/libamqp-ruby/usr/bin/set_test_suite_realms_up.sh
+	rm -f $(CURDIR)/debian/libamqp-ruby/usr/bin/jenkins.sh
+	rm -f $(CURDIR)/debian/libamqp-ruby/usr/bin/irb
+	rm -f $(CURDIR)/debian/libamqp-ruby/usr/bin/cleanify.rb
+	dh_install

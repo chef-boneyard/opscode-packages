@@ -1,0 +1,66 @@
+--- a/lib/amqp/ext/em.rb
++++ b/lib/amqp/ext/em.rb
+@@ -1,10 +1,5 @@
+ # encoding: utf-8
+ 
+-begin
+-  require 'eventmachine'
+-rescue LoadError
+-  require 'rubygems'
+-  require 'eventmachine'
+-end
++require 'eventmachine'
+ 
+ require 'amqp/ext/emfork'
+--- a/lib/amqp/ext/emfork.rb
++++ b/lib/amqp/ext/emfork.rb
+@@ -2,10 +2,6 @@
+ 
+ EMFORK = $0 == __FILE__
+ 
+-if EMFORK
+-  require 'rubygems'
+-end
+-
+ require 'eventmachine'
+ 
+ #:stopdoc:
+--- a/lib/amqp/server.rb
++++ b/lib/amqp/server.rb
+@@ -93,7 +93,6 @@
+ end
+ 
+ if __FILE__ == $0
+-  require 'rubygems'
+   require 'eventmachine'
+   EM.run {
+     AMQP::Server.start
+--- a/protocol/codegen.rb
++++ b/protocol/codegen.rb
+@@ -1,6 +1,5 @@
+ # encoding: utf-8
+ 
+-require 'rubygems'
+ require 'json'
+ 
+ name = 'amqp-0.8.json'
+--- a/research/api.rb
++++ b/research/api.rb
+@@ -1,7 +1,6 @@
+ # encoding: utf-8
+ 
+ $:.unshift File.dirname(__FILE__) + '/../lib'
+-require 'rubygems'
+ require 'amqp'
+ 
+ # AMQP.start do |amqp|
+--- a/lib/amqp/channel.rb
++++ b/lib/amqp/channel.rb
+@@ -27,7 +27,6 @@
+   # other synchronous operations. See the EventMachine documentation for
+   # more information.
+   #
+-  #   require 'rubygems'
+   #   require 'mq'
+   #
+   #   thr = Thread.new { EM.run }
