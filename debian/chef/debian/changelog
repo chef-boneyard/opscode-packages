@@ -1,3 +1,9 @@
+chef (0.10.0+dfsg-1) unstable; urgency=low
+
+  * Require rubygems >= 1.3.5 (CHEF-1635)
+
+ -- Bryan McLellan <btm@loftninjas.org>  Wed, 20 Apr 2011 23:59:32 +0000
+
 chef (0.9.16+dfsg-1) unstable; urgency=low
 
   * New upstream release

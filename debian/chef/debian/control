@@ -111,7 +111,7 @@ Description: Ruby libraries for Chef system integration framework
 
 Package: libchef-ruby1.8
 Architecture: all
-Depends: ${misc:Depends}, ruby1.8, libopenssl-ruby1.8, libmixlib-authentication-ruby1.8 (>= 1.1.4), libmixlib-cli-ruby1.8 (>= 1.1.0), libmixlib-config-ruby1.8 (>= 1.1.0), libmixlib-log-ruby1.8 (>= 1.2.0), libohai-ruby1.8 (>= 0.5.8), libmoneta-ruby1.8, libbunny-ruby1.8, rubygems1.8 | libgems-ruby1.8, librestclient-ruby1.8, libuuidtools-ruby1.8
+Depends: ${misc:Depends}, ruby1.8, libopenssl-ruby1.8, libmixlib-authentication-ruby1.8 (>= 1.1.4), libmixlib-cli-ruby1.8 (>= 1.1.0), libmixlib-config-ruby1.8 (>= 1.1.0), libmixlib-log-ruby1.8 (>= 1.2.0), libohai-ruby1.8 (>= 0.5.8), libmoneta-ruby1.8, libbunny-ruby1.8, rubygems1.8 (>= 1.3.5), librestclient-ruby1.8, libuuidtools-ruby1.8
 Recommends: ohai (>= 0.5.8), chef (= ${source:Version})
 Suggests: rake, libshadow-ruby1.8
 Description: Ruby 1.8 libraries for Chef system integration framework
