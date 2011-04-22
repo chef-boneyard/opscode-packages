@@ -1,0 +1,6 @@
+--- 
+- test/test_xml_escaping.rb
+- test/test_mongrel_overrides.rb
+- test/test_rack_util_overrides.rb
+- test/test_cgi_class_overrides.rb
+- test/test_erb_util_module_overrides.rb

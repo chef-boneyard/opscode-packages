@@ -1,0 +1,5 @@
+libfast-xs-ruby (0.8.0-0opscode1) unstable; urgency=low
+
+  * Initial release
+
+ -- Bryan McLellan <btm@loftninjas.org>  Fri, 22 Apr 2011 00:05:30 +0000
