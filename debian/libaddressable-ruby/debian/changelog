@@ -1,0 +1,5 @@
+libaddressable-ruby (2.2.5-0opscode1) unstable; urgency=low
+
+  * Initial release
+
+ -- Bryan McLellan <btm@loftninjas.org>  Fri, 22 Apr 2011 23:44:10 +0000

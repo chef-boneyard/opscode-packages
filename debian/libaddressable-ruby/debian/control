@@ -1,0 +1,21 @@
+Source: libaddressable-ruby
+Section: ruby
+Priority: optional
+Maintainer: Debian Ruby Extras Maintainers <pkg-ruby-extras-maintainers@lists.alioth.debian.org>
+Uploaders: Bryan McLellan <btm@loftninjas.org>
+DM-Upload-Allowed: yes
+Build-Depends: debhelper (>= 7.0.50~), gem2deb (>= 0.2.1)
+Standards-Version: 3.9.1
+#Vcs-Git: git://git.debian.org/pkg-ruby-extras/libaddressable-ruby.git
+#Vcs-Browser: http://git.debian.org/?p=pkg-ruby-extras/libaddressable-ruby;a=summary
+Homepage: http://addressable.rubyforge.org/
+XS-Ruby-Versions: all
+
+Package: libaddressable-ruby
+Architecture: all
+XB-Ruby-Versions: ${ruby:Versions}
+Depends: ${shlibs:Depends}, ${misc:Depends}, ruby1.8 | ruby-interpreter
+Description: URI Implementation
+ Addressable is a replacement for the URI implementation that is part of
+ Ruby's standard library. It more closely conforms to the relevant RFCs and
+ adds support for IRIs and URI templates.
