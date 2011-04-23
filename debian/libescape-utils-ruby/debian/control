@@ -1,0 +1,20 @@
+Source: libescape-utils-ruby
+Section: ruby
+Priority: optional
+Maintainer: Debian Ruby Extras Maintainers <pkg-ruby-extras-maintainers@lists.alioth.debian.org>
+Uploaders: Bryan McLellan <btm@loftninjas.org>
+DM-Upload-Allowed: yes
+Build-Depends: debhelper (>= 7.0.50~), gem2deb (>= 0.2.1), librspec-ruby
+Standards-Version: 3.9.1
+#Vcs-Git: git://git.debian.org/pkg-ruby-extras/libescape-utils-ruby.git
+#Vcs-Browser: http://git.debian.org/?p=pkg-ruby-extras/libescape-utils-ruby;a=summary
+Homepage: http://github.com/brianmario/escape_utils
+XS-Ruby-Versions: all
+
+Package: libescape-utils-ruby
+Architecture: any
+XB-Ruby-Versions: ${ruby:Versions}
+Depends: ${shlibs:Depends}, ${misc:Depends}, ruby1.8 | ruby-interpreter
+# rake-compiler (>= 0.7.5, development), rspec (>= 2.0.0, development), rack (>= 0, development), haml (>= 0, development), fast_xs (>= 0, development), actionpack (>= 0, development), url_escape (>= 0, development)
+Description: Faster string escaping routines for your web apps
+ <insert long description, indented with spaces>

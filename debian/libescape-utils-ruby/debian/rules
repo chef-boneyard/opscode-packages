@@ -1,0 +1,14 @@
+#!/usr/bin/make -f
+#export DH_VERBOSE=1
+#
+# Uncomment to ignore all test failures (but the tests will run anyway)
+#export DH_RUBY_IGNORE_TESTS=all
+#
+# If you need to specify the .gemspec (eg there is more than one)
+#export DH_RUBY_GEMSPEC=gem.gemspec
+
+# Specs won't work until rspec2 is available
+export DH_RUBY_IGNORE_TESTS=ruby1.8 ruby1.9.1
+
+%:
+	dh $@ --buildsystem=ruby --with ruby

@@ -1,0 +1,14 @@
+--- 
+- spec/html/escape_spec.rb
+- spec/html/unescape_spec.rb
+- spec/html_safety_spec.rb
+- spec/javascript/escape_spec.rb
+- spec/javascript/unescape_spec.rb
+- spec/query/escape_spec.rb
+- spec/query/unescape_spec.rb
+- spec/rcov.opts
+- spec/spec_helper.rb
+- spec/uri/escape_spec.rb
+- spec/uri/unescape_spec.rb
+- spec/url/escape_spec.rb
+- spec/url/unescape_spec.rb
