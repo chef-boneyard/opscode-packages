@@ -1,0 +1,5 @@
+libdep-selector-ruby (0.0.7-0opscode1) unreleased; urgency=low
+
+  * Initial release
+
+ -- Bryan McLellan <btm@loftninjas.org>  Tue, 26 Apr 2011 19:41:21 +0000

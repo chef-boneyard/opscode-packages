@@ -1,0 +1,19 @@
+Source: libdep-selector-ruby
+Section: ruby
+Priority: optional
+Maintainer: Debian Ruby Extras Maintainers <pkg-ruby-extras-maintainers@lists.alioth.debian.org>
+Uploaders: Bryan McLellan <btm@loftninjas.org>
+DM-Upload-Allowed: yes
+Build-Depends: debhelper (>= 7.0.50~), gem2deb (>= 0.2.1), libgecode-dev (>= 3.5.0), ruby-dev
+Standards-Version: 3.9.1
+#Vcs-Git: git://git.debian.org/pkg-ruby-extras/libdep-selector-ruby.git
+#Vcs-Browser: http://git.debian.org/?p=pkg-ruby-extras/libdep-selector-ruby;a=summary
+Homepage: http://github.com/algorist/dep_selector
+XS-Ruby-Versions: all
+
+Package: libdep-selector-ruby
+Architecture: any
+XB-Ruby-Versions: ${ruby:Versions}
+Depends: ${shlibs:Depends}, ${misc:Depends}, ruby1.8 | ruby-interpreter, libgecode-dev (>= 3.5.0)
+Description: Given packages, versions, and a dependency graph, find a valid assignment of package versions
+ Given packages, versions, and a dependency graph, find a valid assignment of package versions
