@@ -1,3 +1,2 @@
-# Compulsory line, this is a version 3 file
 version=3
-http://githubredir.debian.net/github/opscode/mixlib-log/([0-9].*).tar.gz
+http://pkg-ruby-extras.alioth.debian.org/cgi-bin/gemwatch/mixlib-log .*/mixlib-log-(.*).tar.gz

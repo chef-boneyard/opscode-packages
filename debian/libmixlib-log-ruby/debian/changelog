@@ -1,3 +1,10 @@
+libmixlib-log-ruby (1.3.0-1) unstable; urgency=low
+
+  * New upstream release
+  * Switch to gem2deb
+
+ -- Bryan McLellan <btm@loftninjas.org>  Wed, 27 Apr 2011 23:21:02 +0000
+
 libmixlib-log-ruby (1.2.0-1) unstable; urgency=low
 
   * New upstream release (1.2.0).
