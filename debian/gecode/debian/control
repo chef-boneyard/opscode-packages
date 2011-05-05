@@ -1,0 +1,62 @@
+Source: gecode
+Priority: optional
+Maintainer: Kari Pahula <kaol@debian.org>
+Build-Depends: debhelper (>= 5), autotools-dev, libqt4-dev, libboost-dev, autoconf, automake
+Build-Conflicts: qt3-dev-tools
+Build-Depends-Indep: graphviz, doxygen
+Standards-Version: 3.9.1
+Section: libs
+Homepage: http://www.gecode.org/
+
+Package: libgecode-dev
+Section: libdevel
+Architecture: any
+Depends: libgecode27 (= ${binary:Version}), ${misc:Depends}, ${shlibs:Depends}, libqt4-dev, libboost-dev
+Suggests: libgecode-doc
+Description: generic constraint development environment
+ Gecode is an attempt to construct an open, free, portable, accessible,
+ and efficient environment for developing constraint-based systems and
+ applications.
+ .
+ Gecode is radically open for programming: it can be easily
+ interfaced to other systems. It supports the programming of new
+ propagators (as implementation of constraints), branching strategies,
+ and search engines. New variable domains can be programmed at the same
+ level of efficiency as finite domain and integer set variables that
+ come predefined with Gecode.
+
+Package: libgecode-doc
+Section: doc
+Architecture: all
+Depends: ${misc:Depends}
+Suggests: libgecode-dev
+Description: generic constraint development environment
+ Gecode is an attempt to construct an open, free, portable, accessible,
+ and efficient environment for developing constraint-based systems and
+ applications.
+ .
+ Gecode is radically open for programming: it can be easily
+ interfaced to other systems. It supports the programming of new
+ propagators (as implementation of constraints), branching strategies,
+ and search engines. New variable domains can be programmed at the same
+ level of efficiency as finite domain and integer set variables that
+ come predefined with Gecode.
+ .
+ This package has the API documentation and examples.
+
+Package: libgecode27
+Section: libs
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}
+Suggests: libgecode-dev
+Description: generic constraint development environment
+ Gecode is an attempt to construct an open, free, portable, accessible,
+ and efficient environment for developing constraint-based systems and
+ applications.
+ .
+ Gecode is radically open for programming: it can be easily
+ interfaced to other systems. It supports the programming of new
+ propagators (as implementation of constraints), branching strategies,
+ and search engines. New variable domains can be programmed at the same
+ level of efficiency as finite domain and integer set variables that
+ come predefined with Gecode.

@@ -1,0 +1,12 @@
+debian/tmp/usr/lib/libgecodedriver*.so.27.0
+debian/tmp/usr/lib/libgecodeflatzinc*.so.27.0
+debian/tmp/usr/lib/libgecodegist*.so.27.0
+debian/tmp/usr/lib/libgecodegraph*.so.27.0
+debian/tmp/usr/lib/libgecodeint*.so.27.0
+debian/tmp/usr/lib/libgecodekernel*.so.27.0
+debian/tmp/usr/lib/libgecodeminimodel*.so.27.0
+debian/tmp/usr/lib/libgecodescheduling*.so.27.0
+debian/tmp/usr/lib/libgecodesearch*.so.27.0
+debian/tmp/usr/lib/libgecodeset*.so.27.0
+debian/tmp/usr/lib/libgecodesupport*.so.27.0
+debian/lintian-overrides/libgecode27	usr/share/lintian/overrides/

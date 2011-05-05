@@ -1,0 +1,2 @@
+# A couple of examples have #include "examples/scowl.hpp"
+libgecode-doc: nested-examples-directory usr/share/doc/libgecode-doc/examples/examples/

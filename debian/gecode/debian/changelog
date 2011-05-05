@@ -1,0 +1,213 @@
+gecode (3.5.0-1) unstable; urgency=low
+
+  * New upstream release (soname 27)
+  * Don't install /usr/include/examples to libgecode-dev
+
+ -- Kari Pahula <kaol@debian.org>  Sat, 05 Feb 2011 23:56:22 +0200
+
+gecode (3.4.0-1) unstable; urgency=low
+
+  * New upstream release
+  * Standards-Version 3.9.1 (no changes necessary).
+
+ -- Kari Pahula <kaol@debian.org>  Tue, 27 Jul 2010 21:57:51 +0300
+
+gecode (3.3.1-2) unstable; urgency=low
+
+  * Add correct pkg-config QtGui calls to examples/Makefile in
+    libgecode-doc.
+
+ -- Kari Pahula <kaol@debian.org>  Sat, 01 May 2010 19:58:24 +0300
+
+gecode (3.3.1-1) unstable; urgency=low
+
+  * New upstream release (soname 22)
+
+ -- Kari Pahula <kaol@debian.org>  Sat, 01 May 2010 01:12:01 +0300
+
+gecode (3.3.0-2) unstable; urgency=low
+
+  * Switch to dpkg-source 3.0 (quilt) format
+  * Use -O2 on ia64 to avoid #568399.
+  * Patch gecode.m4 to not force using -O3.
+  * Add autoconf and automake as a build deps and run autoreconf in
+    debian/rules.
+
+ -- Kari Pahula <kaol@debian.org>  Tue, 16 Mar 2010 23:11:28 +0200
+
+gecode (3.3.0-1) unstable; urgency=low
+
+  * New upstream release (soname 21)
+
+ -- Kari Pahula <kaol@debian.org>  Tue, 16 Mar 2010 14:19:41 +0200
+
+gecode (3.2.2-1) unstable; urgency=low
+
+  * New upstream release (soname 20)
+  * Standards-Version: 3.8.4 (no changes needed)
+  * Disable building static libraries.
+
+ -- Kari Pahula <kaol@debian.org>  Sun, 14 Feb 2010 19:03:01 +0200
+
+gecode (3.2.1-1) unstable; urgency=low
+
+  * New upstream release (soname 19)
+
+ -- Kari Pahula <kaol@debian.org>  Tue, 10 Nov 2009 22:02:14 +0200
+
+gecode (3.2.0-1) unstable; urgency=low
+
+  * New upstream release (soname 18)
+  * Fixed a bashism in debian/rules. (Closes: #535382)
+  * Standards-Version bumped to 3.8.3 (no changes needed).
+  * Dropped the .pc files since upstream no longer provides them and
+    adjusted the examples' Makefile accordingly.
+  * Build and include FlatZinc executable (fz) in libgecode-dev.
+
+ -- Kari Pahula <kaol@debian.org>  Sun, 01 Nov 2009 15:52:31 +0200
+
+gecode (3.1.0-1) unstable; urgency=low
+
+  * New upstream release (soname 17) (Closes: #526675)
+  * Run "make check" instead of test/test.
+  * Build depend on libboost-dev, not libboost1.37-dev. (Closes: #534061)
+  * Standards-Version bumped to 3.8.2 (no changes necessary).
+  * Explicitly add -lgecodedriver to the LDFLAGS in the provided Makefile
+    for examples in libgecode-doc.
+
+ -- Kari Pahula <kaol@debian.org>  Sat, 27 Jun 2009 22:29:21 +0300
+
+gecode (3.0.2-1) unstable; urgency=low
+
+  * New upstream release (soname 16)
+
+ -- Kari Pahula <kaol@debian.org>  Fri, 27 Mar 2009 10:40:36 +0200
+
+gecode (3.0.0-2) unstable; urgency=low
+
+  * Removed the information about BuDDy library from debian/copyright
+    (Gecode no longer includes or uses it).
+
+ -- Kari Pahula <kaol@debian.org>  Fri, 20 Mar 2009 13:26:05 +0200
+
+gecode (3.0.0-1) unstable; urgency=low
+
+  * New upstream release (soname 14) (Closes: #507112)
+    * Fixed build error with GCC 4.4 (Closes: #505081)
+  * Dropped the number from the libgecode*-dev package.
+  * Replaced libboost-serialization-dev with libboost1.37-dev as a
+    Build-Dep.
+  * Recognize parallel=n build option (Closes: #484101)
+  * Enable running test suite on s390.
+  * Standards-Version 3.8.1.
+  * Enable building the Gecode Interactive Search Tool.
+    * Build-Depends: libqt4-dev, Build-Conflicts: qt3-dev-tools.
+  * Build float variable library (--enable-float-vars).
+
+ -- Kari Pahula <kaol@debian.org>  Wed, 18 Mar 2009 23:59:42 +0200
+
+gecode (2.1.1-1) unstable; urgency=low
+
+  * New upstream release
+
+ -- Kari Pahula <kaol@debian.org>  Wed, 19 Mar 2008 00:25:23 +0200
+
+gecode (2.1.0-1) unstable; urgency=low
+
+  * New upstream release
+  * Improved the examples' Makefile.
+
+ -- Kari Pahula <kaol@debian.org>  Mon, 03 Mar 2008 07:03:35 +0200
+
+gecode (2.0.1-1) unstable; urgency=low
+
+  * New upstream release
+
+ -- Kari Pahula <kaol@debian.org>  Fri, 15 Feb 2008 18:36:50 +0200
+
+gecode (2.0.0-1) unstable; urgency=low
+
+  * New upstream release
+  * Various small fixes to make the policy and lintian happy.
+  * Provided a Makefile to compile the examples.
+
+ -- Kari Pahula <kaol@debian.org>  Wed, 09 Jan 2008 19:51:02 +0200
+
+gecode (1.3.1-1) unstable; urgency=low
+
+  * New upstream release
+  * Added a default value for prop_bnd in int/distinct.hh to maintain API
+    compatibility.
+
+ -- Kari Pahula <kaol@debian.org>  Thu, 26 Oct 2006 11:22:28 +0300
+
+gecode (1.3.0-1) unstable; urgency=low
+
+  * New upstream release
+  * Check for DEB_BUILD_GNU_TYPE when testing whether to run the test
+    suite, not DEB_HOST_GNU_TYPE
+
+ -- Kari Pahula <kaol@debian.org>  Wed, 20 Sep 2006 08:22:37 +0300
+
+gecode (1.2.2-1) unstable; urgency=low
+
+  * New upstream release
+  * Use -E instead of -e with grep in the host arch check regexp in
+    debian/rules (oops)
+  * libgecode6-dev: Provides and Conflicts libgecode-dev
+
+ -- Kari Pahula <kaol@debian.org>  Wed, 26 Jul 2006 06:21:09 +0300
+
+gecode (1.2.0-1) unstable; urgency=low
+
+  * New upstream release
+    - Detects GNU/kFreeBSD correctly now (Closes: #370470)
+  * Disabled running test on s390 too (Closes: #370466)
+  * Moved doxygen and graphviz to Build-Depends-Indep again and tested it
+    too.
+  * Put all libraries to single libgecode4 package.
+
+ -- Kari Pahula <kaol@debian.org>  Mon, 26 Jun 2006 14:06:15 +0300
+
+gecode (1.1.0-2) unstable; urgency=low
+
+  * Moved doxygen from Build-Depends-Indep to Build-Depends
+    (Closes: #370415)
+
+ -- Kari Pahula <kaol@debian.org>  Mon,  5 Jun 2006 11:12:21 +0300
+
+gecode (1.1.0-1) unstable; urgency=low
+
+  * New upstream release
+    - Upstream removed the parallel stuff themselves, no need to
+      repackage orig.tar.gz anymore
+  * Disable running test on arm and m68k architectures.
+  * Policy version 3.6.2 -> 3.7.2 (no changes necessary)
+
+ -- Kari Pahula <kaol@debian.org>  Fri,  5 May 2006 20:56:06 +0300
+
+gecode (1.0.1.dfsg.1-1) unstable; urgency=low
+
+  * New upstream release
+  * Added make test and test/test to the build debian/rules target.
+  * Build static libraries for -dev package.
+  * Removed parallel.hh and parallel/ due to unclear license from the
+    orig.tar.gz tarball.
+
+ -- Kari Pahula <kaol@iki.fi>  Sun, 26 Mar 2006 21:23:38 +0300
+
+gecode (1.0.0.dfsg.1-2) unstable; urgency=low
+
+  * Properly separate targets to -arch and -indep in debian/rules
+    (Closes: #345332)
+
+ -- Kari Pahula <kaol@iki.fi>  Mon,  2 Jan 2006 10:59:11 +0200
+
+gecode (1.0.0.dfsg.1-1) unstable; urgency=low
+
+  * Initial release Closes: #343940
+  * Set sonames for libraries, use major version 0 for now
+  * Repackaged orig.tar.gz because of missing contribs/map/LICENSE
+
+ -- Kari Pahula <kaol@iki.fi>  Sat, 24 Dec 2005 07:51:25 +0200
+

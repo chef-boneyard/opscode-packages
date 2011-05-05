@@ -1,0 +1,9 @@
+Document: libgecode-doc
+Title: gecode API documentation
+Author: Christian Schulte, Gabor Szokoli, Guido Tack, Mikael Lagerkvist and Patrick Pekczynski
+Abstract: Doxygen generated API documentation for gecode library.
+Section: Programming/C++
+
+Format: HTML
+Index: /usr/share/doc/libgecode-doc/html/index.html
+Files: /usr/share/doc/libgecode-doc/html/*.html

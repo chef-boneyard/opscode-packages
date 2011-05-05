@@ -1,0 +1,4 @@
+# The library uses templates heavily and every new upstream release gets
+# a new soname, too.  There's no harm in putting all the libraries in the
+# same package.
+libgecode27: package-name-doesnt-match-sonames libgecodedriver27 libgecodeflatzinc27 libgecodegist27 libgecodegraph27 libgecodeint27 libgecodekernel27 libgecodeminimodel27 libgecodescheduling27 libgecodesearch27 libgecodeset27 libgecodesupport27

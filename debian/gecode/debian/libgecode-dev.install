@@ -1,0 +1,4 @@
+debian/tmp/usr/include/gecode
+debian/tmp/usr/lib/*.so
+tools/flatzinc/fz	/usr/bin
+debian/tmp/usr/share/gecode/mznlib/*

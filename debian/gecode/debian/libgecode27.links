@@ -1,0 +1,11 @@
+usr/lib/libgecodedriver.so.27.0		usr/lib/libgecodedriver.so.27
+usr/lib/libgecodeflatzinc.so.27.0	usr/lib/libgecodeflatzinc.so.27
+usr/lib/libgecodegist.so.27.0		usr/lib/libgecodegist.so.27
+usr/lib/libgecodegraph.so.27.0		usr/lib/libgecodegraph.so.27
+usr/lib/libgecodeint.so.27.0		usr/lib/libgecodeint.so.27
+usr/lib/libgecodekernel.so.27.0		usr/lib/libgecodekernel.so.27
+usr/lib/libgecodeminimodel.so.27.0	usr/lib/libgecodeminimodel.so.27
+usr/lib/libgecodescheduling.so.27.0	usr/lib/libgecodescheduling.so.27
+usr/lib/libgecodesearch.so.27.0		usr/lib/libgecodesearch.so.27
+usr/lib/libgecodeset.so.27.0		usr/lib/libgecodeset.so.27
+usr/lib/libgecodesupport.so.27.0	usr/lib/libgecodesupport.so.27

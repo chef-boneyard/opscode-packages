@@ -1,0 +1,18 @@
+CXXFLAGS=-O3 `pkg-config QtGui --cflags`
+LDFLAGS=-lgecodedriver -lgecodegraph -lgecodescheduling `pkg-config QtGui --libs`
+EXAMPLES=$(patsubst %.cpp,%,$(wildcard *.cpp))
+
+all: $(EXAMPLES)
+
+$(addsuffix .o,$(EXAMPLES)):
+	g++ $(CXXFLAGS) $(patsubst %.o,%.cpp,$@) -c
+
+clean:
+	rm -f $(EXAMPLES)
+	rm -f *.o
+
+.PHONY: all clean
+
+.SECONDEXPANSION:
+$(EXAMPLES): $$@.o
+	g++ $(LDFLAGS) $@.o -o $@

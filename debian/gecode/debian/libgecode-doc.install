@@ -1,0 +1,3 @@
+examples/scowl.hpp			usr/share/doc/libgecode-doc/examples/examples
+examples/*.cpp				usr/share/doc/libgecode-doc/examples
+debian/lintian-overrides/libgecode-doc	usr/share/lintian/overrides/

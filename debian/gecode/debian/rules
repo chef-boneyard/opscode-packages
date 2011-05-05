@@ -1,0 +1,129 @@
+#!/usr/bin/make -f
+# -*- makefile -*-
+
+# Uncomment this to turn on verbose mode.
+#export DH_VERBOSE=1
+
+
+# These are used for cross-compiling and for saving the configure script
+# from having to guess our platform (since we know it already)
+DEB_HOST_GNU_TYPE   ?= $(shell dpkg-architecture -qDEB_HOST_GNU_TYPE)
+DEB_BUILD_GNU_TYPE  ?= $(shell dpkg-architecture -qDEB_BUILD_GNU_TYPE)
+
+
+CFLAGS = -Wall -g -Wl,-z,defs -D_REENTRANT
+
+ifneq (,$(findstring noopt,$(DEB_BUILD_OPTIONS)))
+	CFLAGS += -O0
+else
+ifeq (ia64,$(DEB_HOST_ARCH))
+	CFLAGS += -O2
+else
+	CFLAGS += -O3
+endif
+endif
+ifeq (,$(filter nostrip,$(DEB_BUILD_OPTIONS)))
+	INSTALL_PROGRAM += -s
+endif
+ifneq (,$(filter parallel=%,$(DEB_BUILD_OPTIONS)))
+	NUMJOBS = $(patsubst parallel=%,%,$(filter parallel=%,$(DEB_BUILD_OPTIONS)))
+	MAKEFLAGS += -j$(NUMJOBS)
+endif
+
+configure:
+	autoreconf
+
+config.status: configure
+	dh_testdir
+	cp -f /usr/share/misc/config.sub config.sub
+	cp -f /usr/share/misc/config.guess config.guess
+	./configure --host=$(DEB_HOST_GNU_TYPE) --build=$(DEB_BUILD_GNU_TYPE) --prefix=/usr --mandir=\$${prefix}/share/man --infodir=\$${prefix}/share/info --disable-examples --enable-shared CFLAGS="$(CFLAGS)" CXXFLAGS="$(CFLAGS)" --enable-gist --enable-qt --enable-float-vars
+
+
+build: build-arch build-indep
+
+build-arch: build-arch-stamp
+build-arch-stamp: config.status
+	dh_testdir
+	if [ ! -e ChangeLog ] ; then make ChangeLog; fi
+	$(MAKE) $(MAKEFLAGS)
+ifeq (,$(filter nocheck,$(DEB_BUILD_OPTIONS)))
+	make check LD_LIBRARY_PATH=.
+# If you want to spend hours on this, enable this
+# test is disabled on those arches since it's too slow
+#	-if echo $(DEB_BUILD_GNU_TYPE) | grep -vcE '^(arm|m68k)' ; then $(MAKE) test && LD_LIBRARY_PATH=. test/test ; fi
+endif
+	touch build-arch-stamp
+
+# this would fail when building -arch packages (buildds do not believe
+# in build-indep targets and just call build anyway)
+build-indep: build-indep-stamp
+build-indep-stamp: config.status
+	dh_testdir
+	if [ -e /usr/bin/doxygen ] ; then $(MAKE) doc ; fi
+	if [ ! -e ChangeLog ] ; then make ChangeLog; fi
+	touch build-indep-stamp
+
+clean:
+	dh_testdir
+	dh_testroot
+	rm -f build-arch-stamp build-indep-stamp
+
+	[ ! -f Makefile ] || $(MAKE) distclean
+	rm -fr doc
+	rm -f lib*.so lib*.so.?
+	rm -f test/test
+	rm -f ChangeLog changelog.hh Makefile.dep
+	rm -f config.log config.guess config.sub
+	rm -f contribs/qecode/config.log contribs/qecode/config.guess contribs/qecode/config.status
+	rm -f configure gecode/support/config.hpp.in
+	dh_clean 
+
+# there's no install-indep since that has only doc which stays in doc/
+install: build-arch
+	dh_testdir
+	dh_testroot
+	dh_clean -k 
+	dh_installdirs
+
+	$(MAKE) install prefix=$(CURDIR)/debian/tmp/usr
+
+
+# Build architecture-independent files here.
+binary-indep: build-indep
+	dh_testdir
+	dh_testroot
+	dh_install -i
+	dh_installchangelogs -i ChangeLog
+	dh_installdocs -i
+	chmod -x $(CURDIR)/debian/libgecode-doc/usr/share/doc/libgecode-doc/examples/*
+	install -m 0644 -D debian/Makefile.examples $(CURDIR)/debian/libgecode-doc/usr/share/doc/libgecode-doc/examples/Makefile
+	dh_compress -i
+	dh_fixperms -i
+	dh_installdeb -i
+	dh_gencontrol -i
+	dh_md5sums -i
+	dh_builddeb -i
+
+# Build architecture-dependent files here.
+binary-arch: build-arch install
+	dh_testdir
+	dh_testroot
+	dh_installchangelogs -a ChangeLog
+	dh_installdocs -a
+	dh_install -a
+	find $(CURDIR)/debian/libgecode-dev/usr/include -type f -exec chmod -x {} \;
+	dh_link -a
+	dh_strip
+	dh_compress -a
+	dh_fixperms -a
+	dh_makeshlibs -V
+	dh_installdeb -a
+	dh_shlibdeps
+	dh_gencontrol -a
+	dh_md5sums -a
+	dh_builddeb -a
+
+binary: binary-indep binary-arch
+
+.PHONY: build build-arch build-indep clean binary-indep binary-arch binary install 

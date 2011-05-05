@@ -1,0 +1,17 @@
+#! /bin/bash
+
+set -e
+
+if [ -z "$1" -a -z "$2" ] ; then
+    echo "usage: sonameify oldsoname newsoname" >&2
+    exit 0
+fi
+
+sed s/$1/$2/g libgecode$1.install > libgecode$2.install
+rm libgecode$1.install
+sed s/$1/$2/g libgecode$1.links > libgecode$2.links
+rm libgecode$1.links
+sed s/$1/$2/g lintian-overrides/libgecode$1 > lintian-overrides/libgecode$2
+rm lintian-overrides/libgecode$1
+
+sed -i s/libgecode$1/libgecode$2/ control
