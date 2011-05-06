@@ -1,0 +1,5 @@
+chef-server-webui (0.10.0-1) UNRELEASED; urgency=low
+
+  * Initial release (Closes: #nnnn)
+
+ -- Bryan McLellan <btm@loftninjas.org>  Fri, 06 May 2011 21:25:01 +0000

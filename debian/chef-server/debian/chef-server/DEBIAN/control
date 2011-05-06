@@ -1,0 +1,21 @@
+Package: chef-server
+Version: 0.10.0-1
+Architecture: all
+Maintainer: Debian Ruby Extras Maintainers <pkg-ruby-extras-maintainers@lists.alioth.debian.org>
+Installed-Size: 60
+Depends: ruby1.8 | ruby-interpreter, chef-server-api (= 0.10.0-1), chef-server-webui (= 0.10.0-1), chef-solr (= 0.10.0-1), chef-expander (= 0.10.0-1)
+Section: ruby
+Priority: optional
+Homepage: http://wiki.opscode.com/display/chef
+Description: A meta-gem to install all server components of the Chef configuration management system
+ Chef is a systems integration framework and configuration management system
+ written in Ruby. Chef provides a Ruby library and API that can be used to
+ bring the benefits of configuration management to an entire infrastructure.
+ .
+ The Chef Server is a Merb application that provides centralized storage and
+ distribution for recipes stored in "cookbooks," management and authentication
+ of client nodes and node data, and search indexes for that data.
+ .
+ This package is a meta package that depends on chef-server-api and
+ chef-server-webui to provide both Server components.
+Ruby-Versions: ruby1.8 ruby1.9.1

@@ -1,0 +1,36 @@
+#!/usr/bin/make -f
+#export DH_VERBOSE=1
+#
+# Uncomment to ignore all test failures (but the tests will run anyway)
+#export DH_RUBY_IGNORE_TESTS=all
+#
+# Uncomment to ignore some test failures (but the tests will run anyway).
+# Valid values:
+#export DH_RUBY_IGNORE_TESTS=ruby1.8 ruby1.9.1 require-rubygems
+#
+# If you need to specify the .gemspec (eg there is more than one)
+#export DH_RUBY_GEMSPEC=gem.gemspec
+
+%:
+	dh $@ --buildsystem=ruby --with ruby
+
+override_dh_auto_install:
+	# these are still in the chef package
+	#cp -f $(CURDIR)/distro/debian/etc/default/chef-server $(CURDIR)/debian/chef-server-api.chef-server.default
+	#cp -f $(CURDIR)/distro/debian/etc/init.d/chef-server $(CURDIR)/debian/chef-server-api.chef-server.init
+	#perl -pi -e "s#DAEMON=/usr/bin/chef-server#DAEMON=/usr/sbin/chef-server#" $(CURDIR)/debian/chef-server-api.chef-server.init
+	dh_installinit --name=chef-server -- defaults 90 02
+
+	dh_install
+
+	mkdir -p $(CURDIR)/debian/chef-server-api/usr/sbin
+	mkdir -p $(CURDIR)/debian/chef-server-api/usr/share/chef-server-api
+	cp debian/etc/chef/server.rb  debian/chef-server-api/usr/share/chef-server-api
+	cp bin/chef-server debian/chef-server-api/usr/sbin
+	cp -rf $(CURDIR)/app    debian/chef-server-api/usr/share/chef-server-api
+	cp -rf $(CURDIR)/config debian/chef-server-api/usr/share/chef-server-api
+	cp -rf $(CURDIR)/public debian/chef-server-api/usr/share/chef-server-api
+	cp -rf $(CURDIR)/lib    debian/chef-server-api/usr/share/chef-server-api
+	find debian/chef-server-api -type f -perm +755 -exec chmod 644 {} \;
+	
+

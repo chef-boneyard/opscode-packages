@@ -1,0 +1,11 @@
+8381fede617e110dca741d9659bc9fae  usr/bin/chef-solr
+ca5926783dc9f8b3ae99d75d92931dfe  usr/bin/chef-solr-installer
+7ef88af71f2009eae8d0e09928762f28  usr/bin/chef-solr-rebuild
+e21fd5282cf4e3a3827011be262fd025  usr/lib/ruby/vendor_ruby/chef/solr.rb
+13113d0efddde5527d9cd282c3be4200  usr/lib/ruby/vendor_ruby/chef/solr/application/rebuild.rb
+44cff48e1fb6b517250a54d025db5766  usr/lib/ruby/vendor_ruby/chef/solr/application/solr.rb
+1bbcfbdfd7cbaf0ba8c971a9f9c17fcf  usr/lib/ruby/vendor_ruby/chef/solr/solr_installer.rb
+30d8bc2a9bd7737fa9c6cd9a90393f84  usr/lib/ruby/vendor_ruby/chef/solr/version.rb
+03431316cc3a27cd65bc8d6f57a8124f  usr/share/doc/chef-solr/TODO.Debian
+410f0be01aab2f88c3ec76260040bf61  usr/share/doc/chef-solr/changelog.Debian.gz
+a19cc667581120da035f86cb0f10f802  usr/share/doc/chef-solr/copyright

@@ -1,0 +1,3 @@
+/etc/init.d/chef-server-webui
+/etc/default/chef-server-webui
+/etc/logrotate.d/chef-server-webui

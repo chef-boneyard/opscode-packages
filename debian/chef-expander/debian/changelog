@@ -1,0 +1,5 @@
+chef-expander (0.10.0-1) UNRELEASED; urgency=low
+
+  * Initial release (Closes: #nnnn)
+
+ -- Bryan McLellan <btm@loftninjas.org>  Fri, 06 May 2011 23:04:19 +0000

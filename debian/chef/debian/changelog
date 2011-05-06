@@ -1,0 +1,938 @@
+chef (0.10.0-1) unstable; urgency=low
+
+  * New upstream release
+  * Rebuild packaging from scratch on gem2deb
+  * Packaging split, these packages are now separate:
+    - chef-solr
+    - chef-server
+    - chef-server-api
+    - chef-server-webui
+  * Add require-rubygems.overrides for chef rubygems provider
+
+ -- Bryan McLellan <btm@loftninjas.org>  Thu, 05 May 2011 23:36:56 +0000
+
+chef (0.9.16+dfsg-1) unstable; urgency=low
+
+  * New upstream release
+
+ -- Bryan McLellan <btm@loftninjas.org>  Wed, 20 Apr 2011 19:02:33 +0000
+
+chef (0.9.14+dfsg-1) unstable; urgency=low
+
+  * New upstream release
+  * debian/control Depend on libjson-ruby1.8 >= 1.4.6 (fixes CHEF-2098)
+
+ -- Bryan McLellan <btm@loftninjas.org>  Tue, 08 Mar 2011 12:26:41 -0800
+
+chef (0.9.12+dfsg-2) unstable; urgency=low
+
+  * debian/chef-server-api.postinst, debian/chef.postinst:
+    + use \; to terminate find command instead of +.
+
+ -- Joshua Timberman <joshua@opscode.com>  Fri, 05 Nov 2010 17:13:35 -0600
+
+chef (0.9.12+dfsg-1) unstable; urgency=low
+
+  * New upstream release (0.9.12).
+  * debian/control: Depend on ohai 0.5.8.
+  * debian/control: depend on mixlib-log 1.2.0 (fixes CHEF-1382).
+  * debian/rules: use upstream source's init scripts except chef-solr (need
+    + update for upstream to support retries)
+  * debian/patches/solr_load_path.patch: delete, use -3.
+  * debian/patches/solr_load_path-3.patch:
+    + upstream changed ordering in some of the Index files, rewrite the patch
+    + also account for version constant
+  * debian/etc/chef/server.rb:
+    + Resolve checksum_path setting conflict.
+  * debian/chef-server-api.postinst, debian/chef.postinst:
+    + handle checksum_path location change.
+  * debian/chef-server-api.dirs, add new cookbook_index directory.
+
+ -- Joshua Timberman <joshua@opscode.com>  Tue, 12 Oct 2010 14:38:53 -0600
+
+chef (0.9.8+dfsg-3) unstable; urgency=low
+
+  * debian/control: remove references to merb slices.
+  * debian/control: chef-server-api and -webui depend on merb-core
+
+ -- Joshua Timberman <joshua@opscode.com>  Fri, 20 Aug 2010 15:39:57 -0600
+
+chef (0.9.8+dfsg-2) unstable; urgency=low
+
+  * Fix stray ) in chef-server init scripts. 
+
+ -- Joshua Timberman <joshua@opscode.com>  Tue, 10 Aug 2010 09:48:30 -0600
+
+chef (0.9.8+dfsg-1) unstable; urgency=low
+
+  * New upstream release (0.9.8)
+  * debian/control: Chef now requires mixlib-authentication version 1.1.4.
+  * debian/control: Standards version 3.9.0 (no changes).
+  * debian/*manpages: Use upstream manpages.
+  * debian/patches/chef_server_load_path.patch: fork for new chef-server
+    scripts.
+  * debian/source/format: Switch to 3.0 (quilt).
+  * chef-server*init: update for new process output
+
+ -- Joshua Timberman <joshua@opscode.com>  Mon, 09 Aug 2010 22:55:44 -0600
+
+chef (0.9.6+dfsg-5) unstable; urgency=low
+
+  * debian/control: libchef-ruby1.8 should suggest ruby-dev1.8 for installing
+    gems with native extensions.
+
+ -- Joshua Timberman <joshua@opscode.com>  Tue, 27 Jul 2010 12:53:12 -0600
+
+chef (0.9.6+dfsg-4) unstable; urgency=low
+
+  * Add NEWS file which will list important changes between versions. 
+  * quilt patch: require 'ostruct' at top of chef/resource.rb.
+
+ -- Joshua Timberman <joshua@opscode.com>  Sun, 25 Jul 2010 12:24:16 -0600
+
+chef (0.9.6+dfsg-3) unstable; urgency=low
+
+  * client.rb, add file_backup_path. 
+
+ -- Joshua Timberman <joshua@opscode.com>  Sun, 11 Jul 2010 02:40:45 -0600
+
+chef (0.9.6+dfsg-2) unstable; urgency=low
+
+  * debian/control: libchef-ruby1.8 should depend on libuuidtools-ruby1.8 
+
+ -- Joshua Timberman <joshua@opscode.com>  Tue, 06 Jul 2010 11:04:41 -0600
+
+chef (0.9.6+dfsg-1) unstable; urgency=low
+
+  * New upstream release (0.9.6).
+  * Upstream release fixes CHEF-1404, quilt patch removed.
+
+ -- Joshua Timberman <joshua@opscode.com>  Fri, 02 Jul 2010 15:52:34 -0600
+
+chef (0.9.4+dfsg-2) unstable; urgency=low
+
+  * Quilt patch for CHEF-1404. 
+
+ -- Joshua Timberman <joshua@opscode.com>  Fri, 02 Jul 2010 10:39:49 -0600
+
+chef (0.9.4+dfsg-1) unstable; urgency=low
+
+  * New upstream release (0.9.4).
+  * debian/watch: handle +dfsg in debian version.
+
+ -- Joshua Timberman <joshua@opscode.com>  Tue, 29 Jun 2010 19:19:08 -0600
+
+chef (0.9.2+dfsg-2) unstable; urgency=low
+
+  * debian/control: alternatively install libgems-ruby1.8 to satisfy rubygems 
+
+ -- Joshua Timberman <joshua@opscode.com>  Tue, 29 Jun 2010 17:16:54 -0600
+
+chef (0.9.2+dfsg-1) unstable; urgency=low
+
+  * New upstream release (0.9.2).
+  * quilt patch: chef_server_load_path.patch
+    - fix merb-core attempting to load json gem (chef loads json anyway).
+
+ -- Joshua Timberman <joshua@opscode.com>  Tue, 29 Jun 2010 10:01:55 -0600
+
+chef (0.9.0-5) unstable; urgency=low
+
+  * debian/etc/chef/server.rb missing sandbox_path and checksum_path options
+    to handle sandboxed cookbook uploads properly.
+  * quilt patch: solr_load_path.patch
+    - fix solr library location for chef-server controller.
+
+ -- Joshua Timberman <joshua@opscode.com>  Mon, 28 Jun 2010 20:55:09 -0600
+
+chef (0.9.0-4) unstable; urgency=low
+
+  * quilt patch: chef_server_load_path.patch
+    - fix daemon location for chef-server-api, chef-server-webui 
+
+ -- Joshua Timberman <joshua@opscode.com>  Mon, 28 Jun 2010 16:05:14 -0600
+
+chef (0.9.0-3) unstable; urgency=low
+
+  * chef-server-api init and default named incorrectly. 
+
+ -- Joshua Timberman <joshua@opscode.com>  Mon, 28 Jun 2010 15:46:49 -0600
+
+chef (0.9.0-2) unstable; urgency=low
+
+  * debian/control: add missing librestclient-ruby dependency
+
+ -- Joshua Timberman <joshua@opscode.com>  Mon, 28 Jun 2010 13:37:39 -0600
+
+chef (0.9.0-1) unstable; urgency=low
+
+  * New upstream release (0.9).
+  * debian/control: depend on rubygems due to Chef provider for gem_package
+  loading unconditionally.
+  * patches/remove_rubygems.patch: remove due to rubygems being a dependency.
+
+ -- Joshua Timberman <joshua@opscode.com>  Sun, 13 Jun 2010 09:26:22 -0600
+
+chef (0.8.16-5) unstable; urgency=low
+
+  * chef-client.init pidfile location (Closes: #584816)
+
+ -- Joshua Timberman <joshua@opscode.com>  Wed, 09 Jun 2010 02:00:10 -0600
+
+chef (0.8.16-4) unstable; urgency=low
+
+  * chef-client runs as root, create the pid file in /var/run. 
+
+ -- Joshua Timberman <joshua@opscode.com>  Sun, 23 May 2010 19:05:21 -0600
+
+chef (0.8.16-3) unstable; urgency=low
+
+  * Create /var/run/chef in chef-solr.
+
+ -- Joshua Timberman <joshua@opscode.com>  Mon, 17 May 2010 10:45:23 -0600
+
+chef (0.8.16-2) unstable; urgency=low
+
+  * Remove conditional on CONFIGFILE existence. Fixes user creation on
+    upgrades.
+  * Loosen version requirements on dependencies for chef for backportability.
+
+ -- Joshua Timberman <joshua@opscode.com>  Wed, 12 May 2010 12:02:26 -0600
+
+chef (0.8.16-1) unstable; urgency=low
+
+  * New upstream release (0.8.16).
+    * [CHEF-1194] - WebUI - show of cookbook fails
+    * [CHEF-1196] - Commit bc411a1ded418a385af23bbec7d1cc6b013cb08b breaks
+      template owner setting
+    * [CHEF-1204] - Mixlib CLI update breaks shef
+    * [CHEF-1207] - Leftover debug output in chef-solo
+    * [CHEF-1208] - CHEF-1207 breaks chef-client
+
+ -- Joshua Timberman <joshua@opscode.com>  Tue, 11 May 2010 14:27:09 -0600
+
+chef (0.8.14-4) unstable; urgency=low
+
+  * Make chef-server depend on chef-solr so configuration for amqp exists.
+
+ -- Joshua Timberman <joshua@opscode.com>  Tue, 11 May 2010 10:12:20 -0600
+
+chef (0.8.14-3) unstable; urgency=low
+
+  * Fix typo in chef-server-webui.postinst sed file.
+
+ -- Joshua Timberman <joshua@opscode.com>  Sat, 08 May 2010 21:40:00 -0600
+
+chef (0.8.14-2) unstable; urgency=low
+
+  * Adding jeditable unminified source to chef-server-webui.
+  * Fixing link to jquery-ui by creating symlink to wildcard in
+    chef-server-webui.postinst, because the filename varies by version
+    across ubuntu/debian releases.
+  * Patch CHEF-1194, fix method name for showing cookbooks in webui.
+  * Fixing copyright of chef-client.init.
+  * Adding required-start/stop for chef-server-webui, chef-server,
+    chef-solr-indexer.
+  * openid dirs are only needed in the webui package.
+  * remove spurious db_gets from *.config.
+  * test for /usr/bin/ucf before trying to run the command in *postrm.
+
+ -- Joshua Timberman <joshua@opscode.com>  Sat, 08 May 2010 18:35:53 -0600
+
+chef (0.8.14-1) unstable; urgency=low
+
+  * New upstream release (0.8.14).
+    * [CHEF-702] - chef server should 404 when recipes can't be found
+    * [CHEF-982] - Node gets overwritten when using 'knife node create foobar'
+      when 'foobar' already exists
+    * [CHEF-1086] - chef-solr jetty listening on all interfaces
+    * [CHEF-1088] - chef-server, chef-server-api, and chef-server-webui do not
+      load /etc/chef/server.rb if run as  a Rack app without their wrapper script.
+    * [CHEF-1104] - intermittent closed stream error on packages and templates
+    * [CHEF-1169] - Chef raises NotFound outside of chef server
+    * [CHEF-1188] - Chef::Client squashes errors in its save_node method,
+      destroying valuable debugging info
+    * [CHEF-1189] - Authenticated subversion checkouts fail due to prompt
+    * [CHEF-1190] - Chef should always print stderr and stdout when a shelled-out
+      command fails
+    * [CHEF-1191] - hotfix for all applications always cd-ing to root leaves a
+      failing test
+    * [CHEF-462] - http_request should allow for setting HTTP Header
+    * [CHEF-792] - Extend the interface provider to add ethtool options
+    * [CHEF-909] - Rollback on deploy errors
+    * [CHEF-1021] - Pass environment, group and cwd to run on deploy
+    * [CHEF-1171] - Knife should grow the ability to manage webui users
+    * [CHEF-966] - useradd provider should support creation of system users
+
+ -- Joshua Timberman <joshua@opscode.com>  Fri, 07 May 2010 12:50:54 -0600
+
+chef (0.8.12-1) unstable; urgency=low
+
+  * New upstream release (0.8.12).
+    * [CHEF-424] - Chef's Tempfile leaves lot of chef-rest files in /tmp
+    * [CHEF-557] - Remove rubygems from any libraries
+    * [CHEF-675] - Allow for rendering file contents with a 'content' variable
+    * [CHEF-702] - chef server should 404 when recipes can't be found
+    * [CHEF-724] - Chef should complain when it can't find any cookbooks
+    * [CHEF-730] - Can't create mixlib-log gem from tarball
+    * [CHEF-751] - mixlib-authentication needs version tags
+    * [CHEF-785] - svn_arguments not used when svn info is called (deploy resource)
+    * [CHEF-791] - Help text for -T refers to openid
+    * [CHEF-845] - Wrong number of arguments in preseed_package
+    * [CHEF-982] - Node gets overwritten when using 'knife node create foobar'
+      when 'foobar' already exists
+    * [CHEF-1001] - gem provider specify's the source of 'gems.rubyforge.org' if
+      the source is not specified, which is a deprecated mirror...
+    * [CHEF-1025] - mdadm provider is broken
+    * [CHEF-1030] - Properly escape existing cron-job names
+    * [CHEF-1032] - rake test no longer performs syntax check on ruby and erb files
+    * [CHEF-1060] - Deep merge json attributes passed on the command line
+    * [CHEF-1086] - chef-solr jetty listening on all interfaces
+    * [CHEF-1087] - chef-solr truncating logs, not logging startup
+    * [CHEF-1088] - chef-server, chef-server-api, and chef-server-webui do not
+      load /etc/chef/server.rb if run as  a Rack app without their wrapper script.
+    * [CHEF-1091] - chef_repo rake task fails to build metadata
+    * [CHEF-1092] - chef problems with dropping privileges
+    * [CHEF-1099] - chef-solr problems with dropping privileges
+    * [CHEF-1104] - intermittent closed stream error on packages and templates
+    * [CHEF-1107] - Revision Provider for Deployment Resource cannot recover
+      if cache file storing deployed revisions is lost
+    * [CHEF-1126] - Deleting a role is extremely slow when using couchdb 10
+    * [CHEF-1150] - "knife configure -i" uses hardcoded validation key path
+    * [CHEF-1151] - Chef Solr should not run ohai in its startup sequence
+    * [CHEF-1152] - Scientific Linux missing from chef/lib/platform.rb
+    * [CHEF-1166] - There is no need to save the node after syncing cookbooks
+    * [CHEF-1168] - RubyGems 1.3.7 will introduce an issue where Chef's
+      gem_package won't be able to install arch-specific packages
+    * [CHEF-1169] - Chef raises NotFound outside of chef server
+    * [CHEF-1170] - File lookup problems cause specs to fail on ruby 1.9.2 when run with rake
+    * [CHEF-1172] - file_spec.rb test is time zone dependent
+    * [CHEF-1173] - clients can turn themselves into admins
+    * [CHEF-1178] - rake role[role_name] does not work at all
+    * [CHEF-1181] - knife configure needs to be updated to reflect that
+  	  the validator is no longer an administrator
+    * [CHEF-462] - http_request should allow for setting HTTP Header
+    * [CHEF-489] - Ruby 1.9 Support for Chef
+    * [CHEF-510] - be able to use debian/ubuntu libjs-jquery packaged
+      library for chef-server
+    * [CHEF-600] - Refactoring RubyGems provider to use output_of_command
+  		for better diagnostics
+    * [CHEF-632] - remote_file resource should display an INFO message at
+      start of a download
+    * [CHEF-721] - support for purging managed directories
+    * [CHEF-792] - Extend the interface provider to add ethtool options
+    * [CHEF-804] - make knife 'configure' give an example of the server
+      url requested
+    * [CHEF-909] - Rollback on deploy errors
+    * [CHEF-1008] - validation key should not be an admin key
+    * [CHEF-1021] - Pass environment, group and cwd to run on deploy
+    * [CHEF-1105] - bring back the ruby/template test cache
+    * [CHEF-1109] - Add descriptive error message identifying the file
+      when an invalid metadata.json is loaded from a cookbook.
+    * [CHEF-1120] - Regex validation in the params validation mixin should
+      print regex.inspect instead of regex.to_s in the error message
+    * [CHEF-1155] - Allow 'execute' resource to accept multiple return
+      values without error.
+    * [CHEF-1171] - Knife should grow the ability to manage webui users
+    * [CHEF-1174] - Knife output format: Allow more simple output for
+      single attribute
+    * [CHEF-966] - useradd provider should support creation of system users
+    * [CHEF-1053] - Chef source code repository need a CONTRIBUTING file
+    * [CHEF-1106] - remove suse copyrighted init script
+    * [CHEF-1108] - attribute note for streaming_cookbook_uploader.rb
+      from author
+  * Fix ucf handling in postinst using templates and correct execution order.
+  * Make postinsts use tmpfiles for possibly sensitive settings.
+  * Remove files from remove_rubygems patch that no longer require rubygems.
+  * Unredistributable SuSE script removed by upstream, removed rm from
+    repack.sh.
+  * Remove minified jquery and yetii javascripts with repack.sh script.
+  * Patch in unminified jquery and yetii javascripts via quilt.
+  * Add minification to rules for jquery and yetii javascripts.
+  * Fix solr-jetty config directory (goes in /etc/chef).
+  * Patch version change to debian packaged jquery-ui.
+  * Unswitch from dpkg-source 3.0 (quilt) format.
+
+ -- Joshua Timberman <joshua@opscode.com>  Thu, 06 May 2010 15:31:09 -0600
+
+chef (0.8.10-5) unstable; urgency=low
+
+  * use system jquery (libjs-jquery, libjs-jquery-ui) instead of vendored
+    jquery for non-plugin javascripts.
+  * use ucf for managing config files modified from templates.
+  * Switch to dpkg-source 3.0 (quilt) format.
+  * remove var/run/chef from chef-server*.dirs.
+  * add remote_fs requirement to init scripts.
+
+ -- Joshua Timberman <joshua@opscode.com>  Tue, 20 Apr 2010 17:51:55 -0600
+
+chef (0.8.10-4) unstable; urgency=low
+
+  * API package conflicts with chef-server-slice.
+  * don't remove cache on removal.
+  * change ownership of /var/run/chef created by init scripts.
+  * make config files read only by owner in postinst.
+  * set update-rc.d priorities in init scripts.
+  * render config file templates in /usr/share and copy if they don't exist.
+
+ -- Joshua Timberman <joshua@opscode.com>  Sun, 18 Apr 2010 10:36:26 -0600
+
+chef (0.8.10-3) unstable; urgency=low
+
+  * Depend on adduser for postinst scripts.
+  * Clarify settings in comments of config files.
+  * Use /var/lib for cookbooks,roles,nodes instead of /srv.
+  * Add json_attribs and recipe_url examples to solo.rb.
+  * Specify conflicts for chef-indexer to ensure removal on upgrade.
+  * Add repack script to remove undistributable files.
+
+ -- Joshua Timberman <joshua@opscode.com>  Sat, 17 Apr 2010 23:48:43 -0600
+
+chef (0.8.10-2) unstable; urgency=low
+
+  * Add cache_options to server config.
+
+ -- Joshua Timberman <joshua@opscode.com>  Mon, 05 Apr 2010 16:26:29 -0600
+
+chef (0.8.10-1) unstable; urgency=low
+
+  * New upstream release.
+    * [CHEF-252] - If a template's source doesn't end in .erb, but exists, we
+      still get a 500 error.
+    * [CHEF-653] - Cron resource fails when the program takes a numerical
+      argument.
+    * [CHEF-735] - Web Slice needs a override config file.
+    * [CHEF-833] - recursive copy of cached-copy in deploy resource fails on
+      symlinked file
+    * [CHEF-946] - if rabbitmq is down, the generated web ui and validation keys
+      are lost
+    * [CHEF-1039] - chef-solr doesn't actually log to specified log file.
+    * [CHEF-1044] - Nested arrays of hashes break node indexing
+    * [CHEF-1048] - Creating an Invalid Role in WebUI causes 500
+    * [CHEF-1069] - Chef::Node does not properly validate the name parameter
+    * [CHEF-1076] - Role error messages are non-helpful to track down which
+      role caused the problem (when loading roles from filesystem)
+    * [CHEF-1083] - chef-server-webui doesn't correctly rescue load error
+      when it tries to load itself from source checkout
+    * [CHEF-1057] - Support templates that are already on the file system
+  * Use chef user/group for non-privileged server processes
+    (-server,-server-webui,-solr).
+  * Sam Ruby released xchar.rb under MIT license.
+
+ -- Joshua Timberman <joshua@opscode.com>  Thu, 01 Apr 2010 13:01:55 -0600
+
+chef (0.8.8-3) unstable; urgency=low
+
+  * Fix conflicting chef-solr in chef package.
+
+ -- Joshua Timberman <joshua@opscode.com>  Wed, 31 Mar 2010 10:24:53 -0600
+
+chef (0.8.8-2) unstable; urgency=low
+
+  * Make sure chef-solr init script is handled before chef-solr-indexer.
+  * Copyright file fixes.
+
+ -- Joshua Timberman <joshua@opscode.com>  Mon, 29 Mar 2010 01:14:49 -0600
+
+chef (0.8.8-1) unstable; urgency=low
+
+  * New upstream release (0.8.8).
+    * [CHEF-649] - cucumber.yml tags in --tags option must always start with @
+    * [CHEF-780] - Invalid file parameters of a cookbook upload request cause
+      an authentication failure
+    * [CHEF-961] - Bad use of sudo in chef-server rake tasks
+    * [CHEF-965] - chef-server logs excessively regardless of the log_level
+      setting
+    * [CHEF-1009] - "WebUIUser" fails to index, snake-casing name to invalid
+      value.
+    * [CHEF-1014] - Remote directory does not work with chef-solo.
+    * [CHEF-1015] - Permission denied to /var/chef/ca/key.pem when running
+      chef-server under non-root user
+    * [CHEF-1018] - chef-solr should report version
+    * [CHEF-959] - Add a command-line switch for the pid_file option
+    * [CHEF-1020] - Features tests should not start a merb inside the cucumber
+      process
+    * [CHEF-1033] - knife ssh should be able to use screen for real
+      interactivity
+    * [CHEF-1022] - chef-* commands should support -P or --pidfile that sets
+      Chef::Config[:pid_file]
+  * Remove quilt patches: fix_reindex, pidfile_option and chef-solr_version,
+    as they are fixed in the 0.8.8 release.
+
+ -- Joshua Timberman <joshua@opscode.com>  Thu, 18 Mar 2010 16:12:35 -0600
+
+chef (0.8.6-12) unstable; urgency=low
+
+  * Clean up package depends, recommends and suggests.
+    * chef depends on ohai so commandline tools are consistently available.
+    * chef-solr,-server,server-api need rabbitmq-server 1.6 for rabbitmqctl
+      command syntax.
+    * More consistent suggestions/recommends for chef-server/chef-server-webui
+      installations (probably want a chef-client available).
+    * More stringent version of depends/recommends.
+    * libchef-ruby1.8 suggests packages that provide commands for resources
+      that can be configured (adduser, libshadow-ruby, git, subversion, cron,
+      mdadm).
+    * libchef-ruby1.8 recommends rubygems, because gems are commonly managed.
+  * Add replaces/conflicts for previous chef packages and deprecated chef
+    packages.
+  * Remove rubygems from additional chef-solr files.
+  * Remove rubygems from chef-webui config rackup.
+
+ -- Joshua Timberman <joshua@opscode.com>  Wed, 17 Mar 2010 22:20:08 -0600
+
+chef (0.8.6-11) unstable; urgency=low
+
+  * Fixing chef-solr config to use Debian specific solr and solr-jetty
+    environment.
+    * Sets up symlinks to appropriate locations.
+    * Additional custom configs in /etc/chef/solr-jetty.
+    * Switch chef-solr init script to use java directly.
+    * /etc/chef/solr.rb should send START option for start.config file.
+
+ -- Joshua Timberman <joshua@opscode.com>  Wed, 17 Mar 2010 20:06:03 -0600
+
+chef (0.8.6-10) unstable; urgency=low
+
+  * Only set the webui admin password if the user entered a value
+  * Update the webui template about password usage/requirements.
+
+ -- Joshua Timberman <joshua@opscode.com>  Mon, 15 Mar 2010 13:51:06 -0600
+
+chef (0.8.6-9) unstable; urgency=low
+
+  * Clarify usage of chef server URI prompt debconf.
+  * Clarify usage of amqp password prompt from debconf.
+  * Clarify usage of webui password prompt from debconf.
+
+ -- Joshua Timberman <joshua@opscode.com>  Thu, 11 Mar 2010 16:43:52 -0700
+
+chef (0.8.6-8) unstable; urgency=low
+
+  * Create chef-server-webui etc/chef dir and config file properly.
+
+ -- Joshua Timberman <joshua@opscode.com>  Wed, 10 Mar 2010 22:11:20 -0700
+
+chef (0.8.6-7) unstable; urgency=low
+
+  * chef-solr-indexer's default should point to solr.rb config file.
+
+ -- Joshua Timberman <joshua@opscode.com>  Wed, 10 Mar 2010 20:10:15 -0700
+
+chef (0.8.6-6) unstable; urgency=low
+
+  * create etc in chef-server-webui.
+
+ -- Joshua Timberman <joshua@opscode.com>  Wed, 10 Mar 2010 16:30:55 -0700
+
+chef (0.8.6-5) unstable; urgency=low
+
+  * Grab the amqp_pass for chef_server as well.
+  * Fixed client config prompt.
+
+ -- Joshua Timberman <joshua@opscode.com>  Mon, 08 Mar 2010 22:09:35 -0700
+
+chef (0.8.6-4) unstable; urgency=low
+
+  * Add postinst script/config to prompt for chef_server_url for client
+    configuration.
+
+ -- Joshua Timberman <joshua@opscode.com>  Mon, 08 Mar 2010 18:07:29 -0700
+
+chef (0.8.6-3) unstable; urgency=low
+
+  * Add postinst scripts for chef-solr, chef-server-webui to prompt for
+    required passwords (amqp and webui admin).
+
+ -- Joshua Timberman <joshua@opscode.com>  Mon, 08 Mar 2010 16:08:39 -0700
+
+chef (0.8.6-2) unstable; urgency=low
+
+  * Add pidfile option for solr commands so the file gets created in the
+    proper location when start-stop-daemon starts.
+  * Comment quilt patches with description.
+  * Use ruby1.8 specifically for chef-solr commands.
+
+ -- Joshua Timberman <joshua@opscode.com>  Sun, 07 Mar 2010 01:20:32 -0700
+
+chef (0.8.6-1) unstable; urgency=low
+
+  * New upstream release (0.8.6).
+    * [CHEF-964] - Adding a bad role name to run list breaks everything for
+      that node.
+    * [CHEF-992] - A node created with a role that did not exist can not be
+      edited or deleted
+    * [CHEF-1000] - Runlist expand does not pass couchdb value on
+    * [CHEF-1010] - Yum provider ignores specified version in some circumstances
+    * [CHEF-707] - Change "gid" to "group" for the User Resource
+    * [CHEF-909] - Rollback on deploy errors
+    * [CHEF-968] - Chef rest should be more flexible with user keys and headers
+    * [CHEF-1005] - knife cookbook upload should support a list of multiple
+      cookbooks
+    * [CHEF-1012] - knife help text needs a scrub for accuracy and consistent
+      formatting
+  * Really update remove_rubygems.patch.
+  * 'libchef' Suggests rubygems and rake, for the rake tasks file.
+  * Remove *_url settings for single "chef_server_url" setting in config
+    files.
+  * Update server.rb with deprecation notices about some pre 0.8.x settings.
+  * Make sure client has verbose logging.
+  * Add /etc/default files for init script control.
+  * Quilt-patch --version support for chef-solr commands.
+  * Add man pages for chef-solr commands.
+  * Create chef-server-webui config file.
+
+ -- Joshua Timberman <joshua@opscode.com>  Thu, 04 Mar 2010 19:00:42 -0700
+
+chef (0.8.4-1) unstable; urgency=low
+
+  * New upstream release (0.8.4).
+    * [CHEF-996] - CA key not properly protected
+    * [CHEF-1003] - Cookbook Uploading does not contain an X-Chef-Version
+  * Remove fix_slice_dirs patch for (unused) chef-server-slice package.
+  * Update remove_rubygems.patch for changes since original packaging.
+
+ -- Joshua Timberman <joshua@opscode.com>  Thu, 04 Mar 2010 12:17:10 -0700
+
+chef (0.8.2-1) unstable; urgency=low
+
+  * Update versioned dependencies for mixlibs to 1.1.0.
+  * Add versioned dependency on CouchDB 0.9.1.
+  * New upstream release (0.8.2).
+    * [CHEF-219] - Attribute files need include_attribute
+    * [CHEF-291] - No high-level cookbook endpoint in REST API
+    * [CHEF-328] - CRUD Cookbooks via API
+    * [CHEF-358] - Refactor the REST API
+    * [CHEF-374] - drop outdated contrib/
+    * [CHEF-390] - Software raid provider
+    * [CHEF-417] - Add rake task to update roles in running server.
+    * [CHEF-438] - Chef::Provider::Execute doesn't honor user attribute for
+      not_if/only_if
+    * [CHEF-440] - Running chef-client with a JSON file should override the
+      node's run_list on server
+    * [CHEF-470] - role attribute deep merge only goes one level deep
+    * [CHEF-474] - Switch chef-server syntax highlighting to coderay
+    * [CHEF-491] - Should suport SSL verification
+    * [CHEF-505] - Nested Roles
+    * [CHEF-530] - chef-client daemon dies with segfault
+    * [CHEF-536] - Add server side key-pair creation
+    * [CHEF-537] - Authenticate Signed API Requests
+    * [CHEF-538] - Allow for the creation of API Clients
+    * [CHEF-539] - User Accounts
+    * [CHEF-540] - Allow association of user accounts with OpenIDs
+    * [CHEF-542] - Cookbook Uploading
+    * [CHEF-543] - Web UI should call the API exclusively
+    * [CHEF-551] - erl_call provider
+    * [CHEF-555] - Default adapter for chef-server merb should be thin
+      instead of mongrel
+    * [CHEF-573] - Add a verbose setting to allow logging to a TTY
+    * [CHEF-576] - provider for python easy_install
+    * [CHEF-584] - launching chef-client init script hangs chef-solo
+    * [CHEF-598] - Upstart service provider
+    * [CHEF-601] - Extend metadata spec based on wiki comments
+    * [CHEF-607] - cookbook loader doesn't get attributes in correct order
+    * [CHEF-616] - rake install in chef-repo breaks if there is no git
+      origin
+    * [CHEF-617] - Install to chef repository on a remote machine
+    * [CHEF-623] - Nodes are able to be created without names
+    * [CHEF-626] - Template Context should have a #node method so users
+      don't have to remember to use @node
+    * [CHEF-629] - Users *must* be able to set the action on the SCM
+      resource used by deploy
+    * [CHEF-633] - HTTP Request uses Chef::REST incorrectly
+    * [CHEF-634] - UI fails silently when unable to save node
+    * [CHEF-638] - Deploy with a revision should make that revision current
+      if it already exists
+    * [CHEF-639] - git resource fails on subsequent checkouts of the same
+      repostiry
+    * [CHEF-642] - Services no longer issue a WARN when status is not
+      present
+    * [CHEF-643] - Fix CHEF-570, as it doesn't catch package -revisions
+    * [CHEF-644] - Shebang lines should respect user's ruby
+    * [CHEF-645] - cd to /tmp breaks merb bootloader in features
+    * [CHEF-647] - Deploy resource should always run symlinks before migrate
+    * [CHEF-654] - chef-client -j against a self signed cert fails
+    * [CHEF-657] - Deploy with revision strategey did not clean up cache on
+      rollback
+    * [CHEF-659] - UI expands some escaped characters from JSON, then fails
+      to encode them again
+    * [CHEF-668] - cron resource seems to always run for non-numeric time
+      entries
+    * [CHEF-670] - knife should be smarter about the command line arguments
+    * [CHEF-671] - SCM providers should be able to specify the group
+    * [CHEF-680] -  When rake upload_cookbooks fails, it leaves behind a
+      tempdir that causes the next run to fail
+    * [CHEF-681] - 500 error when trying to retrieve a file w/o a default
+      dir
+    * [CHEF-684] - Should be possible for roles to be created without
+      anything in the run_list
+    * [CHEF-687] - shef: irb/REPL mode for chef
+    * [CHEF-688] - Deploy revision strategy does not fetch tags
+    * [CHEF-693] - Nodes should auto-expand
+    * [CHEF-694] - role override and default attributes don't get indexed
+    * [CHEF-695] - No backups kept if backup is set to 1
+    * [CHEF-696] - Cache file checksums
+    * [CHEF-698] - Validate JSON in the Web UI
+    * [CHEF-699] - solo and client modes in shef
+    * [CHEF-703] - chef search: make the default always be to iterate over
+      the results
+    * [CHEF-704] - Ruby block device does not have a default action
+    * [CHEF-705] - chef-repo with rake install should update roles via api
+    * [CHEF-706] - mount provider fails to mount samba/cifs devices
+      (Device does not exist)
+    * [CHEF-708] - add data bags support to Chef DSL
+    * [CHEF-709] - Support for backup up files in another directory than the
+      original file
+    * [CHEF-710] - knife fails silently if you lack the EDITOR env var
+    * [CHEF-722] - Link provider doesn't understand paths requiring
+      expansion
+    * [CHEF-723] - creating ssl-certs with fqdn "*.example.com" should name
+      w/ wildcard instead of *
+    * [CHEF-728] - Data bags could be Mash, not Hash
+    * [CHEF-731] - Add a screenrc to start a chef environment in screen
+    * [CHEF-732] - Remove references to chef-indexer
+    * [CHEF-734] - LWRP resources should look for provider named same by
+      default
+    * [CHEF-737] - Starting chef-server with '-c2' fails to create a couch
+      database
+    * [CHEF-741] - Web UI allows creation of a user with no name
+    * [CHEF-742] - Cron provider hangs installing new crontab
+    * [CHEF-744] - rake upload_cookbook and upload_cookbooks tasks should
+      complain when run from the wrong location.
+    * [CHEF-747] - webui needs a binary so you can run the slice outside of
+      git
+    * [CHEF-748] - chef-server-webui - config.ru and bin script
+    * [CHEF-749] - cache is not maintained with run_list; so we load items
+      from the cache that are no longer set to run in the run_list
+    * [CHEF-750] - Refactor the caching code so logic for what gets cached
+      and why is wrapped in a class
+    * [CHEF-751] - mixlib-authentication needs version tags
+    * [CHEF-753] - chef server slice should finish activating
+    * [CHEF-754] - Chef::Config.cookbook_path is in reverse order of
+      override application
+    * [CHEF-755] - "knife create_client" could accept :admin option
+    * [CHEF-756] - Specifying the run list for instance data with knife
+      should ignore commas
+    * [CHEF-758] - Webui prints generated keys with spaces and not newlines
+    * [CHEF-760] - Use AMQP drivers directly for indexing queues
+    * [CHEF-764] - webui crashes when attributes are Fixnum
+    * [CHEF-765] - when creating a user in the web-ui, it causes an indexer
+      failure to occur in solr and thus users never get indexed.
+    * [CHEF-766] - Chef should print the error message generated by the Chef
+      Server when an HTTP Exception occurs
+    * [CHEF-769] - knife should be able to specify the config file location
+    * [CHEF-774] - Chef-server does not log anything to server.log
+    * [CHEF-777] - hostnames with an _ in it, create 2 node entry's and then
+      fail during a chef-client run
+    * [CHEF-779] - rake upload_cookbook shouldn't try to upload cookbooks
+      that don't exist in the local repo
+    * [CHEF-796] - Change to mixlib-log breaks Chef::Log.level() usage
+    * [CHEF-799] - remote_directory does not work
+    * [CHEF-800] - The response from /search contains nil in some situations
+      while the Chef::Search::Query library tries to process every result
+      even it's nil
+    * [CHEF-805] - Deploy resource's scm_provider should accept a short
+      string/symbol as name instead of a fully qualified class name
+    * [CHEF-806] - knife refactored should show all the sub commands with
+      --help
+    * [CHEF-807] - SVN provider uses undefined local variables to create an
+      error message, obscuring the true cause of the error
+    * [CHEF-809] - man page for knife
+    * [CHEF-811] - knife subcommand options are invalid, not processed
+    * [CHEF-812] - file backup permissions less secure than file
+    * [CHEF-815] - knife cookbook upload fails when cookbooks are in an SVN
+      repo
+    * [CHEF-822] - Web UI differentiates between "user not found" and
+      "wrong password"
+    * [CHEF-824] - The WebUI is not detecting thin
+    * [CHEF-825] - The WebUI is a little excited about wanting you to change
+      the password and gramatically off
+    * [CHEF-826] - rest fails with an obscure error if node_name is not
+      determinable
+    * [CHEF-828] - Mixlib CLI - Preserve ARGV after @opt_parser.parse!
+    * [CHEF-832] - chef-solr does not install any binaries what so ever.
+    * [CHEF-837] - Delayed actions excute in unpredicatable order
+    * [CHEF-840] - client admin field should be checkbox not text box
+    * [CHEF-841] - knife keeps trying to upload a cookbook despite HTTP 401
+    * [CHEF-842] - duplicate copies of FileEdit: file_edit.rb & fileedit.rb
+    * [CHEF-843] - FileEdit permission issues
+    * [CHEF-856] - knife configure should allow you to create a new api user
+    * [CHEF-858] - Provider detection broken if Resource type and Provider
+      name matches
+    * [CHEF-860] - chef-web-ui status button shows 500 error
+    * [CHEF-864] - Unable to reindex chef via knife or chef-solr-rebuild
+    * [CHEF-865] - Implement retry logic when making server requests
+    * [CHEF-866] - @node and node should be available in attributes
+    * [CHEF-870] - does not close stderr when daemonising
+    * [CHEF-873] - Template provider doesn't respect the template resource's
+      cookbook option
+    * [CHEF-877] - fix :default and :required in lwrp
+    * [CHEF-880] - chef-server-api should require admin privileges to update
+      data bag items
+    * [CHEF-881] - make :name_attribute work in lwrp
+    * [CHEF-882] - slowdown due to debugging in ruby_block provider
+    * [CHEF-896] - file_backup_path include prefix in log output
+    * [CHEF-897] - package provider does not tell you about which package is
+      the cause of problems
+    * [CHEF-900] - security vulnerability in 0.8 webui
+    * [CHEF-902] - mixlib-authentication fails to generate SHA1
+    * [CHEF-904] - "Could not create work tree dir" on chef deploy
+    * [CHEF-906] - chef-server-webui refers to JSONeditor which doesn't
+      exist
+    * [CHEF-908] - Indexer fails on node properties that have invalid XML
+      character sequences
+    * [CHEF-916] - on chef-server startup, webui_user.rb:203:in
+      `create_design_document': uninitialized constant Chef::Couchdb
+      (NameError)
+    * [CHEF-918] - chef-solo fails to download remote recipes because
+      application/solo.rb no longer uses open-uri
+    * [CHEF-922] - knife ssh should accept -a ec2.public_hostname
+    * [CHEF-927] - Override and Default attributes get clobbered at recipe
+      load time
+    * [CHEF-928] - deep_merge issues with empty strings
+    * [CHEF-929] - typo in provider/deploy/revision causes rescue from
+      StandardError instead of Chef::Exceptions::FileNotFound
+    * [CHEF-931] - deep_merge mixin spits out a warning
+    * [CHEF-932] - git provider fetch strategy will not get all updates
+    * [CHEF-935] - chef-server-webui data bag item editing is broken
+    * [CHEF-937] - chef-server-api and Chef::Solr::Query bans queries for
+      api_users
+    * [CHEF-943] - add section for knife ssh to man page
+    * [CHEF-944] - chef-solr needs LICENSE information
+    * [CHEF-956] - Embed the Chef::VERSION as X-Chef-Version in HTTP request
+    * [CHEF-969] - Api client should expect 409 not 403 in save when one
+      with same name already exists
+    * [CHEF-970] - Need both class and instance methods for chef_server_rest
+    * [CHEF-971] - Changes to webui error handling
+    * [CHEF-974] - undefined chef_server_rest
+    * [CHEF-975] - client.pem is mode 644 by default
+    * [CHEF-977] - `knife configure` should prompt for validation_client
+      name and validation_key
+    * [CHEF-978] - Knife should not show HTTP Request Returned 404 Not
+      Found: Cannot load node foo as WARN when the node gets created
+      successfully
+    * [CHEF-980] - BULK DELETE (cookbook/node/client/role) requires REGEX
+    * [CHEF-989] - Search for client in the webui returns 404 when trying to
+      show the client in the search result
+
+
+ -- Joshua Timberman <joshua@opscode.com>  Sun, 28 Feb 2010 21:53:04 -0700
+
+chef (0.8.0~20100222+git+f3287fc-2) karmic; urgency=low
+
+  * Merge CHEF-975 and CHEF-984 from ~tfheen
+  * Get rid of obsolete search_dir directories.
+  * Fix up solr/jetty startup.
+
+ -- Tollef Fog Heen <tfheen@varnish-software.com>  Fri, 26 Feb 2010 10:19:58 +0100
+
+chef (0.8.0~20100222+git+f3287fc-1) karmic; urgency=low
+
+  * New upstream snapshot
+  * Install solr configuration files.
+
+ -- Tollef Fog Heen <tfheen@varnish-software.com>  Mon, 22 Feb 2010 12:05:43 +0100
+
+chef (0.8.0~20100210+git+efd1c5-1) unstable; urgency=low
+
+  * Upstream snapshot release.
+  * Add versioned depends on libextlib-ruby to ensure we get a version
+    without "require 'rubygems'"
+  * Rename chef-server-slice to chef-server-api
+  * Change depends on lib*-ruby to lib*-ruby1.8 to make versioned
+    dependencies work as well as making sure we actually have the 1.8
+    versions installed, as we depend on ruby 1.8.
+  * Change Chef::Log::Formatter to Mixlib::Log::Formatter in client.rb and
+    server.rb.
+  * Add signing_ca_{cert,key} settings to server.rb to ensure we get the
+    certificates in the right place.
+  * Rename chef-indexer to chef-solr and fix up for changes in the
+    upstream switch to solr.
+
+ -- Tollef Fog Heen <tfheen@varnish-software.com>  Wed, 10 Feb 2010 09:46:18 +0100
+
+chef (0.7.14-3) unstable; urgency=low
+
+  * Remove duplicate file_cache_path
+
+ -- Joshua Timberman <joshua@opscode.com>  Wed, 04 Nov 2009 16:33:44 -0700
+
+chef (0.7.14-2) unstable; urgency=low
+
+  * chef-server depends on chef-server-slice explicit source version.
+  * libchef-ruby depends on libchef-ruby1.8 explicit source version.
+
+ -- Joshua Timberman <joshua@opscode.com>  Thu, 29 Oct 2009 08:47:15 -0600
+
+chef (0.7.14-1) unstable; urgency=low
+
+  * New upstream release notes 0.7.12rc0.
+    * [CHEF-293] - Chef breaks on systems with non-English Locales
+    * [CHEF-501] - Fails to follow notification chains
+    * [CHEF-534] - remove execute permissions from javascripts, images, etc.
+    * [CHEF-544] - Service provider fails to set @new_resource.updated
+    * [CHEF-562] - typo in provider/ifconfig.rb
+    * [CHEF-569] - Remote File causes updates to be sent regardless
+    * [CHEF-578] - Lots of files/subdirectories in a remote_directory cause
+      most chef requests to take 11.5 seconds, and the merb process goes
+      up to 100% CPU
+    * [CHEF-503] - cookbooks UI should display the relative path of the template
+    * [CHEF-546] - Make couchdb version switcher 0.8 specific, and use the new
+      format for everything else.
+    * [CHEF-560] - refactor Chef::Provider::Group::Groupadd
+    * [CHEF-561] - Flexible application layouts for deploy resource and provider
+    * [CHEF-566] - Deploy resource/provider callbacks for before_migrate, &etc.
+      should support in-line recipes
+    * [CHEF-568] - Increase logging for Remote File status, including checksum
+    * [CHEF-580] - faster find_preferred_file
+    * [CHEF-582] - group resource should allow users or members as a parameter
+    * [CHEF-145] - Cron resource: add support for setting cron ENV vars
+    * [CHEF-419] - Create SCM resource and providers for git & svn
+    * [CHEF-496] - add simple service provider to chef
+    * [CHEF-571] - LWRP unit tests
+  * New upstream release notes 0.7.14.
+    * [CHEF-565] - dpkg provider fails at packages with a dash in it
+    * [CHEF-577] - provider.rb doesn't give @definitions default of Hash.new
+    * [CHEF-588] - RC is missing debugging info in find_preferred_file
+    * [CHEF-591] - process table inspection fails in simple service provider
+    * [CHEF-593] - deploy resource is not idempotent
+    * [CHEF-602] - in deploy provider, callback-defined resources are executed
+      in all subsequent callbacks
+    * [CHEF-603] - deploy: gems.yml support
+    * [CHEF-604] - deploy: sudo / run command handler support
+    * [CHEF-614] - LWRP  undefined local variable or method `new_resource'
+    * [CHEF-621] - LWRP dynamic attribute methods are Ruby 1.9 incompatible
+    * [CHEF-628] - Deploy resource removes newest release instead of oldest
+    * [CHEF-640] - SCM providers do not set resource updated (notifications)
+    * [CHEF-620] - LWRP components should be shown in Web UI
+    * [CHEF-622] - Gem Package r/p shouldn't silently ignore the options attr
+    * [CHEF-631] - Should create LWRP resources/providers for new_cookbook
+  * Watch file should look for version prior to 0.8 for now.
+
+ -- Joshua Timberman <joshua@opscode.com>  Wed, 28 Oct 2009 22:52:42 -0600
+
+chef (0.7.10-0ubuntu1) karmic; urgency=low
+
+  * New upstream release
+  * Upstream patch for couchdb 0.10.0 (CHEF-515, quilt patch removed)
+  * Fix client logging to file (CHEF-287)
+  * Fix config log_location settings (CHEF-500)
+  * Requires libmixlib-config-ruby (>= 1.0.12)
+  * Suggest, not recommend, rubygems (LP: #424131)
+  * Update watch file to use apt.opscode.com instead of githubredir.
+
+ -- Joshua Timberman <joshua@opscode.com>  Fri, 04 Sep 2009 09:31:46 -0600
+
+chef (0.7.8-0ubuntu2) karmic; urgency=low
+
+  * Add couchdb_0.10.0_support.patch patch to make chef-server working with
+    the latest couchdb release (LP: #419112).
+  * Bump Standards.
+
+ -- Alessio Treglia <quadrispro@ubuntu.com>  Wed, 26 Aug 2009 12:17:26 +0200
+
+chef (0.7.8-0ubuntu1) karmic; urgency=low
+
+   * Initial release (Closes: #529392, LP: #404403)
+
+ -- Joshua Timberman <joshua@opscode.com>  Wed, 12 Aug 2009 12:18:48 -0600

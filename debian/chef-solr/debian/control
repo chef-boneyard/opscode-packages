@@ -1,0 +1,27 @@
+Source: chef-solr
+Section: ruby
+Priority: optional
+Maintainer: Debian Ruby Extras Maintainers <pkg-ruby-extras-maintainers@lists.alioth.debian.org>
+Uploaders: Bryan McLellan <btm@loftninjas.org>
+DM-Upload-Allowed: yes
+Build-Depends: debhelper (>= 7.0.50~), gem2deb (>= 0.2.2)
+Standards-Version: 3.9.2
+#Vcs-Git: git://git.debian.org/pkg-ruby-extras/chef-solr.git
+#Vcs-Browser: http://git.debian.org/?p=pkg-ruby-extras/chef-solr.git;a=summary
+Homepage: http://wiki.opscode.com/display/chef
+XS-Ruby-Versions: all
+
+Package: chef-solr
+Architecture: all
+XB-Ruby-Versions: ${ruby:Versions}
+Depends: ${shlibs:Depends}, ${misc:Depends}, ruby1.8 | ruby-interpreter, rabbitmq-server (>= 1.6), default-jre-headless | java6-runtime-headless, libjson-ruby1.8 (>= 1.4.6), chef (= ${source:Version}), solr-jetty (>=1.4.0), libxml-ruby1.8, adduser, ucf
+Replaces: chef-indexer
+Conflicts: chef-indexer
+Description: Manages search indexes of Chef node attributes using SOLR
+ The chef indexer listens to a message queue via AMQP for changes to search
+ indexes. It then either creates or deletes entries in the index according
+ to the information it is passed.
+ .
+ This package provides the chef-solr search engine which runs as a solr-jetty
+ server, and chef-solr-indexer that talks to the AMQP message queue, by
+ default rabbitmq-server.

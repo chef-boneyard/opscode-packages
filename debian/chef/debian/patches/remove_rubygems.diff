@@ -1,0 +1,57 @@
+--- a/bin/chef-client
++++ b/bin/chef-client
+@@ -18,7 +18,6 @@
+ # See the License for the specific language governing permissions and
+ # limitations under the License.
+ 
+-require 'rubygems'
+ $:.unshift(File.join(File.dirname(__FILE__), "..", "lib"))
+ require 'chef'
+ require 'chef/application/client'
+--- a/bin/chef-solo
++++ b/bin/chef-solo
+@@ -18,7 +18,6 @@
+ # See the License for the specific language governing permissions and
+ # limitations under the License.
+ 
+-require 'rubygems'
+ $:.unshift(File.join(File.dirname(__FILE__), "..", "lib"))
+ require 'chef/application/solo'
+ 
+--- a/bin/knife
++++ b/bin/knife
+@@ -18,7 +18,6 @@
+ # See the License for the specific language governing permissions and
+ # limitations under the License.
+ 
+-require 'rubygems'
+ $:.unshift(File.expand_path(File.join(File.dirname(__FILE__), "..", "lib")))
+ require 'chef/application/knife'
+ 
+--- a/bin/shef
++++ b/bin/shef
+@@ -18,11 +18,6 @@
+ # See the License for the specific language governing permissions and
+ # limitations under the License.
+ 
+-begin
+-  require "rubygems"
+-rescue LoadError
+-end
+-
+ require "irb"
+ require "irb/completion"
+ require 'irb/ext/save-history'
+--- a/lib/chef/knife/core/subcommand_loader.rb
++++ b/lib/chef/knife/core/subcommand_loader.rb
+@@ -63,10 +63,6 @@
+       # subcommand loader has been modified to load the plugins by using Kernel.load
+       # with the absolute path.
+       def gem_and_builtin_subcommands
+-        # search all gems for chef/knife/*.rb
+-        require 'rubygems'
+-        find_subcommands_via_rubygems
+-      rescue LoadError
+         find_subcommands_via_dirglob
+       end
+ 

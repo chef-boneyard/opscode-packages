@@ -1,0 +1,49 @@
+Source: chef
+Section: ruby
+Priority: optional
+Maintainer: Debian Ruby Extras Maintainers <pkg-ruby-extras-maintainers@lists.alioth.debian.org>
+Uploaders: Bryan McLellan <btm@loftninjas.org>
+DM-Upload-Allowed: yes
+Build-Depends: debhelper (>= 7.0.50~), gem2deb (>= 0.2.2)
+Standards-Version: 3.9.2
+#Vcs-Git: git://git.debian.org/pkg-ruby-extras/chef.git
+#Vcs-Browser: http://git.debian.org/?p=pkg-ruby-extras/chef.git;a=summary
+Homepage: http://wiki.opscode.com/display/chef
+XS-Ruby-Versions: all
+
+Package: chef
+Architecture: all
+XB-Ruby-Versions: ${ruby:Versions}
+Depends: ${shlibs:Depends}, ${misc:Depends}, ruby1.8 | ruby-interpreter, libmixlib-config-ruby (>= 1.1.2), libmixlib-cli-ruby (>= 1.1.0), libmixlib-log-ruby (>= 1.3.0), libmixlib-authentication-ruby (>= 1.1.0), ohai (>= 0.6.0), librestclient-ruby, libbunny-ruby, libjson-ruby (>= 1.4.4), libtreetop-ruby, libnet-ssh2-ruby, libnet-ssh-multi-ruby, liberubis-ruby, libtreetop-ruby, libmoneta-ruby, libhighline-ruby, libuuidtools-ruby, rubygems
+Provides: libchef-ruby, libchef-ruby1.8
+Conflicts: libchef-ruby, libchef-ruby1.8
+Replaces: libchef-ruby, libchef-ruby1.8
+Recommends: irb1.8
+Description: A systems integration framework, built to bring the benefits of configuration management to your entire infrastructure.
+ Chef is a systems integration framework and configuration management library
+ written in Ruby. Chef provides a Ruby library and API that can be used to
+ bring the benefits of configuration management to an entire infrastructure.
+ .
+ Chef can be run as a client (chef-client) to a server, or run as a standalone
+ tool (chef-solo). Configuration recipes are written in a pure Ruby DSL.
+ .
+ This package contains the chef-client, chef-solo and knife binaries as well
+ as the chef library.
+
+# Transitional packages
+Package: libchef-ruby
+Section: oldlibs
+Architecture: all
+Depends: ${misc:Depends}, chef
+Description: Transitional package for chef
+ This is a transitional package to ease upgrades to the chef
+ package. It can safely be removed.
+
+Package: libchef-ruby1.8
+Section: oldlibs
+Architecture: all
+Depends: ${misc:Depends}, chef
+Description: Transitional package for chef
+ This is a transitional package to ease upgrades to the chef
+ package. It can safely be removed.
+

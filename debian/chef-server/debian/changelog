@@ -1,0 +1,5 @@
+chef-server (0.10.0-1) unstable; urgency=low
+
+  * Package split from chef source package
+
+ -- Bryan McLellan <btm@loftninjas.org>  Fri, 06 May 2011 19:24:44 +0000

@@ -1,0 +1,15 @@
+Package: chef-expander
+Version: 0.10.0-1
+Architecture: all
+Maintainer: Debian Ruby Extras Maintainers <pkg-ruby-extras-maintainers@lists.alioth.debian.org>
+Installed-Size: 196
+Depends: ruby1.8 | ruby-interpreter, libmixlib-log-ruby (>= 1.3.0), libamqp-ruby, libbunny-ruby, libem-http-request-ruby, libeventmachine-ruby, libfast-xs-ruby, libhighline-ruby, libuuidtools-ruby, libyajl-ruby
+Suggests: chef (= 0.10.0-1)
+Conflicts: chef-indexer
+Replaces: chef-indexer
+Section: ruby
+Priority: optional
+Homepage: http://wiki.opscode.com/display/chef
+Description: A systems integration framework, built to bring the benefits of configuration management to your entire infrastructure.
+ A systems integration framework, built to bring the benefits of configuration management to your entire infrastructure.
+Ruby-Versions: ruby1.8 ruby1.9.1
