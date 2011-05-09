@@ -14,6 +14,6 @@ XS-Ruby-Versions: all
 Package: chef-server-api
 Architecture: all
 XB-Ruby-Versions: ${ruby:Versions}
-Depends: ${shlibs:Depends}, ${misc:Depends}, ruby1.8 | ruby-interpreter,  merb-core, libmerb-assets-ruby, libmerb-param-protection-ruby, libmerb-helpers-ruby, libmixlib-authentication (>= 1.1.3), rabbitmq-server (>= 1.6), couchdb (>= 0.9.1), thin, libjson-ruby (>= 1.4.6), chef (= ${source:Version}), chef-solr (= ${source:Version}), adduser, ucf, libdep-selector-ruby, libtreetop-ruby, libuuidtools-ruby
+Depends: ${shlibs:Depends}, ${misc:Depends}, ruby1.8 | ruby-interpreter,  merb-core, libmerb-assets-ruby, libmerb-param-protection-ruby, libmerb-helpers-ruby, libmixlib-authentication-ruby (>= 1.1.3), rabbitmq-server (>= 1.6), couchdb (>= 0.9.1), thin, libjson-ruby (>= 1.4.6), chef (= ${source:Version}), chef-solr (= ${source:Version}), adduser, ucf, libdep-selector-ruby, libtreetop-ruby, libuuidtools-ruby
 Description: A systems integration framework, built to bring the benefits of configuration management to your entire infrastructure.
  A systems integration framework, built to bring the benefits of configuration management to your entire infrastructure.

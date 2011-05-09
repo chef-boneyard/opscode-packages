@@ -1,6 +1,6 @@
 Template: chef-server-webui/admin_password
 Type: password
-_Description: New password for the 'admin' user in the Chef Server WebUI:
+Description: New password for the 'admin' user in the Chef Server WebUI:
   This sets a temporary first-use password to log into the Chef Server WebUI
   as the 'admin' user for the first time. Once logged in, the password should
   be changed immediately.

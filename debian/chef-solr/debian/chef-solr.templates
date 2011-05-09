@@ -1,6 +1,6 @@
 Template: chef-solr/amqp_password
 Type: password
-_Description: New password for the 'chef' AMQP user in the RabbitMQ vhost "/chef":
+Description: New password for the 'chef' AMQP user in the RabbitMQ vhost "/chef":
   Set the password for the chef user in the AMQP server queue. Use
   RabbitMQ's rabbitmqctl program to set this password. The default user
   and vhost are assumed (chef and /chef, respectively).

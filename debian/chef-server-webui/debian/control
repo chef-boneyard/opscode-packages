@@ -5,7 +5,7 @@ Maintainer: Debian Ruby Extras Maintainers <pkg-ruby-extras-maintainers@lists.al
 Uploaders: Bryan McLellan <btm@loftninjas.org>
 DM-Upload-Allowed: yes
 Build-Depends: debhelper (>= 7.0.50~), gem2deb (>= 0.2.2)
-Standards-Version: 3.9.1
+Standards-Version: 3.9.2
 #Vcs-Git: git://git.debian.org/pkg-ruby-extras/chef-server-webui.git
 #Vcs-Browser: http://git.debian.org/?p=pkg-ruby-extras/chef-server-webui.git;a=summary
 Homepage: http://wiki.opscode.com/display/chef
@@ -14,7 +14,6 @@ XS-Ruby-Versions: all
 Package: chef-server-webui
 Architecture: all
 XB-Ruby-Versions: ${ruby:Versions}
-Depends: ${shlibs:Depends}, ${misc:Depends}, ruby1.8 | ruby-interpreter
-# merb-core (~> 1.1.0, runtime), merb-assets (~> 1.1.0, runtime), merb-helpers (~> 1.1.0, runtime), merb-haml (~> 1.1.0, runtime), merb-param-protection (~> 1.1.0, runtime), json (>= 1.4.4, <= 1.4.6, runtime), thin (>= 0, runtime), haml (>= 0, runtime), ruby-openid (>= 0, runtime), coderay (>= 0, runtime)
+Depends: ${shlibs:Depends}, ${misc:Depends}, ruby1.8 | ruby-interpreter, merb-core, libmerb-param-protection-ruby, libmerb-assets-ruby, libmerb-haml-ruby, libmerb-helpers-ruby, thin, libopenid-ruby, libjson-ruby (>= 1.4.6), chef (= ${source:Version}), libcoderay-ruby, chef-server (= ${source:Version}), adduser, libjs-jquery-ui (>= 1.7.1), ucf
 Description: A systems integration framework, built to bring the benefits of configuration management to your entire infrastructure.
  A systems integration framework, built to bring the benefits of configuration management to your entire infrastructure.

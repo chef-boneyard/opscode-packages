@@ -1,0 +1,11 @@
+--- a/bin/chef-server
++++ b/bin/chef-server
+@@ -23,6 +23,8 @@
+ require "rubygems"
+ require "merb-core"
+ 
++Merb::disabled :json
++
+ # Load chef and chef-server-api from source rather than gem, if present
+ $:.unshift(File.expand_path(File.dirname(__FILE__) + '/../../chef/lib/'))
+ $:.unshift(File.expand_path(File.dirname(__FILE__) + '/../../chef-solr/lib/'))

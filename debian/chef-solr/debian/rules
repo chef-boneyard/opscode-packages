@@ -13,3 +13,9 @@
 
 %:
 	dh $@ --buildsystem=ruby --with ruby
+
+override_dh_auto_install:
+	tar xvzf solr/solr-home.tar.gz -C debian/chef-solr/var/lib/chef/solr
+	cp debian/etc/chef/solr.rb  debian/chef-solr/usr/share/chef-solr
+	dh_ruby --install
+

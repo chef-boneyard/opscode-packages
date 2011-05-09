@@ -13,3 +13,17 @@
 
 %:
 	dh $@ --buildsystem=ruby --with ruby
+
+override_dh_auto_install:
+	cp -rf $(CURDIR)/debian/etc/chef/webui.rb $(CURDIR)/debian/chef-server-webui/usr/share/chef-server-webui/webui.rb
+	cp debian/etc/chef/webui.rb  debian/chef-server-webui/usr/share/chef-server-webui
+	cp config.ru  debian/chef-server-webui/usr/share/chef-server-webui
+	cp -rf app    debian/chef-server-webui/usr/share/chef-server-webui
+	cp -rf config debian/chef-server-webui/usr/share/chef-server-webui
+	cp -rf public debian/chef-server-webui/usr/share/chef-server-webui
+	cp -rf lib    debian/chef-server-webui/usr/share/chef-server-webui
+	dh_ruby --install
+	mkdir -p $(CURDIR)/debian/chef-server-webui/usr/sbin
+	mv $(CURDIR)/debian/chef-server-webui/usr/bin/chef-server-webui $(CURDIR)/debian/chef-server-webui/usr/sbin
+
+
