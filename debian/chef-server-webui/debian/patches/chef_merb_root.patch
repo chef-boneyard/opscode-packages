@@ -1,0 +1,8 @@
+--- a/lib/chef-server-webui.rb
++++ b/lib/chef-server-webui.rb
+@@ -1,4 +1,4 @@
+ require 'chef-server-webui/version'
+ 
+ CHEF_SERVER_WEBUI_VERSION = ::ChefServerWebui::VERSION
+-CHEF_SERVER_WEBUI_ROOT = File.expand_path(File.dirname(__FILE__) + '/../')
++CHEF_SERVER_WEBUI_ROOT = "/usr/share/chef-server-webui"

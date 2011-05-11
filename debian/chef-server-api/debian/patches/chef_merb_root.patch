@@ -1,0 +1,8 @@
+--- a/lib/chef-server-api.rb
++++ b/lib/chef-server-api.rb
+@@ -1,4 +1,4 @@
+ require 'chef-server-api/version'
+ 
+ CHEF_SERVER_VERSION = ChefServerApi::VERSION
+-CHEF_SERVER_API_ROOT = File.expand_path(File.dirname(__FILE__) + '/../')
++CHEF_SERVER_API_ROOT = "/usr/share/chef-server-api"

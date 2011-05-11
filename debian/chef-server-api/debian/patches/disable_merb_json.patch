@@ -4,7 +4,7 @@
  require "rubygems"
  require "merb-core"
  
-+Merb::disabled :json
++Merb::disable :json
 +
  # Load chef and chef-server-api from source rather than gem, if present
  $:.unshift(File.expand_path(File.dirname(__FILE__) + '/../../chef/lib/'))

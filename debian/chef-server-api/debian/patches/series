@@ -1,1 +1,2 @@
 disable_merb_json.patch
+chef_merb_root.patch
