@@ -17,5 +17,10 @@
 override_dh_auto_install:
 	tar xvzf solr/solr-home.tar.gz -C debian/chef-solr/var/lib/chef/solr
 	cp debian/etc/chef/solr.rb  debian/chef-solr/usr/share/chef-solr
+	cp -rf $(CURDIR)/debian/etc/chef/solr-jetty debian/chef-solr/etc/chef
 	dh_ruby --install
+	mv $(CURDIR)/debian/chef-solr/usr/bin/chef-solr $(CURDIR)/debian/chef-solr/usr/sbin
+	mv $(CURDIR)/debian/chef-solr/usr/bin/chef-solr-rebuild $(CURDIR)/debian/chef-solr/usr/sbin
+	mv $(CURDIR)/debian/chef-solr/usr/bin/chef-solr-installer $(CURDIR)/debian/chef-solr/usr/sbin
+
 

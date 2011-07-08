@@ -52,7 +52,7 @@ solr_url        "http://localhost:8983"
 # uses the solr_jetty_path option set above, and the etc directory is
 # actually a symbolic link to /etc/chef/solr-jetty.
 
-solr_java_opts  "-DSTART=#{Chef::Config[:solr_jetty_path]}/etc/start.config"
+solr_java_opts  "-DSTART=#{solr_jetty_path}/etc/start.config"
 
 # amqp_pass sets the password for the AMQP virtual host in rabbitmq-server.
 

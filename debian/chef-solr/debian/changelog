@@ -1,3 +1,9 @@
+chef-solr (0.10.2-1) unstable; urgency=high
+
+  * New upstream release
+
+ -- Bryan McLellan <btm@loftninjas.org>  Thu, 07 Jul 2011 22:01:39 +0000
+
 chef-solr (0.10.0-1) unstable; urgency=low
 
   * Package split from chef source package
