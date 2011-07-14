@@ -1,3 +1,15 @@
+chef-server (0.10.2-2) unstable; urgency=low
+
+  * Switch depends to >= from = so that package revisions don't require a full re-release
+
+ -- Bryan McLellan <btm@loftninjas.org>  Wed, 13 Jul 2011 17:50:01 +0000
+
+chef-server (0.10.2-1) unstable; urgency=high
+
+  * New upstream release
+
+ -- Bryan McLellan <btm@loftninjas.org>  Thu, 07 Jul 2011 22:00:58 +0000
+
 chef-server (0.10.0-1) unstable; urgency=low
 
   * Package split from chef source package

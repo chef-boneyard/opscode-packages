@@ -1,3 +1,15 @@
+chef-server-webui (0.10.2-2) unstable; urgency=low
+
+  * Revision bump for more flexible chef-server depends
+
+ -- Bryan McLellan <btm@loftninjas.org>  Wed, 13 Jul 2011 18:04:48 +0000
+
+chef-server-webui (0.10.2-1) unstable; urgency=high
+
+  * New upstream release
+
+ -- Bryan McLellan <btm@loftninjas.org>  Thu, 07 Jul 2011 22:01:25 +0000
+
 chef-server-webui (0.10.0-1) UNRELEASED; urgency=low
 
   * Initial release (Closes: #nnnn)
