@@ -1,8 +1,0 @@
-/var/log/chef/server-webui.log /var/log/chef/merb-webui*log {
-  rotate 12
-  weekly
-  compress
-  postrotate
-  /usr/sbin/invoke-rc.d chef-server-webui force-reload > /dev/null
-  endscript
-}

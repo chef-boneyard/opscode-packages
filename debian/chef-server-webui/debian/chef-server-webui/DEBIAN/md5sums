@@ -1,9 +1,0 @@
-394f9dae7ce164622bff8bde5e2ac405  usr/bin/chef-server-webui
-2b7493b2738f49fc978d5be5aa801626  usr/lib/ruby/vendor_ruby/chef-server-webui.rb
-c61bdb3b5b8ee82c9aa749f3d9cdd4a4  usr/lib/ruby/vendor_ruby/chef-server-webui/merbtasks.rb
-a9da5afc52a3f94aa8820c940078e10e  usr/lib/ruby/vendor_ruby/chef-server-webui/slicetasks.rb
-b6aea723396ce14aac2ff41846bb46dd  usr/lib/ruby/vendor_ruby/chef-server-webui/spectasks.rb
-dd2cdeeb67a4a5e6ac28ad33d85c6661  usr/lib/ruby/vendor_ruby/chef-server-webui/version.rb
-b8a0772ae6dd2e97ccab782790d4cfba  usr/share/doc/chef-server-webui/README.rdoc.gz
-333189337465461b4151eca7b013c451  usr/share/doc/chef-server-webui/changelog.Debian.gz
-cdd6b30151d78d5b94e3e2dc88446ecd  usr/share/doc/chef-server-webui/copyright
