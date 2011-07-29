@@ -14,6 +14,6 @@ XS-Ruby-Versions: all
 Package: chef-server-webui
 Architecture: all
 XB-Ruby-Versions: ${ruby:Versions}
-Depends: ${shlibs:Depends}, ${misc:Depends}, ruby1.8 | ruby-interpreter, merb-core, libmerb-param-protection-ruby, libmerb-assets-ruby, libmerb-haml-ruby, libmerb-helpers-ruby, thin, libopenid-ruby, libjson-ruby (>= 1.4.6), chef (= ${source:Version}), libcoderay-ruby, chef-server (= ${source:Version}), adduser, libjs-jquery-ui (>= 1.7.1), ucf
+Depends: ${shlibs:Depends}, ${misc:Depends}, ruby1.8 | ruby-interpreter, merb-core, libmerb-param-protection-ruby, libmerb-assets-ruby, libmerb-haml-ruby, libmerb-helpers-ruby, thin, libopenid-ruby, libjson-ruby (>= 1.4.6), chef (>= ${source:Upstream-Version}), libcoderay-ruby, chef-server (>= ${source:Upstream-Version}), adduser, ucf
 Description: A systems integration framework, built to bring the benefits of configuration management to your entire infrastructure.
  A systems integration framework, built to bring the benefits of configuration management to your entire infrastructure.
