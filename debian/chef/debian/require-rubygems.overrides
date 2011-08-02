@@ -1,3 +1,4 @@
 debian/chef/usr/lib/ruby/vendor_ruby/chef/provider/package/rubygems.rb
 debian/chef/usr/lib/ruby/vendor_ruby/chef/providers.rb
+debian/chef/usr/lib/ruby/vendor_ruby/chef/knife/core/subcommand_loader.rb
 

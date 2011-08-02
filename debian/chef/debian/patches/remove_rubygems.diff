@@ -42,16 +42,4 @@
  require "irb"
  require "irb/completion"
  require 'irb/ext/save-history'
---- a/lib/chef/knife/core/subcommand_loader.rb
-+++ b/lib/chef/knife/core/subcommand_loader.rb
-@@ -63,10 +63,6 @@
-       # subcommand loader has been modified to load the plugins by using Kernel.load
-       # with the absolute path.
-       def gem_and_builtin_subcommands
--        # search all gems for chef/knife/*.rb
--        require 'rubygems'
--        find_subcommands_via_rubygems
--      rescue LoadError
-         find_subcommands_via_dirglob
-       end
  
