@@ -1,3 +1,9 @@
+chef-solr (0.10.2-3) unstable; urgency=low
+
+  * Change dependency on chef to Upstream-Version
+
+ -- Bryan McLellan <btm@loftninjas.org>  Wed, 03 Aug 2011 12:26:11 +0000
+
 chef-solr (0.10.2-2) unstable; urgency=low
 
   * Revision bump for more flexible chef-server depends

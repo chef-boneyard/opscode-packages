@@ -14,7 +14,7 @@ XS-Ruby-Versions: all
 Package: chef-solr
 Architecture: all
 XB-Ruby-Versions: ${ruby:Versions}
-Depends: ${shlibs:Depends}, ${misc:Depends}, ruby1.8 | ruby-interpreter, rabbitmq-server (>= 1.6), default-jre-headless | java6-runtime-headless, libjson-ruby1.8 (>= 1.4.6), chef (= ${source:Version}), solr-jetty (>=1.4.0), libxml-ruby1.8, adduser, ucf
+Depends: ${shlibs:Depends}, ${misc:Depends}, ruby1.8 | ruby-interpreter, rabbitmq-server (>= 1.6), default-jre-headless | java6-runtime-headless, libjson-ruby1.8 (>= 1.4.6), chef (>= ${source:Upstream-Version}), solr-jetty (>=1.4.0), libxml-ruby1.8, adduser, ucf
 Replaces: chef-indexer
 Conflicts: chef-indexer
 Description: Manages search indexes of Chef node attributes using SOLR
