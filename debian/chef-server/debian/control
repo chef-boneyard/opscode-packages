@@ -14,7 +14,7 @@ XS-Ruby-Versions: all
 Package: chef-server
 Architecture: all
 XB-Ruby-Versions: ${ruby:Versions}
-Depends: ${shlibs:Depends}, ${misc:Depends}, ruby1.8 | ruby-interpreter, chef-server-api (>= ${source:Upstream-Version}), chef-server-webui (>= ${source:Upstream-Version}), chef-solr (>= ${source:Upstream-Version}), chef-expander (>= ${source:UpstreamVersion})
+Depends: ${shlibs:Depends}, ${misc:Depends}, ruby1.8 | ruby-interpreter, chef-server-api (>= ${source:Upstream-Version}), chef-server-webui (>= ${source:Upstream-Version}), chef-solr (>= ${source:Upstream-Version}), chef-expander (>= ${source:Upstream-Version})
 Description: A meta-gem to install all server components of the Chef configuration management system
  Chef is a systems integration framework and configuration management system
  written in Ruby. Chef provides a Ruby library and API that can be used to

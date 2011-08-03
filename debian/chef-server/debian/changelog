@@ -1,8 +1,8 @@
 chef-server (0.10.2-3) unstable; urgency=low
 
-  * Switch Chef depends to >= Upstream-Version (Fixes CHEF-2513)
+  * Swtich from source:Version to source:Upstream-version to fix dependencies
 
- -- Bryan McLellan <btm@loftninjas.org>  Wed, 03 Aug 2011 12:58:18 +0000
+ -- Bryan McLellan <btm@btm@loftninjas.org>  Fri, 29 Jul 2011 15:47:23 +0000
 
 chef-server (0.10.2-2) unstable; urgency=low
 
