@@ -14,7 +14,7 @@ XS-Ruby-Versions: all
 Package: chef-expander
 Architecture: all
 XB-Ruby-Versions: ${ruby:Versions}
-Depends: ${shlibs:Depends}, ${misc:Depends}, ruby1.8 | ruby-interpreter, libmixlib-log-ruby (>= 1.3.0), libamqp-ruby, libbunny-ruby, libem-http-request-ruby, libeventmachine-ruby, libfast-xs-ruby, libhighline-ruby, libuuidtools-ruby, libyajl-ruby, chef-solr (= ${source:Version})
+Depends: ${shlibs:Depends}, ${misc:Depends}, ruby1.8 | ruby-interpreter, libmixlib-log-ruby (>= 1.3.0), libamqp-ruby, libbunny-ruby, libem-http-request-ruby, libeventmachine-ruby, libfast-xs-ruby, libhighline-ruby, libuuidtools-ruby, libyajl-ruby, chef-solr (>= ${source:Upstream-Version})
 Replaces: chef-indexer
 Conflicts: chef-indexer
 Description: A systems integration framework, built to bring the benefits of configuration management to your entire infrastructure.
