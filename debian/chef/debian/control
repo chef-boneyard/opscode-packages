@@ -14,7 +14,7 @@ XS-Ruby-Versions: all
 Package: chef
 Architecture: all
 XB-Ruby-Versions: ${ruby:Versions}
-Depends: ${shlibs:Depends}, ${misc:Depends}, ruby1.8 | ruby-interpreter, libmixlib-config-ruby (>= 1.1.2), libmixlib-cli-ruby (>= 1.1.0), libmixlib-log-ruby (>= 1.3.0), libmixlib-authentication-ruby (>= 1.1.0), ohai (>= 0.6.0), librestclient-ruby, libbunny-ruby, libjson-ruby (>= 1.4.4), libtreetop-ruby, libnet-ssh2-ruby, libnet-ssh-multi-ruby, liberubis-ruby, libtreetop-ruby, libmoneta-ruby, libhighline-ruby, libuuidtools-ruby, rubygems
+Depends: ${shlibs:Depends}, ${misc:Depends}, ruby1.8 | ruby-interpreter, libmixlib-config-ruby (>= 1.1.2), libmixlib-cli-ruby (>= 1.1.0), libmixlib-log-ruby (>= 1.3.0), libmixlib-authentication-ruby (>= 1.1.0), ohai (>= 0.6.0), librestclient-ruby, libbunny-ruby, libjson-ruby (>= 1.4.4), libtreetop-ruby, libnet-ssh2-ruby, libnet-ssh-multi-ruby, liberubis-ruby, libtreetop-ruby, libmoneta-ruby, libhighline-ruby, libuuidtools-ruby, rubygems, ucf
 Provides: libchef-ruby, libchef-ruby1.8
 Conflicts: libchef-ruby, libchef-ruby1.8
 Replaces: libchef-ruby, libchef-ruby1.8
