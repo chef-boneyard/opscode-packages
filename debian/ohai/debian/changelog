@@ -1,3 +1,9 @@
+ohai (0.6.4-1) unstable; urgency=low
+
+  * New upstream release
+
+ -- Bryan McLellan <btm@loftninjas.org>  Thu, 28 Apr 2011 19:27:09 +0000
+
 ohai (0.6.2-2) unstable; urgency=low
 
   * Remove extlib from depends
