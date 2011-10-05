@@ -1,3 +1,15 @@
+ohai (0.6.8-1) unstable; urgency=low
+
+  * New upstream release
+
+ -- Bryan McLellan <btm@loftninjas.org>  Wed, 05 Oct 2011 14:50:49 +0000
+
+ohai (0.6.6-1) unstable; urgency=low
+
+  * New upstream release
+
+ -- Bryan McLellan <btm@loftninjas.org>  Mon, 03 Oct 2011 18:41:50 +0000
+
 ohai (0.6.4-1) unstable; urgency=low
 
   * New upstream release
