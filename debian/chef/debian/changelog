@@ -1,3 +1,9 @@
+chef (0.10.4-1) unstable; urgency=low
+
+  * New upstream release
+
+ -- Bryan McLellan <btm@loftninjas.org>  Thu, 11 Aug 2011 20:16:22 +0000
+
 chef (0.10.2-3) unstable; urgency=low
 
   * Remove patch that loaded knife subcommands via dirglob (fixed CHEF-2483)
