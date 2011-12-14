@@ -1,6 +1,12 @@
+chef-server (0.10.6-1) unstable; urgency=low
+
+  * New upstream release
+
+ -- Bryan McLellan <btm@loftninjas.org>  Wed, 14 Dec 2011 00:01:16 +0000
+
 chef-server (0.10.2-3) unstable; urgency=low
 
-  * Swtich from source:Version to source:Upstream-version to fix dependencies
+  * Switch from source:Version to source:Upstream-version to fix dependencies
 
  -- Bryan McLellan <btm@btm@loftninjas.org>  Fri, 29 Jul 2011 15:47:23 +0000
 

@@ -1,3 +1,9 @@
+chef-solr (0.10.6-1) unstable; urgency=low
+
+  * New upstream release
+
+ -- Bryan McLellan <btm@loftninjas.org>  Wed, 14 Dec 2011 00:01:37 +0000
+
 chef-solr (0.10.2-4) unstable; urgency=low
 
   * Fix rabbitmq_has_user() grep pattern for RabbitMQ 2.3.1 (Fixes CHEF-2296)

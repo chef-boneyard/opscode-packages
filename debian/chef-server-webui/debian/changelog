@@ -1,3 +1,9 @@
+chef-server-webui (0.10.6-1) unstable; urgency=low
+
+  * New upstream release
+
+ -- Bryan McLellan <btm@loftninjas.org>  Wed, 14 Dec 2011 00:01:32 +0000
+
 chef-server-webui (0.10.2-3) unstable; urgency=low
 
   * Allow upstream JS files to remain because it is simpler (Fixes CHEF-2469)
