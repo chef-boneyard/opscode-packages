@@ -20,7 +20,6 @@ override_dh_auto_install:
 	cp -rf $(CURDIR)/debian/etc/chef/solr-jetty debian/chef-solr/etc/chef
 	dh_ruby --install
 	mv $(CURDIR)/debian/chef-solr/usr/bin/chef-solr $(CURDIR)/debian/chef-solr/usr/sbin
-	mv $(CURDIR)/debian/chef-solr/usr/bin/chef-solr-rebuild $(CURDIR)/debian/chef-solr/usr/sbin
 	mv $(CURDIR)/debian/chef-solr/usr/bin/chef-solr-installer $(CURDIR)/debian/chef-solr/usr/sbin
 
 
