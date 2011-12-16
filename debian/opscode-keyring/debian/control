@@ -2,7 +2,6 @@ Source: opscode-keyring
 Section: misc
 Priority: optional
 Maintainer: Joshua Timberman <joshua@opscode.com>
-Uploaders: Sebastian Boehm <sebastian@sometimesfood.org>
 Build-Depends: debhelper (>= 7)
 Standards-Version: 3.8.4
 Homepage: http://github.com/opscode/opscode-packages
