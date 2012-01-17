@@ -1,6 +1,7 @@
 chef-solr (0.10.8-2) unstable; urgency=low
 
   * Another fix to grep pattern for rabbit mq user (Fixes CHEF-2296)
+  * Do not install the 'chef-solr-installer' (Fixes CHEF-2351)
 
  -- Bryan McLellan <btm@loftninjas.org>  Tue, 17 Jan 2012 21:36:14 +0000
 
