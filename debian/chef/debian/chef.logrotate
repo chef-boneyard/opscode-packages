@@ -3,6 +3,6 @@
   weekly
   compress
   postrotate
-	/usr/sbin/invoke-rc.d  chef-client force-reload > /dev/null
+	/usr/sbin/invoke-rc.d  chef-client restart > /dev/null
   endscript
 }
