@@ -2,8 +2,8 @@
   rotate 12
   weekly
   compress
-  postrotate
   missingok
+  postrotate
   /usr/sbin/invoke-rc.d chef-server-webui force-reload > /dev/null
   endscript
 }
