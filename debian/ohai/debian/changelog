@@ -1,3 +1,9 @@
+ohai (0.6.12-2) unstable; urgency=low
+
+  * Add ruby-ipaddress to the depends
+
+ -- Bryan McLellan <btm@loftninjas.org>  Thu, 22 Mar 2012 21:30:12 +0000
+
 ohai (0.6.12-1) unstable; urgency=low
 
   * New upstream release

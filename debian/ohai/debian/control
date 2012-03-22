@@ -40,7 +40,7 @@ Description: Library to collect data about your operating system and report it i
 
 Package: libohai-ruby1.8
 Architecture: all
-Depends: ${shlibs:Depends}, ${misc:Depends}, ruby1.8, libyajl-ruby, libsystemu-ruby1.8, libmixlib-config-ruby1.8, libmixlib-log-ruby1.8, libmixlib-cli-ruby1.8
+Depends: ${shlibs:Depends}, ${misc:Depends}, ruby1.8, libyajl-ruby, libsystemu-ruby1.8, libmixlib-config-ruby1.8, libmixlib-log-ruby1.8, libmixlib-cli-ruby1.8, ruby-ipaddress
 Suggests: libvirt-ruby1.8, libhpricot-ruby1.8, ohai-doc
 Description: Ruby 1.8 library to collect data about your operating system
  Information about your system is collected and returned as multidimensional
