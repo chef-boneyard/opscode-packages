@@ -1,3 +1,9 @@
+chef (0.10.10-1) unstable; urgency=low
+
+  * New upstream release
+
+ -- Bryan McLellan <btm@loftninjas.org>  Fri, 11 May 2012 20:46:09 +0000
+
 chef (0.10.8-2) unstable; urgency=low
 
   * Use restart not force-reload for logrotate (Fixes CHEF-1854)

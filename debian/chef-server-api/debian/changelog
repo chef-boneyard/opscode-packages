@@ -1,3 +1,9 @@
+chef-server-api (0.10.10-1) unstable; urgency=low
+
+  * New upstream release
+
+ -- Bryan McLellan <btm@loftninjas.org>  Fri, 11 May 2012 20:46:29 +0000
+
 chef-server-api (0.10.8-2) unstable; urgency=low
 
   * Add libmerb-haml-ruby as a dependency (Fixes CHEF-2757)
