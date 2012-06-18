@@ -1,3 +1,9 @@
+chef (10.12.0-1) unstable; urgency=low
+
+  * New upstream release
+
+ -- Bryan McLellan <btm@loftninjas.org>  Mon, 18 Jun 2012 23:57:04 +0000
+
 chef (0.10.10-2) unstable; urgency=low
 
   * Add ruby-mixlib-shellout as a dep
