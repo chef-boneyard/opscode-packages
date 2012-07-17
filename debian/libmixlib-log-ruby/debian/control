@@ -15,5 +15,6 @@ Package: libmixlib-log-ruby
 Architecture: all
 XB-Ruby-Versions: ${ruby:Versions}
 Depends: ${shlibs:Depends}, ${misc:Depends}, ruby1.8 | ruby-interpreter
+Conflicts: ruby-mixlib-log
 Description: A gem that provides a simple mixin for log functionality
  <insert long description, indented with spaces>
