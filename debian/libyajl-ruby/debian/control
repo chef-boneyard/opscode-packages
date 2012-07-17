@@ -16,5 +16,6 @@ Architecture: any
 XB-Ruby-Versions: ${ruby:Versions}
 Depends: ${shlibs:Depends}, ${misc:Depends}, ruby1.8 | ruby-interpreter
 # rake-compiler (>= 0.7.5, development), rspec (>= 2.0.0, development), activesupport (>= 0, development), json (>= 0, development)
+Conflicts: ruby-yajl
 Description: Ruby C bindings to the excellent Yajl JSON stream-based parser library.
  <insert long description, indented with spaces>
