@@ -1,3 +1,10 @@
+chef-server-webui (10.14.0-1) unstable; urgency=low
+
+  * New upstream release
+  * Move logrotate action in postrotate script (Fixes CHEF-1247)
+
+ -- Bryan McLellan <btm@loftninjas.org>  Fri, 07 Sep 2012 15:45:59 +0000
+
 chef-server-webui (10.12.0-1) unstable; urgency=low
 
   * New upstream release
