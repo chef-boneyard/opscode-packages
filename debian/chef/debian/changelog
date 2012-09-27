@@ -1,3 +1,9 @@
+chef (10.14.4-1) unstable; urgency=low
+
+  * New upstream release
+
+ -- Bryan McLellan <btm@loftninjas.org>  Thu, 27 Sep 2012 21:55:47 +0000
+
 chef (10.14.2-1) unstable; urgency=low
 
   * New upstream release
