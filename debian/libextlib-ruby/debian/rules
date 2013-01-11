@@ -3,7 +3,7 @@
 include /usr/share/cdbs/1/rules/debhelper.mk
 include /usr/share/ruby-pkg-tools/1/class/ruby-setup-rb.mk
 
-DEB_INSTALL_CHANGELOGS_ALL=History.txt
+#DEB_INSTALL_CHANGELOGS_ALL=History.txt
 
 #binary-indep/libextlib-ruby-doc::
 #binary-arch/libextlib-ruby-doc::
