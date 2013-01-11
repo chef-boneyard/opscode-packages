@@ -1,0 +1,10 @@
+Document: libextlib-ruby-doc
+Title: extlib API documentation
+Author: Sam Smoot
+Abstract: Rdoc-generated API documentation.
+Section: Programming/Ruby
+
+Format: HTML
+Index: /usr/share/doc/libextlib-ruby-doc/rdoc/index.html
+Files: /usr/share/doc/libextlib-ruby-doc/rdoc/*
+

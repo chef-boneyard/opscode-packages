@@ -1,0 +1,42 @@
+libextlib-ruby (0.9.16-1) unstable; urgency=low
+
+  * New upstream release
+    - CVE-2013-0156
+    - Remove yaml coercion from the XML parser
+    - Remove symbol coercion from the XML parser
+
+ -- Joshua Timberman <joshua@opscode.com>  Fri, 11 Jan 2013 01:26:19 +0000
+
+libextlib-ruby (0.9.13-2) unstable; urgency=low
+
+  * std-ver -> 3.8.4. No changes needed.
+  * Switch to ruby 1.9.1. Closes: #569866.
+
+ -- Lucas Nussbaum <lucas@lucas-nussbaum.net>  Sat, 20 Feb 2010 19:06:29 +0100
+
+libextlib-ruby (0.9.13-1) unstable; urgency=low
+
+  * New upstream release
+    - Removes rubygems require (Closes: Bug541404)
+  * Update watchfile to use githubredir
+  * Minor grammatical changes to short description
+  * Switch section to ruby from libs
+  * Bump standards revision to 3.8.3
+  * Move ruby-pkg-tools to build-depends
+  * Bump debhelper version from 4 to 5
+  * Move History.txt from docs to changelogs
+
+ -- Bryan McLellan <btm@loftninjas.org>  Thu, 10 Nov 2009 12:39:09 -0700
+
+libextlib-ruby (0.9.10-2) unstable; urgency=low
+
+  * Update package descriptions (Closes: Bug#520211)
+
+ -- Bryan McLellan <btm@loftninjas.org>  Wed, 18 Mar 2009 11:33:30 -0700
+
+libextlib-ruby (0.9.10-1) unstable; urgency=low
+
+  * Initial release (Closes: Bug#513295)
+
+ -- Bryan McLellan <btm@loftninjas.org>  Mon, 26 Jan 2009 20:38:53 -0800
+

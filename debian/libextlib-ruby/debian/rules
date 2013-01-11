@@ -1,0 +1,16 @@
+#!/usr/bin/make -f
+
+include /usr/share/cdbs/1/rules/debhelper.mk
+include /usr/share/ruby-pkg-tools/1/class/ruby-setup-rb.mk
+
+DEB_INSTALL_CHANGELOGS_ALL=History.txt
+
+#binary-indep/libextlib-ruby-doc::
+#binary-arch/libextlib-ruby-doc::
+#	cp debian/libextlib-ruby-doc.doc-base.in debian/libextlib-ruby-doc.doc-base
+#	RDOC_HTML_FILES=`find $(CURDIR)/debian/libextlib-ruby-doc/usr/share/doc -name '*.html' | sed -e 's,$(CURDIR)/debian/libextlib-ruby-doc,,g' | xargs` ; \
+#  echo "Files: $$RDOC_HTML_FILES" >> debian/libextlib-ruby-doc.doc-base
+#
+#clean::
+#	rm -f debian/libextlib-ruby-doc.doc-base
+#

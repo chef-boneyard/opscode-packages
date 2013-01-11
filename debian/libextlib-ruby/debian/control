@@ -1,0 +1,60 @@
+Source: libextlib-ruby
+Section: ruby
+Priority: extra
+Maintainer: Bryan McLellan <btm@loftninjas.org>
+Uploaders: Debian Ruby Extras Maintainers <pkg-ruby-extras-maintainers@lists.alioth.debian.org>
+Vcs-Browser: http://svn.debian.org/viewsvn/pkg-ruby-extras/trunk/libextlib-ruby/
+Vcs-Svn: svn://svn.debian.org/svn/pkg-ruby-extras/trunk/libextlib-ruby/
+Build-Depends: cdbs, debhelper (>= 5.0.0), ruby-pkg-tools (>= 0.17)
+Build-Depends-Indep: graphviz, libsetup-ruby1.8, ruby1.8, ruby1.9.1
+Standards-Version: 3.8.4
+Homepage: http://rubyforge.org/projects/extlib/
+
+Package: libextlib-ruby
+Architecture: all
+Depends: libextlib-ruby1.8, ${misc:Depends}
+Suggests: libextlib-ruby-doc
+Description: general Ruby class extensions for DataMapper and Merb
+ This library provides a number of lightweight Ruby class extensions
+ extracted from DataMapper. Examples include a Mash class, which is a 
+ Hash with indifferent access and an added blank? method to most 
+ standard variable classes.
+ .
+ This package is a dependency package, which depends on the package
+ containing actual Ruby extlib libraries for the default Ruby version
+ (currently 1.8).
+
+Package: libextlib-ruby1.8
+Architecture: all
+Depends: ${shlibs:Depends}, ${misc:Depends}, ruby1.8
+Description: general Ruby 1.8 class extensions for DataMapper and Merb
+ This library provides a number of lightweight Ruby class extensions
+ extracted from DataMapper. Examples include a Mash class, which is a 
+ Hash with indifferent access and an added blank? method to most 
+ standard variable classes.
+ .
+ This package contains extlib libraries for Ruby 1.8.
+
+Package: libextlib-ruby1.9.1
+Architecture: all
+Depends: ${shlibs:Depends}, ${misc:Depends}, ruby1.9.1
+Description: general Ruby 1.9.1 class extensions for DataMapper and Merb
+ This library provides a number of lightweight Ruby class extensions
+ extracted from DataMapper. Examples include a Mash class, which is a 
+ Hash with indifferent access and an added blank? method to most 
+ standard variable classes.
+ .
+ This package contains extlib libraries for Ruby 1.9.1.
+
+Package: libextlib-ruby-doc
+Section: doc
+Architecture: all
+Depends: libextlib-ruby, ${misc:Depends}
+Description: Documentation for libextlib-ruby
+ This library provides a number of lightweight Ruby class extensions
+ extracted from DataMapper. Examples include a Mash class, which is a 
+ Hash with indifferent access and an added blank? method to most 
+ standard variable classes.
+ .
+ This package provides generated HTML documentation for libextlib-ruby.
+
