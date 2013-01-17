@@ -1,3 +1,15 @@
+ohai (6.16.0-2) unstable; urgency=low
+
+  * Build environment put libohai-ruby1.8 files in /usr/lib/ruby/1.9.1
+
+ -- Joshua Timberman <joshua@opscode.com>  Thu, 17 Jan 2013 06:15:40 -0700
+
+ohai (6.16.0-1) unstable; urgency=low
+
+  * New upstream release
+
+ -- Joshua Timberman <joshua@opscode.com>  Thu, 17 Jan 2013 05:32:25 -0700
+
 ohai (6.14.0-1) unstable; urgency=low
 
   * New upstream release
