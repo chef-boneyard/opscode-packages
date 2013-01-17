@@ -1,3 +1,9 @@
+libmixlib-cli-ruby (1.3.0-1) unstable; urgency=low
+
+  * New upstream release
+
+ -- Joshua Timberman <joshua@opscode.com>  Tue, 15 Jan 2013 10:35:32 -0700
+
 libmixlib-cli-ruby (1.2.0-1) unstable; urgency=low
 
   * New upstream release.
