@@ -1,3 +1,9 @@
+chef (10.18.0-1) unstable; urgency=low
+
+  * New upstream release
+
+ -- Joshua Timberman <joshua@opscode.com>  Tue, 15 Jan 2013 17:03:23 -0700
+
 chef (10.16.6-1) unstable; urgency=low
 
   * New upstream release
