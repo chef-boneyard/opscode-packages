@@ -1,3 +1,9 @@
+chef-solr (10.18.2-1) unstable; urgency=low
+
+  * New upstream release
+
+ -- Joshua Timberman <joshua@opscode.com>  Fri, 18 Jan 2013 09:34:59 -0700
+
 chef-solr (10.18.0-1) unstable; urgency=low
 
   * New upstream release
