@@ -1,8 +1,0 @@
-etc/chef
-var/lib/chef/openid
-var/lib/chef/openid/store
-var/lib/chef/openid/cstore
-var/cache/chef
-var/log/chef
-usr/share/doc/chef-server-webui
-usr/share/chef-server-webui/app

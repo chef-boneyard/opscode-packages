@@ -1,3 +1,0 @@
-version=3
-opts=dversionmangle=s/\+dfsg// \
-  http://githubredir.debian.net/github/opscode/chef /([0..9].*).tar.gz debian debian/repack.sh
