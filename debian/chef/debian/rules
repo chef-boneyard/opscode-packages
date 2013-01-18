@@ -17,8 +17,9 @@
 override_dh_auto_install:
 	dh_auto_install
 	# init script name is different from the package:
-	cp -f $(CURDIR)/distro/debian/etc/init.d/chef-client $(CURDIR)/debian/chef-client.init
-	cp -f $(CURDIR)/distro/debian/etc/default/chef-client $(CURDIR)/debian/chef-client.default
+	# Uncomment and remove ./chef-client.init, ./chef-client.default for 10.18.4 (CHEF-3774)
+	# cp -f $(CURDIR)/distro/debian/etc/init.d/chef-client $(CURDIR)/debian/chef-client.init
+	# cp -f $(CURDIR)/distro/debian/etc/default/chef-client $(CURDIR)/debian/chef-client.default
 	dh_installinit --name chef-client -- defaults 99 02
 	cp -rf $(CURDIR)/debian/etc/chef/client.rb $(CURDIR)/debian/chef/usr/share/chef
 	cp -rf $(CURDIR)/debian/etc/chef/solo.rb $(CURDIR)/debian/chef/usr/share/chef
