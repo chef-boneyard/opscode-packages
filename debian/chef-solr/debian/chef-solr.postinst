@@ -18,7 +18,7 @@ rabbitmq_has_vhost() {
 rabbitmq_has_user() {
   # using -q for grep causes rabbit to terminate on do_boot, redirect
   # STDOUT to /dev/null instead.
-  rabbitmqctl list_users | grep -x "^chef\(\W*\w*\)$" 1>/dev/null
+  rabbitmqctl list_users | grep -x "^chef\W*\[\W*\w*\]$" 1>/dev/null
 }
 
 rabbitmq_has_perms() {
