@@ -1,8 +1,8 @@
-chef (11.0.0.beta.2-1) unstable; urgency=low
+chef (10.24.0-1) unstable; urgency=low
 
-  * Test release
+  * New upstream release
 
- -- Bryan McLellan <btm@loftninjas.org>  Thu, 31 Jan 2013 20:51:19 +0000
+ -- Bryan McLellan <btm@loftninjas.org>  Sat, 16 Feb 2013 02:40:58 +0000
 
 chef (10.18.2-2) unstable; urgency=low
 

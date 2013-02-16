@@ -1,3 +1,9 @@
+chef-solr (10.24.0-1) unstable; urgency=low
+
+  * New upstream release
+
+ -- Bryan McLellan <btm@loftninjas.org>  Sat, 16 Feb 2013 02:40:16 +0000
+
 chef-solr (10.18.2-1) unstable; urgency=low
 
   * New upstream release
