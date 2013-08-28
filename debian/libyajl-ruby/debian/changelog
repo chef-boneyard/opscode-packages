@@ -1,3 +1,9 @@
+libyajl-ruby (0.8.2-3) unstable; urgency=low
+
+  * Adds conflicts with debian upstream packages
+
+ -- Arthur Gautier <superbaloo+chef@superbaloo.net>  Tue, 17 Jul 2012 10:21:45 +0000
+
 libyajl-ruby (0.8.2-2) unstable; urgency=low
 
   * Add extension_path.overrides (Bug #621500)
